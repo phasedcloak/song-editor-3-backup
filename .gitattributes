@@ -1,0 +1,33 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Audio files should be treated as binary
+*.wav binary
+*.mp3 binary
+*.flac binary
+*.ogg binary
+*.m4a binary
+*.aac binary
+
+# Python files
+*.py text eol=lf
+
+# Shell scripts
+*.sh text eol=lf
+
+# JSON files
+*.json text eol=lf
+
+# Markdown files
+*.md text eol=lf
+
+# Executables
+*.exe binary
+*.app binary
+*.dmg binary
+
+# Model files
+*.pth binary
+*.h5 binary
+*.tflite binary
+*.onnx binary

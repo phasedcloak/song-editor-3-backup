@@ -189,3 +189,22 @@ docs/source/_build/
 intermediate_outputs/
 processed_audio/
 output/
+
+# Embedded git repositories
+*whisper_debug_project/
+openai_whisper_debug_project/
+
+# Virtual environments (additional patterns)
+.venv_working*/
+.venv_working_karoke*/
+.venv_working_karoke_py310/
+
+# Additional Python cache patterns
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+pip-log.txt
+pip-delete-this-directory.txt

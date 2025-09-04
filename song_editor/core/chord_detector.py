@@ -14,6 +14,7 @@ import soundfile as sf
 from typing import Dict, Any, List
 from datetime import datetime
 # import vamp - optional
+from chord_extractor import ChordExtractor
 
 # Optional imports
 try:

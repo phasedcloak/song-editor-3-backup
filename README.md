@@ -41,6 +41,8 @@ cd Song_Editor_3
 ./run_song_editor_3.sh
 ```
 
+See [USAGE_GUIDE.md](./USAGE_GUIDE.md) for detailed usage instructions and command-line options.
+
 ### Manual Setup
 
 1. Create a virtual environment:
@@ -64,7 +66,18 @@ pip install -e .
 python -m song_editor.app
 ```
 
+See [USAGE_GUIDE.md](./USAGE_GUIDE.md) for detailed usage instructions and command-line options.
+
 ## Usage
+
+### Quick Start
+
+For detailed command-line usage and examples, see [USAGE_GUIDE.md](./USAGE_GUIDE.md).
+
+**Basic command:**
+```bash
+./run_song_editor.sh --no-gui --whisper-model faster-whisper "your-song.wav"
+```
 
 ### Basic Workflow
 

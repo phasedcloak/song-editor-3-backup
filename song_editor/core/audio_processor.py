@@ -14,24 +14,10 @@ from typing import Dict, Any, Optional, Tuple
 import psutil
 import time
 
-try:
-    from demucs.separate import HTDemucs, apply_model
-    from demucs.pretrained import get_model
-    DEMUCS_AVAILABLE = True
-except ImportError:
-    DEMUCS_AVAILABLE = False
+DEMUCS_AVAILABLE = False
+NOISEREDUCE_AVAILABLE = False
 
-try:
-    import noisereduce as nr
-    NOISEREDUCE_AVAILABLE = True
-except ImportError:
-    NOISEREDUCE_AVAILABLE = False
-
-try:
-    import pyloudnorm as pyln
-    PYLN_AVAILABLE = True
-except ImportError:
-    PYLN_AVAILABLE = False
+PYLN_AVAILABLE = False
 
 
 class AudioProcessor:
@@ -45,7 +31,7 @@ class AudioProcessor:
         denoise_strength: float = 0.5,
         normalize_lufs: float = -23.0
     ):
-        self.use_demucs = use_demucs and DEMUCS_AVAILABLE
+        self.use_demucs = use_demucs
         self.save_intermediate = save_intermediate
         self.target_sr = target_sr
         self.denoise_strength = denoise_strength
@@ -61,12 +47,14 @@ class AudioProcessor:
     def _initialize_demucs(self):
         """Initialize Demucs separator."""
         try:
-            if DEMUCS_AVAILABLE:
-                # Load pretrained HTDemucs model
-                self.separator = get_model('htdemucs')
-                logging.info("Demucs initialized successfully")
-            else:
-                logging.warning("Demucs not available, using fallback methods")
+            # Import demucs lazily
+            from demucs.separate import HTDemucs, apply_model
+            from demucs.pretrained import get_model
+            # Load pretrained HTDemucs model
+            self.separator = get_model('htdemucs')
+            logging.info("Demucs initialized successfully")
+        except ImportError:
+            logging.warning("Demucs not available, using fallback methods")
         except Exception as e:
             logging.error(f"Failed to initialize Demucs: {e}")
             self.use_demucs = False
@@ -173,11 +161,10 @@ class AudioProcessor:
 
     def denoise_audio(self, audio: np.ndarray, sr: int) -> np.ndarray:
         """Denoise audio using noisereduce."""
-        if not NOISEREDUCE_AVAILABLE:
-            logging.warning("Noisereduce not available, skipping denoising")
-            return audio
-
         try:
+            # Import noisereduce lazily
+            import noisereduce as nr
+
             logging.info("Denoising audio...")
             start_time = time.time()
 
@@ -196,21 +183,19 @@ class AudioProcessor:
             logging.info(f"Denoising completed in {denoise_time:.2f}s")
             return denoised
 
+        except ImportError:
+            logging.warning("Noisereduce not available, skipping denoising")
+            return audio
         except Exception as e:
             logging.error(f"Denoising failed: {e}")
             return audio
 
     def normalize_audio(self, audio: np.ndarray, sr: int) -> np.ndarray:
         """Normalize audio to target LUFS."""
-        if not PYLN_AVAILABLE:
-            logging.warning("Pyloudnorm not available, using RMS normalization")
-            # Fallback to RMS normalization
-            rms = np.sqrt(np.mean(audio**2))
-            target_rms = 0.1
-            normalized = audio * (target_rms / (rms + 1e-10))
-            return normalized
-
         try:
+            # Import pyloudnorm lazily
+            import pyloudnorm as pyln
+
             logging.info("Normalizing audio...")
             start_time = time.time()
 
@@ -239,6 +224,13 @@ class AudioProcessor:
             logging.info(f"Normalization completed: {current_lufs:.1f} LUFS -> {self.normalize_lufs:.1f} LUFS")
             return normalized
 
+        except ImportError:
+            logging.warning("Pyloudnorm not available, using RMS normalization")
+            # Fallback to RMS normalization
+            rms = np.sqrt(np.mean(audio**2))
+            target_rms = 0.1
+            normalized = audio * (target_rms / (rms + 1e-10))
+            return normalized
         except Exception as e:
             logging.error(f"Normalization failed: {e}")
             return audio
@@ -250,8 +242,9 @@ class AudioProcessor:
                 logging.info("Separating audio sources with Demucs...")
                 start_time = time.time()
 
-                # Convert to tensor for Demucs - needs batch and channel dimensions
+                # Import required modules
                 import torch
+                from demucs.separate import apply_model
                 # Ensure stereo by duplicating mono channel: [batch=1, channels=2, time]
                 if len(audio.shape) == 1:
                     # Duplicate mono channel to create stereo

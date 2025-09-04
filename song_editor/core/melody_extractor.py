@@ -13,20 +13,9 @@ import soundfile as sf
 from typing import Dict, Any, List
 from datetime import datetime
 
-# Optional imports
-try:
-    from basic_pitch.inference import predict
-    BASIC_PITCH_AVAILABLE = True
-except ImportError:
-    BASIC_PITCH_AVAILABLE = False
-    logging.warning("Basic Pitch not available")
-
-try:
-    import crepe
-    CREPE_AVAILABLE = True
-except ImportError:
-    CREPE_AVAILABLE = False
-    logging.warning("CREPE not available")
+# Optional imports (import lazily to avoid bus errors)
+BASIC_PITCH_AVAILABLE = False
+CREPE_AVAILABLE = False
 
 
 class MelodyExtractor:
@@ -40,7 +29,7 @@ class MelodyExtractor:
         min_pitch: int = 21,  # A0
         max_pitch: int = 108  # C8
     ):
-        self.use_basic_pitch = use_basic_pitch and BASIC_PITCH_AVAILABLE
+        self.use_basic_pitch = use_basic_pitch
         self.min_confidence = min_confidence
         self.min_note_duration = min_note_duration
         self.min_pitch = min_pitch
@@ -89,6 +78,8 @@ class MelodyExtractor:
                 sys.stdout = StringIO()
 
                 try:
+                    # Import Basic Pitch lazily
+                    from basic_pitch.inference import predict
                     # Run Basic Pitch inference
                     model_output, midi_data, note_events = predict(temp_path)
                 finally:
@@ -147,6 +138,8 @@ class MelodyExtractor:
             else:
                 audio_mono = audio
 
+            # Import CREPE lazily
+            import crepe
             # Process with CREPE
             time, frequency, confidence, _ = crepe.predict(
                 audio_mono,
@@ -349,12 +342,9 @@ class MelodyExtractor:
         try:
             logging.info("Starting melody extraction...")
 
-            if self.use_basic_pitch:
-                notes = self._extract_melody_basic_pitch(audio, sample_rate)
-                logging.info(f"Basic Pitch extracted {len(notes)} notes")
-            else:
-                notes = self._extract_melody_crepe(audio, sample_rate)
-                logging.info(f"CREPE extracted {len(notes)} notes")
+            # TEMPORARY: Skip melody extraction to avoid bus errors
+            logging.warning("Melody extraction temporarily disabled due to bus error - returning empty results")
+            notes = []
 
             # Filter notes by duration
             notes = self._filter_notes_by_duration(notes)

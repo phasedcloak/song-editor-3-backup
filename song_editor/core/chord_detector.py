@@ -14,15 +14,12 @@ import soundfile as sf
 from typing import Dict, Any, List
 from datetime import datetime
 # import vamp - optional
-from chord_extractor import ChordExtractor
 
-# Optional imports
-try:
-    from chord_extractor import extract_chords
-    CHORD_EXTRACTOR_AVAILABLE = True
-except ImportError:
-    CHORD_EXTRACTOR_AVAILABLE = False
-    logging.warning("Chord Extractor not available")
+# Optional imports (import lazily to avoid bus errors)
+CHORD_EXTRACTOR_AVAILABLE = False
+
+# Check vamp availability (import lazily to avoid bus errors)
+VAMP_AVAILABLE = False
 
 
 class ChordDetector:
@@ -96,52 +93,99 @@ class ChordDetector:
             raise
 
     def _detect_chords_chordino(self, audio: np.ndarray, sample_rate: int) -> List[Dict[str, Any]]:
-        """Detect chords using Chordino."""
+        """Detect chords using Chordino via Vamp."""
         try:
-            # Save audio to temporary file
-            temp_path = self._save_audio_temp(audio, sample_rate)
-
+            # Try to use vamp, fall back to chromagram if not available
             try:
-                # Extract chords using chord_extractor
-                chords = extract_chords(temp_path)
+                import vamp
+
+                # Ensure audio is mono and proper format
+                if len(audio.shape) > 1:
+                    audio = np.mean(audio, axis=0)  # Convert to mono
+
+                # Resample if needed (chordino works best with certain sample rates)
+                if sample_rate != 22050:
+                    import librosa
+                    audio = librosa.resample(audio, orig_sr=sample_rate, target_sr=22050)
+                    sample_rate = 22050
+
+                # Process with chordino via vamp
+                result_generator = vamp.process_audio(audio, sample_rate, 'nnls-chroma:chordino')
 
                 # Process results
                 processed_chords = []
-                for chord_info in chords:
-                    chord_symbol = chord_info['chord']
-                    start_time = chord_info['start']
-                    end_time = chord_info['end']
-                    confidence = chord_info.get('confidence', 0.5)
+                current_chord = None
+                current_start = 0.0
 
-                    # Filter by confidence
-                    if confidence >= self.min_confidence:
-                        # Parse chord information
-                        chord_data = self._parse_chord_symbol(chord_symbol)
+                # Convert generator to list and process
+                for step_result in result_generator:
+                    if 'chord' in step_result and len(step_result['chord']) >= 2:
+                        chord_symbol = step_result['chord'][0]  # Get the chord label
+                        timestamp = step_result['chord'][1]     # Get the timestamp
 
-                        processed_chord = {
-                            'symbol': chord_symbol,
-                            'root': chord_data['root'],
-                            'quality': chord_data['quality'],
-                            'bass': chord_data['bass'],
-                            'start': start_time,
-                            'end': end_time,
-                            'duration': end_time - start_time,
-                            'confidence': confidence,
-                            'detection_method': 'chordino'
-                        }
+                        # Skip 'N' (no chord) and silence
+                        if chord_symbol in ['N', 'Silence']:
+                            # End current chord if one exists
+                            if current_chord is not None:
+                                processed_chords.append({
+                                    'symbol': current_chord,
+                                    'root': self._parse_chord_symbol(current_chord)['root'],
+                                    'quality': self._parse_chord_symbol(current_chord)['quality'],
+                                    'bass': self._parse_chord_symbol(current_chord)['bass'],
+                                    'start': current_start,
+                                    'end': timestamp,
+                                    'duration': timestamp - current_start,
+                                    'confidence': 0.8,  # Default confidence for vamp results
+                                    'detection_method': 'chordino_vamp'
+                                })
+                                current_chord = None
+                            continue
 
-                        processed_chords.append(processed_chord)
+                        # If chord changed, end previous and start new
+                        if current_chord != chord_symbol:
+                            # End previous chord
+                            if current_chord is not None:
+                                processed_chords.append({
+                                    'symbol': current_chord,
+                                    'root': self._parse_chord_symbol(current_chord)['root'],
+                                    'quality': self._parse_chord_symbol(current_chord)['quality'],
+                                    'bass': self._parse_chord_symbol(current_chord)['bass'],
+                                    'start': current_start,
+                                    'end': timestamp,
+                                    'duration': timestamp - current_start,
+                                    'confidence': 0.8,
+                                    'detection_method': 'chordino_vamp'
+                                })
+
+                            # Start new chord
+                            current_chord = chord_symbol
+                            current_start = timestamp
+
+                # Handle final chord
+                if current_chord is not None:
+                    processed_chords.append({
+                        'symbol': current_chord,
+                        'root': self._parse_chord_symbol(current_chord)['root'],
+                        'quality': self._parse_chord_symbol(current_chord)['quality'],
+                        'bass': self._parse_chord_symbol(current_chord)['bass'],
+                        'start': current_start,
+                        'end': len(audio) / sample_rate,  # End of audio
+                        'duration': len(audio) / sample_rate - current_start,
+                        'confidence': 0.8,
+                        'detection_method': 'chordino_vamp'
+                    })
 
                 return processed_chords
 
-            finally:
-                # Clean up temporary file
-                if os.path.exists(temp_path):
-                    os.unlink(temp_path)
+            except ImportError:
+                logging.warning("VAMP not available, falling back to chromagram method")
+                return self._detect_chords_chromagram(audio, sample_rate)
 
         except Exception as e:
             logging.error(f"Error in Chordino chord detection: {e}")
-            raise
+            # Fall back to chromagram method
+            logging.warning("Falling back to chromagram method")
+            return self._detect_chords_chromagram(audio, sample_rate)
 
     def _detect_chords_chromagram(self, audio: np.ndarray, sample_rate: int) -> List[Dict[str, Any]]:
         """Detect chords using chromagram analysis."""

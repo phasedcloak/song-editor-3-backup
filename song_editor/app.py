@@ -21,7 +21,7 @@ try:
     from .ui.main_window import MainWindow
     from .core.audio_processor import AudioProcessor
     from .core.transcriber import Transcriber
-    from .core.chord_detector import ChordDetector
+    # Import chord_detector lazily to avoid bus errors
     from .core.melody_extractor import MelodyExtractor
     from .export.midi_exporter import MidiExporter
     from .export.ccli_exporter import CCLIExporter
@@ -31,11 +31,13 @@ except ImportError:
     from song_editor.ui.main_window import MainWindow
     from song_editor.core.audio_processor import AudioProcessor
     from song_editor.core.transcriber import Transcriber
-    from song_editor.core.chord_detector import ChordDetector
+    # Import chord_detector lazily to avoid bus errors
     from song_editor.core.melody_extractor import MelodyExtractor
     from song_editor.export.midi_exporter import MidiExporter
     from song_editor.export.ccli_exporter import CCLIExporter
     from song_editor.export.json_exporter import JSONExporter
+
+# ChordDetector will be imported lazily when needed
 
 
 def setup_logging(level: str = "INFO") -> None:
@@ -95,9 +97,18 @@ def process_audio_file(
             alternatives_count=5
         )
 
-        chord_detector = ChordDetector(
-            use_chordino=use_chordino
-        )
+        # Import chord_detector lazily to avoid bus errors
+        try:
+            try:
+                from .core.chord_detector import ChordDetector
+            except ImportError:
+                from song_editor.core.chord_detector import ChordDetector
+            chord_detector = ChordDetector(
+                use_chordino=False  # Disable chordino to avoid bus errors
+            )
+        except Exception as e:
+            logging.warning(f"Chord detection not available: {e}")
+            chord_detector = None
 
         melody_extractor = MelodyExtractor()
 

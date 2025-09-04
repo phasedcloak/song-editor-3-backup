@@ -1,0 +1,682 @@
+Title: 25-03-12 we see your love - 02
+Key:  major
+Key Confidence: 75.2%
+Tempo: 114.8 BPM
+Duration: 5:03
+Transcription: faster-whisper
+
+CHORD AND LYRICS TIME ALIGNMENT TABLE
+======================================================================
+
+Chord           Lyrics                                  
+-------------------------------------------------------
+G7                                                      
+                see                                     
+Em                                                      
+                your                                    
+A#7                                                     
+                love,                                   
+D                                                       
+G#dim                                                   
+G                                                       
+                it's                                    
+C7                                                      
+                clear                                   
+Cdim                                                    
+                as                                      
+A#7                                                     
+                day,                                    
+Am                                                      
+G7                                                      
+C                                                       
+                making                                  
+Gm                                                      
+C#dim                                                   
+                us                                      
+G                                                       
+Edim                                                    
+                and                                     
+G                                                       
+Gm                                                      
+G                                                       
+Gm                                                      
+                giving                                  
+F#m                                                     
+                us                                      
+A#7                                                     
+A                                                       
+                a                                       
+F#m                                                     
+                place                                   
+A                                                       
+                to                                      
+D                                                       
+                stay.                                   
+A                                                       
+G7                                                      
+C                                                       
+C7                                                      
+                give                                    
+G                                                       
+                such                                    
+C7                                                      
+A#7                                                     
+                love                                    
+G                                                       
+A7                                                      
+                to                                      
+A                                                       
+D                                                       
+G7                                                      
+                us,                                     
+B7                                                      
+G                                                       
+D                                                       
+C7                                                      
+                making                                  
+C                                                       
+G                                                       
+C7                                                      
+                us                                      
+Bm                                                      
+                with                                    
+D                                                       
+                the                                     
+F#dim                                                   
+                capacity                                
+Dm                                                      
+C7                                                      
+                to                                      
+Em                                                      
+                love.                                   
+G                                                       
+C                                                       
+D                                                       
+G                                                       
+                Thank                                   
+D                                                       
+B7                                                      
+                you                                     
+D                                                       
+Dm                                                      
+                God.                                    
+Gm                                                      
+C                                                       
+G                                                       
+D                                                       
+                God,                                    
+Gm                                                      
+G                                                       
+G7                                                      
+                we                                      
+                know                                    
+G                                                       
+                that                                    
+Am                                                      
+F#                                                      
+                we've                                   
+C                                                       
+G#7                                                     
+A                                                       
+                not                                     
+                always                                  
+D                                                       
+G7                                                      
+                loved                                   
+D                                                       
+                you                                     
+G                                                       
+Bm                                                      
+G                                                       
+Gm                                                      
+G                                                       
+Gm                                                      
+Bdim                                                    
+                you                                     
+Gm                                                      
+                made                                    
+Am                                                      
+F#7                                                     
+C                                                       
+G7                                                      
+                says,                                   
+G#7                                                     
+D                                                       
+D7                                                      
+                sent                                    
+A#7                                                     
+                your                                    
+F#dim                                                   
+Edim                                                    
+Bdim                                                    
+G7                                                      
+                for                                     
+G                                                       
+                us,                                     
+Gm                                                      
+C                                                       
+                sent                                    
+G                                                       
+                your                                    
+G#dim                                                   
+                only                                    
+G                                                       
+                Son                                     
+Bm                                                      
+                to                                      
+A#7                                                     
+D                                                       
+                be                                      
+G#7                                                     
+                the                                     
+Em                                                      
+G                                                       
+                one                                     
+G#7                                                     
+                and                                     
+                only                                    
+C                                                       
+                sacrifice                               
+G7                                                      
+Bdim                                                    
+G7                                                      
+                for                                     
+G                                                       
+                us,                                     
+A                                                       
+D                                                       
+                making                                  
+F#dim                                                   
+                it                                      
+G                                                       
+                possible.                               
+C                                                       
+Em                                                      
+Edim                                                    
+G                                                       
+                us                                      
+D                                                       
+                to                                      
+                know                                    
+                you                                     
+                better,                                 
+A7                                                      
+G                                                       
+Em                                                      
+C                                                       
+                the                                     
+                Holy                                    
+F7                                                      
+C                                                       
+                God,                                    
+Dm                                                      
+Em                                                      
+G7                                                      
+G                                                       
+D                                                       
+                hear                                    
+                the                                     
+G7                                                      
+                Holy                                    
+C7                                                      
+                God.                                    
+Am                                                      
+G7                                                      
+G                                                       
+G7                                                      
+G#7                                                     
+                the                                     
+D                                                       
+                cross,                                  
+A7                                                      
+F#dim                                                   
+Am                                                      
+                you                                     
+                see                                     
+C                                                       
+                the                                     
+Am                                                      
+                extent                                  
+Em                                                      
+                of                                      
+G                                                       
+                your                                    
+C7                                                      
+                love,                                   
+D#aug                                                   
+G7                                                      
+F                                                       
+                God,                                    
+Gm                                                      
+A#7                                                     
+D                                                       
+                you                                     
+Gm                                                      
+                would                                   
+C7                                                      
+                make                                    
+A                                                       
+                a                                       
+A#7                                                     
+Em                                                      
+C                                                       
+                that                                    
+                you                                     
+Gm                                                      
+C7                                                      
+                would                                   
+G                                                       
+                give                                    
+                yourself                                
+Em                                                      
+A7                                                      
+Am                                                      
+                for                                     
+C                                                       
+Gm                                                      
+                us.                                     
+A7                                                      
+A                                                       
+D                                                       
+D#7                                                     
+                what                                    
+D#aug                                                   
+                love                                    
+Bm                                                      
+A#7                                                     
+                that                                    
+G                                                       
+                God                                     
+A7                                                      
+                would                                   
+Am                                                      
+                leave                                   
+F#dim                                                   
+A                                                       
+                thrown                                  
+D                                                       
+F#dim                                                   
+                high                                    
+D                                                       
+D#dim                                                   
+D                                                       
+C#7                                                     
+                come                                    
+Bm                                                      
+                for                                     
+G                                                       
+                sinful                                  
+Em                                                      
+                men                                     
+A7                                                      
+A                                                       
+                to                                      
+C                                                       
+Em                                                      
+                die                                     
+G#                                                      
+D#dim                                                   
+A7                                                      
+                and                                     
+D                                                       
+                make                                    
+A7                                                      
+                himself                                 
+D7                                                      
+C7                                                      
+                a                                       
+Em                                                      
+Am                                                      
+                offering                                
+G7                                                      
+A#                                                      
+G                                                       
+                that                                    
+G7                                                      
+                once                                    
+A                                                       
+                for                                     
+D                                                       
+                all.                                    
+A#7                                                     
+D                                                       
+Am                                                      
+                sin                                     
+C7                                                      
+                would                                   
+                be                                      
+Em                                                      
+                covered                                 
+                by                                      
+C7                                                      
+G                                                       
+                his                                     
+G7                                                      
+                sacrifice                               
+A7                                                      
+D                                                       
+Am                                                      
+D                                                       
+A7                                                      
+                on                                      
+D                                                       
+                that                                    
+                tree,                                   
+Em                                                      
+C                                                       
+C7                                                      
+C                                                       
+Em                                                      
+                what                                    
+G                                                       
+Am                                                      
+                love.                                   
+G                                                       
+G7                                                      
+G                                                       
+                loved                                   
+G7                                                      
+                not                                     
+G                                                       
+                stop                                    
+Edim                                                    
+                there,                                  
+Em                                                      
+Gm                                                      
+D                                                       
+                you                                     
+                came                                    
+                to                                      
+                live                                    
+Edim                                                    
+                inside                                  
+Am                                                      
+A7                                                      
+                hearts                                  
+G                                                       
+Em                                                      
+G                                                       
+                those                                   
+A#7                                                     
+C7                                                      
+                who                                     
+C                                                       
+                accept                                  
+F#dim                                                   
+Gm                                                      
+G                                                       
+B                                                       
+Bm                                                      
+                sacrifice,                              
+A#7                                                     
+G#7                                                     
+A                                                       
+D                                                       
+G                                                       
+Bdim                                                    
+                what                                    
+Gm                                                      
+                love                                    
+Ddim                                                    
+G#7                                                     
+                that                                    
+C                                                       
+                you                                     
+D                                                       
+                would                                   
+                give                                    
+                purpose.                                
+G                                                       
+C                                                       
+Em                                                      
+C                                                       
+G                                                       
+                He                                      
+D#aug                                                   
+                turned                                  
+G                                                       
+                to                                      
+                purpose,                                
+Am                                                      
+G7                                                      
+G#7                                                     
+C                                                       
+Em                                                      
+G                                                       
+                God.                                    
+D                                                       
+Gm                                                      
+G                                                       
+                kind                                    
+G7                                                      
+C                                                       
+                of                                      
+                love,                                   
+G#7                                                     
+Am                                                      
+C7                                                      
+                a                                       
+Gm                                                      
+D                                                       
+                sacrificial                             
+A                                                       
+G                                                       
+C7                                                      
+Em                                                      
+                love,                                   
+Am                                                      
+Em                                                      
+G#7                                                     
+                what                                    
+G                                                       
+C7                                                      
+                kind                                    
+C#7                                                     
+                of                                      
+Bm                                                      
+                love,                                   
+D                                                       
+A                                                       
+D                                                       
+Em                                                      
+                eternal                                 
+Am                                                      
+C                                                       
+                loyal                                   
+Em                                                      
+C                                                       
+                love                                    
+D#aug                                                   
+Am                                                      
+                of                                      
+G#7                                                     
+                God,                                    
+G                                                       
+F#                                                      
+C                                                       
+                you                                     
+G#7                                                     
+                it                                      
+Am                                                      
+G                                                       
+                us.                                     
+Bm                                                      
+B                                                       
+                We                                      
+G                                                       
+                are                                     
+C7                                                      
+                grateful,                               
+D                                                       
+A#7                                                     
+A7                                                      
+D                                                       
+                we                                      
+G#dim                                                   
+                are                                     
+B                                                       
+A                                                       
+G7                                                      
+Am                                                      
+C                                                       
+                we                                      
+Edim                                                    
+                are                                     
+C7                                                      
+                in                                      
+Em                                                      
+                awe,                                    
+A                                                       
+Em                                                      
+G                                                       
+                that                                    
+Em                                                      
+                you                                     
+                use                                     
+A7                                                      
+Bm                                                      
+                people                                  
+A                                                       
+                such                                    
+G#7                                                     
+                as                                      
+B                                                       
+A7                                                      
+                us                                      
+A                                                       
+D                                                       
+                for                                     
+C                                                       
+                your                                    
+A7                                                      
+                call.                                   
+B7                                                      
+F#dim                                                   
+C                                                       
+G                                                       
+D                                                       
+Am                                                      
+G                                                       
+Gm                                                      
+D                                                       
+G7                                                      
+Gm                                                      
+D                                                       
+Dm                                                      
+Bm                                                      
+A#7                                                     
+G#dim                                                   
+G7                                                      
+G                                                       
+Bm                                                      
+G                                                       
+Gm                                                      
+G                                                       
+C                                                       
+Gm                                                      
+G                                                       
+Gm                                                      
+G                                                       
+Gm                                                      
+G                                                       
+Gm                                                      
+G7                                                      
+C                                                       
+Edim                                                    
+G                                                       
+D                                                       
+Gm                                                      
+G                                                       
+C7                                                      
+Gm                                                      
+G                                                       
+Adim                                                    
+Gm                                                      
+
+CHORDPRO FORMAT
+==================================================
+
+[G7]see [G7]your [A#7]love [G]it's [C7]clear [Cdim]as [A#7]day [C]making
+[C#dim]us [Edim]and [Gm]giving [F#m]us [A]a [F#m]place [A]to [D]stay [C7]give
+[G]such [A#7]love [A7]to [G7]us [C7]making [C7]us [Bm]with [D]the
+[F#dim]capacity [C7]to [Em]love [G]Thank [D]you [Dm]God [D]God [G7]we [G7]know
+[G]that [F#]we've [A]not [A]always [G7]loved [D]you [Bdim]you [Gm]made [G7]says
+[D7]sent [A#7]your [G7]for [G]us [C]sent [G]your [G#dim]only [G]Son [Bm]to [D]be
+[G#7]the [G]one [G#7]and [G#7]only [C]sacrifice [G7]for [G]us [D]making
+[F#dim]it [G]possible [G]us [G]to [D]know [D]you [D]better [C]the [C]Holy [C]God
+[D]hear [D]the [G7]Holy [C7]God [G#7]the [D]cross [Am]you [Am]see [C]the
+[Am]extent [Em]of [G]your [C7]love [F]God [D]you [Gm]would [C7]make [A]a [C]that
+[C]you [C7]would [G]give [G]yourself [Am]for [Gm]us [D#7]what [D#aug]love
+[A#7]that [G]God [A7]would [Am]leave [A]thrown [F#dim]high [C#7]come [Bm]for
+[G]sinful [Em]men [A]to [Em]die [A7]and [D]make [A7]himself [C7]a [Am]offering
+[G]that [G7]once [A]for [D]all [Am]sin [C7]would [C7]be [Em]covered [Em]by
+[G]his [G7]sacrifice [A7]on [D]that [D]tree [Em]what [Am]love [G]loved [G7]not
+[G]stop [Edim]there [D]you [D]came [D]to [D]live [Edim]inside [A7]hearts
+[G]those [C7]who [C]accept [Bm]sacrifice [Bdim]what [Gm]love [G#7]that [C]you
+[D]would [D]give [D]purpose [G]He [D#aug]turned [G]to [G]purpose [G]God [G]kind
+[C]of [C]love [C7]a [D]sacrificial [C7]love [G#7]what [C7]kind [C#7]of [Bm]love
+[Em]eternal [C]loyal [C]love [Am]of [G#7]God [C]you [G#7]it [G]us [B]We [G]are
+[C7]grateful [D]we [G#dim]are [C]we [Edim]are [C7]in [Em]awe [G]that [Em]you
+[Em]use [Bm]people [A]such [G#7]as [A7]us [A]for [C]your [A7]call
+
+CHORD CHART
+==================================================
+
+Section 1:
+  G7 | Em | A#7 | D | G#dim | G | C7 | Cdim | Am | C | Gm | C#dim | Edim | F#m | A | A7 | B7 | Bm | F#dim | Dm
+
+Section 2:
+  D
+
+Section 3:
+  Gm | G | G7 | Am | F# | C | G#7 | A | D | Bm | Bdim | F#7 | D7 | A#7 | F#dim | Edim | G#dim | Em
+
+Section 4:
+  D | A7 | G | Em | C | F7 | Dm | G7 | C7 | Am | G#7 | F#dim | D#aug | F | Gm | A#7 | A | D#7 | Bm | D#dim | C#7 | G# | D7 | A#
+
+Section 5:
+  G7 | G | Edim | Em | Gm | D | Am | A7 | A#7 | C7 | C | F#dim | B | Bm | G#7 | A | Bdim | Ddim | D#aug
+
+Section 6:
+  Gm | G | G7 | C | G#7 | Am | C7 | D | A | Em | C#7 | Bm | D#aug | F# | B | A#7 | A7 | G#dim | Edim | B7 | F#dim
+
+Section 7:
+  D
+
+Section 8:
+  Am | G | Gm | D
+
+Section 9:
+  G7 | Gm
+
+Section 10:
+  D | Dm | Bm | A#7 | G#dim | G7 | G
+
+Section 11:
+  Bm | G | Gm | C
+
+Section 12:
+  Gm | G | G7 | C
+
+Section 13:
+  Edim | G
+
+Section 14:
+  D | Gm | G | C7 | Adim
+
+
+LYRICS ONLY
+==================================================
+
+see your love it's clear as day making us and giving us a place to stay give
+such love to us making us with the capacity to love Thank you God God we know
+that we've not always loved you you made says sent your for us sent your only
+Son to be the one and only sacrifice for us making it possible us to know you
+better the Holy God hear the Holy God the cross you see the extent of your love
+God you would make a that you would give yourself for us what love that God
+would leave thrown high come for sinful men to die and make himself a offering
+that once for all sin would be covered by his sacrifice on that tree what love
+loved not stop there you came to live inside hearts those who accept sacrifice
+what love that you would give purpose He turned to purpose God kind of love a
+sacrificial love what kind of love eternal loyal love of God you it us We are
+grateful we are we are in awe that you use people such as us for your call

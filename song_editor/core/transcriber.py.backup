@@ -19,13 +19,7 @@ OPENAI_WHISPER_AVAILABLE = False
 FASTER_WHISPER_AVAILABLE = False
 
 WHISPERX_AVAILABLE = False
-# Try to import MLX-Whisper (should work on Apple Silicon)
-try:
-    import mlx_whisper
-    MLX_WHISPER_AVAILABLE = True
-except ImportError:
-    MLX_WHISPER_AVAILABLE = False
-    logging.warning("MLX Whisper not available")
+MLX_WHISPER_AVAILABLE = False
 
 
 class Transcriber:
@@ -60,26 +54,7 @@ class Transcriber:
     def _initialize_model(self) -> None:
         """Initialize the appropriate Whisper model."""
         try:
-            # PRIORITY: Try MLX Whisper first (best for Apple Silicon)
-            if MLX_WHISPER_AVAILABLE:
-                try:
-                    # Map model sizes to available MLX models (default to tiny which we know works)
-                    model_size_map = {
-                        'tiny': 'tiny',
-                        'base': 'tiny',  # Default to tiny if base not available
-                        'small': 'tiny',  # Default to tiny if small not available
-                        'medium': 'tiny',  # Default to tiny for medium
-                        'large': 'tiny',  # Default to tiny for large
-                        'large-v2': 'tiny'  # Default to tiny for large-v2
-                    }
-                    mlx_model_size = model_size_map.get(self.model_size, 'tiny')
-                    self.whisper_model = f"mlx-community/whisper-{mlx_model_size}"
-                    logging.info(f"MLX Whisper ready with model: {self.whisper_model} (optimized for Apple Silicon)")
-                    return
-                except Exception as e:
-                    logging.warning(f"MLX Whisper setup failed: {e}")
-
-            # Fallback: Try to import and use OpenAI Whisper
+            # Try to import and use OpenAI Whisper
             try:
                 import whisper
                 # Use large-v2 for best accuracy like working wav_to_karoke implementation
@@ -87,31 +62,40 @@ class Transcriber:
                 logging.info(f"Loading OpenAI Whisper model: {model_size} (requested: {self.model_size})")
                 self.whisper_model = whisper.load_model(model_size)
                 return
-            except Exception as e:
-                logging.warning(f"OpenAI Whisper failed to load: {e}")
+            except ImportError:
+                pass
 
-            # Fallback: Try to import and use Faster Whisper
+            # Try to import and use Faster Whisper
             try:
                 from faster_whisper import WhisperModel
                 logging.info(f"Loading Faster Whisper model: {self.model_size} with GPU acceleration")
                 # Use GPU acceleration with auto device selection and float32 compute type
                 self.whisper_model = WhisperModel(self.model_size, device='auto', compute_type='float32')
                 return
-            except Exception as e:
-                logging.warning(f"Faster Whisper failed to load: {e}")
+            except ImportError:
+                pass
 
-            # Fallback: Try to use WhisperX
+            # Try to use WhisperX
             try:
                 import whisperx
                 logging.info(f"Loading WhisperX model: {self.model_size}")
                 # WhisperX models are loaded on-demand
                 self.whisper_model = self.model_size
                 return
-            except Exception as e:
-                logging.warning(f"WhisperX failed to load: {e}")
+            except ImportError:
+                pass
+
+            # Try to use MLX Whisper
+            try:
+                import mlx_whisper
+                logging.info(f"Loading MLX Whisper model: {self.model_size}")
+                self.whisper_model = mlx_whisper.load_model(self.model_size)
+                return
+            except ImportError:
+                pass
 
             # No models available
-            raise ValueError("No Whisper models available. Please install at least one: mlx-whisper, openai-whisper, faster-whisper, or whisperx")
+            raise ValueError("No Whisper models available. Please install at least one: openai-whisper, faster-whisper, whisperx, or mlx-whisper")
 
         except Exception as e:
             logging.error(f"Error initializing model {self.model}: {e}")
@@ -327,107 +311,49 @@ class Transcriber:
             logging.error(f"Error in WhisperX transcription: {e}")
             raise
 
-    def _transcribe_with_forked_process(self, audio: np.ndarray, sample_rate: int, model_type: str) -> List[Dict[str, Any]]:
-        """Transcribe using a forked process to avoid library conflicts."""
+    def _transcribe_mlx_whisper(self, audio: np.ndarray, sample_rate: int) -> List[Dict[str, Any]]:
+        """Transcribe using MLX Whisper."""
         try:
             # Save audio to temporary file
             temp_path = self._save_audio_temp(audio, sample_rate)
 
             try:
-                # Create parameters file for the worker
-                import subprocess
-                import json
-                import tempfile
-                import sys
+                # Import and use MLX Whisper lazily
+                import mlx_whisper
+                result = mlx_whisper.transcribe(
+                    self.whisper_model,
+                    temp_path,
+                    language=self.language if self.language else None,
+                    word_timestamps=True,
+                    initial_prompt=self.prompt if self.prompt else None
+                )
 
-                # Prepare transcription parameters
-                transcriber_params = {
-                    'audio_path': temp_path,
-                    'model_type': model_type,
-                    'model_size': self.model_size,
-                    'language': self.language,
-                    'prompt': self.prompt,
-                    'confidence_threshold': self.confidence_threshold
-                }
+                # Process results
+                words = []
+                for segment in result.get('segments', []):
+                    for word_info in segment.get('words', []):
+                        word = {
+                            'text': word_info['word'].strip(),
+                            'start': word_info['start'],
+                            'end': word_info['end'],
+                            'confidence': word_info.get('confidence', 0.5),
+                            'alternatives': []
+                        }
 
-                # Write parameters to temporary file
-                with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as params_file:
-                    json.dump(transcriber_params, params_file)
-                    params_file_path = params_file.name
+                        # Filter by confidence threshold
+                        if word['confidence'] >= self.confidence_threshold:
+                            words.append(word)
 
-                try:
-                    # Get path to transcription worker
-                    worker_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'transcription_worker.py')
-
-                    # Run the transcription worker in a separate process
-                    logging.debug(f"Starting forked transcription process for {model_type}")
-                    logging.debug(f"Worker path: {worker_path}")
-                    logging.debug(f"Python executable: {sys.executable}")
-
-                    # Try to run the subprocess with more debugging
-                    try:
-                        result = subprocess.run(
-                            [sys.executable, worker_path, params_file_path],
-                            capture_output=True,
-                            text=True,
-                            timeout=600,  # 10 minute timeout for transcription
-                            env=dict(os.environ, OMP_NUM_THREADS='1', MKL_NUM_THREADS='1', CUDA_VISIBLE_DEVICES='')
-                        )
-                    except FileNotFoundError as e:
-                        logging.error(f"Worker script not found: {worker_path}")
-                        logging.error(f"Current directory: {os.getcwd()}")
-                        logging.error(f"Python executable: {sys.executable}")
-                        return []
-                    except Exception as e:
-                        logging.error(f"Subprocess execution failed: {e}")
-                        return []
-
-                    logging.debug(f"Subprocess completed with return code: {result.returncode}")
-                    logging.debug(f"STDOUT length: {len(result.stdout)}")
-                    logging.debug(f"STDERR length: {len(result.stderr)}")
-                    logging.debug(f"STDERR content: {result.stderr[:200]}")
-
-                    if result.returncode == 0:
-                        try:
-                            words = json.loads(result.stdout.strip())
-                            logging.info(f"Forked {model_type} transcription succeeded: {len(words)} words")
-                            return words
-                        except json.JSONDecodeError as e:
-                            logging.error(f"Failed to parse transcription output: {e}")
-                            logging.error(f"Raw output: {result.stdout[:500]}")
-                            return []
-                    else:
-                        logging.error(f"Forked {model_type} transcription failed (code {result.returncode})")
-                        logging.error(f"Stderr: {result.stderr}")
-                        logging.error(f"Stdout: {result.stdout}")
-                        if "TRANSCRIPTION_ERROR" in result.stderr:
-                            logging.error("Worker script reported transcription error")
-                        else:
-                            logging.error("Worker script failed with unknown error")
-                        return []
-
-                finally:
-                    # Clean up parameters file
-                    try:
-                        os.unlink(params_file_path)
-                    except:
-                        pass
+                return words
 
             finally:
-                # Clean up audio file
+                # Clean up temporary file
                 if os.path.exists(temp_path):
                     os.unlink(temp_path)
 
         except Exception as e:
-            logging.error(f"Error in forked {model_type} transcription: {e}")
-            logging.error(f"Exception type: {type(e)}")
-            import traceback
-            logging.error(f"Traceback: {traceback.format_exc()}")
-            return []
-
-    def _transcribe_mlx_whisper(self, audio: np.ndarray, sample_rate: int) -> List[Dict[str, Any]]:
-        """Transcribe using MLX Whisper (legacy method, now uses forked process)."""
-        return self._transcribe_with_forked_process(audio, sample_rate, "mlx-whisper")
+            logging.error(f"Error in MLX Whisper transcription: {e}")
+            raise
 
     def _generate_alternatives(self, word: str, confidence: float) -> List[Dict[str, Any]]:
         """Generate alternative transcriptions for a word."""
@@ -470,48 +396,17 @@ class Transcriber:
             models_to_try = []
 
             # Build list of models to try in order
-            if self.model == "mlx-whisper":
-                models_to_try = ["mlx-whisper", "openai-whisper", "faster-whisper"]
-            elif self.model == "faster-whisper":
-                models_to_try = ["faster-whisper", "mlx-whisper", "openai-whisper"]
+            if self.model == "faster-whisper":
+                models_to_try = ["faster-whisper", "openai-whisper"]
             elif self.model == "openai-whisper":
-                models_to_try = ["openai-whisper", "mlx-whisper", "faster-whisper"]
+                models_to_try = ["openai-whisper", "faster-whisper"]
             else:
                 models_to_try = [self.model]
 
-            # PRIORITY: Try MLX-Whisper first with forked process isolation
-            if self.model == "mlx-whisper" or MLX_WHISPER_AVAILABLE:
-                try:
-                    logging.info("Trying MLX-Whisper with forked process isolation...")
-                    words = self._transcribe_with_forked_process(audio, sample_rate, "mlx-whisper")
-                    if words is not None and len(words) > 0:
-                        logging.info(f"Successfully transcribed with MLX-Whisper: {len(words)} words")
-                        return words
-                    else:
-                        logging.warning("MLX-Whisper returned empty results")
-                except Exception as e:
-                    logging.warning(f"MLX-Whisper failed: {e}")
-
-            # Try faster-whisper with forked process isolation
-            if self.model == "faster-whisper" or FASTER_WHISPER_AVAILABLE:
-                try:
-                    logging.info("Trying faster-whisper with forked process isolation...")
-                    words = self._transcribe_with_forked_process(audio, sample_rate, "faster-whisper")
-                    if words is not None and len(words) > 0:
-                        logging.info(f"Successfully transcribed with faster-whisper: {len(words)} words")
-                        return words
-                    else:
-                        logging.warning("faster-whisper returned empty results")
-                except Exception as e:
-                    logging.warning(f"faster-whisper failed: {e}")
-
-            # Fallback: Try the requested model
+            # Try each model until one works
             for model_name in models_to_try:
-                if model_name == "mlx-whisper" and words is not None:
-                    continue  # Already tried MLX-Whisper
-
                 try:
-                    logging.info(f"Trying {model_name}...")
+                    logging.info(f"Trying transcription with {model_name}...")
 
                     if model_name == "openai-whisper":
                         words = self._transcribe_openai_whisper(audio, sample_rate)
@@ -522,29 +417,15 @@ class Transcriber:
                     elif model_name == "mlx-whisper":
                         words = self._transcribe_mlx_whisper(audio, sample_rate)
 
-                    if words is not None and len(words) > 0:
-                        logging.info(f"Successfully transcribed with {model_name}: {len(words)} words")
+                    if words is not None:
+                        logging.info(f"Successfully transcribed with {model_name}")
                         break
-                    else:
-                        logging.warning(f"{model_name} returned empty results")
 
                 except Exception as e:
-                    logging.warning(f"{model_name} failed: {e}")
+                    logging.warning(f"Transcription failed with {model_name}: {e}")
                     if model_name == models_to_try[-1]:  # Last model failed
-                        logging.error(f"All transcription models failed")
-                        words = []
+                        raise ValueError(f"All transcription models failed: {e}")
                     continue
-
-            # If no model worked and we haven't tried MLX-Whisper yet, try it as last resort
-            if (words is None or len(words) == 0) and not self.model == "mlx-whisper" and MLX_WHISPER_AVAILABLE:
-                try:
-                    logging.info("Trying MLX-Whisper as last resort...")
-                    words = self._transcribe_mlx_whisper(audio, sample_rate)
-                    if words is not None and len(words) > 0:
-                        logging.info(f"Successfully transcribed with MLX-Whisper: {len(words)} words")
-                except Exception as e:
-                    logging.error(f"MLX-Whisper also failed: {e}")
-                    words = []
 
             if words is None:
                 raise ValueError("No transcription model succeeded")

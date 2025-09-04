@@ -1,0 +1,55 @@
+{
+  "app": {
+    "name": "Song Editor 3",
+    "version": "3.0.0",
+    "debug": false,
+    "log_level": "INFO"
+  },
+  "audio": {
+    "default_sample_rate": 44100,
+    "default_channels": 2,
+    "buffer_size": 1024,
+    "chunk_size": 4096,
+    "supported_formats": ["wav", "mp3", "flac", "m4a", "aac", "ogg"]
+  },
+  "transcription": {
+    "default_model": "openai-whisper",
+    "default_model_size": "base",
+    "default_language": "en",
+    "confidence_threshold": 0.5,
+    "max_audio_length": 300.0
+  },
+  "chord_detection": {
+    "default_method": "chordino",
+    "confidence_threshold": 0.6,
+    "min_chord_duration": 0.1
+  },
+  "melody_extraction": {
+    "default_method": "basic-pitch",
+    "confidence_threshold": 0.7,
+    "min_note_duration": 0.05
+  },
+  "source_separation": {
+    "default_model": "demucs",
+    "separate_tracks": ["vocals", "drums", "bass", "other"],
+    "sample_rate": 44100
+  },
+  "export": {
+    "default_format": "json",
+    "include_metadata": true,
+    "include_analysis": true,
+    "compression": false
+  },
+  "ui": {
+    "theme": "default",
+    "window_size": [1200, 800],
+    "auto_save_interval": 300,
+    "show_tooltips": true
+  },
+  "paths": {
+    "models_dir": "models",
+    "temp_dir": "temp",
+    "output_dir": "output",
+    "cache_dir": "cache"
+  }
+}

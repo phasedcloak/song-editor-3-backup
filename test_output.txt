@@ -1,0 +1,35 @@
+Title: test_song
+Processed: 2025-08-20 10:22:35
+
+CHORD AND LYRICS TIME ALIGNMENT TABLE
+======================================================================
+
+Chord           Lyrics                                  
+-------------------------------------------------------
+C                                                       
+                Hello                                   
+                world                                   
+Am                                                      
+                this                                    
+                is                                      
+                a                                       
+                test                                    
+F                                                       
+G                                                       
+
+CHORDPRO FORMAT
+==================================================
+
+[C]Hello [C]world [C]this [Am]is [Am]a [Am]test
+
+CHORD CHART
+==================================================
+
+Section 1:
+  C | Am | F | G
+
+
+LYRICS ONLY
+==================================================
+
+Hello world this is a test

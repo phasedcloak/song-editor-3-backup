@@ -1,0 +1,3 @@
+#!/Users/cwormack/CascadeProjects/wav_to_karoke/.venv/bin/python3
+from numba.pycc import main
+main()

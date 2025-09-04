@@ -1,0 +1,7 @@
+Title: test_song
+Processed: 2025-08-20 10:22:35
+
+CHORDPRO FORMAT
+==================================================
+
+[C]Hello [C]world [C]this [Am]is [Am]a [Am]test

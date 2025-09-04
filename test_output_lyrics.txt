@@ -1,0 +1,7 @@
+Title: test_song
+Processed: 2025-08-20 10:22:35
+
+LYRICS ONLY
+==================================================
+
+Hello world this is a test

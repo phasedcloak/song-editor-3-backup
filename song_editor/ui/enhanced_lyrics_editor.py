@@ -686,6 +686,8 @@ class EnhancedLyricsEditor(QWidget):
         self._debounce_timer.setInterval(250)
         self._debounce_timer.timeout.connect(self._analyze_and_color)
         self.setup_ui()
+        # Cache to avoid redundant heavy updates
+        self._last_text_snapshot = ""
 
     def setup_ui(self):
         layout = QHBoxLayout(self)
@@ -996,6 +998,10 @@ class EnhancedLyricsEditor(QWidget):
             return
 
         text = self.text_edit.toPlainText()
+        # Ignore spurious signals when text hasn't actually changed
+        if text == self._last_text_snapshot:
+            return
+        self._last_text_snapshot = text
         self.lyrics_changed.emit(text)
 
         # Update syllable counts (without triggering text changes)
@@ -1034,9 +1040,15 @@ class EnhancedLyricsEditor(QWidget):
 
     def _analyze_and_color(self):
         """Analyze rhymes and apply coloring according to current mode."""
-        self.analyze_rhymes()
-        self._reset_formatting()
-        self.apply_coloring()
+        try:
+            text_now = self.text_edit.toPlainText()
+            if text_now != self._last_text_snapshot:
+                self._last_text_snapshot = text_now
+            self.analyze_rhymes()
+            self._reset_formatting()
+            self.apply_coloring()
+        except Exception:
+            pass
 
     def analyze_rhymes(self):
         """Analyze rhyming patterns using pronunciation-based grouping with fallbacks."""

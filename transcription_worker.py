@@ -32,6 +32,17 @@ def main():
         os.environ['CUDA_VISIBLE_DEVICES'] = ''
 
         if params['model_type'] == 'mlx-whisper':
+            # Prefer running MLX on Apple GPU when available
+            try:
+                import mlx.core as mx
+                if getattr(mx, 'gpu', None) is not None and mx.gpu.is_available():
+                    mx.set_default_device(mx.gpu)
+                    print(f"TRANSCRIPTION_WORKER: MLX default device -> {mx.default_device()}", file=sys.stderr)
+                else:
+                    print("TRANSCRIPTION_WORKER: MLX GPU not available; using CPU", file=sys.stderr)
+            except Exception as _e:
+                print(f"TRANSCRIPTION_WORKER: Failed to set MLX device: {_e}", file=sys.stderr)
+
             import mlx_whisper
             # MLX-Whisper only supports tiny model
             model_size = 'tiny'  # Force tiny model for MLX-Whisper
@@ -53,7 +64,10 @@ def main():
                 )
         elif params['model_type'] == 'faster-whisper':
             from faster_whisper import WhisperModel
-            model = WhisperModel(params['model_size'], device='cpu', compute_type='float32')
+            # Allow GPU/Metal if available; otherwise fallback to CPU
+            # Note: faster-whisper uses CTranslate2; on Apple Silicon recent versions can use 'metal'
+            # but 'auto' will choose best available backend.
+            model = WhisperModel(params['model_size'], device='auto', compute_type='float32')
             segments, info = model.transcribe(
                 params['audio_path'],
                 language=params['language'],

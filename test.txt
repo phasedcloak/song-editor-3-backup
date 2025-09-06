@@ -1,9 +1,4 @@
 Title: test_short
-Key:  major
-Key Confidence: 75.1%
-Tempo: 114.8 BPM
-Duration: 1:00
-Transcription: openai-whisper
 
 CHORD AND LYRICS TIME ALIGNMENT TABLE
 ======================================================================
@@ -16,6 +11,7 @@ G
                 your                                    
                 love,                                   
                 it's                                    
+Em                                                      
                 clear                                   
 C                                                       
                 as                                      
@@ -34,10 +30,11 @@ D
                 place                                   
                 to                                      
                 stay                                    
+Gm                                                      
 C                                                       
                 You                                     
-                give                                    
 G                                                       
+                give                                    
                 such                                    
                 love                                    
 D                                                       
@@ -72,8 +69,8 @@ D
                 we                                      
                 know                                    
 G                                                       
-                that                                    
 C                                                       
+                that                                    
                 we've                                   
 D                                                       
                 not                                     
@@ -87,7 +84,7 @@ G
 Gm                                                      
 G                                                       
                 you                                     
-A#7                                                     
+D                                                       
                 made                                    
 C                                                       
                 love                                    
@@ -98,10 +95,10 @@ C7
 CHORDPRO FORMAT
 ==================================================
 
-[G7]see [G]your [G]love [G]it's [G]clear [C]as [C]day [Gm]making [G]us
-[D]keeping [D]us [D]place [D]to [D]stay [C]You [C]give [G]such [G]love [D]to
+[G7]see [G]your [G]love [G]it's [Em]clear [C]as [C]day [Gm]making [G]us
+[D]keeping [D]us [D]place [D]to [D]stay [C]You [G]give [G]such [G]love [D]to
 [D]us [G]us [D]with [D]the [D]capacity [G]to [G]love [D]God [D]we [D]know
-[G]that [C]we've [D]not [D]always [D]loved [Gm]you [G]you [A#7]made [C]love
+[G]that [C]we've [D]not [D]always [D]loved [G]you [G]you [D]made [C]love
 [Cm]with
 
 CHORD CHART
@@ -111,13 +108,13 @@ Section 1:
   G7 | G
 
 Section 2:
-  C
+  Em | C
 
 Section 3:
   Gm | G | G7 | D
 
 Section 4:
-  C | G
+  Gm | C | G
 
 Section 5:
   D | G | C7 | C
@@ -129,7 +126,7 @@ Section 7:
   D
 
 Section 8:
-  Gm | G | D | C | A#7 | Cm | C7
+  Gm | G | D | C | Cm | C7
 
 
 LYRICS ONLY

@@ -9,7 +9,7 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtCore import Qt, Signal, QThread, QTimer
 from PySide6.QtGui import (
-    QTextCursor, QTextCharFormat, QColor, QFont, QPalette
+    QTextCursor, QTextCharFormat, QColor, QFont, QPalette, QFontMetrics
 )
 
 import cmudict
@@ -313,6 +313,7 @@ class SyllablePanel(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.syllable_counter = SyllableCounter()
+        self.line_height_px = 18
         self.setup_ui()
 
     def setup_ui(self):
@@ -321,15 +322,19 @@ class SyllablePanel(QWidget):
 
         # Header
         header = QLabel("Syllables")
+        self.header_label = header
         header.setStyleSheet("""
             QLabel {
                 font-weight: bold;
                 color: #333;
-                padding: 5px;
+                padding: 2px 5px;
                 background-color: #f0f0f0;
                 border-radius: 3px;
+                font-size: 11px;
+                margin-bottom: 2px;
             }
         """)
+        header.setMaximumHeight(20)  # Limit header height
         layout.addWidget(header)
 
         # Spacer to align the top of counts with the top of the QTextEdit area (controls height)
@@ -382,7 +387,7 @@ class SyllablePanel(QWidget):
             if not line.strip():
                 # Empty line - create a spacer to maintain alignment
                 label = QLabel("")
-                label.setFixedHeight(18)
+                label.setFixedHeight(self.line_height_px)
                 label.setFixedWidth(40)
                 label.setStyleSheet("""
                     QLabel {
@@ -429,12 +434,10 @@ class SyllablePanel(QWidget):
                     font-weight: bold;
                     color: #333;
                     margin: 0px;
-                    min-height: 18px;
-                    max-height: 18px;
                 }
             """)
-            # Set a consistent height that matches typical text editor line height
-            label.setFixedHeight(18)
+            # Set a consistent height that matches the editor line height
+            label.setFixedHeight(self.line_height_px)
             label.setFixedWidth(40)  # Fixed width for consistent alignment
             self.container_layout.addWidget(label)
 
@@ -443,15 +446,28 @@ class SyllablePanel(QWidget):
         if hasattr(self, 'scroll_area'):
             self.scroll_area.verticalScrollBar().setValue(0)
 
-    def sync_syllable_scroll(self, value):
-        """Synchronize syllable panel scrolling with text editor"""
-        if hasattr(self, 'scroll_area'):
-            self.scroll_area.verticalScrollBar().setValue(value)
+    def sync_syllable_scroll(self, editor_value: int, editor_max: int):
+        """Synchronize syllable panel scrolling with text editor proportionally."""
+        if not hasattr(self, 'scroll_area'):
+            return
+        sbar = self.scroll_area.verticalScrollBar()
+        try:
+            emax = max(1, int(editor_max))
+            ratio = max(0.0, min(1.0, float(editor_value) / float(emax)))
+            target = int(ratio * sbar.maximum())
+            sbar.setValue(target)
+        except Exception:
+            # Fallback: set directly
+            sbar.setValue(editor_value)
 
     def set_top_offset(self, pixels: int):
         """Set a fixed spacer above the counts to align with the editor's controls row."""
         if hasattr(self, 'top_spacer'):
             self.top_spacer.setFixedHeight(max(0, pixels))
+
+    def set_line_height(self, pixels: int):
+        """Update the per-line height used for syllable labels to match the editor."""
+        self.line_height_px = max(12, int(pixels))
 
 
 class RhymePanel(QWidget):
@@ -467,6 +483,7 @@ class RhymePanel(QWidget):
     def setup_ui(self):
         layout = QVBoxLayout(self)
         layout.setContentsMargins(5, 5, 5, 5)
+        layout.setSpacing(1)  # Ultra-minimal spacing
 
         # Header
         header = QLabel("Rhymes")
@@ -474,34 +491,68 @@ class RhymePanel(QWidget):
             QLabel {
                 font-weight: bold;
                 color: #333;
-                padding: 5px;
+                padding: 2px 5px;
                 background-color: #f0f0f0;
                 border-radius: 3px;
+                font-size: 11px;
+                margin-bottom: 2px;
             }
         """)
+        header.setMaximumHeight(20)  # Limit header height
         layout.addWidget(header)
 
-        # Current word display
+        # Current word display - readable single-row, 12pt
         self.current_word_label = QLabel("Select a word")
+        try:
+            _cw_font = QFont(self.font())
+            _cw_font.setPointSize(12)
+            _cw_font.setBold(True)
+            self.current_word_label.setFont(_cw_font)
+            _cw_h = QFontMetrics(_cw_font).lineSpacing() + 4
+        except Exception:
+            _cw_h = 22
         self.current_word_label.setStyleSheet("""
             QLabel {
                 background-color: #fff3cd;
                 border: 1px solid #ffeaa7;
-                border-radius: 3px;
-                padding: 5px;
+                border-radius: 2px;
+                padding: 1px 3px;
                 font-weight: bold;
+                font-size: 12pt;
+                margin: 0px;
             }
         """)
-        self.current_word_label.setWordWrap(True)
+        self.current_word_label.setWordWrap(False)
+        self.current_word_label.setMaximumHeight(_cw_h)
+        self.current_word_label.setMinimumHeight(max(18, _cw_h - 2))
         layout.addWidget(self.current_word_label)
 
-        # Perfect rhymes section
+        # Perfect rhymes section - ultra compact
         perfect_header = QLabel("Perfect Rhymes:")
-        perfect_header.setStyleSheet("font-weight: bold; color: #28a745;")
+        try:
+            _ph_font = QFont(self.font())
+            _ph_font.setPointSize(12)
+            _ph_font.setBold(True)
+            perfect_header.setFont(_ph_font)
+            _ph_h = QFontMetrics(_ph_font).lineSpacing() + 2
+        except Exception:
+            _ph_h = 20
+        perfect_header.setStyleSheet("""
+            QLabel {
+                font-weight: bold;
+                color: #28a745;
+                font-size: 12pt;
+                padding: 0px;
+                margin: 0px;
+                border: none;
+                background: transparent;
+            }
+        """)
+        perfect_header.setMaximumHeight(_ph_h)
+        perfect_header.setMinimumHeight(max(16, _ph_h - 2))
         layout.addWidget(perfect_header)
 
         self.perfect_rhymes_text = QTextEdit()
-        self.perfect_rhymes_text.setMaximumHeight(100)
         self.perfect_rhymes_text.setReadOnly(True)
         self.perfect_rhymes_text.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.perfect_rhymes_text.setStyleSheet("""
@@ -510,17 +561,43 @@ class RhymePanel(QWidget):
                 border: 1px solid #c3e6cb;
                 border-radius: 3px;
                 padding: 5px;
+                font-size: 12pt;
             }
         """)
+        try:
+            _rf = QFont(self.font())
+            _rf.setPointSize(12)
+            self.perfect_rhymes_text.setFont(_rf)
+        except Exception:
+            pass
         layout.addWidget(self.perfect_rhymes_text)
 
-        # Near rhymes section
+        # Near rhymes section - ultra compact
         near_header = QLabel("Near Rhymes:")
-        near_header.setStyleSheet("font-weight: bold; color: #ffc107;")
+        try:
+            _nh_font = QFont(self.font())
+            _nh_font.setPointSize(12)
+            _nh_font.setBold(True)
+            near_header.setFont(_nh_font)
+            _nh_h = QFontMetrics(_nh_font).lineSpacing() + 2
+        except Exception:
+            _nh_h = 20
+        near_header.setStyleSheet("""
+            QLabel {
+                font-weight: bold;
+                color: #ffc107;
+                font-size: 12pt;
+                padding: 0px;
+                margin: 0px;
+                border: none;
+                background: transparent;
+            }
+        """)
+        near_header.setMaximumHeight(_nh_h)
+        near_header.setMinimumHeight(max(16, _nh_h - 2))
         layout.addWidget(near_header)
 
         self.near_rhymes_text = QTextEdit()
-        self.near_rhymes_text.setMaximumHeight(100)
         self.near_rhymes_text.setReadOnly(True)
         self.near_rhymes_text.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.near_rhymes_text.setStyleSheet("""
@@ -529,13 +606,31 @@ class RhymePanel(QWidget):
                 border: 1px solid #ffeaa7;
                 border-radius: 3px;
                 padding: 5px;
+                font-size: 12pt;
             }
         """)
+        try:
+            _rf2 = QFont(self.font())
+            _rf2.setPointSize(12)
+            self.near_rhymes_text.setFont(_rf2)
+        except Exception:
+            pass
         layout.addWidget(self.near_rhymes_text)
 
         # Allow panel to expand with window width
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.setMinimumWidth(150)
+
+        # Force the layout to respect our fixed heights (indices: 0..5)
+        try:
+            layout.setStretch(0, 0)  # header "Rhymes"
+            layout.setStretch(1, 0)  # current word label
+            layout.setStretch(2, 0)  # perfect header
+            layout.setStretch(3, 1)  # perfect rhymes text area
+            layout.setStretch(4, 0)  # near header
+            layout.setStretch(5, 1)  # near rhymes text area
+        except Exception:
+            pass
 
     def update_rhymes(self, target_word: str, all_words: List[str]):
         """Update rhyming suggestions for the target word"""
@@ -584,6 +679,7 @@ class EnhancedLyricsEditor(QWidget):
         self._rhyme_key_cache = {}
         self._near_key_cache = {}
         self._updating_text = False  # Flag to prevent recursion
+        self.display_mode = "Enhanced"  # "Enhanced" or "CCLI"
         # Debounce timer for heavy analysis/formatting
         self._debounce_timer = QTimer(self)
         self._debounce_timer.setSingleShot(True)
@@ -611,8 +707,8 @@ class EnhancedLyricsEditor(QWidget):
         self.rhyme_panel = RhymePanel()
         self.splitter.addWidget(self.rhyme_panel)
 
-        # Set initial splitter proportions (center gets most space)
-        self.splitter.setSizes([80, 500, 250])
+        # Set initial splitter proportions (reduce center by 20% and give to rhyme panel)
+        self.splitter.setSizes([80, 400, 350])  # Increased rhyme panel from 250 to 350
         # Set stretch factors: center gets most space, sides are fixed
         self.splitter.setStretchFactor(0, 0)  # Left panel fixed width
         self.splitter.setStretchFactor(1, 1)  # Center panel stretches
@@ -640,10 +736,12 @@ class EnhancedLyricsEditor(QWidget):
         """Create the main lyrics editing panel"""
         panel = QWidget()
         layout = QVBoxLayout(panel)
+        self.lyrics_layout = layout
         layout.setContentsMargins(5, 5, 5, 5)
 
         # Controls
         controls_widget = QWidget()
+        self.controls_widget = controls_widget
         controls_widget.setFixedHeight(50)  # Ensure controls have minimum height
         controls_widget.setStyleSheet("""
             QWidget {
@@ -654,6 +752,14 @@ class EnhancedLyricsEditor(QWidget):
         """)
         controls_layout = QHBoxLayout(controls_widget)
         controls_layout.setContentsMargins(5, 5, 5, 5)
+
+        # Display mode toggle
+        self.display_mode_combo = QComboBox()
+        self.display_mode_combo.addItems(["Enhanced", "CCLI"])
+        self.display_mode_combo.setCurrentText(self.display_mode)
+        self.display_mode_combo.currentTextChanged.connect(self.on_display_mode_changed)
+        controls_layout.addWidget(QLabel("Display:"))
+        controls_layout.addWidget(self.display_mode_combo)
 
         # Color mode toggle
         self.color_mode_checkbox = QCheckBox("🎨 Color by Rhymes")
@@ -692,7 +798,50 @@ class EnhancedLyricsEditor(QWidget):
 
         controls_layout.addWidget(QLabel("Size:"))
         self.font_size_combo = QComboBox()
-        self.font_size_combo.addItems(["10", "12", "14", "16", "18", "20", "24", "28", "32"])
+        # Ensure combo box is properly styled and populated
+        self.font_size_combo.setStyleSheet("""
+            QComboBox {
+                min-width: 60px;
+                padding: 2px;
+                background-color: white;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+            }
+            QComboBox::drop-down {
+                border: none;
+                width: 20px;
+            }
+            QComboBox::down-arrow {
+                image: none;
+                border-left: 4px solid transparent;
+                border-right: 4px solid transparent;
+                border-top: 4px solid #666;
+                margin-right: 5px;
+            }
+            QComboBox QAbstractItemView {
+                background-color: white;
+                border: 1px solid #ccc;
+                selection-background-color: #0078d4;
+                selection-color: white;
+                min-width: 60px;
+            }
+            QComboBox QAbstractItemView::item {
+                padding: 8px 12px;
+                min-height: 20px;
+                border: none;
+                background-color: transparent;
+                color: black;
+            }
+            QComboBox QAbstractItemView::item:hover {
+                background-color: #f0f0f0;
+            }
+            QComboBox QAbstractItemView::item:selected {
+                background-color: #0078d4;
+                color: white;
+            }
+        """)
+        sizes = ["10", "12", "14", "16", "18", "20", "24", "28", "32"]
+        self.font_size_combo.addItems(sizes)
         self.font_size_combo.setCurrentText("14")
         self.font_size_combo.currentTextChanged.connect(self.on_font_size_changed)
         controls_layout.addWidget(self.font_size_combo)
@@ -742,6 +891,12 @@ class EnhancedLyricsEditor(QWidget):
         """)
         layout.addWidget(self.text_edit)
 
+        # Initial alignment of syllable panel to editor
+        try:
+            self.update_syllable_alignment()
+        except Exception:
+            pass
+
         return panel
 
     def set_audio_path(self, audio_path: str):
@@ -753,19 +908,35 @@ class EnhancedLyricsEditor(QWidget):
         # Convert SongData.words to WordRow format expected by enhanced editor
         from ..models.lyrics import WordRow
 
+        print(f"DEBUG: Converting {len(song_data.words)} words from SongData")
+        # Keep a reference for chord inference in CCLI mode
+        self.song_data = song_data
         lyrics_data = []
-        for word in song_data.words:
+        for i, word in enumerate(song_data.words):
+            chord_value = getattr(word, 'chord', None)
+            if chord_value:
+                print(f"DEBUG: Word {i}: '{word.text}' has chord '{chord_value}'")
+
             word_row = WordRow(
                 text=word.text,
                 start=word.start,
                 end=word.end,
                 confidence=word.confidence,
-                chord=getattr(word, 'chord', None),
+                chord=chord_value,
                 alt_text=word.alternatives[0] if word.alternatives else None
             )
             lyrics_data.append(word_row)
 
+        print(f"DEBUG: Converted to {len(lyrics_data)} WordRow objects")
         self.set_lyrics_data(lyrics_data)
+        # Align syllable panel top with editor controls
+        try:
+            top = 0
+            if hasattr(self, 'controls_widget'):
+                top = self.controls_widget.height()
+            self.syllable_panel.set_top_offset(top)
+        except Exception:
+            pass
 
     def set_lyrics_data(self, lyrics_data: List[WordRow]):
         """Set lyrics data and update display"""
@@ -804,7 +975,7 @@ class EnhancedLyricsEditor(QWidget):
         # Update syllable counts
         self.syllable_panel.update_counts('\n'.join(text_lines))
         # Ensure syllable panel scrolls to top initially
-        self.syllable_panel.sync_syllable_scroll(0)
+        self.syllable_panel.sync_syllable_scroll(0, 1)
 
         # Apply auto-wrapping after setting text (with a small delay)
         QTimer.singleShot(100, self.apply_auto_wrapping)
@@ -814,6 +985,9 @@ class EnhancedLyricsEditor(QWidget):
 
         # Connect resize event to handle auto-wrapping after data is loaded
         self.text_edit.resizeEvent = self.on_text_edit_resize
+
+        # Apply current display format
+        self.update_display_format()
 
     def on_text_changed(self):
         """Handle text changes"""
@@ -827,10 +1001,26 @@ class EnhancedLyricsEditor(QWidget):
         # Update syllable counts (without triggering text changes)
         self.syllable_panel.update_counts(text)
         # Keep scroll positions in sync proportionally
-        self.syllable_panel.sync_syllable_scroll(self.text_edit.verticalScrollBar().value())
+        try:
+            ebar = self.text_edit.verticalScrollBar()
+            self.syllable_panel.sync_syllable_scroll(ebar.value(), ebar.maximum())
+        except Exception:
+            self.syllable_panel.sync_syllable_scroll(0, 1)
+        # Maintain alignment each time text changes
+        try:
+            self.update_syllable_alignment()
+        except Exception:
+            pass
 
         # Debounce rhyme analysis + coloring
         self._debounce_timer.start(250)
+        # Update syllable counts to match current lines after edits
+        try:
+            fm = self.text_edit.fontMetrics()
+            self.syllable_panel.set_line_height(max(14, int(fm.lineSpacing())))
+            self.syllable_panel.update_counts(text)
+        except Exception:
+            pass
 
     def _reset_formatting(self):
         """Reset all text formatting to default before applying new coloring."""
@@ -1018,7 +1208,147 @@ class EnhancedLyricsEditor(QWidget):
     def on_text_scroll(self, value):
         """Handle text editor scrolling and sync with syllable panel"""
         if hasattr(self, 'syllable_panel'):
-            self.syllable_panel.sync_syllable_scroll(value)
+            # Sync proportionally using the max values
+            try:
+                emax = self.text_edit.verticalScrollBar().maximum()
+                self.syllable_panel.sync_syllable_scroll(value, emax)
+            except Exception:
+                self.syllable_panel.sync_syllable_scroll(value, 1)
+
+    def on_display_mode_changed(self, mode: str):
+        """Handle display mode change between Enhanced and CCLI"""
+        self.display_mode = mode
+        self.update_display_format()
+        # After format change, re-evaluate wrapping and syllable alignment
+        try:
+            self.apply_auto_wrapping()
+            self.update_syllable_alignment()
+            self.syllable_panel.update_counts(self.text_edit.toPlainText())
+        except Exception:
+            pass
+
+    def update_display_format(self):
+        """Update the display format based on current mode"""
+        if not self.lyrics_data:
+            return
+
+        if self.display_mode == "CCLI":
+            self.apply_ccli_format()
+        else:
+            # Enhanced format (default)
+            text_lines = []
+            current_line = []
+
+            for word in self.lyrics_data:
+                # Add chord if available
+                word_text = word.text
+                if hasattr(word, 'chord') and word.chord:
+                    word_text += f"[{word.chord}]"
+
+                current_line.append(word_text)
+
+                # Check for line break
+                should_break = (word.text.endswith(('.', '!', '?', ':', ';')) or
+                               getattr(word, 'line_break', False))
+
+                if should_break:
+                    text_lines.append(' '.join(current_line))
+                    current_line = []
+
+            # Add any remaining words
+            if current_line:
+                text_lines.append(' '.join(current_line))
+
+            # Set text in editor (prevent recursion)
+            self._updating_text = True
+            final_text = '\n'.join(text_lines)
+            self.text_edit.setPlainText(final_text)
+            self._updating_text = False
+
+    def apply_ccli_format(self):
+        """Apply CCLI format with chords inline with lyrics"""
+        if not self.lyrics_data:
+            return
+
+        # Debug: Check if any words have chords
+        has_chords = any(hasattr(word, 'chord') and word.chord for word in self.lyrics_data)
+        chord_count = sum(1 for w in self.lyrics_data if hasattr(w, 'chord') and w.chord)
+        print(f"DEBUG: Lyrics data has {len(self.lyrics_data)} words, {chord_count} have chords")
+
+        # Debug: Show some sample words with their chord data
+        if chord_count > 0:
+            for i, word in enumerate(self.lyrics_data[:5]):
+                if hasattr(word, 'chord') and word.chord:
+                    print(f"DEBUG: Word {i}: '{word.text}' has chord '{word.chord}'")
+
+        # Group words by lines
+        lines = []
+        current_line = []
+
+        for word in self.lyrics_data:
+            current_line.append(word)
+
+            # Check for line break
+            should_break = (word.text.endswith(('.', '!', '?', ':', ';')) or
+                           getattr(word, 'line_break', False))
+
+            if should_break:
+                lines.append(current_line)
+                current_line = []
+
+        # Add any remaining words
+        if current_line:
+            lines.append(current_line)
+
+        # Format each line in CCLI style (inline chords)
+        ccli_lines = []
+        for line_words in lines:
+            if not line_words:
+                ccli_lines.append("")
+                continue
+
+            # Build line with inline chords
+            line_parts = []
+            last_chord_shown = None
+            for word in line_words:
+                chord = getattr(word, 'chord', None)
+                if chord is None or chord == "":
+                    # Try to infer chord from SongData.chords if timings overlap
+                    try:
+                        if hasattr(self, 'song_data') and hasattr(self.song_data, 'chords'):
+                            start_t = getattr(word, 'start', None)
+                            end_t = getattr(word, 'end', None)
+                            if start_t is not None and end_t is not None:
+                                for ch in self.song_data.chords:
+                                    if ch.start <= start_t < ch.end or ch.start < end_t <= ch.end:
+                                        chord = ch.symbol
+                                        break
+                    except Exception:
+                        pass
+
+                # Only print when chord changes
+                if chord and chord != last_chord_shown:
+                    line_parts.append(f"[{chord}]{word.text}")
+                    last_chord_shown = chord
+                else:
+                    line_parts.append(word.text)
+
+            ccli_lines.append(' '.join(line_parts))
+
+        # Set text in editor (prevent recursion)
+        self._updating_text = True
+        final_text = '\n'.join(ccli_lines)
+        self.text_edit.setPlainText(final_text)
+        self._updating_text = False
+
+        # Ensure syllable panel matches new formatted lines
+        try:
+            self.syllable_panel.update_counts(final_text)
+            fm = self.text_edit.fontMetrics()
+            self.syllable_panel.set_line_height(max(14, int(fm.lineSpacing())))
+            self.update_syllable_alignment()
+        except Exception:
+            pass
 
     def on_color_mode_changed(self, checked: bool):
         """Handle color mode toggle"""
@@ -1093,6 +1423,15 @@ class EnhancedLyricsEditor(QWidget):
 
         # Re-apply auto-wrapping after font change
         self.apply_auto_wrapping()
+        # Update syllable line height/alignment on font change
+        try:
+            fm = self.text_edit.fontMetrics()
+            line_px = max(14, int(fm.lineSpacing()))
+            self.syllable_panel.set_line_height(line_px)
+            self.update_syllable_alignment()
+            self.syllable_panel.update_counts(self.text_edit.toPlainText())
+        except Exception:
+            pass
 
     def on_text_edit_resize(self, event):
         """Handle text editor resize to re-apply auto-wrapping"""
@@ -1100,6 +1439,11 @@ class EnhancedLyricsEditor(QWidget):
         super(QTextEdit, self.text_edit).resizeEvent(event)
         # Apply auto-wrapping after resize
         self.apply_auto_wrapping()
+        # Keep syllable panel aligned with controls row
+        try:
+            self.update_syllable_alignment()
+        except Exception:
+            pass
 
     def apply_auto_wrapping(self):
         """Automatically insert line breaks when text wraps"""
@@ -1170,6 +1514,39 @@ class EnhancedLyricsEditor(QWidget):
 
             # Update the lyrics data with line break information
             self.update_lyrics_data_with_line_breaks(new_text)
+
+        # Always update syllable counts to reflect current wrapped lines
+        try:
+            self.syllable_panel.update_counts('\n'.join(new_lines))
+            # Update line height to match editor font metrics exactly
+            fm = self.text_edit.fontMetrics()
+            line_px = max(14, int(fm.lineSpacing()))
+            self.syllable_panel.set_line_height(line_px)
+            self.update_syllable_alignment()
+        except Exception:
+            pass
+
+    def update_syllable_alignment(self):
+        """Align the syllable panel to start at the editor's text area and match line height."""
+        if not hasattr(self, 'text_edit') or not hasattr(self, 'syllable_panel'):
+            return
+        # Compute vertical offset: editor controls height minus syllable header height
+        controls_h = self.controls_widget.height() if hasattr(self, 'controls_widget') else 0
+        header_h = getattr(self.syllable_panel, 'header_label', None).height() if hasattr(self.syllable_panel, 'header_label') else 0
+        # Account for the lyrics layout top margin
+        top_margin = 0
+        try:
+            if hasattr(self, 'lyrics_layout'):
+                m = self.lyrics_layout.contentsMargins()
+                top_margin = m.top()
+        except Exception:
+            pass
+        offset = max(0, controls_h - header_h + top_margin)
+        self.syllable_panel.set_top_offset(offset)
+        # Update per-line height from current font metrics
+        fm = self.text_edit.fontMetrics()
+        line_px = max(14, int(fm.lineSpacing()))
+        self.syllable_panel.set_line_height(line_px)
 
     def update_lyrics_data_with_line_breaks(self, text: str):
         """Update lyrics data to include line break information"""

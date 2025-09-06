@@ -91,7 +91,9 @@ class AudioProcessor:
     def _detect_tempo(self, audio: np.ndarray, sr: int) -> Optional[float]:
         """Detect tempo using librosa."""
         try:
+            start = time.time()
             tempo, _ = librosa.beat.beat_track(y=audio, sr=sr)
+            self.processing_info['tempo_time'] = time.time() - start
             return float(tempo)
         except Exception as e:
             logging.warning(f"Tempo detection failed: {e}")
@@ -100,6 +102,7 @@ class AudioProcessor:
     def _detect_key(self, audio: np.ndarray, sr: int) -> Optional[Dict[str, Any]]:
         """Detect musical key using librosa."""
         try:
+            start = time.time()
             # Extract chromagram
             chromagram = librosa.feature.chroma_cqt(y=audio, sr=sr)
 
@@ -126,10 +129,16 @@ class AudioProcessor:
                 'mode': mode,
                 'confidence': float(max(major_score, minor_score) / sum(key_profile))
             }
+            # not reached
 
         except Exception as e:
             logging.warning(f"Key detection failed: {e}")
             return None
+        finally:
+            try:
+                self.processing_info['key_time'] = time.time() - start
+            except Exception:
+                pass
 
     def load_audio(self, file_path: str) -> Tuple[np.ndarray, int]:
         """Load audio file."""
@@ -278,16 +287,31 @@ class AudioProcessor:
                     logging.info(f"Demucs device: {device}")
 
                 # Separate sources using apply_model - correct API usage
-                # Faster settings: no TTA (shifts=0), lower overlap, shorter segments
-                sources_tensor = apply_model(
-                    self.separator,
-                    audio_tensor,
-                    segment=10,
-                    shifts=0,
-                    split=True,
-                    overlap=0.10,
-                    device=device
-                )
+                # Safe apply_model call (avoid odd segment sizes that cause reshape errors)
+                try:
+                    sources_tensor = apply_model(
+                        self.separator,
+                        audio_tensor,
+                        shifts=0,           # no test-time augmentation for speed
+                        split=True,
+                        overlap=0.25,
+                        device=device
+                    )
+                except Exception as dm_e:
+                    logging.warning(f"Demucs apply_model failed on {device}: {dm_e}. Retrying on CPU with safe params...")
+                    try:
+                        self.separator.to('cpu')
+                    except Exception:
+                        pass
+                    audio_tensor_cpu = audio_stereo.to('cpu')
+                    sources_tensor = apply_model(
+                        self.separator,
+                        audio_tensor_cpu,
+                        shifts=1,          # default TTA for stability
+                        split=True,
+                        overlap=0.25,
+                        device='cpu'
+                    )
 
                 # Convert back to dict format
                 separated = {}
@@ -334,6 +358,7 @@ class AudioProcessor:
     def _save_separated_sources(self, audio_path: str, sources: Dict[str, np.ndarray], sr: int):
         """Save separated audio sources to files."""
         try:
+            total_write_start = time.time()
             base_name = Path(audio_path).stem
 
             # Use the same original working directory as the main application
@@ -341,11 +366,18 @@ class AudioProcessor:
             output_dir = Path(original_cwd) / 'separated' / 'htdemucs' / base_name
             output_dir.mkdir(parents=True, exist_ok=True)
 
+            per_file_times = {}
             for name, audio_data in sources.items():
+                file_start = time.time()
                 file_path = output_dir / f"{name}.wav"
                 import soundfile as sf
                 sf.write(file_path, audio_data.T, sr)
                 logging.info(f"Saved separated source: {file_path}")
+                per_file_times[name] = time.time() - file_start
+
+            total_write_time = time.time() - total_write_start
+            self.processing_info['save_separated_sources_time'] = total_write_time
+            self.processing_info['save_separated_sources_per_file'] = per_file_times
 
         except Exception as e:
             logging.error(f"Failed to save separated sources: {e}")
@@ -387,6 +419,7 @@ class AudioProcessor:
             return
 
         try:
+            write_start = time.time()
             output_dir = Path("intermediate_outputs")
             output_dir.mkdir(exist_ok=True)
 
@@ -396,6 +429,12 @@ class AudioProcessor:
             sf.write(str(output_path), audio, sr)
 
             logging.info(f"Saved intermediate file: {output_path}")
+            dur = time.time() - write_start
+            key = f"intermediate_write_time_{stage}"
+            self.processing_info[key] = dur
+            self.processing_info['intermediate_write_time_total'] = (
+                self.processing_info.get('intermediate_write_time_total', 0.0) + dur
+            )
 
         except Exception as e:
             logging.warning(f"Failed to save intermediate file: {e}")
@@ -447,7 +486,26 @@ class AudioProcessor:
             total_time = time.time() - total_start_time
             self.processing_info['total_time'] = total_time
 
-            logging.info(f"Audio processing completed in {total_time:.2f}s")
+            # Print a concise per-stage summary if available
+            tempo_t = self.processing_info.get('tempo_time')
+            key_t = self.processing_info.get('key_time')
+            sep_t = self.processing_info.get('separate_time')
+            save_sep_t = self.processing_info.get('save_separated_sources_time')
+            interm_t = self.processing_info.get('intermediate_write_time_total')
+
+            summary_parts = [f"total {total_time:.2f}s"]
+            if sep_t is not None:
+                summary_parts.append(f"demucs {sep_t:.2f}s")
+            if save_sep_t is not None:
+                summary_parts.append(f"write_sep {save_sep_t:.2f}s")
+            if tempo_t is not None:
+                summary_parts.append(f"tempo {tempo_t:.2f}s")
+            if key_t is not None:
+                summary_parts.append(f"key {key_t:.2f}s")
+            if interm_t is not None:
+                summary_parts.append(f"intermed {interm_t:.2f}s")
+
+            logging.info("Audio processing completed (" + ", ".join(summary_parts) + ")")
 
             return final_audio_data
 

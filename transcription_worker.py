@@ -95,18 +95,35 @@ def main():
         else:
             raise ValueError(f"Unsupported model type: {params['model_type']}")
 
-        # Process results
+        # Process results with guard against trailing repetition/zero-length words
         words = []
+        last_text = None
+        last_end = None
         for segment in result.get('segments', []):
             for word_info in segment.get('words', []):
+                text = word_info['word'].strip()
+                start = float(word_info['start'])
+                end = float(word_info['end'])
+                conf = float(word_info.get('probability', 0.8))
+
+                # Skip zero/negative duration
+                if end <= start:
+                    continue
+                # Skip repeated short tail loops (same text and time)
+                if last_text == text and last_end is not None and abs(end - last_end) < 1e-3:
+                    continue
+
+                last_text = text
+                last_end = end
+
                 word = {
-                    'text': word_info['word'].strip(),
-                    'start': word_info['start'],
-                    'end': word_info['end'],
-                    'confidence': word_info.get('probability', 0.8),
+                    'text': text,
+                    'start': start,
+                    'end': end,
+                    'confidence': conf,
                     'alternatives': []
                 }
-                if word['confidence'] >= params['confidence_threshold']:
+                if conf >= params['confidence_threshold']:
                     words.append(word)
 
         # Print only the JSON output (no extra text)

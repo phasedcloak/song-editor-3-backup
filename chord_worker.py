@@ -37,8 +37,25 @@ def detect_chords(audio_path, params):
                             'chord': label
                         })
         
-        logging.info(f"CHORD_WORKER: Detected {len(chords)} chord events.")
-        return chords
+        logging.info(f"CHORD_WORKER: Detected {len(chords)} chord events (Chordino).")
+        if len(chords) > 0:
+            return chords
+
+        # Fallback to librosa-based chroma template matching if Chordino returns none
+        logging.info("CHORD_WORKER: Chordino returned no chords. Falling back to librosa template detector...")
+        try:
+            from song_editor.processing.chords import ChordDetector
+            cd = ChordDetector()
+            detected = cd.detect(audio_path)
+            chords_librosa = [
+                { 'timestamp': float(ch.start), 'chord': ch.name }
+                for ch in detected if ch.name != 'N'
+            ]
+            logging.info(f"CHORD_WORKER: Librosa fallback detected {len(chords_librosa)} chords.")
+            return chords_librosa
+        except Exception as fe:
+            logging.error(f"CHORD_WORKER: Librosa fallback failed: {fe}")
+            return []
 
     except Exception as e:
         logging.error(f"CHORD_WORKER: Error during chord detection: {e}", exc_info=True)

@@ -1,0 +1,1133 @@
+Title: 25-03-12 we see your love - 02
+Key:  major
+Key Confidence: 75.2%
+Tempo: 114.8 BPM
+Duration: 5:03
+Transcription: openai-whisper
+
+CHORD AND LYRICS TIME ALIGNMENT TABLE
+======================================================================
+
+Chord           Lyrics                                  
+-------------------------------------------------------
+G7                                                      
+                see                                     
+Em                                                      
+                your                                    
+A#7                                                     
+                love,                                   
+D                                                       
+G#dim                                                   
+G                                                       
+                it's                                    
+C7                                                      
+                clear                                   
+Cdim                                                    
+                as                                      
+A#7                                                     
+                day,                                    
+Am                                                      
+G7                                                      
+C                                                       
+Gm                                                      
+                making                                  
+C#dim                                                   
+                us                                      
+G                                                       
+Edim                                                    
+G                                                       
+Gm                                                      
+G                                                       
+Gm                                                      
+F#m                                                     
+                keeping                                 
+                us                                      
+A#7                                                     
+A                                                       
+F#m                                                     
+                place                                   
+A                                                       
+                to                                      
+D                                                       
+                stay,                                   
+A                                                       
+G7                                                      
+C                                                       
+C7                                                      
+                you                                     
+                give                                    
+G                                                       
+C7                                                      
+                such                                    
+A#7                                                     
+                love                                    
+G                                                       
+A7                                                      
+A                                                       
+                to                                      
+D                                                       
+G7                                                      
+                us                                      
+B7                                                      
+G                                                       
+D                                                       
+C7                                                      
+C                                                       
+G                                                       
+C7                                                      
+                us                                      
+Bm                                                      
+D                                                       
+                with                                    
+F#dim                                                   
+                the                                     
+Dm                                                      
+                capacity                                
+C7                                                      
+                to                                      
+Em                                                      
+G                                                       
+                love                                    
+C                                                       
+D                                                       
+G                                                       
+D                                                       
+B7                                                      
+D                                                       
+Dm                                                      
+                God                                     
+Gm                                                      
+C                                                       
+G                                                       
+D                                                       
+Gm                                                      
+G                                                       
+G7                                                      
+                we                                      
+                know                                    
+G                                                       
+Am                                                      
+                that                                    
+F#                                                      
+C                                                       
+                we've                                   
+G#7                                                     
+A                                                       
+                not                                     
+D                                                       
+                always                                  
+G7                                                      
+                loved                                   
+D                                                       
+G                                                       
+                you                                     
+Bm                                                      
+G                                                       
+Gm                                                      
+G                                                       
+Gm                                                      
+Bdim                                                    
+                you                                     
+Gm                                                      
+                made                                    
+Am                                                      
+                love                                    
+F#7                                                     
+C                                                       
+                in                                      
+G7                                                      
+G#7                                                     
+D                                                       
+D7                                                      
+                sent                                    
+A#7                                                     
+F#dim                                                   
+                your                                    
+Edim                                                    
+                son                                     
+Bdim                                                    
+G7                                                      
+                for                                     
+G                                                       
+Gm                                                      
+                us                                      
+C                                                       
+G                                                       
+G#dim                                                   
+G                                                       
+                son                                     
+Bm                                                      
+A#7                                                     
+                to                                      
+D                                                       
+                be                                      
+G#7                                                     
+Em                                                      
+                the                                     
+G                                                       
+                one                                     
+G#7                                                     
+C                                                       
+                only                                    
+                sacrifice                               
+G7                                                      
+Bdim                                                    
+G7                                                      
+                for                                     
+G                                                       
+                us,                                     
+A                                                       
+D                                                       
+                making                                  
+F#dim                                                   
+                it                                      
+G                                                       
+C                                                       
+                possible                                
+Em                                                      
+Edim                                                    
+G                                                       
+                us                                      
+D                                                       
+                to                                      
+                know                                    
+                you                                     
+                better,                                 
+A7                                                      
+G                                                       
+Em                                                      
+C                                                       
+                the                                     
+F7                                                      
+                Holy                                    
+C                                                       
+                God                                     
+Dm                                                      
+Em                                                      
+G7                                                      
+G                                                       
+D                                                       
+G7                                                      
+C7                                                      
+Am                                                      
+                God,                                    
+G7                                                      
+G                                                       
+                they                                    
+G7                                                      
+G#7                                                     
+                the                                     
+D                                                       
+                cross,                                  
+A7                                                      
+F#dim                                                   
+Am                                                      
+                you                                     
+C                                                       
+                see                                     
+Am                                                      
+                the                                     
+Em                                                      
+                extent                                  
+                of                                      
+G                                                       
+                your                                    
+C7                                                      
+                love                                    
+D#aug                                                   
+G7                                                      
+F                                                       
+                God,                                    
+Gm                                                      
+A#7                                                     
+                the                                     
+D                                                       
+Gm                                                      
+C7                                                      
+A                                                       
+A#7                                                     
+Em                                                      
+C                                                       
+                the                                     
+Gm                                                      
+                cute                                    
+C7                                                      
+                give                                    
+G                                                       
+Em                                                      
+                yourself                                
+A7                                                      
+Am                                                      
+C                                                       
+                for                                     
+Gm                                                      
+                us                                      
+A7                                                      
+A                                                       
+D                                                       
+D#7                                                     
+D#aug                                                   
+                love                                    
+Bm                                                      
+A#7                                                     
+                that                                    
+G                                                       
+                God                                     
+A7                                                      
+Am                                                      
+                would                                   
+                leave                                   
+F#dim                                                   
+A                                                       
+                thrown                                  
+D                                                       
+F#dim                                                   
+D                                                       
+                high                                    
+D#dim                                                   
+D                                                       
+C#7                                                     
+                come                                    
+Bm                                                      
+                for                                     
+G                                                       
+                sin                                     
+Em                                                      
+A7                                                      
+                men                                     
+A                                                       
+C                                                       
+Em                                                      
+                die                                     
+G#                                                      
+D#dim                                                   
+A7                                                      
+D                                                       
+                And                                     
+A7                                                      
+                make                                    
+D7                                                      
+                himself                                 
+C7                                                      
+Em                                                      
+                a                                       
+Am                                                      
+                offering                                
+G7                                                      
+A#                                                      
+G                                                       
+                that                                    
+G7                                                      
+                once                                    
+A                                                       
+                for                                     
+D                                                       
+                all                                     
+A#7                                                     
+D                                                       
+Am                                                      
+C7                                                      
+                would                                   
+                be                                      
+Em                                                      
+                covered                                 
+C7                                                      
+                by                                      
+G                                                       
+G7                                                      
+                his                                     
+                sacrifice,                              
+A7                                                      
+D                                                       
+Am                                                      
+D                                                       
+A7                                                      
+                thereof                                 
+D                                                       
+                that                                    
+Em                                                      
+                tree                                    
+C                                                       
+C7                                                      
+C                                                       
+Em                                                      
+G                                                       
+                what                                    
+Am                                                      
+                love                                    
+G                                                       
+G7                                                      
+G                                                       
+G7                                                      
+                loved                                   
+                it,                                     
+G                                                       
+                not                                     
+                stopped                                 
+Edim                                                    
+                there,                                  
+Em                                                      
+Gm                                                      
+D                                                       
+                came                                    
+                to                                      
+                leave                                   
+Edim                                                    
+Am                                                      
+                inside                                  
+                our                                     
+A7                                                      
+                hearts                                  
+G                                                       
+Em                                                      
+G                                                       
+                those                                   
+A#7                                                     
+C7                                                      
+                who                                     
+C                                                       
+F#dim                                                   
+                accept                                  
+Gm                                                      
+G                                                       
+                son                                     
+B                                                       
+Bm                                                      
+A#7                                                     
+G#7                                                     
+A                                                       
+D                                                       
+G                                                       
+Bdim                                                    
+Gm                                                      
+                love                                    
+Ddim                                                    
+G#7                                                     
+C                                                       
+D                                                       
+                you                                     
+                would                                   
+                give                                    
+G                                                       
+                purpose                                 
+C                                                       
+Em                                                      
+C                                                       
+G                                                       
+D#aug                                                   
+                turned                                  
+G                                                       
+                her                                     
+Am                                                      
+G7                                                      
+G#7                                                     
+C                                                       
+Em                                                      
+G                                                       
+                God                                     
+D                                                       
+Gm                                                      
+G                                                       
+G7                                                      
+                kind                                    
+C                                                       
+                of                                      
+G#7                                                     
+                love                                    
+Am                                                      
+C7                                                      
+Gm                                                      
+D                                                       
+                sacrifice                               
+A                                                       
+G                                                       
+                you                                     
+C7                                                      
+Em                                                      
+                love                                    
+Am                                                      
+Em                                                      
+G#7                                                     
+G                                                       
+C7                                                      
+                kind                                    
+C#7                                                     
+Bm                                                      
+                of                                      
+                love                                    
+D                                                       
+A                                                       
+D                                                       
+Em                                                      
+Am                                                      
+C                                                       
+Em                                                      
+C                                                       
+                oil                                     
+D#aug                                                   
+Am                                                      
+                I                                       
+                love                                    
+G#7                                                     
+                God                                     
+G                                                       
+F#                                                      
+C                                                       
+                You                                     
+G#7                                                     
+                me                                      
+Am                                                      
+G                                                       
+Bm                                                      
+B                                                       
+G                                                       
+C7                                                      
+                are                                     
+                grateful,                               
+D                                                       
+A#7                                                     
+A7                                                      
+D                                                       
+                we                                      
+G#dim                                                   
+                are                                     
+B                                                       
+                humble                                  
+A                                                       
+G7                                                      
+Am                                                      
+C                                                       
+Edim                                                    
+                are                                     
+C7                                                      
+                in                                      
+Em                                                      
+A                                                       
+                awe                                     
+Em                                                      
+G                                                       
+Em                                                      
+                you                                     
+A7                                                      
+                use                                     
+Bm                                                      
+                people                                  
+A                                                       
+G#7                                                     
+                such                                    
+B                                                       
+                as                                      
+A7                                                      
+                us                                      
+A                                                       
+D                                                       
+C                                                       
+A7                                                      
+                you                                     
+B7                                                      
+F#dim                                                   
+C                                                       
+G                                                       
+D                                                       
+Am                                                      
+G                                                       
+Gm                                                      
+D                                                       
+G7                                                      
+Gm                                                      
+D                                                       
+Dm                                                      
+Bm                                                      
+A#7                                                     
+G#dim                                                   
+G7                                                      
+G                                                       
+                who                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+Bm                                                      
+G                                                       
+Gm                                                      
+G                                                       
+C                                                       
+                the                                     
+                one                                     
+                who                                     
+Gm                                                      
+G                                                       
+Gm                                                      
+G                                                       
+Gm                                                      
+G                                                       
+Gm                                                      
+G7                                                      
+C                                                       
+Edim                                                    
+G                                                       
+D                                                       
+Gm                                                      
+G                                                       
+C7                                                      
+Gm                                                      
+G                                                       
+Adim                                                    
+Gm                                                      
+                who                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+
+CHORDPRO FORMAT
+==================================================
+
+[G7]see [Em]your [A#7]love [G]it's [C7]clear [Cdim]as [A#7]day [Gm]making
+[C#dim]us [F#m]keeping [F#m]us [F#m]place [A]to [D]stay [C7]you [C7]give
+[C7]such [A#7]love [A]to [G7]us [C7]us [D]with [F#dim]the [Dm]capacity [C7]to
+[G]love [Dm]God [G7]we [G7]know [Am]that [C]we've [A]not [D]always [G7]loved
+[G]you [Bdim]you [Gm]made [Am]love [C]in [D7]sent [F#dim]your [Edim]son [G7]for
+[Gm]us [G]son [A#7]to [D]be [Em]the [G]one [G#7]only [C]sacrifice [G7]for [G]us
+[D]making [F#dim]it [C]possible [G]us [D]to [D]know [D]you [D]better [C]the
+[F7]Holy [C]God [Am]God [G]they [G#7]the [D]cross [Am]you [C]see [Am]the
+[Em]extent [Em]of [G]your [C7]love [F]God [A#7]the [C]the [Gm]cute [C7]give
+[Em]yourself [C]for [Gm]us [D#aug]love [A#7]that [G]God [Am]would [Am]leave
+[A]thrown [D]high [C#7]come [Bm]for [G]sin [A7]men [Em]die [D]And [A7]make
+[D7]himself [Em]a [Am]offering [G]that [G7]once [A]for [D]all [C7]would [C7]be
+[Em]covered [C7]by [G]his [G7]sacrifice [A7]thereof [D]that [Em]tree [G]what
+[Am]love [G7]loved [G7]it [G]not [G]stopped [Edim]there [D]came [D]to [D]leave
+[Am]inside [Am]our [A7]hearts [G]those [C7]who [F#dim]accept [G]son [Gm]love
+[C]you [D]would [D]give [G]purpose [D#aug]turned [G]her [G]God [G7]kind [C]of
+[G#7]love [D]sacrifice [G]you [Em]love [C7]kind [C#7]of [Bm]love [C]oil [Am]I
+[Am]love [G#7]God [C]You [G#7]me [C7]are [C7]grateful [D]we [G#dim]are [B]humble
+[Edim]are [C7]in [Em]awe [Em]you [A7]use [Bm]people [G#7]such [B]as [A7]us
+[A7]you [G]who [G]who [G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who
+[G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who
+[G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who
+[G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who
+[G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who
+[G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who
+[G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who
+[G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who
+[G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who
+[G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who
+[G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who
+[G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who
+[G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who
+[G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who
+[G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who
+[G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who
+[G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who [G]is [G]the [G]one [G]who
+[G]is [G]the [G]one [G]who [G]is [C]the [C]one [C]who [Gm]who [Gm]one [Gm]who
+[Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the
+[Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who
+[Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the
+[Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who
+[Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the
+[Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who
+[Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the
+[Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who
+[Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the
+[Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who
+[Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the
+[Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who
+[Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the
+[Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who
+[Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the
+[Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who
+[Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the
+[Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who
+[Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the
+[Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who
+[Gm]is [Gm]the [Gm]one [Gm]who [Gm]is [Gm]the [Gm]one [Gm]who [Gm]is
+
+CHORD CHART
+==================================================
+
+Section 1:
+  G7 | Em | A#7 | D | G#dim | G | C7 | Cdim | Am | C | Gm | C#dim | Edim | F#m | A | A7 | B7 | Bm | F#dim | Dm
+
+Section 2:
+  D
+
+Section 3:
+  Gm | G | G7 | Am | F# | C | G#7 | A | D | Bm | Bdim | F#7 | D7 | A#7 | F#dim | Edim | G#dim | Em
+
+Section 4:
+  D | A7 | G | Em | C | F7 | Dm | G7 | C7 | Am | G#7 | F#dim | D#aug | F | Gm | A#7 | A | D#7 | Bm | D#dim | C#7 | G# | D7 | A#
+
+Section 5:
+  G7 | G | Edim | Em | Gm | D | Am | A7 | A#7 | C7 | C | F#dim | B | Bm | G#7 | A | Bdim | Ddim | D#aug
+
+Section 6:
+  Gm | G | G7 | C | G#7 | Am | C7 | D | A | Em | C#7 | Bm | D#aug | F# | B | A#7 | A7 | G#dim | Edim | B7 | F#dim
+
+Section 7:
+  D
+
+Section 8:
+  Am | G | Gm | D
+
+Section 9:
+  G7 | Gm
+
+Section 10:
+  D | Dm | Bm | A#7 | G#dim | G7 | G
+
+Section 11:
+  Bm | G | Gm | C
+
+Section 12:
+  Gm | G | G7 | C
+
+Section 13:
+  Edim | G
+
+Section 14:
+  D | Gm | G | C7 | Adim
+
+
+LYRICS ONLY
+==================================================
+
+see your love it's clear as day making us keeping us place to stay you give such
+love to us us with the capacity to love God we know that we've not always loved
+you you made love in sent your son for us son to be the one only sacrifice for
+us making it possible us to know you better the Holy God God they the cross you
+see the extent of your love God the the cute give yourself for us love that God
+would leave thrown high come for sin men die And make himself a offering that
+once for all would be covered by his sacrifice thereof that tree what love loved
+it not stopped there came to leave inside our hearts those who accept son love
+you would give purpose turned her God kind of love sacrifice you love kind of
+love oil I love God You me are grateful we are humble are in awe you use people
+such as us you who who is the one who is the one who is the one who is the one
+who is the one who is the one who is the one who is the one who is the one who
+is the one who is the one who is the one who is the one who is the one who is
+the one who is the one who is the one who is the one who is the one who is the
+one who is the one who is the one who is the one who is the one who is the one
+who is the one who is the one who is the one who is the one who is the one who
+is the one who is the one who is the one who is the one who is the one who is
+the one who is the one who is the one who is the one who is the one who is the
+one who is the one who is the one who is the one who is the one who is the one
+who is the one who is the one who is the one who is the one who is the one who
+is the one who who one who is the one who is the one who is the one who is the
+one who is the one who is the one who is the one who is the one who is the one
+who is the one who is the one who is the one who is the one who is the one who
+is the one who is the one who is the one who is the one who is the one who is
+the one who is the one who is the one who is the one who is the one who is the
+one who is the one who is the one who is the one who is the one who is the one
+who is the one who is the one who is the one who is the one who is the one who
+is the one who is the one who is the one who is the one who is the one who is
+the one who is the one who is the one who is the one who is the one who is the
+one who is the one who is the one who is the one who is the one who is the one
+who is the one who is

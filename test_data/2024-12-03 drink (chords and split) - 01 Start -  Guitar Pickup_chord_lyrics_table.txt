@@ -1,0 +1,599 @@
+Title: 2024-12-03 drink (chords and split) - 01 Start -  Guitar Pickup
+Key:  minor
+Key Confidence: 75.4%
+Tempo: 123.0 BPM
+Duration: 8:09
+Transcription: faster-whisper
+
+CHORD AND LYRICS TIME ALIGNMENT TABLE
+======================================================================
+
+Chord           Lyrics                                  
+-------------------------------------------------------
+D7                                                      
+D                                                       
+G7                                                      
+G                                                       
+G7                                                      
+G                                                       
+A7                                                      
+A                                                       
+D                                                       
+Dm                                                      
+G7                                                      
+G                                                       
+D                                                       
+A7                                                      
+A                                                       
+G                                                       
+D                                                       
+G                                                       
+D                                                       
+A                                                       
+Dm                                                      
+A                                                       
+Dm                                                      
+Bm                                                      
+D                                                       
+Gm                                                      
+G                                                       
+D                                                       
+A                                                       
+G#dim                                                   
+Bm                                                      
+D                                                       
+G                                                       
+D                                                       
+A                                                       
+Dm                                                      
+A                                                       
+D                                                       
+G#dim                                                   
+Bm                                                      
+D                                                       
+G                                                       
+D                                                       
+A                                                       
+Gm                                                      
+G                                                       
+G7                                                      
+G                                                       
+D                                                       
+G                                                       
+D                                                       
+A                                                       
+A#7                                                     
+D                                                       
+Bm                                                      
+G#dim                                                   
+Gm                                                      
+G                                                       
+D                                                       
+A7                                                      
+A                                                       
+Am                                                      
+D                                                       
+G#dim                                                   
+G                                                       
+D                                                       
+Dm                                                      
+A                                                       
+D                                                       
+G#dim                                                   
+D                                                       
+G                                                       
+D                                                       
+G                                                       
+D                                                       
+A7                                                      
+A                                                       
+D                                                       
+G                                                       
+D                                                       
+G#dim                                                   
+D                                                       
+A                                                       
+Dm                                                      
+A                                                       
+Dm                                                      
+D                                                       
+A                                                       
+Am                                                      
+G                                                       
+Gm                                                      
+G                                                       
+D                                                       
+A                                                       
+G                                                       
+D                                                       
+A                                                       
+F7                                                      
+Dm                                                      
+A7                                                      
+A                                                       
+Dm                                                      
+Bm                                                      
+D                                                       
+                you.                                    
+Bm                                                      
+D                                                       
+G                                                       
+G7                                                      
+D                                                       
+A                                                       
+D                                                       
+Bm                                                      
+D                                                       
+G#dim                                                   
+D                                                       
+G                                                       
+D                                                       
+G                                                       
+G7                                                      
+G                                                       
+D                                                       
+A7                                                      
+A                                                       
+Am                                                      
+D                                                       
+A                                                       
+D                                                       
+G#dim                                                   
+D                                                       
+G#dim                                                   
+Bm                                                      
+D                                                       
+G                                                       
+D                                                       
+G                                                       
+D                                                       
+G                                                       
+D                                                       
+G                                                       
+D                                                       
+Gm                                                      
+                you.                                    
+G                                                       
+D                                                       
+A7                                                      
+D                                                       
+A                                                       
+D                                                       
+A                                                       
+D                                                       
+Bm                                                      
+D                                                       
+Bm                                                      
+G#dim                                                   
+D                                                       
+G                                                       
+D                                                       
+A7                                                      
+A                                                       
+A7                                                      
+A                                                       
+Am                                                      
+G                                                       
+Gm                                                      
+G                                                       
+Gm                                                      
+D                                                       
+A                                                       
+                you.                                    
+D                                                       
+Bm                                                      
+D                                                       
+G                                                       
+D                                                       
+A                                                       
+D                                                       
+A7                                                      
+A                                                       
+A7                                                      
+Gm                                                      
+G                                                       
+D                                                       
+Am                                                      
+                you.                                    
+D                                                       
+A                                                       
+Dm                                                      
+D                                                       
+Bm                                                      
+D                                                       
+G                                                       
+D                                                       
+A                                                       
+Gm                                                      
+G                                                       
+G7                                                      
+G                                                       
+D                                                       
+A7                                                      
+D                                                       
+A                                                       
+D                                                       
+A                                                       
+A7                                                      
+D                                                       
+G#dim                                                   
+Bm                                                      
+D                                                       
+Gm                                                      
+G                                                       
+D                                                       
+A7                                                      
+A                                                       
+D                                                       
+G                                                       
+D                                                       
+Dm                                                      
+A                                                       
+G7                                                      
+G                                                       
+D                                                       
+                you.                                    
+G                                                       
+D                                                       
+Gm                                                      
+A                                                       
+D                                                       
+A                                                       
+Gm                                                      
+G                                                       
+Gm                                                      
+D                                                       
+A7                                                      
+D                                                       
+A                                                       
+D                                                       
+Bm                                                      
+G#dim                                                   
+D                                                       
+G                                                       
+                you.                                    
+D                                                       
+A                                                       
+D                                                       
+Bm                                                      
+D                                                       
+G#dim                                                   
+D                                                       
+G                                                       
+D                                                       
+A                                                       
+G                                                       
+D                                                       
+                you.                                    
+A                                                       
+A7                                                      
+A                                                       
+G                                                       
+D                                                       
+Bm                                                      
+G#dim                                                   
+A#7                                                     
+G#dim                                                   
+B7                                                      
+G                                                       
+D                                                       
+A                                                       
+D                                                       
+G                                                       
+D                                                       
+G7                                                      
+A7                                                      
+A                                                       
+D                                                       
+Gm                                                      
+G                                                       
+D                                                       
+                you.                                    
+G                                                       
+D                                                       
+A                                                       
+A7                                                      
+D                                                       
+A                                                       
+D                                                       
+G#dim                                                   
+D                                                       
+G7                                                      
+                you.                                    
+G                                                       
+D                                                       
+G                                                       
+G7                                                      
+D                                                       
+A                                                       
+D                                                       
+A                                                       
+A7                                                      
+A                                                       
+D                                                       
+G#dim                                                   
+D                                                       
+G7                                                      
+G                                                       
+D                                                       
+G                                                       
+D                                                       
+A                                                       
+A7                                                      
+A                                                       
+A7                                                      
+A                                                       
+D                                                       
+G                                                       
+D                                                       
+                you.                                    
+A                                                       
+Am                                                      
+A7                                                      
+A                                                       
+Am                                                      
+D                                                       
+G#dim                                                   
+D                                                       
+Gm                                                      
+                you.                                    
+G                                                       
+                you.                                    
+D                                                       
+Gm                                                      
+Am                                                      
+A                                                       
+D                                                       
+G#dim                                                   
+D                                                       
+G                                                       
+D                                                       
+A                                                       
+Dm                                                      
+A                                                       
+A7                                                      
+D                                                       
+G#dim                                                   
+D                                                       
+G#dim                                                   
+D                                                       
+G#dim                                                   
+D                                                       
+G7                                                      
+G                                                       
+D                                                       
+Am                                                      
+D                                                       
+A7                                                      
+D                                                       
+A                                                       
+A7                                                      
+D                                                       
+Bm                                                      
+D                                                       
+Bm                                                      
+D                                                       
+G                                                       
+D                                                       
+                you.                                    
+G                                                       
+D                                                       
+G                                                       
+A                                                       
+D                                                       
+A                                                       
+D                                                       
+C                                                       
+G7                                                      
+C                                                       
+G7                                                      
+D                                                       
+G                                                       
+Gm                                                      
+G                                                       
+                you.                                    
+Gm                                                      
+G                                                       
+D                                                       
+Bm                                                      
+Gdim                                                    
+F                                                       
+C#dim                                                   
+
+CHORDPRO FORMAT
+==================================================
+
+[D]you [Gm]you [A]you [Am]you [D]you [G]you [D]you [D]you [G7]you [D]you [Gm]you
+[G]you [D]you [G]you
+
+CHORD CHART
+==================================================
+
+Section 1:
+  D7 | D | G7 | G | A7 | A | Dm
+
+Section 2:
+  G | D | A | Dm | Bm | Gm | G#dim
+
+Section 3:
+  D | A | Dm | G#dim | Bm | G | Gm | G7
+
+Section 4:
+  G | D
+
+Section 5:
+  A | A#7 | D | Bm | G#dim | Gm | G | A7 | Am | Dm
+
+Section 6:
+  D | G
+
+Section 7:
+  G#dim | D
+
+Section 8:
+  A | Dm | D | Am | G | Gm
+
+Section 9:
+  D | A | G
+
+Section 10:
+  A | F7 | Dm | A7 | Bm | D | G
+
+Section 11:
+  G7 | D
+
+Section 12:
+  A
+
+Section 13:
+  D | Bm | G#dim | G | G7
+
+Section 14:
+  A7 | A | Am | D | G#dim | Bm | G
+
+Section 15:
+  Gm | G
+
+Section 16:
+  D
+
+Section 17:
+  A7 | D | A | Bm | G#dim | G
+
+Section 18:
+  D
+
+Section 19:
+  A7 | A | Am | G | Gm | D | Bm | Dm
+
+Section 20:
+  D | A | Gm | G
+
+Section 21:
+  G7 | G | D
+
+Section 22:
+  A7 | D | A | G#dim | Bm | Gm | G | Dm | G7
+
+Section 23:
+  D
+
+Section 24:
+  G
+
+Section 25:
+  D
+
+Section 26:
+  Gm | A | D | G
+
+Section 27:
+  A7 | D | A
+
+Section 28:
+  D | Bm | G#dim | G
+
+Section 29:
+  D
+
+Section 30:
+  A
+
+Section 31:
+  D | Bm | G#dim | G
+
+Section 32:
+  D
+
+Section 33:
+  A | G
+
+Section 34:
+  D
+
+Section 35:
+  A | A7 | G
+
+Section 36:
+  D
+
+Section 37:
+  Bm | G#dim | A#7 | B7 | G | D | A
+
+Section 38:
+  G
+
+Section 39:
+  D | G7 | A7 | A | Gm | G
+
+Section 40:
+  D
+
+Section 41:
+  G
+
+Section 42:
+  D
+
+Section 43:
+  A | A7 | D
+
+Section 44:
+  G#dim | D | G7 | G
+
+Section 45:
+  G7 | D
+
+Section 46:
+  A | D | A7 | G#dim
+
+Section 47:
+  G7 | G | D
+
+Section 48:
+  A | A7 | D
+
+Section 49:
+  G
+
+Section 50:
+  D
+
+Section 51:
+  A | Am | A7 | D
+
+Section 52:
+  G#dim | D | Gm | G
+
+Section 53:
+  D
+
+Section 54:
+  Gm | Am | A
+
+Section 55:
+  D | G#dim | G
+
+Section 56:
+  D
+
+Section 57:
+  A | Dm | A7 | D | G#dim | G7 | G
+
+Section 58:
+  D
+
+Section 59:
+  Am | D | A7 | A | Bm | G
+
+Section 60:
+  D | G | A | C | G7 | Gm
+
+Section 61:
+  Bm | Gdim | F | C#dim
+
+
+LYRICS ONLY
+==================================================
+
+you you you you you you you you you you you you you you

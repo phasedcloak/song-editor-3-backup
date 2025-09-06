@@ -11,9 +11,12 @@ import tempfile
 import numpy as np
 import librosa
 import soundfile as sf
+import subprocess
+import json
+import sys
 from typing import Dict, Any, List
 from datetime import datetime
-# import vamp - optional
+# vamp is no longer imported here, it will be used in the worker process
 
 # Optional imports (import lazily to avoid bus errors)
 CHORD_EXTRACTOR_AVAILABLE = False
@@ -23,169 +26,124 @@ VAMP_AVAILABLE = False
 
 
 class ChordDetector:
-    """Handles chord detection using various methods including Chordino."""
+    """Detects chords in an audio file using various methods."""
 
     def __init__(
         self,
         use_chordino: bool = True,
+        chord_simplification: bool = False,
+        preserve_chord_richness: bool = True,
         min_confidence: float = 0.3,
-        chord_simplification: bool = False,  # Default to False to preserve richness
-        preserve_chord_richness: bool = True,  # New option to explicitly preserve richness
         window_size: float = 0.5
     ):
-        self.use_chordino = use_chordino and CHORD_EXTRACTOR_AVAILABLE
-        self.min_confidence = min_confidence
-        self.chord_simplification = chord_simplification and not preserve_chord_richness
+        """Initialize ChordDetector."""
+        self.use_chordino = use_chordino
+        self.chord_simplification = chord_simplification
         self.preserve_chord_richness = preserve_chord_richness
+        self.min_confidence = min_confidence
         self.window_size = window_size
+        self.vamp_host = None
+        self.chordino_plugin = None
+        self.note_names = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+        # Set chromagram parameters as instance variables for get_detector_info
+        self.chromagram_tuning_error = 0.0
+        self.chromagram_n_fft = 4096
+        self.chromagram_hop_length = 1024
 
-        # Chord mapping for consistency (preserves richness, no simplification)
-        self.chord_mapping = {
-            # Major chords - preserve as-is
-            'C': 'C', 'C#': 'C#', 'D': 'D', 'D#': 'D#', 'E': 'E', 'F': 'F',
-            'F#': 'F#', 'G': 'G', 'G#': 'G#', 'A': 'A', 'A#': 'A#', 'B': 'B',
-            # Minor chords - preserve as-is
-            'Cm': 'Cm', 'C#m': 'C#m', 'Dm': 'Dm', 'D#m': 'D#m', 'Em': 'Em', 'Fm': 'Fm',
-            'F#m': 'F#m', 'Gm': 'Gm', 'G#m': 'G#m', 'Am': 'Am', 'A#m': 'A#m', 'Bm': 'Bm',
-            # Extended chords - preserve full richness
-            'C7': 'C7', 'Cm7': 'Cm7', 'Cmaj7': 'Cmaj7', 'Cdim': 'Cdim', 'Caug': 'Caug',
-            'C9': 'C9', 'Cm9': 'Cm9', 'Cmaj9': 'Cmaj9', 'C11': 'C11', 'C13': 'C13',
-            'Csus2': 'Csus2', 'Csus4': 'Csus4', 'Cadd9': 'Cadd9', 'Cadd11': 'Cadd11',
-            'D7': 'D7', 'Dm7': 'Dm7', 'Dmaj7': 'Dmaj7', 'Ddim': 'Ddim', 'Daug': 'Daug',
-            'D9': 'D9', 'Dm9': 'Dm9', 'Dmaj9': 'Dmaj9', 'D11': 'D11', 'D13': 'D13',
-            'Dsus2': 'Dsus2', 'Dsus4': 'Dsus4', 'Dadd9': 'Dadd9', 'Dadd11': 'Dadd11',
-            'E7': 'E7', 'Em7': 'Em7', 'Emaj7': 'Emaj7', 'Edim': 'Edim', 'Eaug': 'Eaug',
-            'E9': 'E9', 'Em9': 'Em9', 'Emaj9': 'Emaj9', 'E11': 'E11', 'E13': 'E13',
-            'Esus2': 'Esus2', 'Esus4': 'Esus4', 'Eadd9': 'Eadd9', 'Eadd11': 'Eadd11',
-            'F7': 'F7', 'Fm7': 'Fm7', 'Fmaj7': 'Fmaj7', 'Fdim': 'Fdim', 'Faug': 'Faug',
-            'F9': 'F9', 'Fm9': 'Fm9', 'Fmaj9': 'Fmaj9', 'F11': 'F11', 'F13': 'F13',
-            'Fsus2': 'Fsus2', 'Fsus4': 'Fsus4', 'Fadd9': 'Fadd9', 'Fadd11': 'Fadd11',
-            'G7': 'G7', 'Gm7': 'Gm7', 'Gmaj7': 'Gmaj7', 'Gdim': 'Gdim', 'Gaug': 'Gaug',
-            'G9': 'G9', 'Gm9': 'Gm9', 'Gmaj9': 'Gmaj9', 'G11': 'G11', 'G13': 'G13',
-            'Gsus2': 'Gsus2', 'Gsus4': 'Gsus4', 'Gadd9': 'Gadd9', 'Gadd11': 'Gadd11',
-            'A7': 'A7', 'Am7': 'Am7', 'Amaj7': 'Amaj7', 'Adim': 'Adim', 'Aaug': 'Aaug',
-            'A9': 'A9', 'Am9': 'Am9', 'Amaj9': 'Amaj9', 'A11': 'A11', 'A13': 'A13',
-            'Asus2': 'Asus2', 'Asus4': 'Asus4', 'Aadd9': 'Aadd9', 'Aadd11': 'Aadd11',
-            'B7': 'B7', 'Bm7': 'Bm7', 'Bmaj7': 'Bmaj7', 'Bdim': 'Bdim', 'Baug': 'Baug',
-            'B9': 'B9', 'Bm9': 'Bm9', 'Bmaj9': 'Bmaj9', 'B11': 'B11', 'B13': 'B13',
-            'Bsus2': 'Bsus2', 'Bsus4': 'Bsus4', 'Badd9': 'Badd9', 'Badd11': 'Badd11'
-        }
-
-    def _save_audio_temp(self, audio: np.ndarray, sample_rate: int) -> str:
-        """Save audio to temporary file for chord detection."""
+    def _detect_chords_chordino_worker(self, audio_path: str) -> List[Dict[str, Any]]:
+        """Detect chords by calling the external chord_worker.py script."""
+        params_file_path = None
         try:
-            with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as temp_file:
-                temp_path = temp_file.name
+            # 1. Prepare parameters for the worker, passing the direct file path
+            worker_params = {
+                'audio_path': audio_path,
+                'use_chordino': self.use_chordino,
+                'min_confidence': self.min_confidence,
+            }
+            
+            with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as temp_params_file:
+                json.dump(worker_params, temp_params_file)
+                params_file_path = temp_params_file.name
 
-            # Ensure audio is in correct format
-            if len(audio.shape) > 1:
-                if audio.shape[0] == 2:  # Stereo audio
-                    audio = np.mean(audio, axis=0)  # Convert to mono by averaging channels
+            # 2. Find the worker script path
+            script_dir = os.path.dirname(__file__)
+            script_path = os.path.join(script_dir, '..', '..', 'chord_worker.py')
+            if not os.path.exists(script_path):
+                bundle_path = os.path.join(os.getcwd(), 'Resources', 'chord_worker.py')
+                if os.path.exists(bundle_path):
+                    script_path = bundle_path
                 else:
-                    audio = audio.squeeze()  # Remove singleton dimensions
+                    raise FileNotFoundError(f"chord_worker.py not found at {script_path} or {bundle_path}")
 
-            # Save audio to temporary file
-            sf.write(temp_path, audio.astype(np.float32), sample_rate, subtype='PCM_16')
-            return temp_path
+            # 3. Run the worker script
+            python_executable = sys.executable
+            command = [python_executable, script_path, params_file_path]
+            
+            logging.info(f"Running chord worker command: {' '.join(command)}")
+            process = subprocess.run(command, capture_output=True, text=True, check=True)
 
+            if process.stderr:
+                for line in process.stderr.strip().split('\n'):
+                    logging.info(f"[ChordWorker] {line}")
+
+            # 4. Parse the results
+            raw_chords = json.loads(process.stdout)
+
+            # 5. Post-process the results
+            # Get audio duration for post-processing
+            audio_duration = librosa.get_duration(path=audio_path)
+            processed_chords = self._post_process_chordino_results(raw_chords, audio_duration)
+            return processed_chords
+
+        except subprocess.CalledProcessError as e:
+            logging.error(f"Chord worker process failed with exit code {e.returncode}")
+            logging.error(f"Stderr: {e.stderr}")
+            logging.error(f"Falling back to chromagram chord detection.")
+            # Fallback requires loading audio, which is inefficient but necessary here
+            audio, sr = librosa.load(audio_path, sr=44100, mono=True)
+            return self._detect_chords_chromagram(audio, sr)
         except Exception as e:
-            logging.error(f"Error saving temporary audio file: {e}")
-            raise
+            logging.error(f"An error occurred during chordino worker processing: {e}", exc_info=True)
+            logging.error("Falling back to chromagram chord detection.")
+            audio, sr = librosa.load(audio_path, sr=44100, mono=True)
+            return self._detect_chords_chromagram(audio, sr)
+        finally:
+            # 6. Clean up temporary params file
+            if params_file_path and os.path.exists(params_file_path):
+                os.unlink(params_file_path)
 
-    def _detect_chords_chordino(self, audio: np.ndarray, sample_rate: int) -> List[Dict[str, Any]]:
-        """Detect chords using Chordino via Vamp."""
-        try:
-            # Try to use vamp, fall back to chromagram if not available
-            try:
-                import vamp
+    def _post_process_chordino_results(self, raw_chords: List[Dict[str, Any]], audio_duration: float) -> List[Dict[str, Any]]:
+        """Converts the list of chord events from the worker into timed chord segments."""
+        processed_chords = []
+        if not raw_chords:
+            return []
 
-                # Ensure audio is mono and proper format
-                if len(audio.shape) > 1:
-                    audio = np.mean(audio, axis=0)  # Convert to mono
+        for i, event in enumerate(raw_chords):
+            start_time = event['timestamp']
+            end_time = raw_chords[i + 1]['timestamp'] if i + 1 < len(raw_chords) else audio_duration
+            
+            chord_symbol = event['chord']
+            parsed_symbol = self._parse_chord_symbol(chord_symbol)
 
-                # Resample if needed (chordino works best with certain sample rates)
-                if sample_rate != 22050:
-                    import librosa
-                    audio = librosa.resample(audio, orig_sr=sample_rate, target_sr=22050)
-                    sample_rate = 22050
+            processed_chords.append({
+                'symbol': chord_symbol,
+                'root': parsed_symbol['root'],
+                'quality': parsed_symbol['quality'],
+                'bass': parsed_symbol['bass'],
+                'start': start_time,
+                'end': end_time,
+                'duration': end_time - start_time,
+                'confidence': 0.85,  # Default confidence for Chordino
+                'detection_method': 'chordino_worker'
+            })
+        
+        return processed_chords
 
-                # Process with chordino via vamp
-                result_generator = vamp.process_audio(audio, sample_rate, 'nnls-chroma:chordino')
-
-                # Process results
-                processed_chords = []
-                current_chord = None
-                current_start = 0.0
-
-                # Convert generator to list and process
-                for step_result in result_generator:
-                    if 'chord' in step_result and len(step_result['chord']) >= 2:
-                        chord_symbol = step_result['chord'][0]  # Get the chord label
-                        timestamp = step_result['chord'][1]     # Get the timestamp
-
-                        # Skip 'N' (no chord) and silence
-                        if chord_symbol in ['N', 'Silence']:
-                            # End current chord if one exists
-                            if current_chord is not None:
-                                processed_chords.append({
-                                    'symbol': current_chord,
-                                    'root': self._parse_chord_symbol(current_chord)['root'],
-                                    'quality': self._parse_chord_symbol(current_chord)['quality'],
-                                    'bass': self._parse_chord_symbol(current_chord)['bass'],
-                                    'start': current_start,
-                                    'end': timestamp,
-                                    'duration': timestamp - current_start,
-                                    'confidence': 0.8,  # Default confidence for vamp results
-                                    'detection_method': 'chordino_vamp'
-                                })
-                                current_chord = None
-                            continue
-
-                        # If chord changed, end previous and start new
-                        if current_chord != chord_symbol:
-                            # End previous chord
-                            if current_chord is not None:
-                                processed_chords.append({
-                                    'symbol': current_chord,
-                                    'root': self._parse_chord_symbol(current_chord)['root'],
-                                    'quality': self._parse_chord_symbol(current_chord)['quality'],
-                                    'bass': self._parse_chord_symbol(current_chord)['bass'],
-                                    'start': current_start,
-                                    'end': timestamp,
-                                    'duration': timestamp - current_start,
-                                    'confidence': 0.8,
-                                    'detection_method': 'chordino_vamp'
-                                })
-
-                            # Start new chord
-                            current_chord = chord_symbol
-                            current_start = timestamp
-
-                # Handle final chord
-                if current_chord is not None:
-                    processed_chords.append({
-                        'symbol': current_chord,
-                        'root': self._parse_chord_symbol(current_chord)['root'],
-                        'quality': self._parse_chord_symbol(current_chord)['quality'],
-                        'bass': self._parse_chord_symbol(current_chord)['bass'],
-                        'start': current_start,
-                        'end': len(audio) / sample_rate,  # End of audio
-                        'duration': len(audio) / sample_rate - current_start,
-                        'confidence': 0.8,
-                        'detection_method': 'chordino_vamp'
-                    })
-
-                return processed_chords
-
-            except ImportError:
-                logging.warning("VAMP not available, falling back to chromagram method")
-                return self._detect_chords_chromagram(audio, sample_rate)
-
-        except Exception as e:
-            logging.error(f"Error in Chordino chord detection: {e}")
-            # Fall back to chromagram method
-            logging.warning("Falling back to chromagram method")
-            return self._detect_chords_chromagram(audio, sample_rate)
+    def _detect_chords_chordino(self, audio_path: str) -> List[Dict[str, Any]]:
+        """
+        Wrapper for the worker-based implementation, accepting a file path.
+        """
+        return self._detect_chords_chordino_worker(audio_path)
 
     def _detect_chords_chromagram(self, audio: np.ndarray, sample_rate: int) -> List[Dict[str, Any]]:
         """Detect chords using chromagram analysis."""
@@ -432,16 +390,26 @@ class ChordDetector:
         """Detect chords in audio using the selected method."""
         start_time = datetime.now()
 
+        # This can be used to debug the contents of the audio buffer
+        # if needed in the future.
+        # sf.write('debug_chord_audio.wav', audio, sample_rate)
+        
         try:
-            logging.info("Starting chord detection...")
-
+            # --- REMOVING DIAGNOSTIC LOGGING ---
+            # logging.info("Starting chord detection...")
+            # logging.info(f"[DIAGNOSTIC] ChordDetector init params: use_chordino={self.use_chordino}")
+            # logging.info(f"[DIAGNOSTIC] Received audio data: type={type(audio)}, shape={audio.shape}, dtype={audio.dtype}")
+            # logging.info(f"[DIAGNOSTIC] Audio stats: min={np.min(audio):.4f}, max={np.max(audio):.4f}, mean={np.mean(audio):.4f}")
+            # logging.info(f"[DIAGNOSTIC] Sample rate: {sample_rate}")
+            
             if self.use_chordino:
-                chords = self._detect_chords_chordino(audio, sample_rate)
-                logging.info(f"Chordino detected {len(chords)} chords")
+                # The public detect method now expects a file path for chordino
+                raise NotImplementedError("Chordino detection requires a file path passed to detect_from_path.")
             else:
+                # Chromagram still works on in-memory audio
                 chords = self._detect_chords_chromagram(audio, sample_rate)
                 logging.info(f"Chromagram detected {len(chords)} chords")
-
+            
             # Simplify chords if requested
             if self.chord_simplification:
                 chords = self._simplify_chords(chords)
@@ -458,6 +426,34 @@ class ChordDetector:
 
         except Exception as e:
             logging.error(f"Error in chord detection: {e}")
+            raise
+
+    def detect_from_path(self, audio_path: str) -> List[Dict[str, Any]]:
+        """
+        Detect chords from an audio file path. This is the new primary method.
+        """
+        start_time = datetime.now()
+        try:
+            if self.use_chordino:
+                chords = self._detect_chords_chordino(audio_path)
+                logging.info(f"Chordino worker detected {len(chords)} chords")
+            else:
+                # For chromagram, we still need to load the audio into memory
+                audio, sr = librosa.load(audio_path, sr=44100, mono=True)
+                chords = self._detect_chords_chromagram(audio, sr)
+                logging.info(f"Chromagram detected {len(chords)} chords")
+
+            # Common post-processing
+            if self.chord_simplification:
+                chords = self._simplify_chords(chords)
+            chords = self._merge_similar_chords(chords)
+
+            processing_time = (datetime.now() - start_time).total_seconds()
+            logging.info(f"Chord detection completed: {len(chords)} chords in {processing_time:.1f} seconds")
+            return chords
+
+        except Exception as e:
+            logging.error(f"Error in chord detection from path: {e}", exc_info=True)
             raise
 
     def analyze_chord_progression(self, chords: List[Dict[str, Any]]) -> Dict[str, Any]:
@@ -521,12 +517,13 @@ class ChordDetector:
             }
 
     def get_detector_info(self) -> Dict[str, Any]:
-        """Get information about the chord detector."""
+        """Get information about the chord detector configuration."""
         return {
             'use_chordino': self.use_chordino,
-            'min_confidence': self.min_confidence,
+            'vamp_available': VAMP_AVAILABLE,
             'chord_simplification': self.chord_simplification,
             'preserve_chord_richness': self.preserve_chord_richness,
-            'window_size': self.window_size,
-            'chord_extractor_available': CHORD_EXTRACTOR_AVAILABLE
+            'chromagram_tuning_error': self.chromagram_tuning_error,
+            'chromagram_n_fft': self.chromagram_n_fft,
+            'chromagram_hop_length': self.chromagram_hop_length
         }

@@ -235,7 +235,7 @@ class AudioProcessor:
             logging.error(f"Normalization failed: {e}")
             return audio
 
-    def separate_sources(self, audio: np.ndarray, sr: int) -> Dict[str, np.ndarray]:
+    def separate_sources(self, audio_path: str, audio: np.ndarray, sr: int) -> Dict[str, np.ndarray]:
         """Separate audio sources using Demucs or fallback."""
         if self.use_demucs and self.separator:
             try:
@@ -289,6 +289,10 @@ class AudioProcessor:
                 self._log_memory_usage('separate')
 
                 logging.info(f"Source separation completed in {separate_time:.2f}s")
+                
+                # Always save the separated sources as they are needed by other modules
+                self._save_separated_sources(audio_path, separated, sr)
+                
                 return separated
 
             except Exception as e:
@@ -300,6 +304,25 @@ class AudioProcessor:
             # Simple fallback: assume vocals are in center frequencies
             # This is a very basic approach
             return {'vocals': audio, 'accompaniment': audio}
+
+    def _save_separated_sources(self, audio_path: str, sources: Dict[str, np.ndarray], sr: int):
+        """Save separated audio sources to files."""
+        try:
+            base_name = Path(audio_path).stem
+
+            # Use the same original working directory as the main application
+            original_cwd = os.environ.get('SONG_EDITOR_ORIGINAL_CWD', '.')
+            output_dir = Path(original_cwd) / 'separated' / 'htdemucs' / base_name
+            output_dir.mkdir(parents=True, exist_ok=True)
+
+            for name, audio_data in sources.items():
+                file_path = output_dir / f"{name}.wav"
+                import soundfile as sf
+                sf.write(file_path, audio_data.T, sr)
+                logging.info(f"Saved separated source: {file_path}")
+
+        except Exception as e:
+            logging.error(f"Failed to save separated sources: {e}")
 
     def _save_audio_temp(self, audio: np.ndarray, sr: int) -> str:
         """Save audio to temporary file."""
@@ -351,14 +374,15 @@ class AudioProcessor:
         except Exception as e:
             logging.warning(f"Failed to save intermediate file: {e}")
 
-    def process(self, file_path: str) -> Dict[str, Any]:
-        """Process audio file through the complete pipeline."""
+    def process(self, audio_path: str) -> Dict[str, Any]:
+        """Process a single audio file."""
+        self.processing_info = {}
         try:
-            logging.info(f"Starting audio processing: {file_path}")
+            logging.info(f"Starting audio processing: {audio_path}")
             total_start_time = time.time()
 
             # Load audio
-            audio, sr = self.load_audio(file_path)
+            audio, sr = self.load_audio(audio_path)
 
             # Save intermediate if requested
             if self.save_intermediate:
@@ -374,24 +398,24 @@ class AudioProcessor:
             if self.save_intermediate:
                 self._save_intermediate_files(audio, sr, "03_normalized")
 
-            # Separate sources
-            separated = self.separate_sources(audio, sr)
-            vocals = separated.get('vocals', audio)
-            accompaniment = separated.get('accompaniment', audio)
+            # 4. Source Separation
+            separated_sources = self.separate_sources(audio_path, audio, sr)
 
-            if self.save_intermediate:
-                self._save_intermediate_files(vocals, sr, "04_vocals")
-                self._save_intermediate_files(accompaniment, sr, "05_accompaniment")
-
-            # Analyze audio
-            analysis = {
-                'duration': len(audio) / sr,
+            # 5. Assemble results
+            final_audio_data = {
+                'audio': audio,
                 'sample_rate': sr,
-                'channels': 1,
-                'audio_levels': self._calculate_audio_levels(audio, sr),
-                'tempo': self._detect_tempo(audio, sr),
-                'key': self._detect_key(audio, sr)
+                'analysis': {
+                    'duration': len(audio) / sr,
+                    'sample_rate': sr,
+                    'channels': 1,
+                    'audio_levels': self._calculate_audio_levels(audio, sr),
+                    'tempo': self._detect_tempo(audio, sr),
+                    'key': self._detect_key(audio, sr)
+                },
+                'processing_info': self.processing_info
             }
+            final_audio_data.update(separated_sources)
 
             # Calculate total processing time
             total_time = time.time() - total_start_time
@@ -399,14 +423,7 @@ class AudioProcessor:
 
             logging.info(f"Audio processing completed in {total_time:.2f}s")
 
-            return {
-                'audio': audio,
-                'vocals': vocals,
-                'accompaniment': accompaniment,
-                'sample_rate': sr,
-                'analysis': analysis,
-                'processing_info': self.processing_info
-            }
+            return final_audio_data
 
         except Exception as e:
             logging.error(f"Audio processing failed: {e}")

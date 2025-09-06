@@ -1,0 +1,167 @@
+Title: test_short
+Key:  major
+Key Confidence: 75.1%
+Tempo: 114.8 BPM
+Duration: 1:00
+Transcription: openai-whisper
+
+CHORD AND LYRICS TIME ALIGNMENT TABLE
+======================================================================
+
+Chord           Lyrics                                  
+-------------------------------------------------------
+G7                                                      
+                see                                     
+Em                                                      
+                your                                    
+A#7                                                     
+                love,                                   
+D                                                       
+G#dim                                                   
+G                                                       
+                it's                                    
+C7                                                      
+                clear                                   
+Cdim                                                    
+                as                                      
+A#7                                                     
+                day,                                    
+Am                                                      
+G7                                                      
+C                                                       
+Gm                                                      
+                making                                  
+C#dim                                                   
+                us                                      
+G                                                       
+D                                                       
+G                                                       
+Gm                                                      
+G                                                       
+Gm                                                      
+F#m                                                     
+                keeping                                 
+                us                                      
+A#7                                                     
+A                                                       
+F#m                                                     
+                place                                   
+A                                                       
+                to                                      
+D                                                       
+                stay                                    
+A                                                       
+G7                                                      
+C                                                       
+                You                                     
+C7                                                      
+                give                                    
+G                                                       
+C7                                                      
+                such                                    
+A#7                                                     
+                love                                    
+G                                                       
+A7                                                      
+A                                                       
+                to                                      
+D                                                       
+G7                                                      
+                us                                      
+B7                                                      
+G                                                       
+D                                                       
+C7                                                      
+C                                                       
+G                                                       
+C7                                                      
+                us                                      
+Bm                                                      
+D                                                       
+                with                                    
+F#dim                                                   
+                the                                     
+Dm                                                      
+                capacity                                
+C7                                                      
+                to                                      
+Em                                                      
+G                                                       
+                love                                    
+C                                                       
+D                                                       
+G                                                       
+D                                                       
+B7                                                      
+D                                                       
+Dm                                                      
+                God                                     
+Gm                                                      
+C                                                       
+G                                                       
+D                                                       
+Gm                                                      
+G                                                       
+G7                                                      
+                we                                      
+                know                                    
+G                                                       
+                that                                    
+Am                                                      
+F#                                                      
+C                                                       
+                we've                                   
+G#7                                                     
+A                                                       
+                not                                     
+D                                                       
+                always                                  
+G7                                                      
+                loved                                   
+D                                                       
+G                                                       
+                you                                     
+Bm                                                      
+G                                                       
+Gm                                                      
+G                                                       
+Gm                                                      
+Bdim                                                    
+                you                                     
+Gm                                                      
+                made                                    
+Am                                                      
+                love                                    
+F#7                                                     
+C                                                       
+                with                                    
+G7                                                      
+
+CHORDPRO FORMAT
+==================================================
+
+[G7]see [Em]your [A#7]love [G]it's [C7]clear [Cdim]as [A#7]day [Gm]making
+[C#dim]us [F#m]keeping [F#m]us [F#m]place [A]to [D]stay [C]You [C7]give [C7]such
+[A#7]love [A]to [G7]us [C7]us [D]with [F#dim]the [Dm]capacity [C7]to [G]love
+[Dm]God [G7]we [G7]know [G]that [C]we've [A]not [D]always [G7]loved [G]you
+[Bdim]you [Gm]made [Am]love [C]with
+
+CHORD CHART
+==================================================
+
+Section 1:
+  G7 | Em | A#7 | D | G#dim | G | C7 | Cdim | Am | C | Gm | C#dim | F#m | A | A7 | B7 | Bm | F#dim | Dm
+
+Section 2:
+  D
+
+Section 3:
+  Gm | G | G7 | Am | F# | C | G#7 | A | D | Bm | Bdim | F#7
+
+
+LYRICS ONLY
+==================================================
+
+see your love it's clear as day making us keeping us place to stay You give such
+love to us us with the capacity to love God we know that we've not always loved
+you you made love with

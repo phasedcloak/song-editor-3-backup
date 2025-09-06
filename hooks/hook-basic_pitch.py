@@ -8,15 +8,22 @@ import os
 from pathlib import Path
 from PyInstaller.utils.hooks import collect_data_files, collect_submodules
 
-# Collect Basic Pitch submodules
-hiddenimports = collect_submodules('basic_pitch')
+# Collect Basic Pitch submodules (with error handling)
+try:
+    hiddenimports = collect_submodules('basic_pitch')
+except Exception:
+    # Fallback to explicit imports if collect_submodules fails
+    hiddenimports = []
 
-# Add specific Basic Pitch modules
+# Add specific Basic Pitch modules (always include these)
 hiddenimports += [
+    'basic_pitch',
     'basic_pitch.predict',
     'basic_pitch.note_creation',
     'basic_pitch.midi',
     'basic_pitch.algorithms',
+    'basic_pitch.inference',
+    'basic_pitch.model',
 ]
 
 # Collect data files

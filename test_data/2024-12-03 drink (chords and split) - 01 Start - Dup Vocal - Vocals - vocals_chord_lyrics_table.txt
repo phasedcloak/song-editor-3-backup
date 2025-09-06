@@ -1,0 +1,1143 @@
+Title: 2024-12-03 drink (chords and split) - 01 Start - Dup Vocal - Vocals - vocals
+Key:  major
+Key Confidence: 60.4%
+Tempo: 79.5 BPM
+Duration: 8:09
+Transcription: mlx-whisper
+
+CHORD AND LYRICS TIME ALIGNMENT TABLE
+======================================================================
+
+Chord           Lyrics                                  
+-------------------------------------------------------
+Adim                                                    
+Ddim                                                    
+Fm                                                      
+E7                                                      
+C#dim                                                   
+Bdim                                                    
+Fm                                                      
+Ddim                                                    
+A#m                                                     
+F                                                       
+F7                                                      
+C#dim                                                   
+A#7                                                     
+C#7                                                     
+G                                                       
+C#7                                                     
+D#7                                                     
+Ddim                                                    
+F7                                                      
+Cm                                                      
+C7                                                      
+Bdim                                                    
+F7                                                      
+Dm                                                      
+G#7                                                     
+B7                                                      
+A7                                                      
+A#7                                                     
+Edim                                                    
+F                                                       
+D#7                                                     
+E7                                                      
+C#7                                                     
+C#dim                                                   
+F#7                                                     
+C#dim                                                   
+Ddim                                                    
+A7                                                      
+B7                                                      
+A7                                                      
+D                                                       
+A7                                                      
+E7                                                      
+                made                                    
+D#7                                                     
+                for                                     
+D#                                                      
+C7                                                      
+                you?                                    
+A#dim                                                   
+G7                                                      
+F7                                                      
+Em                                                      
+A7                                                      
+B7                                                      
+A7                                                      
+                drink,                                  
+                come                                    
+A#7                                                     
+D#                                                      
+                and                                     
+                be                                      
+E7                                                      
+                satisfied.                              
+G7                                                      
+E7                                                      
+Bdim                                                    
+A#7                                                     
+                You                                     
+A7                                                      
+                won't                                   
+B7                                                      
+A7                                                      
+                ever                                    
+G#7                                                     
+Adim                                                    
+E7                                                      
+                be                                      
+                denied.                                 
+C#7                                                     
+D7                                                      
+Bdim                                                    
+Ddim                                                    
+Fm                                                      
+A7                                                      
+Bdim                                                    
+C#7                                                     
+A#dim                                                   
+C#dim                                                   
+G#7                                                     
+D#dim                                                   
+F7                                                      
+C#                                                      
+G7                                                      
+C#7                                                     
+G                                                       
+Cdim                                                    
+Ddim                                                    
+F7                                                      
+C#7                                                     
+A#dim                                                   
+D#7                                                     
+Caug                                                    
+A                                                       
+A#dim                                                   
+F                                                       
+D7                                                      
+D#dim                                                   
+Ddim                                                    
+F#dim                                                   
+F                                                       
+G#7                                                     
+Dm                                                      
+F                                                       
+F7                                                      
+Fdim                                                    
+F7                                                      
+E7                                                      
+C#                                                      
+Fm                                                      
+Ddim                                                    
+C#7                                                     
+C#m                                                     
+D#aug                                                   
+G#                                                      
+A#                                                      
+F7                                                      
+C#m                                                     
+C#aug                                                   
+A#m                                                     
+D7                                                      
+D#dim                                                   
+D7                                                      
+A                                                       
+D#dim                                                   
+D#                                                      
+G#                                                      
+C#7                                                     
+D7                                                      
+C#dim                                                   
+C#7                                                     
+D#dim                                                   
+F7                                                      
+Ddim                                                    
+C#dim                                                   
+Fm                                                      
+C#7                                                     
+D7                                                      
+F7                                                      
+A#m                                                     
+A#                                                      
+Fm                                                      
+G                                                       
+Edim                                                    
+F#                                                      
+Ddim                                                    
+Fm                                                      
+C7                                                      
+Fm                                                      
+F7                                                      
+Fm                                                      
+C7                                                      
+Adim                                                    
+F#7                                                     
+                is                                      
+G7                                                      
+                a                                       
+E7                                                      
+                river,                                  
+C#7                                                     
+D7                                                      
+F7                                                      
+D                                                       
+                there                                   
+F7                                                      
+                is                                      
+F#7                                                     
+                a                                       
+                fountain,                               
+E7                                                      
+D7                                                      
+C#7                                                     
+A#                                                      
+G#7                                                     
+D7                                                      
+                there                                   
+                is                                      
+G7                                                      
+                a                                       
+F#7                                                     
+                place                                   
+E7                                                      
+                where                                   
+E                                                       
+C7                                                      
+                we                                      
+E7                                                      
+                can                                     
+F#7                                                     
+C#7                                                     
+                find.                                   
+D#7                                                     
+E7                                                      
+F7                                                      
+Fm                                                      
+D#dim                                                   
+F#dim                                                   
+E7                                                      
+                forgiveness,                            
+F#7                                                     
+G7                                                      
+F7                                                      
+F#7                                                     
+                the                                     
+Am                                                      
+A7                                                      
+C#dim                                                   
+                power                                   
+D7                                                      
+                to                                      
+E7                                                      
+                change                                  
+D#7                                                     
+F7                                                      
+                our                                     
+E7                                                      
+F                                                       
+                lives.                                  
+F7                                                      
+D7                                                      
+Bdim                                                    
+Fm                                                      
+F7                                                      
+Fdim                                                    
+C#7                                                     
+D#7                                                     
+                it's                                    
+                in                                      
+F#7                                                     
+                Christ,                                 
+F7                                                      
+F#7                                                     
+G7                                                      
+Fm                                                      
+F#7                                                     
+                it's                                    
+D#7                                                     
+                in                                      
+G7                                                      
+                Christ.                                 
+F#7                                                     
+E7                                                      
+C7                                                      
+Em                                                      
+F                                                       
+Cm                                                      
+                The                                     
+                one                                     
+C#dim                                                   
+                who                                     
+                made                                    
+F#                                                      
+F#7                                                     
+                the                                     
+A#7                                                     
+C7                                                      
+                perfect                                 
+G7                                                      
+                sacrifice                               
+F7                                                      
+E7                                                      
+D7                                                      
+D#7                                                     
+                on                                      
+Bdim                                                    
+A#7                                                     
+Bdim                                                    
+C#7                                                     
+D#7                                                     
+                that                                    
+D#dim                                                   
+                tree,                                   
+G7                                                      
+F#7                                                     
+Ddim                                                    
+G7                                                      
+                died                                    
+F#7                                                     
+E7                                                      
+                for                                     
+C#m                                                     
+                you                                     
+F#                                                      
+                and                                     
+                me.                                     
+E7                                                      
+D                                                       
+F#7                                                     
+F7                                                      
+                and                                     
+F#7                                                     
+G7                                                      
+                drink                                   
+Ddim                                                    
+                the                                     
+F                                                       
+C#                                                      
+                water                                   
+F#7                                                     
+                he                                      
+C#7                                                     
+D#7                                                     
+                prepared                                
+E                                                       
+                for                                     
+C#7                                                     
+                us                                      
+D7                                                      
+Dm                                                      
+F7                                                      
+Fm                                                      
+C#7                                                     
+                be                                      
+D#7                                                     
+                clean,                                  
+D7                                                      
+D#7                                                     
+D7                                                      
+                to                                      
+Bdim                                                    
+C#7                                                     
+F7                                                      
+                be                                      
+D7                                                      
+                free.                                   
+D#7                                                     
+D7                                                      
+D#7                                                     
+D7                                                      
+Bdim                                                    
+D7                                                      
+                know                                    
+                the                                     
+D#7                                                     
+                world                                   
+Em                                                      
+F#7                                                     
+F7                                                      
+Ddim                                                    
+Fm                                                      
+C#                                                      
+D7                                                      
+                on                                      
+D#m                                                     
+F#                                                      
+                the                                     
+                cross                                   
+E7                                                      
+                for                                     
+                me.                                     
+F7                                                      
+Fm                                                      
+F7                                                      
+Ddim                                                    
+G7                                                      
+                and                                     
+                be,                                     
+Em                                                      
+F7                                                      
+C#7                                                     
+D7                                                      
+                make                                    
+                clean.                                  
+A#dim                                                   
+F7                                                      
+Fm                                                      
+F7                                                      
+A7                                                      
+G7                                                      
+G                                                       
+F7                                                      
+D7                                                      
+D#7                                                     
+E7                                                      
+                the                                     
+F7                                                      
+F                                                       
+Caug                                                    
+E7                                                      
+G#7                                                     
+A                                                       
+A7                                                      
+                of                                      
+G#7                                                     
+D#7                                                     
+                God                                     
+C#7                                                     
+G#7                                                     
+                is                                      
+Gm                                                      
+                risen                                   
+D7                                                      
+                from                                    
+E7                                                      
+D#7                                                     
+                the                                     
+F7                                                      
+                dead,                                   
+F#7                                                     
+G7                                                      
+Ddim                                                    
+F#7                                                     
+                power                                   
+A                                                       
+A#7                                                     
+D                                                       
+D#7                                                     
+A7                                                      
+A                                                       
+D7                                                      
+E7                                                      
+F7                                                      
+Fdim                                                    
+Gdim                                                    
+                life                                    
+G7                                                      
+A                                                       
+D#dim                                                   
+Gdim                                                    
+G7                                                      
+                life                                    
+A                                                       
+A7                                                      
+                is                                      
+F7                                                      
+                in                                      
+E7                                                      
+A7                                                      
+D7                                                      
+                hands,                                  
+G7                                                      
+F                                                       
+                come                                    
+F7                                                      
+                and                                     
+G7                                                      
+                drink                                   
+C#7                                                     
+                from                                    
+A7                                                      
+F7                                                      
+                the                                     
+F#7                                                     
+                one                                     
+E7                                                      
+                who                                     
+F7                                                      
+A7                                                      
+C#7                                                     
+                is                                      
+D#7                                                     
+                great                                   
+E7                                                      
+D7                                                      
+A#                                                      
+D7                                                      
+Em                                                      
+F#7                                                     
+                from                                    
+F7                                                      
+D7                                                      
+D#7                                                     
+G#m                                                     
+                The                                     
+C#7                                                     
+                life                                    
+F#                                                      
+F7                                                      
+F#7                                                     
+                entering                                
+D#7                                                     
+F#7                                                     
+E                                                       
+D7                                                      
+                with                                    
+E7                                                      
+Edim                                                    
+A7                                                      
+C#7                                                     
+                joy.                                    
+Cdim                                                    
+G7                                                      
+F7                                                      
+Ddim                                                    
+A7                                                      
+                Come                                    
+D7                                                      
+                in                                      
+G7                                                      
+                love,                                   
+F                                                       
+F#                                                      
+C#                                                      
+F7                                                      
+                the                                     
+                one                                     
+D7                                                      
+D#7                                                     
+A#7                                                     
+C7                                                      
+                loves                                   
+E                                                       
+                you                                     
+D#m                                                     
+F7                                                      
+                so                                      
+E7                                                      
+                much.                                   
+F#7                                                     
+G#7                                                     
+                He                                      
+F#7                                                     
+                would                                   
+F7                                                      
+                come.                                   
+C#7                                                     
+C7                                                      
+Bdim                                                    
+C#7                                                     
+D7                                                      
+F7                                                      
+C#7                                                     
+D#7                                                     
+F7                                                      
+C#m                                                     
+D7                                                      
+C#m                                                     
+F7                                                      
+C7                                                      
+                Oh,                                     
+C#7                                                     
+E7                                                      
+                how                                     
+                he                                      
+G7                                                      
+                loves                                   
+F#                                                      
+                you.                                    
+A#dim                                                   
+Bm                                                      
+D7                                                      
+D                                                       
+D7                                                      
+                Oh,                                     
+F7                                                      
+                how                                     
+                he                                      
+F#7                                                     
+                loves                                   
+F#                                                      
+                you.                                    
+F7                                                      
+D#7                                                     
+Ddim                                                    
+A#7                                                     
+D7                                                      
+                Do                                      
+                not                                     
+E                                                       
+                delay.                                  
+F7                                                      
+F#7                                                     
+A#7                                                     
+Ddim                                                    
+A7                                                      
+G7                                                      
+                loves                                   
+D#7                                                     
+F7                                                      
+                you.                                    
+E7                                                      
+F7                                                      
+                Come                                    
+A7                                                      
+D7                                                      
+                as                                      
+E7                                                      
+                you                                     
+                are.                                    
+E                                                       
+F#7                                                     
+C#7                                                     
+E7                                                      
+E                                                       
+F#7                                                     
+F7                                                      
+Edim                                                    
+A#dim                                                   
+                the                                     
+                reason                                  
+F7                                                      
+F#                                                      
+                one                                     
+E7                                                      
+F7                                                      
+Fdim                                                    
+D7                                                      
+E7                                                      
+                power                                   
+F#                                                      
+G7                                                      
+F7                                                      
+F#7                                                     
+                power.                                  
+G                                                       
+F#7                                                     
+G7                                                      
+Fm                                                      
+C7                                                      
+                He's                                    
+D7                                                      
+                the                                     
+                one                                     
+D#7                                                     
+                who                                     
+                is                                      
+F7                                                      
+D#m                                                     
+                the                                     
+                son.                                    
+D7                                                      
+D#7                                                     
+F7                                                      
+D#7                                                     
+E7                                                      
+F7                                                      
+E7                                                      
+                the                                     
+Cm                                                      
+                perfect                                 
+E7                                                      
+F7                                                      
+                son.                                    
+F#7                                                     
+F7                                                      
+G#7                                                     
+E7                                                      
+G                                                       
+Ddim                                                    
+                rest                                    
+A7                                                      
+C7                                                      
+D7                                                      
+F7                                                      
+D7                                                      
+E7                                                      
+D7                                                      
+                the                                     
+F#7                                                     
+D#dim                                                   
+C                                                       
+F#7                                                     
+                eternal                                 
+D7                                                      
+E7                                                      
+F7                                                      
+Cm                                                      
+D7                                                      
+A#                                                      
+F7                                                      
+Fm                                                      
+Fdim                                                    
+D7                                                      
+E                                                       
+F#7                                                     
+                it.                                     
+E7                                                      
+F7                                                      
+A7                                                      
+D7                                                      
+                Oh,                                     
+Dm                                                      
+                he                                      
+                tasted                                  
+F#7                                                     
+                it.                                     
+F7                                                      
+D7                                                      
+A7                                                      
+C7                                                      
+                Oh,                                     
+C#7                                                     
+                he                                      
+F#7                                                     
+                tasted                                  
+                it.                                     
+C#dim                                                   
+D7                                                      
+                For                                     
+Bdim                                                    
+A7                                                      
+D7                                                      
+                everyone.                               
+Em                                                      
+D7                                                      
+D#7                                                     
+Dm                                                      
+F7                                                      
+Fm                                                      
+F7                                                      
+C#                                                      
+A                                                       
+B                                                       
+F#dim                                                   
+G#                                                      
+Ddim                                                    
+Edim                                                    
+C#dim                                                   
+D#dim                                                   
+D#aug                                                   
+C#7                                                     
+Cm                                                      
+B7                                                      
+C#dim                                                   
+E7                                                      
+Dm                                                      
+G#7                                                     
+D7                                                      
+F7                                                      
+Fm                                                      
+D#m                                                     
+F#7                                                     
+                he                                      
+                died                                    
+A7                                                      
+F7                                                      
+                me.                                     
+E7                                                      
+F7                                                      
+G#7                                                     
+                it.                                     
+F#7                                                     
+A                                                       
+F7                                                      
+E7                                                      
+                he                                      
+Fm                                                      
+A#7                                                     
+G                                                       
+D#dim                                                   
+A7                                                      
+A                                                       
+                invites                                 
+A7                                                      
+G7                                                      
+E7                                                      
+                me.                                     
+F#7                                                     
+F7                                                      
+Fdim                                                    
+C7                                                      
+                one                                     
+A7                                                      
+                who                                     
+                loves                                   
+B                                                       
+                me                                      
+A7                                                      
+                paid                                    
+F#m                                                     
+A7                                                      
+G#                                                      
+                all                                     
+A7                                                      
+                for                                     
+                me.                                     
+A                                                       
+A#7                                                     
+G#7                                                     
+Cdim                                                    
+                On                                      
+                the                                     
+G7                                                      
+                cross,                                  
+G#                                                      
+A7                                                      
+Edim                                                    
+F#7                                                     
+A7                                                      
+                my                                      
+                penalty,                                
+B7                                                      
+A                                                       
+F#7                                                     
+B7                                                      
+Bm                                                      
+Fdim                                                    
+A7                                                      
+                I                                       
+                come                                    
+G#7                                                     
+                to                                      
+A7                                                      
+G7                                                      
+                him.                                    
+F#7                                                     
+                Now                                     
+C7                                                      
+                I                                       
+G#7                                                     
+                come                                    
+                to                                      
+A#7                                                     
+B7                                                      
+A7                                                      
+                with                                    
+Cdim                                                    
+F#7                                                     
+                open                                    
+A                                                       
+A7                                                      
+                arms.                                   
+G#7                                                     
+A7                                                      
+A#7                                                     
+G7                                                      
+F7                                                      
+A#                                                      
+Bdim                                                    
+                Knowing                                 
+A#7                                                     
+                that                                    
+A7                                                      
+                he                                      
+F#7                                                     
+                loves                                   
+F#dim                                                   
+A#7                                                     
+                me.                                     
+G#7                                                     
+A7                                                      
+A#7                                                     
+F7                                                      
+Dm                                                      
+F7                                                      
+G7                                                      
+                he                                      
+                loves                                   
+E7                                                      
+                me?                                     
+D7                                                      
+F                                                       
+D#                                                      
+                Have                                    
+Cdim                                                    
+G                                                       
+                he                                      
+                loves                                   
+E                                                       
+                me?                                     
+C#7                                                     
+D7                                                      
+A#7                                                     
+D#7                                                     
+                love                                    
+                me                                      
+G7                                                      
+                in                                      
+E                                                       
+                this                                    
+D7                                                      
+                way?                                    
+D#7                                                     
+Bdim                                                    
+F7                                                      
+                I                                       
+Ddim                                                    
+F#                                                      
+A7                                                      
+                know                                    
+D                                                       
+A7                                                      
+                that                                    
+                kind                                    
+G#7                                                     
+                of                                      
+                love.                                   
+F#7                                                     
+A7                                                      
+Edim                                                    
+A#7                                                     
+                He's                                    
+B7                                                      
+A7                                                      
+                not                                     
+                going                                   
+F#7                                                     
+A#7                                                     
+                anywhere.                               
+A                                                       
+F#m                                                     
+B7                                                      
+A7                                                      
+F#m                                                     
+Fm                                                      
+F7                                                      
+                He's                                    
+                here                                    
+G7                                                      
+                to                                      
+G#7                                                     
+                stay.                                   
+A7                                                      
+F7                                                      
+A#7                                                     
+                He's                                    
+D#7                                                     
+                here                                    
+F#7                                                     
+                to                                      
+                stay.                                   
+G#7                                                     
+A7                                                      
+Edim                                                    
+Fm                                                      
+                see                                     
+F7                                                      
+Fdim                                                    
+A#m                                                     
+D7                                                      
+                it                                      
+D#7                                                     
+                and                                     
+E7                                                      
+                I'm                                     
+                coming.                                 
+D#7                                                     
+D7                                                      
+C7                                                      
+                The                                     
+                matter                                  
+F#                                                      
+                what                                    
+E7                                                      
+                the                                     
+Em                                                      
+                obstacles                               
+Fdim                                                    
+E7                                                      
+                in                                      
+D7                                                      
+D#7                                                     
+E7                                                      
+                my                                      
+                way.                                    
+D7                                                      
+D#7                                                     
+C#7                                                     
+                The                                     
+                matter                                  
+E                                                       
+F#                                                      
+                what                                    
+Gdim                                                    
+E7                                                      
+                my                                      
+                past                                    
+F#                                                      
+F#7                                                     
+                is.                                     
+Edim                                                    
+A#7                                                     
+C#7                                                     
+                I'm                                     
+                coming.                                 
+D7                                                      
+E7                                                      
+D#dim                                                   
+C#7                                                     
+E7                                                      
+C#7                                                     
+F#7                                                     
+Fdim                                                    
+F7                                                      
+F#                                                      
+F#7                                                     
+D7                                                      
+D                                                       
+C7                                                      
+E7                                                      
+F7                                                      
+E7                                                      
+C#7                                                     
+D7                                                      
+C#7                                                     
+Fm                                                      
+Fdim                                                    
+C#7                                                     
+E                                                       
+Am                                                      
+B                                                       
+G7                                                      
+F7                                                      
+D7                                                      
+E7                                                      
+C#dim                                                   
+C#m                                                     
+D7                                                      
+E7                                                      
+F7                                                      
+D7                                                      
+F#7                                                     
+G7                                                      
+F#7                                                     
+C                                                       
+Fm                                                      
+F7                                                      
+A7                                                      
+D#dim                                                   
+G7                                                      
+F7                                                      
+A#7                                                     
+D                                                       
+F#7                                                     
+G7                                                      
+E7                                                      
+F7                                                      
+D#dim                                                   
+C#7                                                     
+D7                                                      
+D#7                                                     
+C#7                                                     
+F7                                                      
+G7                                                      
+F7                                                      
+D7                                                      
+G#dim                                                   
+C#7                                                     
+F#dim                                                   
+C7                                                      
+D#7                                                     
+Adim                                                    
+D7                                                      
+A#m                                                     
+D7                                                      
+Fm                                                      
+F7                                                      
+G#m                                                     
+Adim                                                    
+A                                                       
+Ddim                                                    
+C                                                       
+
+CHORDPRO FORMAT
+==================================================
+
+[E7]made [D#7]for [C7]you [A7]drink [A7]come [D#]and [D#]be [E7]satisfied
+[A#7]You [A7]won't [A7]ever [E7]be [E7]denied [F#7]is [G7]a [E7]river [D]there
+[F7]is [F#7]a [F#7]fountain [D7]there [D7]is [G7]a [F#7]place [E7]where [C7]we
+[E7]can [C#7]find [E7]forgiveness [F#7]the [C#dim]power [D7]to [E7]change
+[F7]our [F]lives [D#7]it's [D#7]in [F#7]Christ [F#7]it's [D#7]in [G7]Christ
+[F]The [F]one [Cm]who [C#dim]made [F#7]the [C7]perfect [G7]sacrifice [D#7]on
+[C#7]that [D#dim]tree [G7]died [E7]for [C#m]you [F#]and [F#]me [F#7]and
+[G7]drink [Ddim]the [C#]water [F#7]he [D#7]prepared [E]for [C#7]us [C#7]be
+[D#7]clean [D7]to [F7]be [D7]free [D7]know [D7]the [D#7]world [D7]on [F#]the
+[F#]cross [E7]for [E7]me [G7]and [G7]be [D7]make [D7]clean [E7]the [A7]of
+[D#7]God [G#7]is [Gm]risen [D7]from [D#7]the [F7]dead [F#7]power [Gdim]life
+[G7]life [A7]is [F7]in [D7]hands [F]come [F7]and [G7]drink [C#7]from [F7]the
+[F#7]one [E7]who [C#7]is [D#7]great [F#7]from [G#m]The [C#7]life [F#7]entering
+[D7]with [C#7]joy [A7]Come [D7]in [G7]love [F7]the [F7]one [C7]loves [E]you
+[F7]so [F7]much [G#7]He [F#7]would [F#7]come [C7]Oh [C#7]how [E7]he [G7]loves
+[F#]you [D7]Oh [F7]how [F7]he [F#7]loves [F#]you [D7]Do [D7]not [E]delay
+[G7]loves [F7]you [F7]Come [D7]as [E7]you [E7]are [A#dim]the [A#dim]reason
+[F#]one [E7]power [F#7]power [C7]He's [D7]the [D7]one [D#7]who [D#7]is [D#m]the
+[D#m]son [E7]the [Cm]perfect [F7]son [Ddim]rest [D7]the [F#7]eternal [F#7]it
+[D7]Oh [Dm]he [Dm]tasted [F#7]it [C7]Oh [C#7]he [C#7]tasted [F#7]it [D7]For
+[D7]everyone [F#7]he [F#7]died [F7]me [G#7]it [E7]he [A]invites [E7]me [C7]one
+[A7]who [A7]loves [B]me [A7]paid [G#]all [A7]for [A7]me [Cdim]On [Cdim]the
+[G7]cross [A7]my [A7]penalty [A7]I [A7]come [G#7]to [G7]him [F#7]Now [C7]I
+[G#7]come [G#7]to [A7]with [F#7]open [A7]arms [Bdim]Knowing [A#7]that [A7]he
+[F#7]loves [A#7]me [G7]he [G7]loves [E7]me [D#]Have [G]he [G]loves [E]me
+[D#7]love [D#7]me [G7]in [E]this [D7]way [F7]I [A7]know [A7]that [A7]kind
+[G#7]of [G#7]love [A#7]He's [A7]not [A7]going [A#7]anywhere [F7]He's [F7]here
+[G7]to [G7]stay [A#7]He's [D#7]here [F#7]to [F#7]stay [Fm]see [D7]it [D#7]and
+[E7]I'm [E7]coming [C7]The [C7]matter [F#]what [E7]the [Em]obstacles [E7]in
+[E7]my [E7]way [C#7]The [C#7]matter [F#]what [E7]my [E7]past [F#]is [C#7]I'm
+[C#7]coming
+
+CHORD CHART
+==================================================
+
+Section 1:
+  Adim | Ddim | Fm | E7 | C#dim | Bdim | A#m | F | F7 | A#7 | C#7 | G | D#7 | Cm | C7
+
+Section 2:
+  Dm | G#7 | B7 | A7 | A#7 | Edim | F | D#7 | E7 | C#7 | C#dim | F#7 | Ddim | D | D# | C7 | A#dim | G7 | F7 | Em | Bdim | Adim | D7 | Fm
+
+Section 3:
+  A7 | Bdim | C#7 | A#dim | C#dim | G#7 | D#dim | F7 | C# | G7 | G | Cdim | Ddim | D#7 | Caug | A | F | D7 | F#dim | Dm | Fdim | E7 | Fm | C#m | D#aug | G# | A# | C#aug | A#m | D# | Edim | F# | C7 | Adim | F#7 | D | E | Am
+
+Section 4:
+  Fdim | C#7 | D#7 | F#7 | F7 | G7 | Fm | E7 | C7 | Em | F | Cm | C#dim | F# | A#7 | D7 | Bdim | D#dim | Ddim | C#m | D | C# | E | Dm | D#m | A#dim | A7 | G | Caug | G#7 | A | Gm | Gdim | A# | G#m | Edim | Cdim | Bm
+
+Section 5:
+  D#7 | E7 | F7 | Cm | F#7 | G#7 | G | Ddim | A7 | C7 | D7 | D#dim | C | A# | Fm | Fdim | E | Dm | C#7 | C#dim | Bdim | Em | C# | A | B | F#dim | G# | Edim | D#aug | B7
+
+Section 6:
+  Fm | D#m | F#7 | A7 | F7 | E7 | G#7 | A | A#7 | G | D#dim | G7 | Fdim | C7 | B | F#m | G# | Cdim | Edim | B7 | Bm | A# | Bdim | F#dim | Dm | D7 | F | D# | E | C#7 | D#7 | Ddim | F# | D | A#m | Em | Gdim | Am | C#dim | C#m | C | G#dim | Adim
+
+Section 7:
+  G#m | Adim | A | Ddim | C
+
+
+LYRICS ONLY
+==================================================
+
+made for you drink come and be satisfied You won't ever be denied is a river
+there is a fountain there is a place where we can find forgiveness the power to
+change our lives it's in Christ it's in Christ The one who made the perfect
+sacrifice on that tree died for you and me and drink the water he prepared for
+us be clean to be free know the world on the cross for me and be make clean the
+of God is risen from the dead power life life is in hands come and drink from
+the one who is great from The life entering with joy Come in love the one loves
+you so much He would come Oh how he loves you Oh how he loves you Do not delay
+loves you Come as you are the reason one power power He's the one who is the son
+the perfect son rest the eternal it Oh he tasted it Oh he tasted it For everyone
+he died me it he invites me one who loves me paid all for me On the cross my
+penalty I come to him Now I come to with open arms Knowing that he loves me he
+loves me Have he loves me love me in this way I know that kind of love He's not
+going anywhere He's here to stay He's here to stay see it and I'm coming The
+matter what the obstacles in my way The matter what my past is I'm coming

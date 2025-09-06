@@ -1,0 +1,1129 @@
+Title: 2024-12-07 God have mercy on me (chords and splits) - 01 Start - Dup Vocal - Vocals
+Key:  major
+Key Confidence: 60.3%
+Tempo: 114.8 BPM
+Duration: 6:19
+Transcription: mlx-whisper
+
+CHORD AND LYRICS TIME ALIGNMENT TABLE
+======================================================================
+
+Chord           Lyrics                                  
+-------------------------------------------------------
+D7                                                      
+D#7                                                     
+Cdim                                                    
+Edim                                                    
+C#dim                                                   
+D#7                                                     
+C#dim                                                   
+Am                                                      
+A7                                                      
+                God                                     
+C7                                                      
+F7                                                      
+                have                                    
+F#7                                                     
+                mercy                                   
+G7                                                      
+G#7                                                     
+A#7                                                     
+                on                                      
+G7                                                      
+                me                                      
+G#7                                                     
+                God                                     
+Ddim                                                    
+A7                                                      
+Am                                                      
+C#dim                                                   
+D#7                                                     
+D#m                                                     
+                have                                    
+F#7                                                     
+                mercy                                   
+D#dim                                                   
+A#7                                                     
+A7                                                      
+                on                                      
+A#7                                                     
+                me                                      
+C7                                                      
+E                                                       
+A7                                                      
+G#7                                                     
+C7                                                      
+B7                                                      
+                you                                     
+C7                                                      
+                I                                       
+D#7                                                     
+C#7                                                     
+                have                                    
+A7                                                      
+                everything                              
+G#7                                                     
+A7                                                      
+F#7                                                     
+G7                                                      
+A7                                                      
+G#dim                                                   
+E7                                                      
+C7                                                      
+                I                                       
+B7                                                      
+A#7                                                     
+G7                                                      
+B7                                                      
+G#7                                                     
+                done                                    
+C#                                                      
+C#7                                                     
+Fdim                                                    
+                wrong                                   
+D#7                                                     
+A7                                                      
+G#7                                                     
+G#                                                      
+                you                                     
+F#7                                                     
+G7                                                      
+F#7                                                     
+A7                                                      
+A                                                       
+                I                                       
+                ask                                     
+F#                                                      
+F7                                                      
+G7                                                      
+G#7                                                     
+A7                                                      
+                on                                      
+F#dim                                                   
+Edim                                                    
+C#dim                                                   
+F#                                                      
+                my                                      
+G#                                                      
+                soul,                                   
+F#dim                                                   
+E7                                                      
+A#dim                                                   
+E7                                                      
+F7                                                      
+E7                                                      
+F7                                                      
+A7                                                      
+A#7                                                     
+                have                                    
+Gm                                                      
+G7                                                      
+F#7                                                     
+G#7                                                     
+                mercy                                   
+A7                                                      
+Fdim                                                    
+G7                                                      
+D                                                       
+D#7                                                     
+A#7                                                     
+                everything                              
+G#7                                                     
+G#                                                      
+G                                                       
+                I                                       
+E7                                                      
+                done                                    
+G#7                                                     
+Ddim                                                    
+G7                                                      
+A7                                                      
+F7                                                      
+G7                                                      
+F7                                                      
+F#m                                                     
+                you                                     
+G7                                                      
+A7                                                      
+Gm                                                      
+Am                                                      
+D#7                                                     
+A7                                                      
+A#7                                                     
+A7                                                      
+                mercy                                   
+G7                                                      
+                on                                      
+F#                                                      
+                my                                      
+E7                                                      
+                soul,                                   
+F7                                                      
+F#                                                      
+A7                                                      
+                you                                     
+                long                                    
+                can                                     
+                make                                    
+G#7                                                     
+                me                                      
+G7                                                      
+A7                                                      
+A#7                                                     
+                God                                     
+A7                                                      
+                I                                       
+G                                                       
+                need                                    
+G#                                                      
+F7                                                      
+                you                                     
+Bdim                                                    
+F7                                                      
+                mercy                                   
+G7                                                      
+F#                                                      
+G7                                                      
+                upon                                    
+A7                                                      
+F#                                                      
+E7                                                      
+G#                                                      
+                me                                      
+G#7                                                     
+A7                                                      
+D#7                                                     
+F7                                                      
+F#                                                      
+                from                                    
+A#7                                                     
+F#7                                                     
+                the                                     
+D#m                                                     
+                inside                                  
+G7                                                      
+G#                                                      
+G#m                                                     
+                out                                     
+F#7                                                     
+G#                                                      
+Edim                                                    
+Am                                                      
+Adim                                                    
+D                                                       
+C7                                                      
+D#7                                                     
+                through                                 
+F#7                                                     
+                every                                   
+G7                                                      
+F7                                                      
+                situation                               
+G#7                                                     
+E7                                                      
+G#7                                                     
+                that                                    
+                I                                       
+E7                                                      
+                face                                    
+F7                                                      
+                that                                    
+E                                                       
+                I                                       
+G                                                       
+                would                                   
+A7                                                      
+                be                                      
+F7                                                      
+F#7                                                     
+                more                                    
+D7                                                      
+F7                                                      
+                like                                    
+F#7                                                     
+G#                                                      
+                you                                     
+G7                                                      
+G#7                                                     
+B7                                                      
+F7                                                      
+                have                                    
+                mercy                                   
+G#7                                                     
+A7                                                      
+                on                                      
+F#m                                                     
+G#7                                                     
+A                                                       
+                my                                      
+A7                                                      
+                soul,                                   
+F7                                                      
+E7                                                      
+C#dim                                                   
+Gm                                                      
+C7                                                      
+D7                                                      
+                mercy                                   
+G7                                                      
+A7                                                      
+                on                                      
+F#7                                                     
+A#                                                      
+                my                                      
+A7                                                      
+                soul,                                   
+E                                                       
+E7                                                      
+C#dim                                                   
+                God                                     
+F#7                                                     
+C#7                                                     
+                I                                       
+B                                                       
+                ask                                     
+C7                                                      
+A7                                                      
+                on                                      
+Dm                                                      
+E                                                       
+                my                                      
+G#7                                                     
+                soul                                    
+A7                                                      
+Edim                                                    
+A#7                                                     
+                you                                     
+G#7                                                     
+A                                                       
+                I                                       
+G#7                                                     
+G7                                                      
+                am                                      
+F7                                                      
+G7                                                      
+                have                                    
+G#7                                                     
+D#7                                                     
+                mercy                                   
+A#7                                                     
+G#7                                                     
+                God                                     
+A7                                                      
+A#7                                                     
+F#7                                                     
+E7                                                      
+                ask                                     
+G7                                                      
+                for                                     
+A7                                                      
+                mercy                                   
+G7                                                      
+E7                                                      
+F#7                                                     
+Cm                                                      
+Am                                                      
+D#                                                      
+                Forgive                                 
+D7                                                      
+G#                                                      
+                all                                     
+A#7                                                     
+G#                                                      
+                my                                      
+G7                                                      
+G                                                       
+E7                                                      
+                God                                     
+F7                                                      
+A7                                                      
+A#7                                                     
+A7                                                      
+                my                                      
+F#7                                                     
+                heart                                   
+G7                                                      
+F#7                                                     
+D#dim                                                   
+G#7                                                     
+A7                                                      
+                just                                    
+                what                                    
+Em                                                      
+                people                                  
+G7                                                      
+                see                                     
+E7                                                      
+                every                                   
+A7                                                      
+A#7                                                     
+G#7                                                     
+                part                                    
+F7                                                      
+E7                                                      
+                God                                     
+                have                                    
+A7                                                      
+                mercy,                                  
+G7                                                      
+                have                                    
+E7                                                      
+F7                                                      
+A#7                                                     
+A7                                                      
+                mercy,                                  
+D#dim                                                   
+A7                                                      
+F#                                                      
+F7                                                      
+                have                                    
+A#7                                                     
+G7                                                      
+                mercy                                   
+G#m                                                     
+A7                                                      
+E7                                                      
+                on                                      
+F7                                                      
+G#dim                                                   
+F#                                                      
+G7                                                      
+                my                                      
+F#m                                                     
+E7                                                      
+                soul                                    
+F7                                                      
+E7                                                      
+F7                                                      
+A#dim                                                   
+D7                                                      
+Em                                                      
+Gdim                                                    
+G7                                                      
+A7                                                      
+                me                                      
+G7                                                      
+E7                                                      
+E                                                       
+F#7                                                     
+                I                                       
+                stray                                   
+B7                                                      
+A7                                                      
+                from                                    
+G#7                                                     
+E7                                                      
+                you                                     
+F7                                                      
+F#7                                                     
+Edim                                                    
+                and                                     
+G#7                                                     
+                say                                     
+                and                                     
+A7                                                      
+                think                                   
+G7                                                      
+                and                                     
+E7                                                      
+                do,                                     
+G7                                                      
+                things                                  
+A#7                                                     
+D#dim                                                   
+A#7                                                     
+                that                                    
+A7                                                      
+                don't                                   
+G7                                                      
+                reflect                                 
+F7                                                      
+F#7                                                     
+G7                                                      
+C                                                       
+A#7                                                     
+C#dim                                                   
+F#7                                                     
+G7                                                      
+D#aug                                                   
+                have                                    
+B7                                                      
+F7                                                      
+Cm                                                      
+                mercy,                                  
+G7                                                      
+A7                                                      
+F#m                                                     
+F#dim                                                   
+G#dim                                                   
+Am                                                      
+Cdim                                                    
+                mercy                                   
+F7                                                      
+G7                                                      
+G#7                                                     
+A7                                                      
+                on                                      
+A#7                                                     
+F7                                                      
+F#                                                      
+                my                                      
+E7                                                      
+F7                                                      
+                soul                                    
+D#7                                                     
+F7                                                      
+D7                                                      
+Am                                                      
+A7                                                      
+C#dim                                                   
+Cdim                                                    
+D#7                                                     
+B7                                                      
+Fdim                                                    
+A#m                                                     
+F#dim                                                   
+F7                                                      
+E7                                                      
+A                                                       
+                that                                    
+                that                                    
+                at                                      
+                that                                    
+                at                                      
+                that                                    
+                at                                      
+                that                                    
+                at                                      
+A#7                                                     
+C#dim                                                   
+D#7                                                     
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+Cdim                                                    
+Cm                                                      
+Cdim                                                    
+C#dim                                                   
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+D#7                                                     
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+Cm                                                      
+D#7                                                     
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+Cdim                                                    
+D#7                                                     
+Cdim                                                    
+C#dim                                                   
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+Cdim                                                    
+D#7                                                     
+Cdim                                                    
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+C#dim                                                   
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+                at                                      
+Cdim                                                    
+C#dim                                                   
+Cdim                                                    
+C#dim                                                   
+G                                                       
+A                                                       
+C#dim                                                   
+G#7                                                     
+A7                                                      
+A#7                                                     
+B                                                       
+A#7                                                     
+                at                                      
+A7                                                      
+G7                                                      
+                never                                   
+G#                                                      
+                see                                     
+E7                                                      
+C#m                                                     
+B7                                                      
+                you                                     
+A7                                                      
+                more                                    
+G#                                                      
+                dearer,                                 
+G#7                                                     
+G7                                                      
+E7                                                      
+A                                                       
+                never                                   
+G#                                                      
+                before.                                 
+G#7                                                     
+F#                                                      
+E7                                                      
+A#dim                                                   
+Bdim                                                    
+Adim                                                    
+                everything                              
+A#7                                                     
+B                                                       
+A#7                                                     
+                put                                     
+A7                                                      
+Adim                                                    
+G#                                                      
+A                                                       
+                you                                     
+B7                                                      
+                first,                                  
+B                                                       
+C7                                                      
+A#7                                                     
+                give                                    
+G#7                                                     
+Ddim                                                    
+                you                                     
+F#dim                                                   
+                the                                     
+                glory.                                  
+C7                                                      
+C#                                                      
+C7                                                      
+B7                                                      
+D#7                                                     
+A                                                       
+A7                                                      
+                It's                                    
+                you                                     
+D7                                                      
+B7                                                      
+                hunger                                  
+C7                                                      
+                and                                     
+G#7                                                     
+                thirst                                  
+A#7                                                     
+                now.                                    
+C7                                                      
+G#7                                                     
+Adim                                                    
+G#dim                                                   
+D#7                                                     
+C7                                                      
+Dm                                                      
+Am                                                      
+D7                                                      
+                It's                                    
+F#7                                                     
+C7                                                      
+                you                                     
+B                                                       
+                hunger                                  
+                for                                     
+G7                                                      
+                you                                     
+C#7                                                     
+                a                                       
+B                                                       
+                hunger                                  
+                thirst.                                 
+A#7                                                     
+B7                                                      
+Gdim                                                    
+A7                                                      
+Am                                                      
+Edim                                                    
+G#7                                                     
+                Oh                                      
+                God,                                    
+G#                                                      
+F#7                                                     
+G#7                                                     
+Edim                                                    
+                have                                    
+A7                                                      
+                mercy                                   
+A#7                                                     
+                on                                      
+A7                                                      
+F#                                                      
+F7                                                      
+                me.                                     
+G7                                                      
+F#dim                                                   
+D                                                       
+A7                                                      
+D#7                                                     
+C#dim                                                   
+G                                                       
+A7                                                      
+E                                                       
+                Oh                                      
+C#dim                                                   
+                God,                                    
+G#m                                                     
+G#                                                      
+F                                                       
+F#7                                                     
+F#                                                      
+F#dim                                                   
+C7                                                      
+                have                                    
+A#7                                                     
+                mercy                                   
+G#                                                      
+F                                                       
+                on                                      
+G7                                                      
+F#                                                      
+                me.                                     
+F#7                                                     
+G7                                                      
+A#7                                                     
+G7                                                      
+A#7                                                     
+F#                                                      
+E7                                                      
+B                                                       
+A7                                                      
+G                                                       
+Fdim                                                    
+E                                                       
+Cdim                                                    
+                see                                     
+A#7                                                     
+                everything,                             
+G7                                                      
+G#m                                                     
+G7                                                      
+E7                                                      
+F7                                                      
+A7                                                      
+D7                                                      
+                you                                     
+                know                                    
+A#7                                                     
+                all                                     
+G#                                                      
+A                                                       
+                things,                                 
+Gm                                                      
+A7                                                      
+Adim                                                    
+A#7                                                     
+                nothing                                 
+C7                                                      
+                is                                      
+                hidden                                  
+B7                                                      
+                from                                    
+A#                                                      
+A7                                                      
+                your                                    
+G7                                                      
+                sight.                                  
+E                                                       
+E7                                                      
+Em                                                      
+Am                                                      
+Gm                                                      
+D#7                                                     
+Edim                                                    
+C7                                                      
+D7                                                      
+                Even                                    
+A7                                                      
+                the                                     
+G#7                                                     
+                hidden                                  
+                things                                  
+F7                                                      
+E7                                                      
+Am                                                      
+G#7                                                     
+                in                                      
+A#7                                                     
+                my                                      
+A                                                       
+                heart                                   
+G#7                                                     
+                mind.                                   
+F7                                                      
+A#7                                                     
+                God,                                    
+G#7                                                     
+                you                                     
+G#dim                                                   
+                know                                    
+B                                                       
+A7                                                      
+C#                                                      
+                the                                     
+B                                                       
+                start.                                  
+B7                                                      
+F#dim                                                   
+G7                                                      
+A7                                                      
+B7                                                      
+C7                                                      
+                Forgive                                 
+                me,                                     
+B                                                       
+D7                                                      
+                forgive                                 
+A#7                                                     
+A7                                                      
+                me,                                     
+A                                                       
+G7                                                      
+                God.                                    
+E                                                       
+E7                                                      
+F7                                                      
+A                                                       
+Am                                                      
+A#7                                                     
+A7                                                      
+G#7                                                     
+                Have                                    
+                mercy,                                  
+G7                                                      
+D#7                                                     
+E7                                                      
+A#dim                                                   
+                have                                    
+A                                                       
+A#7                                                     
+G#                                                      
+                mercy.                                  
+G7                                                      
+E7                                                      
+C#dim                                                   
+                Have                                    
+Gdim                                                    
+A#7                                                     
+A7                                                      
+                mercy.                                  
+G7                                                      
+A#7                                                     
+G#dim                                                   
+Ddim                                                    
+E7                                                      
+                mercy,                                  
+G7                                                      
+A7                                                      
+F                                                       
+Ddim                                                    
+A#7                                                     
+G#7                                                     
+G7                                                      
+                mercy.                                  
+F#dim                                                   
+D7                                                      
+E7                                                      
+G7                                                      
+B7                                                      
+E7                                                      
+F7                                                      
+E7                                                      
+Am                                                      
+A#7                                                     
+D#7                                                     
+C#dim                                                   
+D#7                                                     
+C#dim                                                   
+C#7                                                     
+Bdim                                                    
+Edim                                                    
+A#                                                      
+G#dim                                                   
+D7                                                      
+A#dim                                                   
+G#dim                                                   
+E                                                       
+C#7                                                     
+C7                                                      
+D#7                                                     
+C#aug                                                   
+Bdim                                                    
+Fdim                                                    
+F                                                       
+F#                                                      
+Gm                                                      
+G#m                                                     
+Cdim                                                    
+F#dim                                                   
+D#7                                                     
+
+CHORDPRO FORMAT
+==================================================
+
+[A7]God [F7]have [F#7]mercy [A#7]on [G7]me [G#7]God [D#m]have [F#7]mercy [A7]on
+[A#7]me [B7]you [C7]I [C#7]have [A7]everything [C7]I [G#7]done [Fdim]wrong
+[G#]you [A]I [A]ask [A7]on [F#]my [G#]soul [A#7]have [G#7]mercy [A#7]everything
+[G]I [E7]done [F#m]you [A7]mercy [G7]on [F#]my [E7]soul [F#]you [A7]long [A7]can
+[A7]make [A7]me [A#7]God [A7]I [G]need [F7]you [F7]mercy [G7]upon [G#]me
+[F#]from [F#7]the [D#m]inside [G#m]out [D#7]through [F#7]every [F7]situation
+[G#7]that [G#7]I [E7]face [E7]that [E]I [G]would [A7]be [F#7]more [F7]like
+[G#]you [F7]have [F7]mercy [A7]on [A]my [A7]soul [D7]mercy [A7]on [A#]my
+[A7]soul [C#dim]God [C#7]I [B]ask [A7]on [E]my [G#7]soul [A#7]you [A]I [G#7]am
+[G7]have [D#7]mercy [G#7]God [E7]ask [G7]for [A7]mercy [D#]Forgive [G#]all
+[G#]my [E7]God [A7]my [F#7]heart [A7]just [A7]what [Em]people [G7]see [E7]every
+[G#7]part [E7]God [E7]have [A7]mercy [G7]have [A7]mercy [F7]have [G7]mercy
+[E7]on [G7]my [E7]soul [A7]me [F#7]I [F#7]stray [A7]from [E7]you [Edim]and
+[G#7]say [G#7]and [A7]think [G7]and [E7]do [G7]things [A#7]that [A7]don't
+[G7]reflect [D#aug]have [Cm]mercy [Cdim]mercy [A7]on [F#]my [F7]soul [A]that
+[A]that [A]at [A]that [A]at [A]that [A]at [A]that [A]at [D#7]at [D#7]at [D#7]at
+[D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at
+[D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at
+[D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [C#dim]at [C#dim]at [C#dim]at [C#dim]at
+[C#dim]at [C#dim]at [C#dim]at [C#dim]at [C#dim]at [C#dim]at [C#dim]at [C#dim]at
+[C#dim]at [C#dim]at [C#dim]at [C#dim]at [C#dim]at [C#dim]at [C#dim]at [C#dim]at
+[C#dim]at [C#dim]at [C#dim]at [C#dim]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at
+[D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at
+[D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at
+[D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at
+[D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at
+[D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at
+[D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at
+[D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at
+[D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at
+[D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at
+[D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [D#7]at [C#dim]at [C#dim]at
+[C#dim]at [C#dim]at [C#dim]at [C#dim]at [Cdim]at [Cdim]at [Cdim]at [Cdim]at
+[Cdim]at [Cdim]at [Cdim]at [Cdim]at [Cdim]at [Cdim]at [Cdim]at [Cdim]at [Cdim]at
+[Cdim]at [Cdim]at [Cdim]at [Cdim]at [Cdim]at [C#dim]at [C#dim]at [C#dim]at
+[C#dim]at [C#dim]at [C#dim]at [C#dim]at [C#dim]at [C#dim]at [C#dim]at [C#dim]at
+[C#dim]at [C#dim]at [C#dim]at [C#dim]at [C#dim]at [C#dim]at [C#dim]at [C#dim]at
+[A#7]at [G7]never [G#]see [B7]you [A7]more [G#]dearer [A]never [G#]before
+[Adim]everything [A#7]put [A]you [B7]first [A#7]give [Ddim]you [Ddim]the
+[F#dim]glory [A7]It's [A7]you [B7]hunger [C7]and [G#7]thirst [A#7]now [D7]It's
+[F#7]you [B]hunger [B]for [G7]you [C#7]a [B]hunger [B]thirst [G#7]Oh [G#7]God
+[Edim]have [A7]mercy [A#7]on [F7]me [E]Oh [C#dim]God [C7]have [A#7]mercy [F]on
+[F#]me [Cdim]see [A#7]everything [D7]you [D7]know [A#7]all [A]things
+[A#7]nothing [C7]is [C7]hidden [B7]from [A7]your [G7]sight [C7]Even [A7]the
+[G#7]hidden [G#7]things [G#7]in [A#7]my [A]heart [G#7]mind [A#7]God [G#7]you
+[G#dim]know [C#]the [B]start [C7]Forgive [C7]me [D7]forgive [A7]me [G7]God
+[G#7]Have [G#7]mercy [A#dim]have [G#]mercy [C#dim]Have [A7]mercy [E7]mercy
+[G7]mercy
+
+CHORD CHART
+==================================================
+
+Section 1:
+  D7 | D#7 | Cdim | Edim | C#dim | Am | A7 | C7 | F7 | F#7 | G7 | G#7 | A#7 | Ddim | D#m | D#dim | E | B7 | C#7 | G#dim | E7 | C# | Fdim | G# | A | F# | F#dim | A#dim | Gm | D | G | F#m
+
+Section 2:
+  Bdim | F7 | G7 | F# | A7 | E7 | G# | G#7 | D#7 | A#7 | F#7 | D#m | G#m | Edim | Am | Adim | D | C7 | E | G | D7 | B7 | F#m | A | C#dim | Gm | A# | C#7 | B | Dm | Cm | D# | D#dim | Em | G#dim | A#dim | Gdim | C | D#aug | F#dim | Cdim | Fdim | A#m | C#m | Ddim | C# | F | C#aug
+
+
+LYRICS ONLY
+==================================================
+
+God have mercy on me God have mercy on me you I have everything I done wrong you
+I ask on my soul have mercy everything I done you mercy on my soul you long can
+make me God I need you mercy upon me from the inside out through every situation
+that I face that I would be more like you have mercy on my soul mercy on my soul
+God I ask on my soul you I am have mercy God ask for mercy Forgive all my God my
+heart just what people see every part God have mercy have mercy have mercy on my
+soul me I stray from you and say and think and do things that don't reflect have
+mercy mercy on my soul that that at that at that at that at at at at at at at at
+at at at at at at at at at at at at at at at at at at at at at at at at at at at
+at at at at at at at at at at at at at at at at at at at at at at at at at at at
+at at at at at at at at at at at at at at at at at at at at at at at at at at at
+at at at at at at at at at at at at at at at at at at at at at at at at at at at
+at at at at at at at at at at at at at at at at at at at at at at at at at at at
+at at at at at at at at at at at at at at at at at at at at at at at at at at at
+at at at at at at at at at at at at at at at at at at at at at at at at at at at
+at at never see you more dearer never before everything put you first give you
+the glory It's you hunger and thirst now It's you hunger for you a hunger thirst
+Oh God have mercy on me Oh God have mercy on me see everything you know all
+things nothing is hidden from your sight Even the hidden things in my heart mind
+God you know the start Forgive me forgive me God Have mercy have mercy Have
+mercy mercy mercy

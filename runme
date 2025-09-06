@@ -1,0 +1,3 @@
+#!/bin/bash
+# Test with your full audio file
+"/Volumes/SDMusicProd/CascadeProjects/Song_Editor_3/Song Editor 3.app/Contents/MacOS/SongEditor3" --no-gui --whisper-model mlx-whisper "$@"

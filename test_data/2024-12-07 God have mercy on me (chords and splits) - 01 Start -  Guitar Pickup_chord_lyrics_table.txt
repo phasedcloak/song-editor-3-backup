@@ -1,0 +1,901 @@
+Title: 2024-12-07 God have mercy on me (chords and splits) - 01 Start -  Guitar Pickup
+Key:  minor
+Key Confidence: 70.0%
+Tempo: 84.7 BPM
+Duration: 6:19
+Transcription: faster-whisper
+
+CHORD AND LYRICS TIME ALIGNMENT TABLE
+======================================================================
+
+Chord           Lyrics                                  
+-------------------------------------------------------
+E                                                       
+Em                                                      
+D#dim                                                   
+E                                                       
+B                                                       
+E                                                       
+B                                                       
+G7                                                      
+D                                                       
+E                                                       
+A                                                       
+E                                                       
+B                                                       
+E                                                       
+B                                                       
+Em                                                      
+E                                                       
+A7                                                      
+A                                                       
+Em                                                      
+C#m                                                     
+E                                                       
+C#m                                                     
+E                                                       
+A                                                       
+A7                                                      
+A                                                       
+A7                                                      
+E                                                       
+Caug                                                    
+B                                                       
+E                                                       
+A7                                                      
+A                                                       
+A7                                                      
+A                                                       
+A7                                                      
+A                                                       
+A7                                                      
+E                                                       
+Em                                                      
+E                                                       
+B                                                       
+E                                                       
+C#m                                                     
+B                                                       
+E                                                       
+A7                                                      
+A                                                       
+A7                                                      
+D                                                       
+E                                                       
+Fdim                                                    
+D#m                                                     
+D#dim                                                   
+A                                                       
+D#dim                                                   
+E                                                       
+B                                                       
+E                                                       
+B                                                       
+E                                                       
+C#m                                                     
+G7                                                      
+A                                                       
+E                                                       
+A                                                       
+D#dim                                                   
+Am                                                      
+E                                                       
+Dm                                                      
+E                                                       
+B                                                       
+E                                                       
+B                                                       
+E                                                       
+A7                                                      
+A                                                       
+A7                                                      
+A                                                       
+A7                                                      
+A#7                                                     
+B                                                       
+E                                                       
+B                                                       
+E                                                       
+C#m                                                     
+A7                                                      
+C#m                                                     
+E                                                       
+Em                                                      
+B                                                       
+Em                                                      
+B                                                       
+Em                                                      
+C#m                                                     
+                尽快的                                     
+                尽快的                                     
+                尽快的                                     
+E                                                       
+                尽快的                                     
+B                                                       
+Em                                                      
+                尽快的                                     
+B                                                       
+                尽快的                                     
+E                                                       
+C#m                                                     
+                尽快的                                     
+D                                                       
+                尽快的                                     
+A7                                                      
+A                                                       
+A7                                                      
+A                                                       
+Am                                                      
+                尽快的                                     
+A                                                       
+A7                                                      
+B                                                       
+Em                                                      
+B                                                       
+E                                                       
+B                                                       
+E                                                       
+B                                                       
+D                                                       
+E                                                       
+                尽快的                                     
+Am                                                      
+A                                                       
+E                                                       
+                尽快的                                     
+A                                                       
+E                                                       
+A7                                                      
+Am                                                      
+                尽快的                                     
+A                                                       
+                尽快的                                     
+                尽快的                                     
+                尽快的                                     
+                尽快的                                     
+A7                                                      
+E                                                       
+Em                                                      
+E                                                       
+B                                                       
+                尽快的                                     
+                尽快的                                     
+E                                                       
+Em                                                      
+G7                                                      
+C#m                                                     
+                尽快的                                     
+E                                                       
+C#m                                                     
+                尽快的                                     
+E                                                       
+C#m                                                     
+Em                                                      
+                尽快的                                     
+A7                                                      
+A                                                       
+                尽快的                                     
+Am                                                      
+A                                                       
+A7                                                      
+A                                                       
+E                                                       
+                尽快的                                     
+D                                                       
+Am                                                      
+D#dim                                                   
+Em                                                      
+D#dim                                                   
+A                                                       
+                尽快的                                     
+E                                                       
+B                                                       
+E                                                       
+                尽快的                                     
+B                                                       
+F#dim                                                   
+A7                                                      
+A                                                       
+A7                                                      
+A                                                       
+E                                                       
+A                                                       
+D                                                       
+E                                                       
+A                                                       
+F#m                                                     
+A                                                       
+E                                                       
+Am                                                      
+D#dim                                                   
+Em                                                      
+Edim                                                    
+B                                                       
+E                                                       
+B                                                       
+                尽快的                                     
+B7                                                      
+Bm                                                      
+                尽快的                                     
+                尽快的                                     
+                尽快的                                     
+                尽快的                                     
+                尽快的                                     
+Edim                                                    
+A7                                                      
+                尽快的                                     
+A                                                       
+                尽快的                                     
+                尽快的                                     
+A#7                                                     
+E                                                       
+                ś                                       
+                ś                                       
+A                                                       
+F#m                                                     
+A                                                       
+                ś                                       
+                ś                                       
+Em                                                      
+                ś                                       
+Edim                                                    
+E                                                       
+Fdim                                                    
+E                                                       
+B                                                       
+E                                                       
+B7                                                      
+                ś                                       
+Em                                                      
+                ś                                       
+Edim                                                    
+A                                                       
+A7                                                      
+                ś                                       
+A                                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+Edim                                                    
+                ś                                       
+                ś                                       
+                ś                                       
+B7                                                      
+                ś                                       
+B                                                       
+                ś                                       
+B7                                                      
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+A#7                                                     
+C#                                                      
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+C#m                                                     
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+                ś                                       
+G                                                       
+B7                                                      
+B                                                       
+                ś                                       
+Bm                                                      
+B                                                       
+Am                                                      
+A                                                       
+Am                                                      
+D                                                       
+E                                                       
+                .5                                      
+                cm                                      
+                .5                                      
+                cm                                      
+                .5                                      
+Am                                                      
+A                                                       
+                cm                                      
+                .5                                      
+                cm                                      
+F#m                                                     
+                .5                                      
+A                                                       
+Am                                                      
+                cm                                      
+                .5                                      
+Em                                                      
+B                                                       
+E                                                       
+B                                                       
+F#dim                                                   
+G                                                       
+A                                                       
+                cm                                      
+A7                                                      
+E                                                       
+A7                                                      
+D#dim                                                   
+A                                                       
+Em                                                      
+Am                                                      
+E                                                       
+B                                                       
+E                                                       
+Em                                                      
+D#dim                                                   
+A                                                       
+                2                                       
+                .5                                      
+                cm                                      
+                2                                       
+                .5                                      
+Am                                                      
+A                                                       
+E                                                       
+A7                                                      
+D#dim                                                   
+D                                                       
+D#dim                                                   
+E                                                       
+A                                                       
+E                                                       
+Am                                                      
+B                                                       
+E                                                       
+B                                                       
+E                                                       
+B                                                       
+E                                                       
+                cm                                      
+B7                                                      
+A7                                                      
+A                                                       
+Am                                                      
+A                                                       
+A7                                                      
+E                                                       
+G7                                                      
+D                                                       
+A                                                       
+Gm                                                      
+E                                                       
+                .5                                      
+                cm                                      
+                .5                                      
+                cm                                      
+                .5                                      
+                cm                                      
+                .5                                      
+                cm                                      
+                .5                                      
+A7                                                      
+A                                                       
+D#dim                                                   
+                cm                                      
+                .5                                      
+A                                                       
+D#dim                                                   
+A                                                       
+Am                                                      
+D#dim                                                   
+B                                                       
+E                                                       
+C7                                                      
+Em                                                      
+E                                                       
+Em                                                      
+B                                                       
+E                                                       
+Em                                                      
+                cm                                      
+E                                                       
+A                                                       
+Em                                                      
+A                                                       
+B                                                       
+E                                                       
+Em                                                      
+B7                                                      
+B                                                       
+A                                                       
+Am                                                      
+A                                                       
+E                                                       
+Em                                                      
+B                                                       
+A                                                       
+E                                                       
+                2                                       
+Am                                                      
+A                                                       
+                .5                                      
+E                                                       
+                cm                                      
+B                                                       
+B7                                                      
+B                                                       
+A                                                       
+Am                                                      
+A7                                                      
+E                                                       
+A                                                       
+Em                                                      
+Am                                                      
+A                                                       
+Am                                                      
+Em                                                      
+E                                                       
+Fdim                                                    
+B                                                       
+D#dim                                                   
+E                                                       
+D                                                       
+A7                                                      
+                .5                                      
+                cm                                      
+                .5                                      
+A                                                       
+Am                                                      
+A                                                       
+E                                                       
+                cm                                      
+                .5                                      
+                cm                                      
+                .5                                      
+                cm                                      
+                .5                                      
+C#dim                                                   
+C#m                                                     
+E                                                       
+C#dim                                                   
+B                                                       
+E                                                       
+D                                                       
+E                                                       
+A                                                       
+Am                                                      
+                cm                                      
+A                                                       
+Am                                                      
+A7                                                      
+D                                                       
+E                                                       
+A                                                       
+Em                                                      
+E                                                       
+B                                                       
+E                                                       
+B                                                       
+Em                                                      
+C#dim                                                   
+C#m                                                     
+E                                                       
+                .5                                      
+                cm                                      
+                .5                                      
+                cm                                      
+                .5                                      
+                cm                                      
+                1                                       
+                .5                                      
+C#m                                                     
+E                                                       
+                cm                                      
+                1                                       
+                .5                                      
+B                                                       
+Em                                                      
+                cm                                      
+                1                                       
+                .5                                      
+E                                                       
+                cm                                      
+                1                                       
+                .5                                      
+A                                                       
+                cm                                      
+                1                                       
+                .5                                      
+E                                                       
+Em                                                      
+B7                                                      
+                cm                                      
+                1                                       
+                .6                                      
+                cm                                      
+Cdim                                                    
+A#7                                                     
+D#aug                                                   
+Am                                                      
+E7                                                      
+Adim                                                    
+                1                                       
+                .5                                      
+                cm                                      
+                1                                       
+                .5                                      
+C#aug                                                   
+                cm                                      
+                1                                       
+                .5                                      
+                cm                                      
+C7                                                      
+Edim                                                    
+C#7                                                     
+G#dim                                                   
+A#dim                                                   
+E                                                       
+D#dim                                                   
+E7                                                      
+Fdim                                                    
+Edim                                                    
+D#                                                      
+F#7                                                     
+A                                                       
+
+CHORDPRO FORMAT
+==================================================
+
+[C#m]尽快的 [C#m]尽快的 [C#m]尽快的 [E]尽快的 [Em]尽快的 [B]尽快的 [C#m]尽快的 [C#m]尽快的 [Am]尽快的
+[E]尽快的 [E]尽快的 [Am]尽快的 [A]尽快的 [A]尽快的 [A]尽快的 [A]尽快的 [E]尽快的 [B]尽快的 [C#m]尽快的
+[C#m]尽快的 [Em]尽快的 [A]尽快的 [E]尽快的 [A]尽快的 [E]尽快的 [B]尽快的 [Bm]尽快的 [Bm]尽快的 [Bm]尽快的
+[Bm]尽快的 [Bm]尽快的 [A7]尽快的 [A]尽快的 [A]尽快的 [E]ś [E]ś [A]ś [A]ś [Em]ś [B7]ś [Em]ś
+[A7]ś [A]ś [A]ś [A]ś [A]ś [A]ś [A]ś [Edim]ś [Edim]ś [Edim]ś [B7]ś [B]ś [B7]ś
+[B7]ś [B7]ś [B7]ś [B7]ś [B7]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś
+[C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś
+[C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś
+[C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś
+[C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś
+[C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#]ś [C#m]ś [C#m]ś [C#m]ś
+[C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś
+[C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś
+[C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś
+[C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś
+[C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś
+[C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś
+[C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś
+[C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś
+[C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś
+[C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś
+[C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś [C#m]ś
+[C#m]ś [C#m]ś [B]ś [E]5 [E]cm [E]5 [E]cm [E]5 [A]cm [A]5 [A]cm [F#m]5 [Am]cm
+[Am]5 [A]cm [A]2 [A]5 [A]cm [A]2 [A]5 [E]cm [E]5 [E]cm [E]5 [E]cm [E]5 [E]cm
+[E]5 [E]cm [E]5 [D#dim]cm [D#dim]5 [Em]cm [E]2 [A]5 [E]cm [A7]5 [A7]cm [A7]5
+[E]cm [E]5 [E]cm [E]5 [E]cm [E]5 [Am]cm [E]5 [E]cm [E]5 [E]cm [E]5 [E]cm [E]1
+[E]5 [E]cm [E]1 [E]5 [Em]cm [Em]1 [Em]5 [E]cm [E]1 [E]5 [A]cm [A]1 [A]5 [B7]cm
+[B7]1 [B7]6 [B7]cm [Adim]1 [Adim]5 [Adim]cm [Adim]1 [Adim]5 [Adim]cm [Adim]1
+[Adim]5 [Adim]cm
+
+CHORD CHART
+==================================================
+
+Section 1:
+  E | Em | D#dim | B | G7 | D | A | A7 | C#m | Caug
+
+Section 2:
+  B | E | A7 | A
+
+Section 3:
+  A7 | D | E
+
+Section 4:
+  Fdim | D#m | D#dim | A | E | B
+
+Section 5:
+  E | C#m
+
+Section 6:
+  G7 | A | E
+
+Section 7:
+  A | D#dim | Am | E | Dm | B | A7 | A#7
+
+Section 8:
+  E | C#m | A7 | Em | B
+
+Section 9:
+  E | B | Em | C#m
+
+Section 10:
+  D | A7 | A | Am | B | Em | E
+
+Section 11:
+  Am | A
+
+Section 12:
+  E | A
+
+Section 13:
+  A7 | Am | A | E
+
+Section 14:
+  Em | E | B | G7 | C#m | A7 | A | Am
+
+Section 15:
+  D | Am | D#dim | Em | A | E | B | F#dim | A7
+
+Section 16:
+  A | F#m | E | Am | D#dim | Em | Edim | B | B7 | Bm | A7
+
+Section 17:
+  A#7 | E
+
+Section 18:
+  A | F#m | Em | Edim | E | Fdim | B | B7 | A7
+
+Section 19:
+  Edim | B7 | B
+
+Section 20:
+  B7 | A#7 | C# | C#m
+
+Section 21:
+  G | B7 | B
+
+Section 22:
+  Bm | B | Am | A | D | E
+
+Section 23:
+  Am | A | F#m | Em | B | E | F#dim | G
+
+Section 24:
+  A7 | E
+
+Section 25:
+  A7 | D#dim | A | Em | Am | E | B
+
+Section 26:
+  Am | A | E
+
+Section 27:
+  A7 | D#dim | D | E | A | Am | B | B7
+
+Section 28:
+  Am | A | A7 | E | G7 | D
+
+Section 29:
+  Gm | E
+
+Section 30:
+  A7 | A | D#dim | Am | B | E | C7 | Em
+
+Section 31:
+  A
+
+Section 32:
+  Em | A | B | E | B7
+
+Section 33:
+  Am | A | E
+
+Section 34:
+  Em | B | A | E | Am | B7
+
+Section 35:
+  Am | A7 | E
+
+Section 36:
+  A | Em | Am | E | Fdim | B | D#dim | D | A7 | C#dim | C#m
+
+Section 37:
+  A
+
+Section 38:
+  Em | E | B | C#dim | C#m | A
+
+Section 39:
+  E
+
+Section 40:
+  Em | B7 | Cdim | A#7 | D#aug | Am | E7 | Adim | C#aug | C7 | Edim | C#7 | G#dim | A#dim | E | D#dim | Fdim | D# | F#7 | A
+
+
+LYRICS ONLY
+==================================================
+
+尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的
+尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 尽快的 ś ś ś ś ś ś ś ś ś ś ś ś
+ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś
+ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś
+ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś
+ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś
+ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś ś
+ś ś ś ś ś ś ś ś ś 5 cm 5 cm 5 cm 5 cm 5 cm 5 cm 2 5 cm 2 5 cm 5 cm 5 cm 5 cm 5
+cm 5 cm 5 cm 2 5 cm 5 cm 5 cm 5 cm 5 cm 5 cm 5 cm 5 cm 5 cm 1 5 cm 1 5 cm 1 5 cm
+1 5 cm 1 5 cm 1 6 cm 1 5 cm 1 5 cm 1 5 cm

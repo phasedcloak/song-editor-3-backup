@@ -612,11 +612,11 @@ class EnhancedLyricsEditor(QWidget):
         self.splitter.addWidget(self.rhyme_panel)
 
         # Set initial splitter proportions (center gets most space)
-        self.splitter.setSizes([100, 400, 300])
-        # Set stretch factors: 60% center, 40% right panel (left stays compact)
-        self.splitter.setStretchFactor(0, 0)  # Left panel doesn't grow
-        self.splitter.setStretchFactor(1, 3)  # Center panel (60% equivalent)
-        self.splitter.setStretchFactor(2, 2)  # Right panel (40% equivalent)
+        self.splitter.setSizes([80, 500, 250])
+        # Set stretch factors: center gets most space, sides are fixed
+        self.splitter.setStretchFactor(0, 0)  # Left panel fixed width
+        self.splitter.setStretchFactor(1, 1)  # Center panel stretches
+        self.splitter.setStretchFactor(2, 0)  # Right panel fixed width
         # Prevent center pane from collapsing
         try:
             self.splitter.setCollapsible(0, True)
@@ -643,15 +643,39 @@ class EnhancedLyricsEditor(QWidget):
         layout.setContentsMargins(5, 5, 5, 5)
 
         # Controls
-        controls_layout = QHBoxLayout()
+        controls_widget = QWidget()
+        controls_widget.setFixedHeight(50)  # Ensure controls have minimum height
+        controls_widget.setStyleSheet("""
+            QWidget {
+                background-color: #f8f9fa;
+                border-bottom: 1px solid #dee2e6;
+                padding: 5px;
+            }
+        """)
+        controls_layout = QHBoxLayout(controls_widget)
+        controls_layout.setContentsMargins(5, 5, 5, 5)
 
         # Color mode toggle
-        self.color_mode_checkbox = QCheckBox("Color by Rhymes")
+        self.color_mode_checkbox = QCheckBox("🎨 Color by Rhymes")
+        self.color_mode_checkbox.setStyleSheet("font-weight: bold; color: #495057; font-size: 12px;")
         self.color_mode_checkbox.toggled.connect(self.on_color_mode_changed)
         controls_layout.addWidget(self.color_mode_checkbox)
 
         # Play button
         self.play_button = QPushButton("▶ Play")
+        self.play_button.setStyleSheet("""
+            QPushButton {
+                background-color: #28a745;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 3px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #218838;
+            }
+        """)
         self.play_button.clicked.connect(self.play_current_selection)
         controls_layout.addWidget(self.play_button)
 
@@ -674,7 +698,7 @@ class EnhancedLyricsEditor(QWidget):
         controls_layout.addWidget(self.font_size_combo)
 
         controls_layout.addStretch()
-        layout.addLayout(controls_layout)
+        layout.addWidget(controls_widget)
 
         # No top offset; we align counts to top of editor area
 
@@ -698,6 +722,8 @@ class EnhancedLyricsEditor(QWidget):
         except Exception:
             pass
         self.text_edit.setMinimumSize(300, 200)
+        # Set size policy to expand but not squeeze out controls
+        self.text_edit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         # Connect resize event to handle auto-wrapping
         self.text_edit.resizeEvent = self.on_text_edit_resize
         self.text_edit.setStyleSheet("""
@@ -721,6 +747,25 @@ class EnhancedLyricsEditor(QWidget):
     def set_audio_path(self, audio_path: str):
         """Set the audio file path for playback"""
         self.audio_path = audio_path
+
+    def set_song_data(self, song_data):
+        """Set song data and update display (compatible with main window)"""
+        # Convert SongData.words to WordRow format expected by enhanced editor
+        from ..models.lyrics import WordRow
+
+        lyrics_data = []
+        for word in song_data.words:
+            word_row = WordRow(
+                text=word.text,
+                start=word.start,
+                end=word.end,
+                confidence=word.confidence,
+                chord=getattr(word, 'chord', None),
+                alt_text=word.alternatives[0] if word.alternatives else None
+            )
+            lyrics_data.append(word_row)
+
+        self.set_lyrics_data(lyrics_data)
 
     def set_lyrics_data(self, lyrics_data: List[WordRow]):
         """Set lyrics data and update display"""
@@ -766,6 +811,9 @@ class EnhancedLyricsEditor(QWidget):
 
         # Analyze rhymes for coloring (debounced)
         self._debounce_timer.start(10)
+
+        # Connect resize event to handle auto-wrapping after data is loaded
+        self.text_edit.resizeEvent = self.on_text_edit_resize
 
     def on_text_changed(self):
         """Handle text changes"""

@@ -13,6 +13,9 @@ import logging
 from pathlib import Path
 from typing import Optional
 
+# Capture original working directory from environment variable
+ORIGINAL_CWD = os.environ.get('SONG_EDITOR_ORIGINAL_CWD', os.getcwd())
+
 from PySide6.QtWidgets import QApplication
 
 # Handle both module execution and standalone executable execution
@@ -40,6 +43,19 @@ except ImportError:
 # ChordDetector will be imported lazily when needed
 
 
+def find_audio_files(directory: str) -> list:
+    """Find all audio files in a directory."""
+    audio_extensions = {'.wav', '.mp3', '.flac', '.aac', '.ogg', '.m4a', '.wma'}
+    audio_files = []
+
+    for file_path in Path(directory).rglob('*'):
+        if file_path.is_file() and file_path.suffix.lower() in audio_extensions:
+            audio_files.append(str(file_path))
+
+    # Sort files for consistent processing order
+    audio_files.sort()
+    return audio_files
+
 def setup_logging(level: str = "INFO") -> None:
     """Setup logging configuration"""
     numeric_level = getattr(logging, level.upper(), None)
@@ -53,24 +69,37 @@ def setup_logging(level: str = "INFO") -> None:
     )
 
 
-def validate_audio_file(file_path: str) -> bool:
-    """Validate that the file exists and is a supported audio format"""
+def validate_audio_file(file_path: str, original_cwd: str = None) -> tuple[bool, str]:
+    """Validate that the file exists and is a supported audio format.
+
+    Returns:
+        tuple: (is_valid, resolved_path)
+    """
     audio_extensions = {
         '.wav', '.mp3', '.flac', '.m4a', '.aac', '.ogg',
         '.wma', '.opus', '.aiff', '.alac'
     }
 
+    # Resolve relative paths
+    path_obj = Path(file_path)
+    if not path_obj.is_absolute():
+        # Use original working directory if provided, otherwise current
+        base_dir = Path(original_cwd) if original_cwd else Path.cwd()
+        resolved_path = base_dir / path_obj
+        if resolved_path.exists():
+            file_path = str(resolved_path)
+
     if not os.path.isfile(file_path):
         print(f"Error: File '{file_path}' does not exist.")
-        return False
+        return False, file_path
 
     ext = Path(file_path).suffix.lower()
     if ext not in audio_extensions:
         print(f"Error: File '{file_path}' is not a supported audio format.")
         print(f"Supported formats: {', '.join(audio_extensions)}")
-        return False
+        return False, file_path
 
-    return True
+    return True, file_path
 
 
 def process_audio_file(
@@ -118,15 +147,22 @@ def process_audio_file(
 
         # Transcribe lyrics
         logging.info("🎤 Transcribing lyrics...")
-        lyrics = transcriber.transcribe(audio_data['vocals'], audio_data['sample_rate'])
+        vocals_audio = audio_data.get('vocals', audio_data['audio'])
+        lyrics = transcriber.transcribe(vocals_audio, audio_data['sample_rate'])
 
         # Detect chords
         logging.info("🎸 Detecting chords...")
-        chords = chord_detector.detect(audio_data['accompaniment'], audio_data['sample_rate'])
+        instrumental_audio = audio_data.get('other', audio_data['audio'])
+        chords = chord_detector.detect(instrumental_audio, audio_data['sample_rate'])
 
         # Extract melody
         logging.info("🎼 Extracting melody...")
-        melody = melody_extractor.extract(audio_data['vocals'], audio_data['sample_rate'])
+        # Melody extractor worker script expects a file path
+        temp_vocal_path = audio_processor._save_audio_temp(vocals_audio, audio_data['sample_rate'])
+        melody = melody_extractor.extract(temp_vocal_path)
+        # Clean up temporary file
+        if os.path.exists(temp_vocal_path):
+            os.unlink(temp_vocal_path)
 
         # Prepare song data
         song_data = {
@@ -194,13 +230,20 @@ Examples:
   song-editor-3 song.wav --no-gui                 # Process without GUI
   song-editor-3 song.wav --output-dir ./output    # Specify output directory
   song-editor-3 song.wav --whisper-model faster-whisper  # Use different model
+  song-editor-3 --input-dir ./audio_files --no-gui  # Process all audio files in directory
+  song-editor-3 --input-dir ./songs --output-dir ./processed  # Batch process with custom output
         """
     )
 
     parser.add_argument(
         'input_path',
         nargs='?',
-        help='Audio file to process'
+        help='Audio file to process (or use --input-dir for batch processing)'
+    )
+
+    parser.add_argument(
+        '--input-dir',
+        help='Directory containing audio files to process (batch mode)'
     )
 
     parser.add_argument(
@@ -283,6 +326,9 @@ Examples:
 
     args = parser.parse_args()
 
+    # Use the original working directory captured at import time
+    original_cwd = ORIGINAL_CWD
+
     # Setup logging
     setup_logging(args.log_level)
 
@@ -317,6 +363,62 @@ Examples:
     except Exception:
         pass
 
+    # Handle directory processing
+    if args.input_dir:
+        if not os.path.isdir(args.input_dir):
+            print(f"Error: Directory '{args.input_dir}' does not exist")
+            return 1
+
+        if not args.no_gui:
+            print("Error: Directory processing requires --no-gui flag")
+            return 1
+
+        # Find all audio files in directory
+        audio_files = find_audio_files(args.input_dir)
+        if not audio_files:
+            print(f"Error: No audio files found in directory '{args.input_dir}'")
+            print("Supported formats: .wav, .mp3, .flac, .aac, .ogg, .m4a, .wma")
+            return 1
+
+        print(f"📁 Found {len(audio_files)} audio files in directory:")
+        for i, audio_file in enumerate(audio_files, 1):
+            print(f"  {i}. {os.path.basename(audio_file)}")
+
+        # Process each file
+        successful = 0
+        failed = 0
+
+        for i, audio_file in enumerate(audio_files, 1):
+            print(f"\n🎵 Processing file {i}/{len(audio_files)}: {os.path.basename(audio_file)}")
+            print("=" * 60)
+
+            try:
+                success = process_audio_file(
+                    input_path=audio_file,
+                    output_dir=args.output_dir,
+                    whisper_model=args.whisper_model,
+                    use_chordino=args.use_chordino,
+                    use_demucs=args.use_demucs,
+                    save_intermediate=args.save_intermediate
+                )
+                if success:
+                    successful += 1
+                    print(f"✅ Successfully processed: {os.path.basename(audio_file)}")
+                else:
+                    failed += 1
+                    print(f"❌ Failed to process: {os.path.basename(audio_file)}")
+
+            except Exception as e:
+                failed += 1
+                print(f"❌ Error processing {os.path.basename(audio_file)}: {e}")
+
+        print(f"\n📊 Batch processing complete!")
+        print(f"✅ Successful: {successful}")
+        print(f"❌ Failed: {failed}")
+        print(f"📁 Total files: {len(audio_files)}")
+
+        return 0 if failed == 0 else 1
+
     # If no input path provided, launch GUI
     if not args.input_path:
         if args.no_gui:
@@ -344,14 +446,15 @@ Examples:
         return app.exec()
 
     # Validate input file
-    if not validate_audio_file(args.input_path):
+    is_valid, resolved_path = validate_audio_file(args.input_path, original_cwd)
+    if not is_valid:
         return 1
 
     # Process audio file
     if args.no_gui:
         # Batch processing mode
         success = process_audio_file(
-            input_path=args.input_path,
+            input_path=resolved_path,
             output_dir=args.output_dir,
             whisper_model=args.whisper_model,
             use_chordino=args.use_chordino,
@@ -371,7 +474,7 @@ Examples:
         window = MainWindow()
 
         # Load audio file
-        window.load_audio_from_path(args.input_path)
+        window.load_audio_from_path(resolved_path)
 
         # Cleanup on quit
         def _on_quit() -> None:

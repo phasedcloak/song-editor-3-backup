@@ -586,6 +586,20 @@ class Transcriber:
             }
         }
 
+    def get_transcription_info(self) -> Dict[str, Any]:
+        """Get information about the transcriber configuration."""
+        return {
+            'model': self.model,
+            'model_size': self.model_size,
+            'language': self.language,
+            'confidence_threshold': self.confidence_threshold,
+            'prompt': self.prompt,
+            'openai_whisper_available': OPENAI_WHISPER_AVAILABLE,
+            'faster_whisper_available': FASTER_WHISPER_AVAILABLE,
+            'whisperx_available': WHISPERX_AVAILABLE,
+            'mlx_whisper_available': MLX_WHISPER_AVAILABLE
+        }
+
     def cleanup(self) -> None:
         """Clean up resources."""
         try:

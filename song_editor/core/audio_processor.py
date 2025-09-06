@@ -270,13 +270,22 @@ class AudioProcessor:
 
                 audio_tensor = audio_stereo.to(device)
 
+                # Log model/device
+                try:
+                    model_name = type(self.separator).__name__
+                    logging.info(f"Demucs model: {model_name} on device: {device}")
+                except Exception:
+                    logging.info(f"Demucs device: {device}")
+
                 # Separate sources using apply_model - correct API usage
+                # Faster settings: no TTA (shifts=0), lower overlap, shorter segments
                 sources_tensor = apply_model(
                     self.separator,
                     audio_tensor,
-                    shifts=1,
+                    segment=10,
+                    shifts=0,
                     split=True,
-                    overlap=0.25,
+                    overlap=0.10,
                     device=device
                 )
 

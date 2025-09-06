@@ -252,7 +252,23 @@ class AudioProcessor:
                 else:
                     audio_stereo = torch.tensor(audio, dtype=torch.float32).unsqueeze(0)
 
-                audio_tensor = audio_stereo
+                # Pick best available device (Metal/MPS on Apple Silicon, otherwise CPU)
+                device = 'cpu'
+                try:
+                    if hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
+                        device = 'mps'
+                    elif torch.cuda.is_available():
+                        device = 'cuda'
+                except Exception:
+                    device = 'cpu'
+
+                # Move model to device if possible
+                try:
+                    self.separator.to(device)
+                except Exception:
+                    device = 'cpu'
+
+                audio_tensor = audio_stereo.to(device)
 
                 # Separate sources using apply_model - correct API usage
                 sources_tensor = apply_model(
@@ -261,7 +277,7 @@ class AudioProcessor:
                     shifts=1,
                     split=True,
                     overlap=0.25,
-                    device='cpu'
+                    device=device
                 )
 
                 # Convert back to dict format
@@ -275,7 +291,8 @@ class AudioProcessor:
                             source_tensor = sources_tensor[0, i]  # [channels, time]
                             if source_tensor.dim() == 2:  # [channels, time]
                                 source_tensor = source_tensor.squeeze(0)  # Remove channel dimension if mono
-                            separated[source_name] = source_tensor.numpy()
+                            # Bring back to CPU for numpy conversion
+                            separated[source_name] = source_tensor.to('cpu').numpy()
                         else:
                             # Fallback if source not available
                             separated[source_name] = audio

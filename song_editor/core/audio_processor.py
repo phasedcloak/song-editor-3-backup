@@ -29,13 +29,15 @@ class AudioProcessor:
         save_intermediate: bool = True,
         target_sr: int = 44100,
         denoise_strength: float = 0.5,
-        normalize_lufs: float = -23.0
+        normalize_lufs: float = -23.0,
+        demucs_model: str = 'htdemucs'
     ):
         self.use_demucs = use_demucs
         self.save_intermediate = save_intermediate
         self.target_sr = target_sr
         self.denoise_strength = denoise_strength
         self.normalize_lufs = normalize_lufs
+        self.demucs_model = demucs_model
 
         self.separator = None
         self.audio_data = None
@@ -50,9 +52,10 @@ class AudioProcessor:
             # Import demucs lazily
             from demucs.separate import HTDemucs, apply_model
             from demucs.pretrained import get_model
-            # Load pretrained HTDemucs model
-            self.separator = get_model('htdemucs')
-            logging.info("Demucs initialized successfully")
+            # Load chosen pretrained model
+            model_name = (self.demucs_model or 'htdemucs').strip()
+            self.separator = get_model(model_name)
+            logging.info(f"Demucs initialized successfully (model: {model_name})")
         except ImportError:
             logging.warning("Demucs not available, using fallback methods")
         except Exception as e:

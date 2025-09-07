@@ -118,7 +118,8 @@ def process_audio_file(
         # Initialize processors
         audio_processor = AudioProcessor(
             use_demucs=use_demucs,
-            save_intermediate=save_intermediate
+            save_intermediate=save_intermediate,
+            demucs_model=args.demucs_model
         )
 
         transcriber = Transcriber(
@@ -277,6 +278,11 @@ Examples:
         action='store_true',
         default=True,
         help='Use Demucs for source separation (default: True)'
+    )
+    parser.add_argument(
+        '--demucs-model',
+        default='htdemucs',
+        help="Demucs pretrained model to use (e.g., 'htdemucs', 'htdemucs_ft', 'bag_of_models')"
     )
 
     parser.add_argument(

@@ -893,6 +893,12 @@ class EnhancedLyricsEditor(QWidget):
         """)
         layout.addWidget(self.text_edit)
 
+        # Normalize document margins so wrapping math can be precise
+        try:
+            self.text_edit.document().setDocumentMargin(0)
+        except Exception:
+            pass
+
         # Initial alignment of syllable panel to editor
         try:
             self.update_syllable_alignment()
@@ -1469,8 +1475,15 @@ class EnhancedLyricsEditor(QWidget):
         if not text.strip():
             return
 
-        # Get the width of the text editor (minus margins)
-        editor_width = self.text_edit.viewport().width() - 20  # Account for margins
+        # Compute the true available content width inside QTextEdit.
+        # Our stylesheet sets padding: 8px; document margin is set to 0 above.
+        try:
+            viewport_w = int(self.text_edit.viewport().width())
+        except Exception:
+            viewport_w = 0
+        padding_px = 8  # must match padding in stylesheet above
+        doc_margin = int(self.text_edit.document().documentMargin() or 0)
+        editor_width = max(0, viewport_w - 2 * padding_px - 2 * doc_margin)
 
         # Don't apply if editor width is too small
         if editor_width < 100:

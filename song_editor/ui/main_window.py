@@ -997,6 +997,23 @@ class MainWindow(QMainWindow):
             if hasattr(self, 'melody_editor'):
                 self.melody_editor.set_song_data(loaded_song_data)
 
+            # Update statistics panel like in processing_finished
+            try:
+                if hasattr(self, 'word_count_label'):
+                    self.word_count_label.setText(str(loaded_song_data.get_word_count()))
+                if hasattr(self, 'chord_count_label'):
+                    self.chord_count_label.setText(str(loaded_song_data.get_chord_count()))
+                if hasattr(self, 'note_count_label'):
+                    self.note_count_label.setText(str(loaded_song_data.get_note_count()))
+
+                duration = loaded_song_data.get_duration()
+                if duration and hasattr(self, 'duration_label'):
+                    minutes = int(duration // 60)
+                    seconds = int(duration % 60)
+                    self.duration_label.setText(f"{minutes}:{seconds:02d}")
+            except Exception:
+                pass
+
             # Update metadata display
             metadata = song_data.get('metadata', {})
             source_audio = metadata.get('source_audio', 'Unknown')

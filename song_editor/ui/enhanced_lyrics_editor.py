@@ -1484,6 +1484,14 @@ class EnhancedLyricsEditor(QWidget):
         padding_px = 8  # must match padding in stylesheet above
         doc_margin = int(self.text_edit.document().documentMargin() or 0)
         editor_width = max(0, viewport_w - 2 * padding_px - 2 * doc_margin)
+        # Debug: report content width in px and inches
+        try:
+            screen = self.window().screen() if hasattr(self.window(), 'screen') else None
+            dpi_x = float(screen.physicalDotsPerInchX()) if screen else float(self.text_edit.logicalDpiX())
+            inches = (editor_width / dpi_x) if dpi_x > 1e-3 else 0.0
+            print(f"DEBUG: Lyrics content width = {editor_width}px ({inches:.2f} in), viewport = {viewport_w}px, dpiX = {dpi_x:.1f}")
+        except Exception:
+            pass
 
         # Don't apply if editor width is too small
         if editor_width < 100:

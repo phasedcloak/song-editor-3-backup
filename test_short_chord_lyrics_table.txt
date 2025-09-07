@@ -10,12 +10,12 @@ CHORD AND LYRICS TIME ALIGNMENT TABLE
 
 Chord           Lyrics                                  
 -------------------------------------------------------
-G7                                                      
-                see                                     
 G                                                       
+                see                                     
                 your                                    
                 love,                                   
                 it's                                    
+Em                                                      
                 clear                                   
 C                                                       
                 as                                      
@@ -24,7 +24,6 @@ Gm
                 making                                  
 G                                                       
                 us                                      
-G7                                                      
 Gm                                                      
 G                                                       
 Gm                                                      
@@ -35,20 +34,19 @@ D
                 to                                      
                 stay                                    
 C                                                       
-                You                                     
                 give                                    
 G                                                       
                 such                                    
                 love                                    
 D                                                       
                 to                                      
-                us                                      
+                us,                                     
 G                                                       
 D                                                       
 C7                                                      
 C                                                       
-G                                                       
                 us                                      
+G                                                       
 D                                                       
                 with                                    
                 the                                     
@@ -60,7 +58,8 @@ C
 D                                                       
 G                                                       
 D                                                       
-                God                                     
+                you,                                    
+                God.                                    
 Edim                                                    
 C                                                       
 G                                                       
@@ -72,8 +71,8 @@ D
                 we                                      
                 know                                    
 G                                                       
-                that                                    
 C                                                       
+                that                                    
                 we've                                   
 D                                                       
                 not                                     
@@ -87,34 +86,34 @@ G
 Gm                                                      
 G                                                       
                 you                                     
-A#7                                                     
+D                                                       
                 made                                    
 C                                                       
                 love                                    
 Cm                                                      
                 with                                    
-C7                                                      
+C                                                       
 
 CHORDPRO FORMAT
 ==================================================
 
-[G7]see [G]your [G]love [G]it's [G]clear [C]as [C]day [Gm]making [G]us
-[D]keeping [D]us [D]place [D]to [D]stay [C]You [C]give [G]such [G]love [D]to
-[D]us [G]us [D]with [D]the [D]capacity [G]to [G]love [D]God [D]we [D]know
-[G]that [C]we've [D]not [D]always [D]loved [Gm]you [G]you [A#7]made [C]love
+[G]see [G]your [G]love [G]it's [Em]clear [C]as [C]day [Gm]making [G]us
+[D]keeping [D]us [D]place [D]to [D]stay [C]give [G]such [G]love [D]to [D]us
+[C]us [D]with [D]the [D]capacity [G]to [G]love [D]you [D]God [D]we [D]know
+[G]that [C]we've [D]not [D]always [D]loved [G]you [G]you [D]made [C]love
 [Cm]with
 
 CHORD CHART
 ==================================================
 
 Section 1:
-  G7 | G
+  G
 
 Section 2:
-  C
+  Em | C
 
 Section 3:
-  Gm | G | G7 | D
+  Gm | G | D
 
 Section 4:
   C | G
@@ -129,12 +128,12 @@ Section 7:
   D
 
 Section 8:
-  Gm | G | D | C | A#7 | Cm | C7
+  Gm | G | D | C | Cm
 
 
 LYRICS ONLY
 ==================================================
 
-see your love it's clear as day making us keeping us place to stay You give such
-love to us us with the capacity to love God we know that we've not always loved
-you you made love with
+see your love it's clear as day making us keeping us place to stay give such
+love to us us with the capacity to love you God we know that we've not always
+loved you you made love with

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "3.0.0",
-    "created_at": "20250906_205855",
+    "created_at": "20250906_211816",
     "source_audio": "/Volumes/SDMusicProd/CascadeProjects/Song_Editor_3/test_short.wav",
     "processing_tool": "Song Editor 3",
     "transcription": {
@@ -14,7 +14,7 @@
       "denoise": true,
       "normalize": true
     },
-    "exported_at": "2025-09-06T20:58:55.038417",
+    "exported_at": "2025-09-06T21:18:16.517162",
     "export_format": "json",
     "export_version": "3.0.0",
     "export_file": "/Volumes/SDMusicProd/CascadeProjects/Song_Editor_3/test_short.song_data.json",

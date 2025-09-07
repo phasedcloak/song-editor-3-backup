@@ -967,12 +967,27 @@ class MainWindow(QMainWindow):
             from ..models.song_data import SongData
             loaded_song_data = SongData.from_dict(song_data)
 
+            # Determine source audio path (prefer metadata, then current file)
+            metadata = song_data.get('metadata', {})
+            source_audio = metadata.get('source_audio')
+            try:
+                from pathlib import Path as _Path
+                if source_audio and _Path(source_audio).exists():
+                    _audio_path_for_player = _Path(source_audio)
+                elif hasattr(self, 'audio_file_path'):
+                    _audio_path_for_player = _Path(self.audio_file_path)
+                else:
+                    _audio_path_for_player = None
+            except Exception:
+                _audio_path_for_player = None
+
             # Update lyrics editor
             if hasattr(self, 'lyrics_editor'):
                 self.lyrics_editor.set_song_data(loaded_song_data)
                 # Set audio path for enhanced lyrics editor playback features
                 if hasattr(self.lyrics_editor, 'set_audio_path'):
-                    self.lyrics_editor.set_audio_path(str(audio_path))
+                    if _audio_path_for_player is not None:
+                        self.lyrics_editor.set_audio_path(str(_audio_path_for_player))
 
             # Update chord editor
             if hasattr(self, 'chord_editor'):

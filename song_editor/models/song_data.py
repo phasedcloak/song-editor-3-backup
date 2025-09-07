@@ -18,6 +18,7 @@ class Word:
     confidence: float
     alternatives: Optional[List[str]] = None
     chord: Optional[str] = None
+    line_break: bool = False
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary representation."""
@@ -34,6 +35,9 @@ class Word:
         if self.chord:
             result['chord'] = self.chord
 
+        if self.line_break:
+            result['line_break'] = True
+
         return result
 
     @classmethod
@@ -45,7 +49,8 @@ class Word:
             end=data.get('end', 0.0),
             confidence=data.get('confidence', 0.0),
             alternatives=data.get('alternatives'),
-            chord=data.get('chord')
+            chord=data.get('chord'),
+            line_break=bool(data.get('line_break', False))
         )
 
 

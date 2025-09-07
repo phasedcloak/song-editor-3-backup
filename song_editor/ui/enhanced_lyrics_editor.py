@@ -892,6 +892,12 @@ class EnhancedLyricsEditor(QWidget):
             }
         """)
         layout.addWidget(self.text_edit)
+        # Disable Qt's internal wrapping so we control wrapping precisely
+        try:
+            from PySide6.QtWidgets import QTextEdit as _QTE
+            self.text_edit.setLineWrapMode(_QTE.NoWrap)
+        except Exception:
+            pass
 
         # Normalize document margins so wrapping math can be precise
         try:
@@ -1483,7 +1489,12 @@ class EnhancedLyricsEditor(QWidget):
             viewport_w = 0
         padding_px = 8  # must match padding in stylesheet above
         doc_margin = int(self.text_edit.document().documentMargin() or 0)
-        editor_width = max(0, viewport_w - 2 * padding_px - 2 * doc_margin)
+        # Subtract vertical scrollbar width if visible
+        try:
+            vsb_w = self.text_edit.verticalScrollBar().sizeHint().width() if self.text_edit.verticalScrollBar().isVisible() else 0
+        except Exception:
+            vsb_w = 0
+        editor_width = max(0, viewport_w - 2 * padding_px - 2 * doc_margin - vsb_w)
         # Debug: report content width in px and inches
         try:
             screen = self.window().screen() if hasattr(self.window(), 'screen') else None

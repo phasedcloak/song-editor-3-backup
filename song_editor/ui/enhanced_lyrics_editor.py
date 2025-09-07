@@ -679,7 +679,7 @@ class EnhancedLyricsEditor(QWidget):
         self._rhyme_key_cache = {}
         self._near_key_cache = {}
         self._updating_text = False  # Flag to prevent recursion
-        self.display_mode = "Enhanced"  # "Enhanced" or "CCLI"
+        self.display_mode = "CCLI"  # default to CCLI
         # Debounce timer for heavy analysis/formatting
         self._debounce_timer = QTimer(self)
         self._debounce_timer.setSingleShot(True)
@@ -758,7 +758,7 @@ class EnhancedLyricsEditor(QWidget):
         # Display mode toggle
         self.display_mode_combo = QComboBox()
         self.display_mode_combo.addItems(["Enhanced", "CCLI"])
-        self.display_mode_combo.setCurrentText(self.display_mode)
+        self.display_mode_combo.setCurrentText("CCLI")
         self.display_mode_combo.currentTextChanged.connect(self.on_display_mode_changed)
         controls_layout.addWidget(QLabel("Display:"))
         controls_layout.addWidget(self.display_mode_combo)

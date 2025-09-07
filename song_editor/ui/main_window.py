@@ -741,16 +741,8 @@ class MainWindow(QMainWindow):
         # Update UI
         self.process_btn.setEnabled(True)
         self.progress_bar.setVisible(False)
-        self.status_bar.showMessage("Processing complete!")
-
-        # Show completion message
-        QMessageBox.information(
-            self,
-            "Processing Complete",
-            f"Successfully processed audio file.\n"
-            f"Words: {self.song_data.get_word_count()}\n"
-            f"Chords: {self.song_data.get_chord_count()}\n"
-            f"Notes: {self.song_data.get_note_count()}"
+        self.status_bar.showMessage(
+            f"Processing complete • Words: {self.song_data.get_word_count()} • Chords: {self.song_data.get_chord_count()} • Notes: {self.song_data.get_note_count()}"
         )
 
     def processing_error(self, error_message: str):
@@ -951,15 +943,9 @@ class MainWindow(QMainWindow):
                 # Update UI with loaded data
                 self._display_loaded_data(song_data, json_path)
 
-                # Show success message
-                QMessageBox.information(
-                    self,
-                    "Data Loaded",
-                    f"Loaded existing processed data for:\n{audio_path.name}\n\n"
-                    f"📊 Words: {len(song_data.get('words', []))}\n"
-                    f"🎵 Chords: {len(song_data.get('chords', []))}\n"
-                    f"🎼 Notes: {len(song_data.get('notes', []))}\n"
-                    f"📝 Segments: {len(song_data.get('segments', []))}"
+                # Status bar summary instead of popup
+                self.status_bar.showMessage(
+                    f"Loaded existing data • Words: {len(song_data.get('words', []))} • Chords: {len(song_data.get('chords', []))} • Notes: {len(song_data.get('notes', []))}"
                 )
 
             except Exception as e:

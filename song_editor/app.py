@@ -109,6 +109,7 @@ def process_audio_file(
     use_chordino: bool = True,
     use_demucs: bool = True,
     save_intermediate: bool = False,
+    demucs_model: str = 'htdemucs',
     no_gui: bool = False
 ) -> bool:
     """Process a single audio file with the full pipeline"""
@@ -119,7 +120,7 @@ def process_audio_file(
         audio_processor = AudioProcessor(
             use_demucs=use_demucs,
             save_intermediate=save_intermediate,
-            demucs_model=args.demucs_model
+            demucs_model=demucs_model
         )
 
         transcriber = Transcriber(
@@ -405,7 +406,8 @@ Examples:
                     whisper_model=args.whisper_model,
                     use_chordino=args.use_chordino,
                     use_demucs=args.use_demucs,
-                    save_intermediate=args.save_intermediate
+                    save_intermediate=args.save_intermediate,
+                    demucs_model=args.demucs_model
                 )
                 if success:
                     successful += 1
@@ -466,6 +468,7 @@ Examples:
             use_chordino=args.use_chordino,
             use_demucs=args.use_demucs,
             save_intermediate=args.save_intermediate,
+            demucs_model=args.demucs_model,
             no_gui=True
         )
         return 0 if success else 1

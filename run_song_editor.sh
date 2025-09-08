@@ -1,45 +1,24 @@
 #!/bin/bash
 
 # Song Editor 3 Launcher Script
-# This script provides a reliable way to run the Song Editor application
+# This script runs the Song Editor 3 application using the virtual environment
 
+set -e  # Exit on any error
+
+# Get the directory where this script is located
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "$SCRIPT_DIR"
 
-# Check if Python is available
-if ! command -v python &> /dev/null; then
-    echo "Error: Python is not installed or not in PATH"
+# Check if virtual environment exists
+if [ ! -d "$SCRIPT_DIR/.venv" ]; then
+    echo "❌ Error: Virtual environment not found at $SCRIPT_DIR/.venv"
+    echo "Please run setup_environment.sh first"
     exit 1
 fi
 
-# Check if we're in a virtual environment, if not try to activate one
-if [[ -z "$VIRTUAL_ENV" ]]; then
-    if [[ -f ".venv/bin/activate" ]]; then
-        source .venv/bin/activate
-    elif [[ -f "venv/bin/activate" ]]; then
-        source venv/bin/activate
-    fi
-fi
+# Activate virtual environment and set Python path
+export PYTHONPATH="$SCRIPT_DIR"
+source "$SCRIPT_DIR/.venv/bin/activate"
 
-# Set environment variables for better performance
-export PYTHONDONTWRITEBYTECODE=1
-export PYTHONUNBUFFERED=1
-
-# Default Demucs model handling: if caller didn't specify --demucs-model, default to htdemucs
-ADD_DEFAULT_ARGS=1
-for arg in "$@"; do
-    case "$arg" in
-        --demucs-model|--demucs-model=*)
-            ADD_DEFAULT_ARGS=0
-            break
-            ;;
-    esac
-done
-
-DEFAULT_ARGS=()
-if [[ $ADD_DEFAULT_ARGS -eq 1 ]]; then
-    DEFAULT_ARGS+=(--demucs-model htdemucs)
-fi
-
-# Run the application
-python -m song_editor "${DEFAULT_ARGS[@]}" "$@"
+# Run the Song Editor 3 application with all passed arguments
+echo "🚀 Starting Song Editor 3..."
+exec python "$SCRIPT_DIR/song_editor/app.py" "$@"

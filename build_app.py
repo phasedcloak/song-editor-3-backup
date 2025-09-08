@@ -19,6 +19,8 @@ def create_spec_file():
 import os
 import sys
 from pathlib import Path
+from PyInstaller.utils.hooks import copy_metadata
+from PyInstaller.utils.hooks import collect_data_files
 
 # Add current directory to path
 current_dir = os.path.dirname(os.path.abspath(SPEC))
@@ -29,9 +31,36 @@ datas_list = [
     ('config.json', '.'),
     ('song_editor/ui', 'song_editor/ui'),
     ('requirements.txt', '.'),
+    ('transcription_worker.py', '.'),
+    ('melody_worker.py', '.'),
+    ('chord_worker.py', '.'),
 ]
 if os.path.exists('models'):
     datas_list.append(('models', 'models'))
+
+# Include package metadata required by importlib.metadata for cmudict
+try:
+    datas_list += copy_metadata('cmudict')
+except Exception:
+    pass
+
+# Include whisper assets (mel_filters.npz etc.) if present
+try:
+    datas_list += collect_data_files('whisper', subdir='assets')
+except Exception:
+    pass
+
+# Bundle demucs remote assets directory if present in site-packages
+try:
+    import demucs, importlib.util, os as _os
+    _spec = importlib.util.find_spec('demucs')
+    if _spec and _spec.submodule_search_locations:
+        _pkg_dir = list(_spec.submodule_search_locations)[0]
+        _remote = _os.path.join(_pkg_dir, 'remote')
+        if _os.path.isdir(_remote):
+            datas_list.append((_remote, 'demucs/remote'))
+except Exception:
+    pass
 
 # Define analysis
 a = Analysis(
@@ -73,6 +102,7 @@ a = Analysis(
         'vamp',
         'basic_pitch',
         'pretty_midi',
+        'cmudict',
         'mido',
 
         # Additional hidden imports for PyTorch and CUDA

@@ -236,6 +236,16 @@ Examples:
   song-editor-3 --input-dir ./songs --output-dir ./processed  # Batch process with custom output
         """
     )
+    # Hidden/internal: worker dispatch for packaged subprocesses
+    parser.add_argument(
+        '--worker',
+        choices=['melody', 'transcription', 'chord'],
+        help=argparse.SUPPRESS
+    )
+    parser.add_argument(
+        '--worker-params',
+        help=argparse.SUPPRESS
+    )
 
     parser.add_argument(
         'input_path',
@@ -331,13 +341,45 @@ Examples:
         version='Song Editor 3.0.0'
     )
 
-    args = parser.parse_args()
+    # Ignore unknown args injected by PyInstaller/multiprocessing (-B, -S, -I, -c, etc.)
+    args, _unknown = parser.parse_known_args()
 
     # Use the original working directory captured at import time
     original_cwd = ORIGINAL_CWD
 
     # Setup logging
     setup_logging(args.log_level)
+    # Handle internal worker dispatch for packaged subprocesses
+    if args.worker and args.worker_params:
+        try:
+            import runpy as _runpy
+            import importlib
+            # Resolve worker path
+            worker_map = {
+                'melody': 'melody_worker.py',
+                'transcription': 'transcription_worker.py',
+                'chord': 'chord_worker.py',
+            }
+            worker_file = worker_map[args.worker]
+            base_dir = Path(__file__).resolve().parent.parent
+            worker_path = str(base_dir / worker_file)
+            if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+                worker_path = os.path.join(sys._MEIPASS, worker_file)  # type: ignore[attr-defined]
+
+            # Emulate running the worker script as __main__ with params path argument
+            old_argv = sys.argv[:]
+            sys.argv = [worker_path, args.worker_params]
+            try:
+                _runpy.run_path(worker_path, run_name='__main__')
+            finally:
+                sys.argv = old_argv
+            return 0
+        except SystemExit as e:
+            return int(getattr(e, 'code', 0) or 0)
+        except Exception as e:
+            print(f"WORKER_DISPATCH_ERROR: {e}", file=sys.stderr)
+            return 1
+
 
     # Display platform information if requested
     if args.platform_info:
@@ -498,4 +540,10 @@ Examples:
 
 
 if __name__ == "__main__":
+    # Ensure safe multiprocessing on frozen apps
+    try:
+        import multiprocessing as _mp
+        _mp.freeze_support()
+    except Exception:
+        pass
     sys.exit(main())

@@ -69,15 +69,21 @@ class ChordDetector:
             script_dir = os.path.dirname(__file__)
             script_path = os.path.join(script_dir, '..', '..', 'chord_worker.py')
             if not os.path.exists(script_path):
-                bundle_path = os.path.join(os.getcwd(), 'Resources', 'chord_worker.py')
-                if os.path.exists(bundle_path):
-                    script_path = bundle_path
-                else:
-                    raise FileNotFoundError(f"chord_worker.py not found at {script_path} or {bundle_path}")
+                try:
+                    import sys as _sys
+                    if getattr(_sys, 'frozen', False) and hasattr(_sys, '_MEIPASS'):
+                        script_path = os.path.join(_sys._MEIPASS, 'chord_worker.py')  # type: ignore[attr-defined]
+                except Exception:
+                    pass
+            if not os.path.exists(script_path):
+                raise FileNotFoundError(f"chord_worker.py not found at {script_path}")
 
             # 3. Run the worker script
             python_executable = sys.executable
-            command = [python_executable, script_path, params_file_path]
+            if getattr(sys, 'frozen', False):
+                command = [python_executable, '--worker', 'chord', '--worker-params', params_file_path]
+            else:
+                command = [python_executable, script_path, params_file_path]
             
             logging.info(f"Running chord worker command: {' '.join(command)}")
             process = subprocess.run(command, capture_output=True, text=True, check=True)

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "3.0.0",
-    "created_at": "20250906_211816",
+    "created_at": "20250907_235248",
     "source_audio": "/Volumes/SDMusicProd/CascadeProjects/Song_Editor_3/test_short.wav",
     "processing_tool": "Song Editor 3",
     "transcription": {
@@ -14,7 +14,7 @@
       "denoise": true,
       "normalize": true
     },
-    "exported_at": "2025-09-06T21:18:16.517162",
+    "exported_at": "2025-09-07T23:52:48.331686",
     "export_format": "json",
     "export_version": "3.0.0",
     "export_file": "/Volumes/SDMusicProd/CascadeProjects/Song_Editor_3/test_short.song_data.json",
@@ -28,238 +28,398 @@
   },
   "words": [
     {
+      "text": "We",
+      "start": 0.0,
+      "end": 0.08,
+      "confidence": 0.5
+    },
+    {
       "text": "see",
-      "start": 0.18,
-      "end": 0.64,
-      "confidence": 0.80712890625
+      "start": 0.08,
+      "end": 0.38,
+      "confidence": 0.5
     },
     {
       "text": "your",
-      "start": 0.64,
-      "end": 1.22,
-      "confidence": 0.6396484375
+      "start": 0.38,
+      "end": 0.9,
+      "confidence": 0.5,
+      "alternatives": [
+        {
+          "text": "you're",
+          "confidence": 0.4
+        },
+        {
+          "text": "yore",
+          "confidence": 0.4
+        }
+      ]
     },
     {
-      "text": "love,",
-      "start": 1.22,
-      "end": 3.32,
-      "confidence": 0.9921875
-    },
-    {
-      "text": "it's",
-      "start": 3.32,
-      "end": 4.22,
-      "confidence": 0.5966796875
-    },
-    {
-      "text": "clear",
-      "start": 4.22,
-      "end": 4.74,
-      "confidence": 0.81640625
+      "text": "love",
+      "start": 0.9,
+      "end": 1.68,
+      "confidence": 0.5
     },
     {
       "text": "as",
-      "start": 4.74,
-      "end": 5.36,
-      "confidence": 0.9619140625
+      "start": 1.68,
+      "end": 3.98,
+      "confidence": 0.5
+    },
+    {
+      "text": "clear",
+      "start": 3.98,
+      "end": 4.26,
+      "confidence": 0.5
+    },
+    {
+      "text": "as",
+      "start": 4.26,
+      "end": 4.96,
+      "confidence": 0.5
     },
     {
       "text": "day,",
-      "start": 5.36,
-      "end": 6.52,
-      "confidence": 0.8349609375
+      "start": 4.96,
+      "end": 5.68,
+      "confidence": 0.5
     },
     {
       "text": "making",
-      "start": 8.34,
-      "end": 8.74,
-      "confidence": 0.8779296875
+      "start": 5.7,
+      "end": 8.6,
+      "confidence": 0.5
     },
     {
       "text": "us",
-      "start": 8.74,
-      "end": 10.22,
-      "confidence": 0.9990234375
+      "start": 8.6,
+      "end": 9.52,
+      "confidence": 0.5
     },
     {
-      "text": "keeping",
-      "start": 12.54,
-      "end": 12.96,
-      "confidence": 0.57958984375
+      "text": "and",
+      "start": 9.52,
+      "end": 12.2,
+      "confidence": 0.5,
+      "alternatives": [
+        {
+          "text": "an",
+          "confidence": 0.4
+        },
+        {
+          "text": "end",
+          "confidence": 0.4
+        }
+      ]
+    },
+    {
+      "text": "giving",
+      "start": 12.2,
+      "end": 12.7,
+      "confidence": 0.5
     },
     {
       "text": "us",
-      "start": 12.96,
-      "end": 13.86,
-      "confidence": 0.99755859375
+      "start": 12.7,
+      "end": 13.54,
+      "confidence": 0.5
+    },
+    {
+      "text": "a",
+      "start": 13.54,
+      "end": 13.92,
+      "confidence": 0.5,
+      "alternatives": [
+        {
+          "text": "ay",
+          "confidence": 0.4
+        },
+        {
+          "text": "uh",
+          "confidence": 0.4
+        }
+      ]
     },
     {
       "text": "place",
-      "start": 14.44,
-      "end": 14.96,
-      "confidence": 0.724609375
+      "start": 13.92,
+      "end": 14.56,
+      "confidence": 0.5
     },
     {
       "text": "to",
-      "start": 14.96,
-      "end": 15.3,
-      "confidence": 0.9462890625
+      "start": 14.56,
+      "end": 15.0,
+      "confidence": 0.5,
+      "alternatives": [
+        {
+          "text": "too",
+          "confidence": 0.4
+        },
+        {
+          "text": "two",
+          "confidence": 0.4
+        }
+      ]
     },
     {
-      "text": "stay",
-      "start": 15.3,
-      "end": 16.7,
-      "confidence": 0.97705078125
+      "text": "stay.",
+      "start": 15.0,
+      "end": 15.56,
+      "confidence": 0.5
+    },
+    {
+      "text": "You",
+      "start": 15.56,
+      "end": 17.76,
+      "confidence": 0.5,
+      "alternatives": [
+        {
+          "text": "u",
+          "confidence": 0.4
+        },
+        {
+          "text": "yew",
+          "confidence": 0.4
+        }
+      ]
     },
     {
       "text": "give",
-      "start": 18.44,
-      "end": 19.54,
-      "confidence": 0.73388671875
+      "start": 17.76,
+      "end": 18.6,
+      "confidence": 0.5
     },
     {
       "text": "such",
-      "start": 19.54,
-      "end": 20.5,
-      "confidence": 0.94384765625
+      "start": 18.6,
+      "end": 19.98,
+      "confidence": 0.5
     },
     {
       "text": "love",
-      "start": 20.5,
-      "end": 21.72,
-      "confidence": 0.9912109375
+      "start": 19.98,
+      "end": 20.78,
+      "confidence": 0.5
     },
     {
       "text": "to",
-      "start": 21.72,
-      "end": 22.76,
-      "confidence": 0.98583984375
+      "start": 20.78,
+      "end": 22.52,
+      "confidence": 0.5,
+      "alternatives": [
+        {
+          "text": "too",
+          "confidence": 0.4
+        },
+        {
+          "text": "two",
+          "confidence": 0.4
+        }
+      ]
     },
     {
       "text": "us,",
-      "start": 22.76,
-      "end": 24.22,
-      "confidence": 0.99951171875
+      "start": 22.52,
+      "end": 23.36,
+      "confidence": 0.5
+    },
+    {
+      "text": "making",
+      "start": 23.78,
+      "end": 26.64,
+      "confidence": 0.5
     },
     {
       "text": "us",
-      "start": 26.98,
-      "end": 29.08,
-      "confidence": 0.99755859375
+      "start": 26.64,
+      "end": 28.3,
+      "confidence": 0.5
     },
     {
       "text": "with",
-      "start": 29.08,
-      "end": 30.52,
-      "confidence": 0.74853515625
+      "start": 28.3,
+      "end": 30.1,
+      "confidence": 0.5
     },
     {
       "text": "the",
-      "start": 30.52,
-      "end": 31.02,
-      "confidence": 0.72412109375
+      "start": 30.1,
+      "end": 30.5,
+      "confidence": 0.5,
+      "alternatives": [
+        {
+          "text": "thee",
+          "confidence": 0.4
+        },
+        {
+          "text": "thuh",
+          "confidence": 0.4
+        }
+      ]
     },
     {
       "text": "capacity",
-      "start": 31.02,
-      "end": 32.0,
-      "confidence": 0.990234375
+      "start": 30.5,
+      "end": 31.84,
+      "confidence": 0.5
     },
     {
       "text": "to",
-      "start": 32.0,
-      "end": 33.14,
-      "confidence": 0.99560546875
+      "start": 31.84,
+      "end": 32.88,
+      "confidence": 0.5,
+      "alternatives": [
+        {
+          "text": "too",
+          "confidence": 0.4
+        },
+        {
+          "text": "two",
+          "confidence": 0.4
+        }
+      ]
     },
     {
-      "text": "love",
-      "start": 33.14,
-      "end": 34.86,
-      "confidence": 0.98095703125
+      "text": "love.",
+      "start": 32.88,
+      "end": 33.46,
+      "confidence": 0.5
+    },
+    {
+      "text": "Thank",
+      "start": 36.12,
+      "end": 37.8,
+      "confidence": 0.5
     },
     {
       "text": "you,",
-      "start": 38.34,
-      "end": 39.04,
-      "confidence": 0.560546875
+      "start": 37.8,
+      "end": 38.58,
+      "confidence": 0.5
+    },
+    {
+      "text": "O",
+      "start": 38.6,
+      "end": 39.3,
+      "confidence": 0.5
     },
     {
       "text": "God.",
-      "start": 39.04,
-      "end": 40.0,
-      "confidence": 0.76123046875
+      "start": 39.3,
+      "end": 39.64,
+      "confidence": 0.5
+    },
+    {
+      "text": "God,",
+      "start": 47.94,
+      "end": 49.18,
+      "confidence": 0.5
     },
     {
       "text": "we",
-      "start": 49.68,
-      "end": 49.84,
-      "confidence": 0.95703125
+      "start": 49.32,
+      "end": 49.62,
+      "confidence": 0.5
     },
     {
       "text": "know",
-      "start": 49.84,
-      "end": 50.5,
-      "confidence": 0.998046875
+      "start": 49.62,
+      "end": 49.94,
+      "confidence": 0.5
     },
     {
       "text": "that",
-      "start": 50.5,
-      "end": 51.62,
-      "confidence": 0.94482421875
+      "start": 49.94,
+      "end": 50.96,
+      "confidence": 0.5
     },
     {
       "text": "we've",
-      "start": 51.62,
-      "end": 52.76,
-      "confidence": 0.5869140625
+      "start": 50.96,
+      "end": 52.46,
+      "confidence": 0.5
     },
     {
       "text": "not",
-      "start": 52.76,
-      "end": 53.02,
-      "confidence": 0.939453125
+      "start": 52.46,
+      "end": 52.78,
+      "confidence": 0.5
     },
     {
       "text": "always",
-      "start": 53.02,
-      "end": 53.7,
-      "confidence": 0.970703125
+      "start": 52.78,
+      "end": 53.46,
+      "confidence": 0.5
     },
     {
       "text": "loved",
-      "start": 53.7,
-      "end": 54.52,
-      "confidence": 0.98095703125
+      "start": 53.46,
+      "end": 54.22,
+      "confidence": 0.5
     },
     {
-      "text": "you",
-      "start": 54.52,
-      "end": 55.36,
-      "confidence": 0.9716796875
+      "text": "you,",
+      "start": 54.22,
+      "end": 54.8,
+      "confidence": 0.5
     },
     {
-      "text": "you",
-      "start": 57.92,
-      "end": 58.18,
-      "confidence": 0.98291015625
+      "text": "and",
+      "start": 55.04,
+      "end": 57.42,
+      "confidence": 0.5,
+      "alternatives": [
+        {
+          "text": "an",
+          "confidence": 0.4
+        },
+        {
+          "text": "end",
+          "confidence": 0.4
+        }
+      ]
+    },
+    {
+      "text": "you've",
+      "start": 57.42,
+      "end": 58.08,
+      "confidence": 0.5
     },
     {
       "text": "made",
-      "start": 58.18,
-      "end": 58.86,
-      "confidence": 0.80126953125
+      "start": 58.08,
+      "end": 58.36,
+      "confidence": 0.5
     },
     {
-      "text": "love",
-      "start": 58.86,
-      "end": 59.78,
-      "confidence": 0.94287109375
+      "text": "allowance",
+      "start": 58.36,
+      "end": 59.14,
+      "confidence": 0.5
     },
     {
-      "text": "with",
-      "start": 59.78,
-      "end": 59.98,
-      "confidence": 0.98583984375
+      "text": "for",
+      "start": 59.14,
+      "end": 59.34,
+      "confidence": 0.5,
+      "alternatives": [
+        {
+          "text": "four",
+          "confidence": 0.4
+        },
+        {
+          "text": "fore",
+          "confidence": 0.4
+        }
+      ]
+    },
+    {
+      "text": "us.",
+      "start": 59.34,
+      "end": 59.34,
+      "confidence": 0.5
     }
   ],
   "chords": [
@@ -271,7 +431,7 @@
       "end": 4.0,
       "bass": null,
       "duration": 4.0,
-      "confidence": 0.9211473758469346,
+      "confidence": 0.9211334262473039,
       "detection_method": "chromagram"
     },
     {
@@ -282,7 +442,7 @@
       "end": 4.5,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.800624841365153,
+      "confidence": 0.8006306959230032,
       "detection_method": "chromagram"
     },
     {
@@ -293,7 +453,7 @@
       "end": 8.0,
       "bass": null,
       "duration": 3.5,
-      "confidence": 0.9694424311896933,
+      "confidence": 0.9694401617723195,
       "detection_method": "chromagram"
     },
     {
@@ -304,7 +464,7 @@
       "end": 8.5,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.831904498970709,
+      "confidence": 0.8318875700580849,
       "detection_method": "chromagram"
     },
     {
@@ -315,7 +475,7 @@
       "end": 9.5,
       "bass": null,
       "duration": 1.0,
-      "confidence": 0.8593666873678789,
+      "confidence": 0.8593075858913245,
       "detection_method": "chromagram"
     },
     {
@@ -326,7 +486,7 @@
       "end": 10.0,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.8919279038791195,
+      "confidence": 0.891833722826708,
       "detection_method": "chromagram"
     },
     {
@@ -337,7 +497,7 @@
       "end": 10.5,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.840774530685036,
+      "confidence": 0.8407943672926056,
       "detection_method": "chromagram"
     },
     {
@@ -348,7 +508,7 @@
       "end": 12.5,
       "bass": null,
       "duration": 2.0,
-      "confidence": 0.8171088109745817,
+      "confidence": 0.8170417786124224,
       "detection_method": "chromagram"
     },
     {
@@ -359,7 +519,7 @@
       "end": 17.0,
       "bass": null,
       "duration": 4.5,
-      "confidence": 0.8521170833688889,
+      "confidence": 0.8523708213127692,
       "detection_method": "chromagram"
     },
     {
@@ -370,7 +530,7 @@
       "end": 18.5,
       "bass": null,
       "duration": 1.5,
-      "confidence": 0.9469403097903606,
+      "confidence": 0.9469369058230849,
       "detection_method": "chromagram"
     },
     {
@@ -381,7 +541,7 @@
       "end": 21.0,
       "bass": null,
       "duration": 2.5,
-      "confidence": 0.8915591476392253,
+      "confidence": 0.8916602278021317,
       "detection_method": "chromagram"
     },
     {
@@ -392,7 +552,7 @@
       "end": 23.0,
       "bass": null,
       "duration": 2.0,
-      "confidence": 0.9044376742201481,
+      "confidence": 0.9045701441503449,
       "detection_method": "chromagram"
     },
     {
@@ -403,7 +563,7 @@
       "end": 24.5,
       "bass": null,
       "duration": 1.5,
-      "confidence": 0.950346629611276,
+      "confidence": 0.9501131617691805,
       "detection_method": "chromagram"
     },
     {
@@ -414,7 +574,7 @@
       "end": 25.0,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.7430193790331483,
+      "confidence": 0.7429711212558221,
       "detection_method": "chromagram"
     },
     {
@@ -425,7 +585,7 @@
       "end": 25.5,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.9310709185640944,
+      "confidence": 0.9310795380344712,
       "detection_method": "chromagram"
     },
     {
@@ -436,7 +596,7 @@
       "end": 27.0,
       "bass": null,
       "duration": 1.5,
-      "confidence": 0.9628861475795586,
+      "confidence": 0.9630741157057785,
       "detection_method": "chromagram"
     },
     {
@@ -447,7 +607,7 @@
       "end": 29.0,
       "bass": null,
       "duration": 2.0,
-      "confidence": 0.9280898889929122,
+      "confidence": 0.92817625214382,
       "detection_method": "chromagram"
     },
     {
@@ -458,7 +618,7 @@
       "end": 31.5,
       "bass": null,
       "duration": 2.5,
-      "confidence": 0.8182789766639984,
+      "confidence": 0.8184381717288755,
       "detection_method": "chromagram"
     },
     {
@@ -469,7 +629,7 @@
       "end": 33.5,
       "bass": null,
       "duration": 2.0,
-      "confidence": 0.9049850139572231,
+      "confidence": 0.9048106965752192,
       "detection_method": "chromagram"
     },
     {
@@ -480,7 +640,7 @@
       "end": 35.0,
       "bass": null,
       "duration": 1.5,
-      "confidence": 0.9558630602296425,
+      "confidence": 0.9558532963968096,
       "detection_method": "chromagram"
     },
     {
@@ -491,7 +651,7 @@
       "end": 35.5,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.7310200540050807,
+      "confidence": 0.7309326599130328,
       "detection_method": "chromagram"
     },
     {
@@ -502,7 +662,7 @@
       "end": 37.5,
       "bass": null,
       "duration": 2.0,
-      "confidence": 0.8710164870340491,
+      "confidence": 0.8698353871820972,
       "detection_method": "chromagram"
     },
     {
@@ -513,7 +673,7 @@
       "end": 39.5,
       "bass": null,
       "duration": 2.0,
-      "confidence": 0.9077160064765564,
+      "confidence": 0.907335620944347,
       "detection_method": "chromagram"
     },
     {
@@ -524,7 +684,7 @@
       "end": 40.0,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.8662074614767377,
+      "confidence": 0.8664612599197703,
       "detection_method": "chromagram"
     },
     {
@@ -535,7 +695,7 @@
       "end": 41.5,
       "bass": null,
       "duration": 1.5,
-      "confidence": 0.9596918716174593,
+      "confidence": 0.959698762047382,
       "detection_method": "chromagram"
     },
     {
@@ -546,7 +706,7 @@
       "end": 44.0,
       "bass": null,
       "duration": 2.5,
-      "confidence": 0.9045414370979077,
+      "confidence": 0.904314769740697,
       "detection_method": "chromagram"
     },
     {
@@ -557,7 +717,7 @@
       "end": 48.0,
       "bass": null,
       "duration": 4.0,
-      "confidence": 0.8222105708844614,
+      "confidence": 0.822100738351857,
       "detection_method": "chromagram"
     },
     {
@@ -568,7 +728,7 @@
       "end": 48.5,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.8376989203556124,
+      "confidence": 0.8366924179609729,
       "detection_method": "chromagram"
     },
     {
@@ -579,7 +739,7 @@
       "end": 49.0,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.8917671140189221,
+      "confidence": 0.8917783102376242,
       "detection_method": "chromagram"
     },
     {
@@ -590,7 +750,7 @@
       "end": 49.5,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.852595259729404,
+      "confidence": 0.8524871236834017,
       "detection_method": "chromagram"
     },
     {
@@ -601,7 +761,7 @@
       "end": 50.0,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.8420760963751082,
+      "confidence": 0.8420892911409115,
       "detection_method": "chromagram"
     },
     {
@@ -612,7 +772,7 @@
       "end": 50.5,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.8481318782815515,
+      "confidence": 0.8480378635286459,
       "detection_method": "chromagram"
     },
     {
@@ -623,7 +783,7 @@
       "end": 52.0,
       "bass": null,
       "duration": 1.5,
-      "confidence": 0.9645267250369033,
+      "confidence": 0.9645163732692565,
       "detection_method": "chromagram"
     },
     {
@@ -634,7 +794,7 @@
       "end": 54.0,
       "bass": null,
       "duration": 2.0,
-      "confidence": 0.8834439569912804,
+      "confidence": 0.8834896523531642,
       "detection_method": "chromagram"
     },
     {
@@ -645,7 +805,7 @@
       "end": 54.5,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.7569985369060178,
+      "confidence": 0.7567166952548128,
       "detection_method": "chromagram"
     },
     {
@@ -656,7 +816,7 @@
       "end": 56.0,
       "bass": null,
       "duration": 1.5,
-      "confidence": 0.9687621578818019,
+      "confidence": 0.9687700701240318,
       "detection_method": "chromagram"
     },
     {
@@ -667,7 +827,7 @@
       "end": 56.5,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.7511526938386581,
+      "confidence": 0.7511775683647942,
       "detection_method": "chromagram"
     },
     {
@@ -678,7 +838,7 @@
       "end": 57.0,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.8415296936673798,
+      "confidence": 0.8413116941515959,
       "detection_method": "chromagram"
     },
     {
@@ -689,7 +849,7 @@
       "end": 57.5,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.883242745143318,
+      "confidence": 0.8832548351347276,
       "detection_method": "chromagram"
     },
     {
@@ -700,7 +860,7 @@
       "end": 58.0,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.8826136034823802,
+      "confidence": 0.8825661204299311,
       "detection_method": "chromagram"
     },
     {
@@ -711,7 +871,7 @@
       "end": 58.5,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.7687522761731413,
+      "confidence": 0.7683958989935957,
       "detection_method": "chromagram"
     },
     {
@@ -722,7 +882,7 @@
       "end": 59.5,
       "bass": null,
       "duration": 1.0,
-      "confidence": 0.9110594216287566,
+      "confidence": 0.9110211376060792,
       "detection_method": "chromagram"
     },
     {
@@ -733,7 +893,7 @@
       "end": 60.0,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.8411554941976853,
+      "confidence": 0.8409484735885862,
       "detection_method": "chromagram"
     },
     {
@@ -744,7 +904,7 @@
       "end": 60.5,
       "bass": null,
       "duration": 0.5,
-      "confidence": 0.8288638242285423,
+      "confidence": 0.8289495003238223,
       "detection_method": "chromagram"
     }
   ],
@@ -1212,9 +1372,9 @@
     {
       "pitch_midi": 59,
       "start": 28.682448979591836,
-      "end": 28.821768707482992,
+      "end": 28.827573696145123,
       "pitch_name": "B3",
-      "duration": 0.13931972789115576,
+      "duration": 0.14512471655328696,
       "velocity": 88,
       "confidence": 0.7,
       "detection_method": "librosa_yin"
@@ -1262,9 +1422,9 @@
     {
       "pitch_midi": 59,
       "start": 31.950657596371883,
-      "end": 32.107392290249436,
+      "end": 32.113197278911564,
       "pitch_name": "B3",
-      "duration": 0.1567346938775529,
+      "duration": 0.16253968253968054,
       "velocity": 88,
       "confidence": 0.7,
       "detection_method": "librosa_yin"
@@ -1611,10 +1771,10 @@
     },
     {
       "pitch_midi": 55,
-      "start": 58.0324716553288,
+      "start": 58.026666666666664,
       "end": 58.16018140589569,
       "pitch_name": "G3",
-      "duration": 0.12770975056689338,
+      "duration": 0.13351473922902812,
       "velocity": 88,
       "confidence": 0.7,
       "detection_method": "librosa_yin"
@@ -1696,18 +1856,18 @@
     "sample_rate": 44100,
     "channels": 1,
     "audio_levels": {
-      "rms": 0.0490591786801815,
-      "rms_db": -26.185594517709106,
-      "peak": 0.5154541730880737,
-      "peak_db": -5.756198798345738,
-      "dynamic_range_db": 20.429395719363367,
-      "crest_factor": 10.506783560272362
+      "rms": 0.04903821274638176,
+      "rms_db": -26.18930731347048,
+      "peak": 0.5172847509384155,
+      "peak_db": -5.725406478115753,
+      "dynamic_range_db": 20.46390083535473,
+      "crest_factor": 10.548605279700418
     },
     "tempo": 114.84375,
     "key": {
       "key": "G",
       "mode": "major",
-      "confidence": 0.751361433260199
+      "confidence": 0.751265666679976
     }
   }
 }

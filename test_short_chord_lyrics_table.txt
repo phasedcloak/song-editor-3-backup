@@ -11,97 +11,107 @@ CHORD AND LYRICS TIME ALIGNMENT TABLE
 Chord           Lyrics                                  
 -------------------------------------------------------
 G                                                       
+                We                                      
                 see                                     
                 your                                    
-                love,                                   
-                it's                                    
-Em                                                      
-                clear                                   
-C                                                       
+                love                                    
                 as                                      
+                clear                                   
+Em                                                      
+                as                                      
+C                                                       
                 day,                                    
-Gm                                                      
                 making                                  
+Gm                                                      
 G                                                       
                 us                                      
 Gm                                                      
+                and                                     
 G                                                       
 Gm                                                      
+                giving                                  
 D                                                       
-                keeping                                 
                 us                                      
+                a                                       
                 place                                   
                 to                                      
-                stay                                    
+                stay.                                   
+                You                                     
 C                                                       
                 give                                    
 G                                                       
                 such                                    
                 love                                    
-D                                                       
                 to                                      
+D                                                       
                 us,                                     
 G                                                       
+                making                                  
 D                                                       
 C7                                                      
 C                                                       
                 us                                      
 G                                                       
-D                                                       
                 with                                    
+D                                                       
                 the                                     
                 capacity                                
 G                                                       
                 to                                      
-                love                                    
+                love.                                   
 C                                                       
 D                                                       
 G                                                       
+                Thank                                   
 D                                                       
                 you,                                    
+                O                                       
                 God.                                    
 Edim                                                    
 C                                                       
 G                                                       
 D                                                       
+                God,                                    
 Gm                                                      
 G                                                       
 Gm                                                      
-D                                                       
                 we                                      
+D                                                       
                 know                                    
+                that                                    
 G                                                       
 C                                                       
-                that                                    
                 we've                                   
 D                                                       
                 not                                     
                 always                                  
                 loved                                   
 Gm                                                      
+                you,                                    
 G                                                       
-                you                                     
+                and                                     
 Gm                                                      
 G                                                       
 Gm                                                      
+                you've                                  
 G                                                       
-                you                                     
 D                                                       
                 made                                    
+                allowance                               
 C                                                       
-                love                                    
+                for                                     
+                us.                                     
 Cm                                                      
-                with                                    
 C                                                       
 
 CHORDPRO FORMAT
 ==================================================
 
-[G]see [G]your [G]love [G]it's [Em]clear [C]as [C]day [Gm]making [G]us
-[D]keeping [D]us [D]place [D]to [D]stay [C]give [G]such [G]love [D]to [D]us
-[C]us [D]with [D]the [D]capacity [G]to [G]love [D]you [D]God [D]we [D]know
-[G]that [C]we've [D]not [D]always [D]loved [G]you [G]you [D]made [C]love
-[Cm]with
+[G]We [G]see [G]your [G]love [G]as [G]clear [Em]as [C]day [C]making [G]us
+[Gm]and [Gm]giving [D]us [D]a [D]place [D]to [D]stay [D]You [C]give [G]such
+[G]love [G]to [D]us [G]making [C]us [G]with [D]the [D]capacity [G]to [G]love
+[G]Thank [D]you [D]O [D]God [D]God [Gm]we [D]know [D]that [C]we've [D]not
+[D]always [D]loved [Gm]you [G]and [Gm]you've [D]made [D]allowance [C]for [C]us
 
 CHORD CHART
 ==================================================
@@ -134,6 +144,6 @@ Section 8:
 LYRICS ONLY
 ==================================================
 
-see your love it's clear as day making us keeping us place to stay give such
-love to us us with the capacity to love you God we know that we've not always
-loved you you made love with
+We see your love as clear as day making us and giving us a place to stay You
+give such love to us making us with the capacity to love Thank you O God God we
+know that we've not always loved you and you've made allowance for us

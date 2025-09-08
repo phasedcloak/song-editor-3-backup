@@ -383,20 +383,31 @@ class Transcriber:
 
                 try:
                     # Get path to transcription worker
-                    worker_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'transcription_worker.py')
+                    # Resolve worker path in both source and PyInstaller frozen modes
+                    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+                    worker_path = os.path.join(base_dir, 'transcription_worker.py')
+                    if getattr(sys, 'frozen', False):
+                        try:
+                            worker_path = os.path.join(sys._MEIPASS, 'transcription_worker.py')  # type: ignore[attr-defined]
+                        except Exception:
+                            pass
 
                     # Run the transcription worker in a separate process
                     logging.debug(f"Starting forked transcription process for {model_type}")
                     logging.debug(f"Worker path: {worker_path}")
                     logging.debug(f"Python executable: {sys.executable}")
 
-                    # Try to run the subprocess with more debugging
+                    # Prefer invoking packaged entrypoint to avoid flags and path issues in frozen mode
                     try:
+                        if getattr(sys, 'frozen', False):
+                            cmd = [sys.executable, '--worker', 'transcription', '--worker-params', params_file_path]
+                        else:
+                            cmd = [sys.executable, worker_path, params_file_path]
                         result = subprocess.run(
-                            [sys.executable, worker_path, params_file_path],
+                            cmd,
                             capture_output=True,
                             text=True,
-                            timeout=600,  # 10 minute timeout for transcription
+                            timeout=600,
                             env=dict(os.environ, OMP_NUM_THREADS='1', MKL_NUM_THREADS='1', CUDA_VISIBLE_DEVICES='')
                         )
                     except FileNotFoundError as e:

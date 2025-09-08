@@ -12,7 +12,13 @@ from PySide6.QtGui import (
     QTextCursor, QTextCharFormat, QColor, QFont, QPalette, QFontMetrics
 )
 
-import cmudict
+# Optional: cmudict (may be unavailable in frozen builds without metadata)
+try:
+    import cmudict as _cmudict
+    _CMUDICT_AVAILABLE = True
+except Exception:
+    _cmudict = None
+    _CMUDICT_AVAILABLE = False
 import pronouncing
 
 from ..models.lyrics import WordRow
@@ -31,7 +37,7 @@ class SyllableCounter:
     """Professional syllable counting using cmudict"""
 
     def __init__(self):
-        self.cmu = cmudict.dict()
+        self.cmu = _cmudict.dict() if _CMUDICT_AVAILABLE else {}
         self.cache = {}
 
     def count_syllables(self, word: str) -> int:

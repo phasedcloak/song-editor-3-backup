@@ -68,21 +68,26 @@ class MelodyExtractor:
                 params_file = temp_file.name
 
             # This path logic works for both running from source and from the macOS app bundle
+            # Resolve worker path for source and PyInstaller bundle
             script_dir = os.path.join(os.path.dirname(__file__), '..', '..')
             script_path = os.path.join(script_dir, 'melody_worker.py')
-
             if not os.path.exists(script_path):
-                # Fallback for bundle where CWD is .../Contents
-                bundle_script_path = os.path.join(os.getcwd(), 'Resources', 'melody_worker.py')
-                if os.path.exists(bundle_script_path):
-                    script_path = bundle_script_path
-                else:
-                    logging.error(f"Melody worker script not found at {script_path} or {bundle_script_path}")
-                    return []
+                try:
+                    if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+                        script_path = os.path.join(sys._MEIPASS, 'melody_worker.py')  # type: ignore[attr-defined]
+                except Exception:
+                    pass
+            if not os.path.exists(script_path):
+                logging.error(f"Melody worker script not found at {script_path}")
+                return []
             
             python_executable = sys.executable
 
-            command = [python_executable, script_path, params_file]
+            # In frozen mode, re-invoke the packaged app with hidden worker args; else run script directly
+            if getattr(sys, 'frozen', False):
+                command = [python_executable, '--worker', 'melody', '--worker-params', params_file]
+            else:
+                command = [python_executable, script_path, params_file]
             
             logging.info(f"Running melody worker command: {' '.join(command)}")
 

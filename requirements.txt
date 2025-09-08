@@ -11,8 +11,8 @@ noisereduce==3.0.0
 pyloudnorm==0.1.1
 
 # Transcription Engines
-faster-whisper==1.0.3
-openai-whisper==20231117
+faster-whisper==1.1.0
+openai-whisper==20240930
 whisperx==3.1.1
 mlx-whisper==0.4.2
 
@@ -57,7 +57,7 @@ matplotlib==3.9.2
 # Performance and Optimization
 numba==0.59.1
 llvmlite==0.42.0
-ctranslate2==4.4.0
+ctranslate2==4.5.0
 
 # Utilities
 tenacity==9.0.0

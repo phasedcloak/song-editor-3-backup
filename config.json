@@ -14,7 +14,7 @@
   },
   "transcription": {
     "default_model": "openai-whisper",
-    "default_model_size": "base",
+    "default_model_size": "large-v2",
     "default_language": "en",
     "confidence_threshold": 0.5,
     "max_audio_length": 300.0

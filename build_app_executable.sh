@@ -19,14 +19,19 @@ if [ ! -d ".venv" ]; then
     exit 1
 fi
 
-# Activate virtual environment
+# Activate virtual environment and resolve interpreter
 echo "🔧 Activating virtual environment..."
 source .venv/bin/activate
+VENV_PY="$(pwd)/.venv/bin/python"
+if [ ! -x "$VENV_PY" ]; then
+    echo "❌ Virtualenv python not found at $VENV_PY"
+    exit 1
+fi
 
 # Upgrade pip and install PyInstaller if needed
 echo "📦 Installing/Upgrading PyInstaller..."
-pip install --upgrade pip
-pip install pyinstaller
+"$VENV_PY" -m pip install --upgrade pip
+"$VENV_PY" -m pip install --upgrade pyinstaller
 
 # Clean previous builds
 echo "🧹 Cleaning previous builds..."
@@ -34,7 +39,7 @@ rm -rf build dist *.spec
 
 # Create spec file
 echo "📝 Creating PyInstaller spec file..."
-python build_app.py
+"$VENV_PY" build_app.py
 
 # Build the application
 echo "🏗️  Building standalone application..."
@@ -43,7 +48,7 @@ echo "   This may take several minutes..."
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS build
     echo "🍎 Building for macOS..."
-    pyinstaller --clean song_editor_3.spec
+    "$VENV_PY" -m PyInstaller --clean song_editor_3.spec
 
     # Create DMG for distribution
     echo "📦 Creating DMG for distribution..."
@@ -64,7 +69,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "msys" ]] || [[ "$OSTYPE" == "win32" ]]; then
     # Windows build
     echo "🪟 Building for Windows..."
-    pyinstaller --clean --noconsole song_editor_3.spec
+    "$VENV_PY" -m PyInstaller --clean --noconsole song_editor_3.spec
 
     # Create installer
     echo "📦 Creating Windows installer..."
@@ -76,7 +81,7 @@ elif [[ "$OSTYPE" == "msys" ]] || [[ "$OSTYPE" == "win32" ]]; then
 else
     # Linux build
     echo "🐧 Building for Linux..."
-    pyinstaller --clean song_editor_3.spec
+    "$VENV_PY" -m PyInstaller --clean song_editor_3.spec
 
     # Create AppImage
     echo "📦 Creating AppImage..."

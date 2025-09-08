@@ -157,7 +157,7 @@ Based on testing:
 
 Default settings in `config.json`:
 - Default model: `openai-whisper`
-- Default quality: `base`
+- Default quality: `large-v2`
 - All features enabled by default
 
 ## ✅ **Verification**

@@ -24,25 +24,21 @@ from pathlib import Path
 current_dir = os.path.dirname(os.path.abspath(SPEC))
 sys.path.insert(0, current_dir)
 
+# Prepare data files
+datas_list = [
+    ('config.json', '.'),
+    ('song_editor/ui', 'song_editor/ui'),
+    ('requirements.txt', '.'),
+]
+if os.path.exists('models'):
+    datas_list.append(('models', 'models'))
+
 # Define analysis
 a = Analysis(
     ['song_editor/app.py'],
     pathex=[current_dir],
     binaries=[],
-    datas=[
-        # Include config files
-        ('config.json', '.'),
-        ('song_editor/config.json', 'song_editor/'),
-
-        # Include UI resources if any
-        ('song_editor/ui', 'song_editor/ui'),
-
-        # Include models directory if it exists
-        ('models', 'models') if os.path.exists('models') else ('', ''),
-
-        # Include any additional data files
-        ('requirements.txt', '.'),
-    ],
+    datas=datas_list,
     hiddenimports=[
         # Core dependencies
         'PySide6',
@@ -204,14 +200,19 @@ if [ ! -d ".venv" ]; then
     exit 1
 fi
 
-# Activate virtual environment
+# Activate virtual environment and resolve interpreter
 echo "🔧 Activating virtual environment..."
 source .venv/bin/activate
+VENV_PY="$(pwd)/.venv/bin/python"
+if [ ! -x "$VENV_PY" ]; then
+    echo "❌ Virtualenv python not found at $VENV_PY"
+    exit 1
+fi
 
 # Upgrade pip and install PyInstaller if needed
 echo "📦 Installing/Upgrading PyInstaller..."
-pip install --upgrade pip
-pip install pyinstaller
+"$VENV_PY" -m pip install --upgrade pip
+"$VENV_PY" -m pip install --upgrade pyinstaller
 
 # Clean previous builds
 echo "🧹 Cleaning previous builds..."
@@ -219,7 +220,7 @@ rm -rf build dist *.spec
 
 # Create spec file
 echo "📝 Creating PyInstaller spec file..."
-python build_app.py
+"$VENV_PY" build_app.py
 
 # Build the application
 echo "🏗️  Building standalone application..."
@@ -228,7 +229,7 @@ echo "   This may take several minutes..."
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS build
     echo "🍎 Building for macOS..."
-    pyinstaller --clean song_editor_3.spec
+    "$VENV_PY" -m PyInstaller --clean song_editor_3.spec
 
     # Create DMG for distribution
     echo "📦 Creating DMG for distribution..."
@@ -249,7 +250,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "msys" ]] || [[ "$OSTYPE" == "win32" ]]; then
     # Windows build
     echo "🪟 Building for Windows..."
-    pyinstaller --clean --noconsole song_editor_3.spec
+    "$VENV_PY" -m PyInstaller --clean --noconsole song_editor_3.spec
 
     # Create installer
     echo "📦 Creating Windows installer..."
@@ -261,7 +262,7 @@ elif [[ "$OSTYPE" == "msys" ]] || [[ "$OSTYPE" == "win32" ]]; then
 else
     # Linux build
     echo "🐧 Building for Linux..."
-    pyinstaller --clean song_editor_3.spec
+    "$VENV_PY" -m PyInstaller --clean song_editor_3.spec
 
     # Create AppImage
     echo "📦 Creating AppImage..."

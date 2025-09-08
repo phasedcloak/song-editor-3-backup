@@ -37,7 +37,7 @@ class AudioConfig:
 class TranscriptionConfig:
     """Transcription configuration."""
     default_model: str = "openai-whisper"
-    default_model_size: str = "base"
+    default_model_size: str = "large-v2"
     default_language: str = "en"
     confidence_threshold: float = 0.5
     max_audio_length: float = 300.0

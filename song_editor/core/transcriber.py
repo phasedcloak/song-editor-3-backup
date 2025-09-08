@@ -34,7 +34,7 @@ class Transcriber:
     def __init__(
         self,
         model: str = "faster-whisper",  # Changed default to faster-whisper for GPU acceleration
-        model_size: str = "base",
+        model_size: str = "large-v2",
         alternatives_count: int = 5,
         confidence_threshold: float = 0.5,
         language: Optional[str] = None,
@@ -42,7 +42,7 @@ class Transcriber:
         content_type: str = "general"
     ):
         self.model = model
-        self.model_size = model_size
+        self.model_size = self._normalize_model_size(model_size)
         self.alternatives_count = alternatives_count
         self.confidence_threshold = confidence_threshold
         self.language = language
@@ -63,42 +63,58 @@ class Transcriber:
             # PRIORITY: Try MLX Whisper first (best for Apple Silicon)
             if MLX_WHISPER_AVAILABLE:
                 try:
-                    # Map model sizes to available MLX models (default to tiny which we know works)
-                    model_size_map = {
-                        'tiny': 'tiny',
-                        'base': 'tiny',  # Default to tiny if base not available
-                        'small': 'tiny',  # Default to tiny if small not available
-                        'medium': 'tiny',  # Default to tiny for medium
-                        'large': 'tiny',  # Default to tiny for large
-                        'large-v2': 'tiny'  # Default to tiny for large-v2
-                    }
-                    mlx_model_size = model_size_map.get(self.model_size, 'tiny')
-                    self.whisper_model = f"mlx-community/whisper-{mlx_model_size}"
-                    logging.info(f"MLX Whisper ready with model: {self.whisper_model} (optimized for Apple Silicon)")
+                    # Try requested size first; the worker will handle runtime fallbacks if needed
+                    requested = str(self.model_size).lower()
+                    self.whisper_model = f"mlx-community/whisper-{requested}"
+                    logging.info(f"MLX Whisper ready with model: {self.whisper_model} (requested: {self.model_size})")
                     return
                 except Exception as e:
-                    logging.warning(f"MLX Whisper setup failed: {e}")
+                    logging.warning(f"MLX Whisper setup failed with requested size {self.model_size}: {e}")
+                    try:
+                        # Consistent fallback to large-v2
+                        self.whisper_model = "mlx-community/whisper-large-v2"
+                        logging.info("Falling back to MLX Whisper large-v2 model")
+                        return
+                    except Exception as e2:
+                        logging.warning(f"MLX Whisper large-v2 fallback failed: {e2}")
 
             # Fallback: Try to import and use OpenAI Whisper
             try:
                 import whisper
-                # Use large-v2 for best accuracy like working wav_to_karoke implementation
-                model_size = "large-v2" if self.model_size in ["tiny", "base", "small"] else self.model_size
-                logging.info(f"Loading OpenAI Whisper model: {model_size} (requested: {self.model_size})")
-                self.whisper_model = whisper.load_model(model_size)
-                return
+                # Try requested size, then fall back to large-v3 and large-v2
+                candidates = [self.model_size, "large-v3", "large-v2"]
+                last_error = None
+                for candidate in candidates:
+                    try:
+                        logging.info(f"Loading OpenAI Whisper model: {candidate} (requested: {self.model_size})")
+                        self.whisper_model = whisper.load_model(candidate)
+                        return
+                    except Exception as candidate_error:
+                        last_error = candidate_error
+                        logging.warning(f"OpenAI Whisper failed to load {candidate}: {candidate_error}")
+                if last_error is not None:
+                    raise last_error
             except Exception as e:
-                logging.warning(f"OpenAI Whisper failed to load: {e}")
+                logging.warning(f"OpenAI Whisper failed to load after fallbacks: {e}")
 
             # Fallback: Try to import and use Faster Whisper
             try:
                 from faster_whisper import WhisperModel
-                logging.info(f"Loading Faster Whisper model: {self.model_size} with GPU acceleration")
-                # Use GPU acceleration with auto device selection and float32 compute type
-                self.whisper_model = WhisperModel(self.model_size, device='auto', compute_type='float32')
-                return
+                # Try requested size; if it fails, try large-v3 and large-v2
+                candidates = [self.model_size, "large-v3", "large-v2"]
+                last_error = None
+                for candidate in candidates:
+                    try:
+                        logging.info(f"Loading Faster Whisper model: {candidate} with GPU acceleration")
+                        self.whisper_model = WhisperModel(candidate, device='auto', compute_type='float32')
+                        return
+                    except Exception as candidate_error:
+                        last_error = candidate_error
+                        logging.warning(f"Faster Whisper failed to load {candidate}: {candidate_error}")
+                if last_error is not None:
+                    raise last_error
             except Exception as e:
-                logging.warning(f"Faster Whisper failed to load: {e}")
+                logging.warning(f"Faster Whisper failed to load after fallbacks: {e}")
 
             # Fallback: Try to use WhisperX
             try:
@@ -116,6 +132,16 @@ class Transcriber:
         except Exception as e:
             logging.error(f"Error initializing model {self.model}: {e}")
             raise
+
+    def _normalize_model_size(self, size: Optional[str]) -> str:
+        """Return canonical model size string (e.g., 'turbo' -> 'large-v3-turbo')."""
+        try:
+            value = (size or "").strip().lower()
+            if value in ("turbo", "v3-turbo", "large-turbo"):
+                return "large-v3-turbo"
+            return value if value else "large-v2"
+        except Exception:
+            return "large-v2"
 
     def _get_default_prompt(self) -> str:
         """Get default prompt based on content type."""

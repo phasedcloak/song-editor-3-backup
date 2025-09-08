@@ -44,9 +44,11 @@ def main():
                 print(f"TRANSCRIPTION_WORKER: Failed to set MLX device: {_e}", file=sys.stderr)
 
             import mlx_whisper
-            # MLX-Whisper only supports tiny model
-            model_size = 'tiny'  # Force tiny model for MLX-Whisper
-            model_path = f"mlx-community/whisper-{model_size}"
+            # Try requested size first (normalize 'turbo' to 'large-v3-turbo'); fallback to tiny
+            requested_size = str(params.get('model_size', 'large-v2')).strip().lower()
+            if requested_size in ('turbo', 'v3-turbo', 'large-turbo'):
+                requested_size = 'large-v3-turbo'
+            model_path = f"mlx-community/whisper-{requested_size}"
             print(f"TRANSCRIPTION_WORKER: Using MLX-Whisper model: {model_path}", file=sys.stderr)
 
             # Redirect stdout to avoid extra output from MLX-Whisper
@@ -54,14 +56,27 @@ def main():
             from contextlib import redirect_stdout
 
             with redirect_stdout(io.StringIO()) as captured_output:
-                result = mlx_whisper.transcribe(
-                    params['audio_path'],
-                    path_or_hf_repo=model_path,
-                    language=params['language'],
-                    word_timestamps=True,
-                    initial_prompt=params['prompt'],
-                    verbose=False
-                )
+                try:
+                    result = mlx_whisper.transcribe(
+                        params['audio_path'],
+                        path_or_hf_repo=model_path,
+                        language=params['language'],
+                        word_timestamps=True,
+                        initial_prompt=params['prompt'],
+                        verbose=False
+                    )
+                except Exception as _me:
+                    # Fallback to large-v2 if requested size fails
+                    fallback_path = "mlx-community/whisper-large-v2"
+                    print(f"TRANSCRIPTION_WORKER: Requested MLX model failed ({_me}); falling back to {fallback_path}", file=sys.stderr)
+                    result = mlx_whisper.transcribe(
+                        params['audio_path'],
+                        path_or_hf_repo=fallback_path,
+                        language=params['language'],
+                        word_timestamps=True,
+                        initial_prompt=params['prompt'],
+                        verbose=False
+                    )
         elif params['model_type'] == 'faster-whisper':
             from faster_whisper import WhisperModel
             # Allow GPU/Metal if available; otherwise fallback to CPU

@@ -68,7 +68,7 @@ class ProcessingThread(QThread):
             transcriber = Transcriber(
                 model=self.config.get('whisper_model', 'openai-whisper'),  # Use openai-whisper for best accuracy
                 model_size=self.config.get('model_size', 'large-v2'),
-                # Use large-v2 for best accuracy like working implementation
+                # Use large-v2 by default; supports 'large-v3-turbo' if installed
                 language=self.config.get('language', None)  # None for auto-detection
             )
 
@@ -402,6 +402,20 @@ class MainWindow(QMainWindow):
         model_layout.addWidget(self.model_combo)
         options_layout.addLayout(model_layout)
 
+        # Whisper model size selection
+        size_layout = QHBoxLayout()
+        size_layout.addWidget(QLabel("Model Size:"))
+        self.model_size_combo = QComboBox()
+        self.model_size_combo.addItems([
+            'large-v3-turbo', 'large-v3', 'large-v2', 'large', 'medium', 'small', 'base', 'tiny'
+        ])
+        self.model_size_combo.setToolTip(
+            "Preferred size for Whisper engines. 'large-v3-turbo' requires recent Whisper/Faster-Whisper. "
+            "If unavailable, the app will fall back to large-v2 automatically."
+        )
+        size_layout.addWidget(self.model_size_combo)
+        options_layout.addLayout(size_layout)
+
         # Content type selection
         content_layout = QHBoxLayout()
         content_layout.addWidget(QLabel("Content:"))
@@ -548,27 +562,37 @@ class MainWindow(QMainWindow):
         options_layout.addWidget(QLabel("Whisper Model:"), 0, 0)
         options_layout.addWidget(self.whisper_model_combo, 0, 1)
 
+        # Whisper model size
+        options_layout.addWidget(QLabel("Model Size:"), 1, 0)
+        self.model_size_combo = QComboBox()
+        self.model_size_combo.addItems(['large-v3-turbo', 'large-v3', 'large-v2', 'large', 'medium', 'small', 'base', 'tiny'])
+        self.model_size_combo.setToolTip(
+            "Preferred size for Whisper engines. 'large-v3-turbo' requires recent Whisper/Faster-Whisper. "
+            "If unavailable, the app will fall back to large-v2 automatically."
+        )
+        options_layout.addWidget(self.model_size_combo, 1, 1)
+
         # Chord detection method
         self.chord_method_combo = QComboBox()
         self.chord_method_combo.addItems(['chordino', 'chromagram'])
-        options_layout.addWidget(QLabel("Chord Detection:"), 1, 0)
-        options_layout.addWidget(self.chord_method_combo, 1, 1)
+        options_layout.addWidget(QLabel("Chord Detection:"), 2, 0)
+        options_layout.addWidget(self.chord_method_combo, 2, 1)
 
         # Melody extraction method
         self.melody_method_combo = QComboBox()
         self.melody_method_combo.addItems(['basic-pitch', 'crepe'])
-        options_layout.addWidget(QLabel("Melody Extraction:"), 2, 0)
-        options_layout.addWidget(self.melody_method_combo, 2, 1)
+        options_layout.addWidget(QLabel("Melody Extraction:"), 3, 0)
+        options_layout.addWidget(self.melody_method_combo, 3, 1)
 
         # Use Demucs
         self.use_demucs_check = QCheckBox("Use Demucs (Source Separation)")
         self.use_demucs_check.setChecked(True)
-        options_layout.addWidget(self.use_demucs_check, 3, 0, 1, 2)
+        options_layout.addWidget(self.use_demucs_check, 4, 0, 1, 2)
 
         # Save intermediate files
         self.save_intermediate_check = QCheckBox("Save Intermediate Files")
         self.save_intermediate_check.setChecked(True)
-        options_layout.addWidget(self.save_intermediate_check, 4, 0, 1, 2)
+        options_layout.addWidget(self.save_intermediate_check, 5, 0, 1, 2)
 
         layout.addWidget(options_group)
 
@@ -675,6 +699,7 @@ class MainWindow(QMainWindow):
         # Get processing configuration
         config = {
             'whisper_model': self.whisper_model_combo.currentText(),
+            'model_size': self.model_size_combo.currentText(),
             'chord_method': self.chord_method_combo.currentText(),
             'melody_method': self.melody_method_combo.currentText(),
             'use_demucs': self.use_demucs_check.isChecked(),
@@ -865,6 +890,11 @@ class MainWindow(QMainWindow):
         if index >= 0:
             self.whisper_model_combo.setCurrentIndex(index)
 
+        model_size = self.settings.value('model_size', 'large-v2')
+        index = self.model_size_combo.findText(model_size)
+        if index >= 0:
+            self.model_size_combo.setCurrentIndex(index)
+
         chord_method = self.settings.value('chord_method', 'chordino')
         index = self.chord_method_combo.findText(chord_method)
         if index >= 0:
@@ -885,6 +915,7 @@ class MainWindow(QMainWindow):
 
         # Save processing options
         self.settings.setValue('whisper_model', self.whisper_model_combo.currentText())
+        self.settings.setValue('model_size', self.model_size_combo.currentText())
         self.settings.setValue('chord_method', self.chord_method_combo.currentText())
         self.settings.setValue('melody_method', self.melody_method_combo.currentText())
         self.settings.setValue('use_demucs', self.use_demucs_check.isChecked())

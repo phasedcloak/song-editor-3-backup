@@ -67,8 +67,8 @@ class ProcessingThread(QThread):
 
             transcriber = Transcriber(
                 model=self.config.get('whisper_model', 'openai-whisper'),  # Use openai-whisper for best accuracy
-                model_size=self.config.get('model_size', 'large-v2'),
-                # Use large-v2 by default; supports 'large-v3-turbo' if installed
+                model_size=self.config.get('model_size', 'large-v3-turbo'),
+                # Default to large-v3-turbo; falls back when unavailable
                 language=self.config.get('language', None)  # None for auto-detection
             )
 
@@ -890,7 +890,7 @@ class MainWindow(QMainWindow):
         if index >= 0:
             self.whisper_model_combo.setCurrentIndex(index)
 
-        model_size = self.settings.value('model_size', 'large-v2')
+        model_size = self.settings.value('model_size', 'large-v3-turbo')
         index = self.model_size_combo.findText(model_size)
         if index >= 0:
             self.model_size_combo.setCurrentIndex(index)

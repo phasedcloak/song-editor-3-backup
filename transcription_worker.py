@@ -45,7 +45,7 @@ def main():
 
             import mlx_whisper
             # Try requested size first (normalize 'turbo' to 'large-v3-turbo'); fallback to tiny
-            requested_size = str(params.get('model_size', 'large-v2')).strip().lower()
+            requested_size = str(params.get('model_size', 'large-v3-turbo')).strip().lower()
             if requested_size in ('turbo', 'v3-turbo', 'large-turbo'):
                 requested_size = 'large-v3-turbo'
             model_path = f"mlx-community/whisper-{requested_size}"

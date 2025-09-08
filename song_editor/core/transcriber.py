@@ -34,7 +34,7 @@ class Transcriber:
     def __init__(
         self,
         model: str = "faster-whisper",  # Changed default to faster-whisper for GPU acceleration
-        model_size: str = "large-v2",
+        model_size: str = "large-v3-turbo",
         alternatives_count: int = 5,
         confidence_threshold: float = 0.5,
         language: Optional[str] = None,

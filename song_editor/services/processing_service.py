@@ -95,7 +95,7 @@ class ProcessingService:
 
             transcriber = Transcriber(
                 model=config.get('whisper_model', 'openai-whisper'),
-                model_size=config.get('model_size', 'large-v2'),
+                model_size=config.get('model_size', 'large-v3-turbo'),
                 language=config.get('language', None)
             )
 

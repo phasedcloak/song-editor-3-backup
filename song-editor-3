@@ -1,0 +1,9 @@
+#!/bin/bash
+# Song Editor 3 Launcher Script
+# Suppresses pkg_resources deprecation warning
+
+# Set PYTHONWARNINGS to suppress pretty_midi pkg_resources warning
+export PYTHONWARNINGS="ignore::UserWarning:pretty_midi.instrument"
+
+# Run the application
+exec python -m song_editor "$@"

@@ -43,6 +43,68 @@ except ImportError:
 # ChordDetector will be imported lazily when needed
 
 
+def print_separation_models_info():
+    """Print information about available separation models."""
+    print("🎵 Song Editor 3 - Available Separation Models")
+    print("=" * 60)
+
+    # Print Demucs models
+    print("\n🔸 Demucs Models (Built-in):")
+    print("   Engine: demucs")
+    print("   Models:")
+    demucs_models = [
+        "htdemucs        - Default 4-stem model (drums, bass, vocals, guitar/piano/other)",
+        "htdemucs_ft     - Fine-tuned version with better quality",
+        "htdemucs_6s     - 6-stem model (adds guitar and piano separation)",
+        "hdemucs_mmi     - MMI version with improved quality",
+        "bag_of_models   - Ensemble of multiple models for best quality"
+    ]
+    for model in demucs_models:
+        print(f"     • {model}")
+
+    # Print Audio-Separator models if available
+    print("\n🔸 Audio-Separator Models (Enhanced Performance):")
+    try:
+        from song_editor.core.audio_separator_processor import AudioSeparatorProcessor
+
+        if AudioSeparatorProcessor.is_available():
+            print("   Engine: audio-separator")
+            print("   Status: ✅ Available")
+            print("   GPU Support: CoreML (Apple Silicon), CUDA (NVIDIA)")
+
+            separator = AudioSeparatorProcessor()
+            models = separator.get_available_models()
+
+            print(f"   Available Models ({len(models)}):")
+            for i, model in enumerate(models, 1):
+                status = "💾" if model.get('cached', False) else "⬇️"
+                print(f"     {i:2d}. {status} {model['name']} ({model['estimated_size_mb']}MB)")
+                print(f"         {model['description']}")
+                print(f"         Quality: {model['quality']} | Speed: {model['speed']}")
+                print(f"         Use: {model['recommended_use']}")
+                print()
+
+        else:
+            print("   Status: ❌ Not available (install with: pip install 'audio-separator[gpu]')")
+            print("   Models: Use --separation-engine demucs instead")
+
+    except Exception as e:
+        print(f"   Error loading audio-separator: {e}")
+
+    # Print usage examples
+    print("\n📋 Usage Examples:")
+    print("   # Use Demucs (default)")
+    print("   song-editor-3 song.wav --separation-engine demucs --demucs-model htdemucs_ft")
+    print()
+    print("   # Use Audio-Separator (better performance)")
+    print("   song-editor-3 song.wav --separation-engine audio-separator")
+    print("   song-editor-3 song.wav --separation-engine audio-separator --audio-separator-model UVR_MDXNET_21_OVERLAP_9")
+    print()
+    print("   # GPU acceleration options")
+    print("   song-editor-3 song.wav --separation-engine audio-separator --use-coreml  # Apple Silicon")
+    print("   song-editor-3 song.wav --separation-engine audio-separator --use-cuda    # NVIDIA GPUs")
+
+
 def find_audio_files(directory: str) -> list:
     """Find all audio files in a directory."""
     audio_extensions = {'.wav', '.mp3', '.flac', '.aac', '.ogg', '.m4a', '.wma'}
@@ -107,6 +169,10 @@ def process_audio_file(
     output_dir: Optional[str] = None,
     whisper_model: str = "openai-whisper",
     use_chordino: bool = True,
+    separation_engine: str = 'demucs',
+    audio_separator_model: str = 'UVR_MDXNET_KARA_2',
+    use_cuda: bool = False,
+    use_coreml: bool = True,
     use_demucs: bool = True,
     save_intermediate: bool = False,
     demucs_model: str = 'htdemucs',
@@ -120,7 +186,12 @@ def process_audio_file(
         audio_processor = AudioProcessor(
             use_demucs=use_demucs,
             save_intermediate=save_intermediate,
-            demucs_model=demucs_model
+            demucs_model=demucs_model,
+            # Audio-separator parameters
+            separation_engine=separation_engine,
+            audio_separator_model=audio_separator_model,
+            use_cuda=use_cuda,
+            use_coreml=use_coreml
         )
 
         transcriber = Transcriber(
@@ -221,6 +292,11 @@ def process_audio_file(
 
 def main() -> int:
     """Main application entry point"""
+    # Suppress pkg_resources deprecation warning (scheduled for removal 2025-11-30)
+    import warnings
+    warnings.filterwarnings('ignore', message='pkg_resources is deprecated', category=DeprecationWarning)
+    warnings.filterwarnings('ignore', message='.*pkg_resources.*', category=UserWarning)
+
     # Parse command line arguments
     parser = argparse.ArgumentParser(
         description="Song Editor 3 - Professional Audio Transcription and Editing Tool",
@@ -232,6 +308,14 @@ Examples:
   song-editor-3 song.wav --no-gui                 # Process without GUI
   song-editor-3 song.wav --output-dir ./output    # Specify output directory
   song-editor-3 song.wav --whisper-model faster-whisper  # Use different model
+
+  # Audio separation options:
+  song-editor-3 song.wav --list-separation-models    # List available separation models
+  song-editor-3 song.wav --separation-engine audio-separator  # Use audio-separator
+  song-editor-3 song.wav --separation-engine audio-separator --audio-separator-model UVR_MDXNET_21_OVERLAP_9  # Use specific model
+  song-editor-3 song.wav --separation-engine demucs --demucs-model htdemucs_ft  # Use Demucs with fine-tuned model
+
+  # Batch processing:
   song-editor-3 --input-dir ./audio_files --no-gui  # Process all audio files in directory
   song-editor-3 --input-dir ./songs --output-dir ./processed  # Batch process with custom output
         """
@@ -322,6 +406,39 @@ Examples:
         help='Logging level (default: INFO)'
     )
 
+    # New separation engine options
+    parser.add_argument(
+        '--separation-engine',
+        default='demucs',
+        choices=['demucs', 'audio-separator'],
+        help='Source separation engine to use (default: demucs). Audio-separator provides better performance and more models.'
+    )
+
+    parser.add_argument(
+        '--audio-separator-model',
+        default='UVR_MDXNET_KARA_2',
+        help='Audio-separator model to use (default: UVR_MDXNET_KARA_2). Use --list-separation-models to see available options.'
+    )
+
+    parser.add_argument(
+        '--list-separation-models',
+        action='store_true',
+        help='List all available separation models and exit'
+    )
+
+    parser.add_argument(
+        '--use-cuda',
+        action='store_true',
+        help='Enable CUDA acceleration for audio-separator (NVIDIA GPUs only)'
+    )
+
+    parser.add_argument(
+        '--use-coreml',
+        action='store_true',
+        default=True,
+        help='Enable CoreML acceleration for audio-separator (Apple Silicon, default: True)'
+    )
+
     parser.add_argument(
         '--content-type',
         default='general',
@@ -397,6 +514,11 @@ Examples:
             print(f"    {key}: {value}")
         return 0
 
+    # Handle separation model listing
+    if args.list_separation_models:
+        print_separation_models_info()
+        return 0
+
     # Best-effort: use spawn to avoid semaphore leaks from forked workers (Demucs/torch)
     try:
         import multiprocessing as _mp
@@ -447,6 +569,11 @@ Examples:
                     output_dir=args.output_dir,
                     whisper_model=args.whisper_model,
                     use_chordino=args.use_chordino,
+                    # New separation engine parameters
+                    separation_engine=args.separation_engine,
+                    audio_separator_model=args.audio_separator_model,
+                    use_cuda=args.use_cuda,
+                    use_coreml=args.use_coreml,
                     use_demucs=args.use_demucs,
                     save_intermediate=args.save_intermediate,
                     demucs_model=args.demucs_model
@@ -508,6 +635,11 @@ Examples:
             output_dir=args.output_dir,
             whisper_model=args.whisper_model,
             use_chordino=args.use_chordino,
+            # New separation engine parameters
+            separation_engine=args.separation_engine,
+            audio_separator_model=args.audio_separator_model,
+            use_cuda=args.use_cuda,
+            use_coreml=args.use_coreml,
             use_demucs=args.use_demucs,
             save_intermediate=args.save_intermediate,
             demucs_model=args.demucs_model,

@@ -40,8 +40,11 @@ def main():
 
         notes = []
 
+        print(f"MELODY_WORKER: Method selection - requested: '{params['method']}'", file=sys.stderr, flush=True)
+
         if params['method'] == 'basic_pitch':
             print("MELODY_WORKER: Using Basic Pitch for melody extraction", file=sys.stderr)
+            print(f"MELODY_WORKER: Requested method: {params['method']}", flush=True)
             try:
                 notes = extract_basic_pitch(audio, sample_rate, params)
             except Exception as e:
@@ -72,7 +75,7 @@ def main():
                         notes = []
         else:
             # Default to librosa fallback
-            print("MELODY_WORKER: Using librosa fallback for melody extraction", file=sys.stderr)
+            print(f"MELODY_WORKER: Using librosa fallback for melody extraction (method: '{params['method']}')", file=sys.stderr, flush=True)
             try:
                 notes = extract_librosa_fallback(audio, sample_rate, params)
             except Exception as e:
@@ -88,78 +91,88 @@ def main():
 
 def extract_basic_pitch(audio, sample_rate, params):
     """Extract melody using Basic Pitch in isolated process."""
+    print(f"MELODY_WORKER: Basic Pitch - starting function", file=sys.stderr, flush=True)
     try:
+        print(f"MELODY_WORKER: Basic Pitch - importing", file=sys.stderr, flush=True)
         # Import Basic Pitch (this can cause bus errors on macOS)
         from basic_pitch.inference import predict
+        print(f"MELODY_WORKER: Basic Pitch - import successful", file=sys.stderr, flush=True)
     except Exception as e:
-        print(f"MELODY_WORKER: Failed to import Basic Pitch: {e}", file=sys.stderr)
+        print(f"MELODY_WORKER: Failed to import Basic Pitch: {e}", file=sys.stderr, flush=True)
         return []
 
-        # Save audio to temporary file
+    # Save audio to temporary file
+    temp_path = None
+    try:
         with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as temp_file:
             temp_path = temp_file.name
 
-        try:
-            # Save audio
-            sf.write(temp_path, audio.astype(np.float32), sample_rate, subtype='PCM_16')
+        print(f"MELODY_WORKER: Basic Pitch - saving audio to {temp_path}", file=sys.stderr, flush=True)
+        # Save audio
+        sf.write(temp_path, audio.astype(np.float32), sample_rate, subtype='PCM_16')
+        print(f"MELODY_WORKER: Basic Pitch - audio saved, running predict", file=sys.stderr, flush=True)
 
-            # Suppress Basic Pitch verbose output
-            import logging as python_logging
-            original_level = python_logging.getLogger().level
-            python_logging.getLogger().setLevel(python_logging.WARNING)
+        # Suppress Basic Pitch verbose output
+        import logging as python_logging
+        original_level = python_logging.getLogger().level
+        python_logging.getLogger().setLevel(python_logging.WARNING)
 
-            # Run Basic Pitch inference
-            model_output, midi_data, note_events = predict(temp_path)
+        # Run Basic Pitch inference
+        model_output, midi_data, note_events = predict(temp_path)
+        print(f"MELODY_WORKER: Basic Pitch - predict completed, found {len(note_events)} note events", file=sys.stderr, flush=True)
 
-            # Restore logging level
-            python_logging.getLogger().setLevel(original_level)
+        # Restore logging level
+        python_logging.getLogger().setLevel(original_level)
 
-            # Process note events
-            notes = []
-            for note_event in note_events:
-                start_time = note_event[0]
-                end_time = note_event[1]
-                pitch_midi = int(note_event[2])
-                amplitude = note_event[3]
+        # Process note events
+        notes = []
+        for note_event in note_events:
+            start_time = note_event[0]
+            end_time = note_event[1]
+            pitch_midi = int(note_event[2])
+            amplitude = note_event[3]
 
-                # Filter by pitch range
-                if params['min_pitch'] <= pitch_midi <= params['max_pitch']:
-                    duration = end_time - start_time
+            # Filter by pitch range
+            if params['min_pitch'] <= pitch_midi <= params['max_pitch']:
+                duration = end_time - start_time
 
-                    # Filter by minimum duration
-                    if duration >= params['min_note_duration']:
-                        # Calculate confidence from amplitude
-                        confidence = min(1.0, amplitude / 0.5)
+                # Filter by minimum duration
+                if duration >= params['min_note_duration']:
+                    # Calculate confidence from amplitude
+                    confidence = min(1.0, amplitude / 0.5)
 
-                        if confidence >= params['min_confidence']:
-                            # Convert MIDI to note name
-                            note_names = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
-                            note = pitch_midi % 12
-                            octave = (pitch_midi // 12) - 1
-                            pitch_name = f"{note_names[note]}{octave}"
+                    if confidence >= params['min_confidence']:
+                        # Convert MIDI to note name
+                        note_names = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+                        note = pitch_midi % 12
+                        octave = (pitch_midi // 12) - 1
+                        pitch_name = f"{note_names[note]}{octave}"
 
-                            note_data = {
-                                'pitch_midi': pitch_midi,
-                                'pitch_name': pitch_name,
-                                'start': start_time,
-                                'end': end_time,
-                                'duration': duration,
-                                'velocity': int(amplitude * 127),
-                                'confidence': confidence,
-                                'detection_method': 'basic_pitch'
-                            }
-                            notes.append(note_data)
+                        note_data = {
+                            'pitch_midi': pitch_midi,
+                            'pitch_name': pitch_name,
+                            'start': start_time,
+                            'end': end_time,
+                            'duration': duration,
+                            'velocity': int(amplitude * 127),
+                            'confidence': confidence,
+                            'detection_method': 'basic_pitch'
+                        }
+                        notes.append(note_data)
 
-            return notes
-
-        finally:
-            # Clean up temporary file
-            if os.path.exists(temp_path):
-                os.unlink(temp_path)
+        print(f"MELODY_WORKER: Basic Pitch - returning {len(notes)} notes", file=sys.stderr, flush=True)
+        return notes
 
     except Exception as e:
-        print(f"MELODY_WORKER: Basic Pitch error: {e}", file=sys.stderr)
+        print(f"MELODY_WORKER: Basic Pitch error: {e}", file=sys.stderr, flush=True)
         return []
+    finally:
+        # Clean up temporary file
+        if temp_path and os.path.exists(temp_path):
+            try:
+                os.unlink(temp_path)
+            except Exception as e:
+                print(f"MELODY_WORKER: Failed to cleanup temp file: {e}", file=sys.stderr)
 
 def extract_crepe(audio, sample_rate, params):
     """Extract melody using CREPE in isolated process."""

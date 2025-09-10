@@ -48,7 +48,24 @@ def main():
             requested_size = str(params.get('model_size', 'large-v3-turbo')).strip().lower()
             if requested_size in ('turbo', 'v3-turbo', 'large-turbo'):
                 requested_size = 'large-v3-turbo'
+            # Prefer local bundled models if present
             model_path = f"mlx-community/whisper-{requested_size}"
+            try:
+                base_dir = os.path.dirname(__file__)
+                local_dir = os.path.join(os.path.dirname(base_dir), 'models', f'whisper-{requested_size}')
+                if os.path.isdir(local_dir):
+                    model_path = local_dir
+            except Exception:
+                pass
+            if getattr(sys, 'frozen', False):
+                try:
+                    meipass_dir = getattr(sys, '_MEIPASS', None)
+                    if meipass_dir:
+                        local_dir = os.path.join(meipass_dir, 'models', f'whisper-{requested_size}')
+                        if os.path.isdir(local_dir):
+                            model_path = local_dir
+                except Exception:
+                    pass
             print(f"TRANSCRIPTION_WORKER: Using MLX-Whisper model: {model_path}", file=sys.stderr)
 
             # Redirect stdout to avoid extra output from MLX-Whisper

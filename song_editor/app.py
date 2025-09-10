@@ -141,7 +141,7 @@ def process_audio_file(
             logging.warning(f"Chord detection not available: {e}")
             chord_detector = None
 
-        melody_extractor = MelodyExtractor()
+        melody_extractor = MelodyExtractor(method='basic-pitch')
 
         # Process audio
         logging.info("🔧 Processing audio...")

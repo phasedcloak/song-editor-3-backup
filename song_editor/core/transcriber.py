@@ -81,13 +81,38 @@ class Transcriber:
             # Fallback: Try to import and use OpenAI Whisper
             try:
                 import whisper
-                # Try requested size, then fall back to large-v3 and large-v2
-                candidates = [self.model_size, "large-v3", "large-v2"]
+                # Try requested size (map large-v3-turbo to 'turbo' for OpenAI), then fall back
+                if self.model_size in ("large-v3-turbo", "turbo"):
+                    candidates = ["turbo", "large-v3", "large-v2"]
+                else:
+                    candidates = [self.model_size, "large-v3", "large-v2"]
                 last_error = None
                 for candidate in candidates:
                     try:
                         logging.info(f"Loading OpenAI Whisper model: {candidate} (requested: {self.model_size})")
-                        self.whisper_model = whisper.load_model(candidate)
+                        # Prefer local bundled cache if available
+                        model_root = None
+                        try:
+                            base_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+                            local_dir = os.path.join(base_dir, 'models', 'whisper')
+                            if os.path.isdir(local_dir):
+                                model_root = local_dir
+                        except Exception:
+                            pass
+                        if getattr(__import__('sys'), 'frozen', False):
+                            try:
+                                import sys as _sys
+                                meipass_dir = getattr(_sys, '_MEIPASS', None)
+                                if meipass_dir:
+                                    local_dir = os.path.join(meipass_dir, 'models', 'whisper')
+                                    if os.path.isdir(local_dir):
+                                        model_root = local_dir
+                            except Exception:
+                                pass
+                        if model_root:
+                            self.whisper_model = whisper.load_model(candidate, download_root=model_root)
+                        else:
+                            self.whisper_model = whisper.load_model(candidate)
                         return
                     except Exception as candidate_error:
                         last_error = candidate_error
@@ -105,8 +130,28 @@ class Transcriber:
                 last_error = None
                 for candidate in candidates:
                     try:
-                        logging.info(f"Loading Faster Whisper model: {candidate} with GPU acceleration")
-                        self.whisper_model = WhisperModel(candidate, device='auto', compute_type='float32')
+                        # Prefer local bundled models if available
+                        model_arg = candidate
+                        try:
+                            base_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+                            local_dir = os.path.join(base_dir, 'models', 'faster-whisper', candidate)
+                            if os.path.isdir(local_dir):
+                                model_arg = local_dir
+                        except Exception:
+                            pass
+                        if getattr(__import__('sys'), 'frozen', False):
+                            try:
+                                import sys as _sys
+                                meipass_dir = getattr(_sys, '_MEIPASS', None)
+                                if meipass_dir:
+                                    local_dir = os.path.join(meipass_dir, 'models', 'faster-whisper', candidate)
+                                    if os.path.isdir(local_dir):
+                                        model_arg = local_dir
+                            except Exception:
+                                pass
+
+                        logging.info(f"Loading Faster Whisper model: {model_arg} (requested: {candidate})")
+                        self.whisper_model = WhisperModel(model_arg, device='auto', compute_type='float32')
                         return
                     except Exception as candidate_error:
                         last_error = candidate_error
@@ -355,6 +400,7 @@ class Transcriber:
 
     def _transcribe_with_forked_process(self, audio: np.ndarray, sample_rate: int, model_type: str) -> List[Dict[str, Any]]:
         """Transcribe using a forked process to avoid library conflicts."""
+        start_time = datetime.now()
         try:
             # Save audio to temporary file
             temp_path = self._save_audio_temp(audio, sample_rate)
@@ -427,7 +473,9 @@ class Transcriber:
                     if result.returncode == 0:
                         try:
                             words = json.loads(result.stdout.strip())
-                            logging.info(f"Forked {model_type} transcription succeeded: {len(words)} words")
+                            # Calculate and log transcription timing
+                            processing_time = (datetime.now() - start_time).total_seconds()
+                            logging.info(f"Forked {model_type} transcription succeeded: {len(words)} words in {processing_time:.1f} seconds")
                             return words
                         except json.JSONDecodeError as e:
                             logging.error(f"Failed to parse transcription output: {e}")
@@ -593,11 +641,6 @@ class Transcriber:
                         word['text'],
                         word['confidence']
                     )[:self.alternatives_count]
-
-            # Calculate processing time
-            processing_time = (datetime.now() - start_time).total_seconds()
-
-            logging.info(f"Transcription completed: {len(words)} words in {processing_time:.1f} seconds")
 
             return words
 

@@ -581,6 +581,10 @@ class MainWindow(QMainWindow):
         # Melody extraction method
         self.melody_method_combo = QComboBox()
         self.melody_method_combo.addItems(['basic-pitch', 'crepe'])
+        # Set default to basic-pitch
+        index = self.melody_method_combo.findText('basic-pitch')
+        if index >= 0:
+            self.melody_method_combo.setCurrentIndex(index)
         options_layout.addWidget(QLabel("Melody Extraction:"), 3, 0)
         options_layout.addWidget(self.melody_method_combo, 3, 1)
 

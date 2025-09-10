@@ -62,7 +62,12 @@ class ProcessingThread(QThread):
             # Initialize processors
             audio_processor = AudioProcessor(
                 use_demucs=self.config.get('use_demucs', True),
-                save_intermediate=self.config.get('save_intermediate', True)
+                save_intermediate=self.config.get('save_intermediate', True),
+                # Audio-separator parameters
+                separation_engine=self.config.get('separation_engine', 'demucs'),
+                audio_separator_model=self.config.get('audio_separator_model', 'UVR_MDXNET_KARA_2'),
+                use_cuda=self.config.get('use_cuda', False),
+                use_coreml=self.config.get('use_coreml', True)
             )
 
             transcriber = Transcriber(
@@ -588,15 +593,46 @@ class MainWindow(QMainWindow):
         options_layout.addWidget(QLabel("Melody Extraction:"), 3, 0)
         options_layout.addWidget(self.melody_method_combo, 3, 1)
 
-        # Use Demucs
+        # Source separation method
+        self.separation_method_combo = QComboBox()
+        self.separation_method_combo.addItems(['demucs', 'audio-separator'])
+        # Set default to demucs for compatibility
+        index = self.separation_method_combo.findText('demucs')
+        if index >= 0:
+            self.separation_method_combo.setCurrentIndex(index)
+        options_layout.addWidget(QLabel("Source Separation:"), 4, 0)
+        options_layout.addWidget(self.separation_method_combo, 4, 1)
+
+        # Audio-separator model selection (only shown when audio-separator is selected)
+        self.audio_separator_model_combo = QComboBox()
+        self.audio_separator_model_combo.addItems([
+            'UVR_MDXNET_KARA_2',      # Best for karaoke
+            'UVR_MDXNET_21_OVERLAP_9', # High quality multi-stem
+            'UVR_MDXNET_21_OVERLAP_7', # Balanced quality/speed
+            'UVR_MDXNET_21_OVERLAP_5'  # Fast processing
+        ])
+        self.audio_separator_model_combo.setCurrentText('UVR_MDXNET_KARA_2')
+        options_layout.addWidget(QLabel("Audio-Sep Model:"), 5, 0)
+        options_layout.addWidget(self.audio_separator_model_combo, 5, 1)
+
+        # GPU acceleration options
+        self.use_cuda_check = QCheckBox("Use CUDA (NVIDIA GPU)")
+        self.use_cuda_check.setChecked(False)
+        options_layout.addWidget(self.use_cuda_check, 6, 0)
+
+        self.use_coreml_check = QCheckBox("Use CoreML (Apple Silicon)")
+        self.use_coreml_check.setChecked(True)  # Default for Mac
+        options_layout.addWidget(self.use_coreml_check, 6, 1)
+
+        # Legacy checkbox (hide it)
         self.use_demucs_check = QCheckBox("Use Demucs (Source Separation)")
         self.use_demucs_check.setChecked(True)
-        options_layout.addWidget(self.use_demucs_check, 4, 0, 1, 2)
+        self.use_demucs_check.setVisible(False)  # Hide the old checkbox
 
         # Save intermediate files
         self.save_intermediate_check = QCheckBox("Save Intermediate Files")
         self.save_intermediate_check.setChecked(True)
-        options_layout.addWidget(self.save_intermediate_check, 5, 0, 1, 2)
+        options_layout.addWidget(self.save_intermediate_check, 7, 0, 1, 2)
 
         layout.addWidget(options_group)
 
@@ -706,7 +742,13 @@ class MainWindow(QMainWindow):
             'model_size': self.model_size_combo.currentText(),
             'chord_method': self.chord_method_combo.currentText(),
             'melody_method': self.melody_method_combo.currentText(),
-            'use_demucs': self.use_demucs_check.isChecked(),
+            # Audio-separator options
+            'separation_engine': self.separation_method_combo.currentText(),
+            'audio_separator_model': self.audio_separator_model_combo.currentText(),
+            'use_cuda': self.use_cuda_check.isChecked(),
+            'use_coreml': self.use_coreml_check.isChecked(),
+            # Legacy compatibility
+            'use_demucs': self.separation_method_combo.currentText() == 'demucs',
             'save_intermediate': self.save_intermediate_check.isChecked(),
             'language': None  # None for auto-detection
         }
@@ -909,6 +951,21 @@ class MainWindow(QMainWindow):
         if index >= 0:
             self.melody_method_combo.setCurrentIndex(index)
 
+        # Load audio-separator settings
+        separation_engine = self.settings.value('separation_engine', 'demucs')
+        index = self.separation_method_combo.findText(separation_engine)
+        if index >= 0:
+            self.separation_method_combo.setCurrentIndex(index)
+
+        audio_separator_model = self.settings.value('audio_separator_model', 'UVR_MDXNET_KARA_2')
+        index = self.audio_separator_model_combo.findText(audio_separator_model)
+        if index >= 0:
+            self.audio_separator_model_combo.setCurrentIndex(index)
+
+        self.use_cuda_check.setChecked(self.settings.value('use_cuda', False, type=bool))
+        self.use_coreml_check.setChecked(self.settings.value('use_coreml', True, type=bool))
+
+        # Legacy compatibility
         self.use_demucs_check.setChecked(self.settings.value('use_demucs', True, type=bool))
         self.save_intermediate_check.setChecked(self.settings.value('save_intermediate', True, type=bool))
 
@@ -922,7 +979,13 @@ class MainWindow(QMainWindow):
         self.settings.setValue('model_size', self.model_size_combo.currentText())
         self.settings.setValue('chord_method', self.chord_method_combo.currentText())
         self.settings.setValue('melody_method', self.melody_method_combo.currentText())
-        self.settings.setValue('use_demucs', self.use_demucs_check.isChecked())
+        # Audio-separator settings
+        self.settings.setValue('separation_engine', self.separation_method_combo.currentText())
+        self.settings.setValue('audio_separator_model', self.audio_separator_model_combo.currentText())
+        self.settings.setValue('use_cuda', self.use_cuda_check.isChecked())
+        self.settings.setValue('use_coreml', self.use_coreml_check.isChecked())
+        # Legacy compatibility
+        self.settings.setValue('use_demucs', self.separation_method_combo.currentText() == 'demucs')
         self.settings.setValue('save_intermediate', self.save_intermediate_check.isChecked())
 
     def load_audio_from_path(self, audio_path: str):

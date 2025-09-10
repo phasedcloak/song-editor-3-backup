@@ -26,6 +26,8 @@ crepe==0.0.16
 
 # Source Separation
 demucs==4.0.1
+# Optional: Alternative separation engine with better GPU support
+# audio-separator[gpu]>=0.36.0  # Cross-platform GPU acceleration (CUDA/CoreML)
 torch==2.2.2
 torchaudio==2.2.2
 

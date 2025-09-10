@@ -30,7 +30,12 @@ class AudioProcessor:
         target_sr: int = 44100,
         denoise_strength: float = 0.5,
         normalize_lufs: float = -23.0,
-        demucs_model: str = 'htdemucs'
+        demucs_model: str = 'htdemucs',
+        # Audio-separator options
+        separation_engine: str = 'demucs',  # 'demucs' or 'audio_separator'
+        audio_separator_model: str = 'UVR_MDXNET_KARA_2',
+        use_cuda: bool = False,
+        use_coreml: bool = True
     ):
         self.use_demucs = use_demucs
         self.save_intermediate = save_intermediate
@@ -39,12 +44,28 @@ class AudioProcessor:
         self.normalize_lufs = normalize_lufs
         self.demucs_model = demucs_model
 
+        # Audio-separator settings
+        self.separation_engine = separation_engine.lower()
+        self.audio_separator_model = audio_separator_model
+        self.use_cuda = use_cuda
+        self.use_coreml = use_coreml
+
         self.separator = None
+        self.audio_separator_processor = None
         self.audio_data = None
         self.processing_info = {}
 
-        if self.use_demucs:
-            self._initialize_demucs()
+        # Initialize appropriate separation engine
+        if self.separation_engine == 'audio_separator':
+            self._initialize_audio_separator()
+        elif self.separation_engine == 'demucs':
+            if self.use_demucs:
+                self._initialize_demucs()
+        else:
+            logging.warning(f"Unknown separation engine: {self.separation_engine}, falling back to demucs")
+            self.separation_engine = 'demucs'
+            if self.use_demucs:
+                self._initialize_demucs()
 
     def _initialize_demucs(self):
         """Initialize Demucs separator."""
@@ -61,6 +82,38 @@ class AudioProcessor:
         except Exception as e:
             logging.error(f"Failed to initialize Demucs: {e}")
             self.use_demucs = False
+
+    def _initialize_audio_separator(self):
+        """Initialize Audio-Separator processor."""
+        try:
+            # Import audio-separator lazily
+            from .audio_separator_processor import AudioSeparatorProcessor
+
+            if not AudioSeparatorProcessor.is_available():
+                raise ImportError("audio-separator library not available")
+
+            self.audio_separator_processor = AudioSeparatorProcessor(
+                model_name=self.audio_separator_model,
+                use_cuda=self.use_cuda,
+                use_coreml=self.use_coreml,
+                log_level=20  # INFO level
+            )
+
+            logging.info(f"Audio-Separator initialized successfully (model: {self.audio_separator_model})")
+            logging.info(f"GPU acceleration - CUDA: {self.use_cuda}, CoreML: {self.use_coreml}")
+
+        except ImportError as e:
+            logging.warning(f"Audio-Separator not available: {e}")
+            logging.info("Falling back to Demucs")
+            self.separation_engine = 'demucs'
+            if self.use_demucs:
+                self._initialize_demucs()
+        except Exception as e:
+            logging.error(f"Failed to initialize Audio-Separator: {e}")
+            logging.info("Falling back to Demucs")
+            self.separation_engine = 'demucs'
+            if self.use_demucs:
+                self._initialize_demucs()
 
     def _log_memory_usage(self, stage: str):
         """Log memory usage for a processing stage."""
@@ -248,115 +301,211 @@ class AudioProcessor:
             return audio
 
     def separate_sources(self, audio_path: str, audio: np.ndarray, sr: int) -> Dict[str, np.ndarray]:
-        """Separate audio sources using Demucs or fallback."""
-        if self.use_demucs and self.separator:
+        """Separate audio sources using selected engine (Demucs or Audio-Separator)."""
+        start_time = time.time()
+
+        # Use Audio-Separator if selected and available
+        if self.separation_engine == 'audio_separator' and self.audio_separator_processor:
             try:
-                logging.info("Separating audio sources with Demucs...")
-                start_time = time.time()
+                logging.info(f"Separating audio sources with Audio-Separator ({self.audio_separator_model})...")
 
-                # Import required modules
-                import torch
-                from demucs.separate import apply_model
-                # Ensure stereo by duplicating mono channel: [batch=1, channels=2, time]
-                if len(audio.shape) == 1:
-                    # Duplicate mono channel to create stereo
-                    audio_stereo = torch.tensor(audio, dtype=torch.float32).unsqueeze(0).repeat(1, 2, 1)
-                else:
-                    audio_stereo = torch.tensor(audio, dtype=torch.float32).unsqueeze(0)
+                # Audio-separator handles file I/O internally
+                result = self.audio_separator_processor.separate_audio(audio_path)
 
-                # Pick best available device (Metal/MPS on Apple Silicon, otherwise CPU)
-                device = 'cpu'
-                try:
-                    if hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
-                        device = 'mps'
-                    elif torch.cuda.is_available():
-                        device = 'cuda'
-                except Exception:
-                    device = 'cpu'
+                if result['success']:
+                    # Convert audio-separator output to expected format
+                    separated = {}
 
-                # Move model to device if possible
-                try:
-                    self.separator.to(device)
-                except Exception:
-                    device = 'cpu'
+                    # Map audio-separator stems to expected format
+                    stem_mapping = {
+                        'vocals': 'vocals',
+                        'instrumental': 'accompaniment',
+                        'drums': 'drums',
+                        'bass': 'bass',
+                        'other': 'other',
+                        'piano': 'piano',
+                        'guitar': 'guitar'
+                    }
 
-                audio_tensor = audio_stereo.to(device)
+                    # Load the separated audio files
+                    import soundfile as sf
+                    for stem_name, file_path in result['output_files'].items():
+                        try:
+                            audio_data, _ = sf.read(file_path)
+                            # Convert to mono if stereo
+                            if len(audio_data.shape) > 1:
+                                audio_data = np.mean(audio_data, axis=1)
 
-                # Log model/device
-                try:
-                    model_name = type(self.separator).__name__
-                    logging.info(f"Demucs model: {model_name} on device: {device}")
-                except Exception:
-                    logging.info(f"Demucs device: {device}")
+                            # Map to expected stem names
+                            expected_name = stem_mapping.get(stem_name, stem_name)
+                            separated[expected_name] = audio_data
 
-                # Separate sources using apply_model - correct API usage
-                # Safe apply_model call (avoid odd segment sizes that cause reshape errors)
-                try:
-                    sources_tensor = apply_model(
-                        self.separator,
-                        audio_tensor,
-                        shifts=0,           # no test-time augmentation for speed
-                        split=True,
-                        overlap=0.25,
-                        device=device
-                    )
-                except Exception as dm_e:
-                    logging.warning(f"Demucs apply_model failed on {device}: {dm_e}. Retrying on CPU with safe params...")
-                    try:
-                        self.separator.to('cpu')
-                    except Exception:
-                        pass
-                    audio_tensor_cpu = audio_stereo.to('cpu')
-                    sources_tensor = apply_model(
-                        self.separator,
-                        audio_tensor_cpu,
-                        shifts=1,          # default TTA for stability
-                        split=True,
-                        overlap=0.25,
-                        device='cpu'
-                    )
+                        except Exception as e:
+                            logging.warning(f"Failed to load separated stem {stem_name}: {e}")
+                            # Fallback to original audio
+                            separated[stem_name] = audio
 
-                # Convert back to dict format
-                separated = {}
-                source_names = ['drums', 'bass', 'other', 'vocals']  # HTDemucs order
-
-                # sources_tensor should be [batch, sources, channels, time]
-                if sources_tensor.dim() == 4:
-                    for i, source_name in enumerate(source_names):
-                        if i < sources_tensor.shape[1]:  # Check if source index exists
-                            source_tensor = sources_tensor[0, i]  # [channels, time]
-                            if source_tensor.dim() == 2:  # [channels, time]
-                                source_tensor = source_tensor.squeeze(0)  # Remove channel dimension if mono
-                            # Bring back to CPU for numpy conversion
-                            separated[source_name] = source_tensor.to('cpu').numpy()
+                    # Ensure we have vocals and accompaniment (required by other modules)
+                    if 'vocals' not in separated:
+                        if 'instrumental' in separated:
+                            # Calculate vocals as difference from instrumental
+                            separated['vocals'] = audio - separated['instrumental']
                         else:
-                            # Fallback if source not available
-                            separated[source_name] = audio
+                            separated['vocals'] = audio
+
+                    if 'accompaniment' not in separated:
+                        if 'vocals' in separated:
+                            separated['accompaniment'] = audio - separated['vocals']
+                        else:
+                            separated['accompaniment'] = audio
+
+                    separate_time = time.time() - start_time
+                    self.processing_info['separate_time'] = separate_time
+                    self._log_memory_usage('separate')
+
+                    logging.info(f"Audio-Separator separation completed in {separate_time:.2f}s")
+                    logging.info(f"Generated stems: {list(separated.keys())}")
+
+                    # Save separated sources for compatibility with other modules
+                    self._save_separated_sources(audio_path, separated, sr)
+
+                    return separated
+
                 else:
-                    # Fallback for unexpected tensor shape
-                    logging.warning(f"Unexpected Demucs output shape: {sources_tensor.shape}")
-                    return {'vocals': audio, 'accompaniment': audio}
-
-                separate_time = time.time() - start_time
-                self.processing_info['separate_time'] = separate_time
-                self._log_memory_usage('separate')
-
-                logging.info(f"Source separation completed in {separate_time:.2f}s")
-                
-                # Always save the separated sources as they are needed by other modules
-                self._save_separated_sources(audio_path, separated, sr)
-                
-                return separated
+                    logging.error(f"Audio-Separator failed: {result.get('error', 'Unknown error')}")
+                    # Fall back to Demucs or no separation
+                    if self.use_demucs and self.separator:
+                        logging.info("Falling back to Demucs...")
+                        return self._separate_with_demucs(audio_path, audio, sr, start_time)
+                    else:
+                        return self._fallback_separation(audio)
 
             except Exception as e:
-                logging.error(f"Demucs separation failed: {e}")
-                # Fall back to no separation
-                return {'vocals': audio, 'accompaniment': audio}
+                logging.error(f"Audio-Separator separation failed: {e}")
+                # Fall back to Demucs or no separation
+                if self.use_demucs and self.separator:
+                    logging.info("Falling back to Demucs...")
+                    return self._separate_with_demucs(audio_path, audio, sr, start_time)
+                else:
+                    return self._fallback_separation(audio)
+
+        # Use Demucs (original implementation)
+        elif self.separation_engine == 'demucs' and self.use_demucs and self.separator:
+            return self._separate_with_demucs(audio_path, audio, sr, start_time)
+
+        # Fallback to no separation
         else:
             logging.info("Using fallback source separation (no separation)")
-            # Simple fallback: assume vocals are in center frequencies
-            # This is a very basic approach
-            return {'vocals': audio, 'accompaniment': audio}
+            return self._fallback_separation(audio)
+
+    def _separate_with_demucs(self, audio_path: str, audio: np.ndarray, sr: int, start_time: float) -> Dict[str, np.ndarray]:
+        """Separate audio sources using Demucs."""
+        try:
+            logging.info("Separating audio sources with Demucs...")
+
+            # Import required modules
+            import torch
+            from demucs.separate import apply_model
+            # Ensure stereo by duplicating mono channel: [batch=1, channels=2, time]
+            if len(audio.shape) == 1:
+                # Duplicate mono channel to create stereo
+                audio_stereo = torch.tensor(audio, dtype=torch.float32).unsqueeze(0).repeat(1, 2, 1)
+            else:
+                audio_stereo = torch.tensor(audio, dtype=torch.float32).unsqueeze(0)
+
+            # Pick best available device (Metal/MPS on Apple Silicon, otherwise CPU)
+            device = 'cpu'
+            try:
+                if hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
+                    device = 'mps'
+                elif torch.cuda.is_available():
+                    device = 'cuda'
+            except Exception:
+                device = 'cpu'
+
+            # Move model to device if possible
+            try:
+                self.separator.to(device)
+            except Exception:
+                device = 'cpu'
+
+            audio_tensor = audio_stereo.to(device)
+
+            # Log model/device
+            try:
+                model_name = type(self.separator).__name__
+                logging.info(f"Demucs model: {model_name} on device: {device}")
+            except Exception:
+                logging.info(f"Demucs device: {device}")
+
+            # Separate sources using apply_model - correct API usage
+            # Safe apply_model call (avoid odd segment sizes that cause reshape errors)
+            try:
+                sources_tensor = apply_model(
+                    self.separator,
+                    audio_tensor,
+                    shifts=0,           # no test-time augmentation for speed
+                    split=True,
+                    overlap=0.25,
+                    device=device
+                )
+            except Exception as dm_e:
+                logging.warning(f"Demucs apply_model failed on {device}: {dm_e}. Retrying on CPU with safe params...")
+                try:
+                    self.separator.to('cpu')
+                except Exception:
+                    pass
+                audio_tensor_cpu = audio_stereo.to('cpu')
+                sources_tensor = apply_model(
+                    self.separator,
+                    audio_tensor_cpu,
+                    shifts=1,          # default TTA for stability
+                    split=True,
+                    overlap=0.25,
+                    device='cpu'
+                )
+
+            # Convert back to dict format
+            separated = {}
+            source_names = ['drums', 'bass', 'other', 'vocals']  # HTDemucs order
+
+            # sources_tensor should be [batch, sources, channels, time]
+            if sources_tensor.dim() == 4:
+                for i, source_name in enumerate(source_names):
+                    if i < sources_tensor.shape[1]:  # Check if source index exists
+                        source_tensor = sources_tensor[0, i]  # [channels, time]
+                        if source_tensor.dim() == 2:  # [channels, time]
+                            source_tensor = source_tensor.squeeze(0)  # Remove channel dimension if mono
+                        # Bring back to CPU for numpy conversion
+                        separated[source_name] = source_tensor.to('cpu').numpy()
+                    else:
+                        # Fallback if source not available
+                        separated[source_name] = audio
+            else:
+                # Fallback for unexpected tensor shape
+                logging.warning(f"Unexpected Demucs output shape: {sources_tensor.shape}")
+                return self._fallback_separation(audio)
+
+            separate_time = time.time() - start_time
+            self.processing_info['separate_time'] = separate_time
+            self._log_memory_usage('separate')
+
+            logging.info(f"Demucs separation completed in {separate_time:.2f}s")
+
+            # Always save the separated sources as they are needed by other modules
+            self._save_separated_sources(audio_path, separated, sr)
+
+            return separated
+
+        except Exception as e:
+            logging.error(f"Demucs separation failed: {e}")
+            return self._fallback_separation(audio)
+
+    def _fallback_separation(self, audio: np.ndarray) -> Dict[str, np.ndarray]:
+        """Fallback separation when no engine is available."""
+        logging.info("Using fallback source separation (no separation)")
+        # Simple fallback: assume vocals are in center frequencies
+        return {'vocals': audio, 'accompaniment': audio}
 
     def _save_separated_sources(self, audio_path: str, sources: Dict[str, np.ndarray], sr: int):
         """Save separated audio sources to files."""

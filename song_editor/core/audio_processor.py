@@ -58,14 +58,17 @@ class AudioProcessor:
         # Initialize appropriate separation engine
         if self.separation_engine == 'audio_separator':
             self._initialize_audio_separator()
+            self.using_audio_separator = True
         elif self.separation_engine == 'demucs':
             if self.use_demucs:
                 self._initialize_demucs()
+            self.using_audio_separator = False
         else:
             logging.warning(f"Unknown separation engine: {self.separation_engine}, falling back to demucs")
             self.separation_engine = 'demucs'
             if self.use_demucs:
                 self._initialize_demucs()
+            self.using_audio_separator = False
 
     def _initialize_demucs(self):
         """Initialize Demucs separator."""
@@ -202,7 +205,29 @@ class AudioProcessor:
             logging.info(f"Loading audio: {file_path}")
             start_time = time.time()
 
-            # Load audio
+            # If using audio-separator, skip loading and return dummy data
+            # The actual audio processing will happen in the subprocess
+            if hasattr(self, 'using_audio_separator') and self.using_audio_separator:
+                logging.info("Using audio-separator - deferring audio loading to subprocess")
+
+                # Store minimal info for compatibility
+                self.audio_data = {
+                    'original_path': file_path,
+                    'original_sr': self.target_sr,
+                    'duration': 0.0,  # Will be determined by subprocess
+                    'channels': 1
+                }
+
+                # Return dummy audio data (will not be used)
+                dummy_audio = np.array([], dtype=np.float32)
+                load_time = time.time() - start_time
+                self.processing_info['load_time'] = load_time
+                self._log_memory_usage('load')
+
+                logging.info(f"Audio loading deferred to subprocess for audio-separator")
+                return dummy_audio, self.target_sr
+
+            # Load audio normally for other engines
             audio, sr = librosa.load(file_path, sr=self.target_sr, mono=True)
 
             # Store original info

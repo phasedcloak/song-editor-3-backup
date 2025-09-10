@@ -30,6 +30,7 @@ Separator = None
 # Try multiple import strategies - prioritize system Python for better compatibility
 import sys
 import os
+import subprocess
 
 # First, try system Python site-packages (most reliable)
 system_site_packages = '/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages'
@@ -304,7 +305,7 @@ class AudioSeparatorProcessor:
         stems: Optional[List[str]] = None
     ) -> Dict[str, Any]:
         """
-        Separate audio into stems using audio-separator.
+        Separate audio into stems using audio-separator via subprocess.
 
         Args:
             audio_path: Path to input audio file
@@ -329,46 +330,39 @@ class AudioSeparatorProcessor:
             os.makedirs(output_dir, exist_ok=True)
 
         try:
-            # Initialize separator with audio file
-            separator = Separator(
-                audio_file_path=audio_path,
-                model_name=self.model_name,
-                output_dir=output_dir,
-                use_cuda=self.use_cuda,
-                use_coreml=self.use_coreml,
-                log_level=self.log_level,
-                normalization_enabled=self.normalization_enabled,
-                denoise_enabled=self.denoise_enabled,
-                output_format=self.output_format
-            )
+            # Use subprocess to run the entire audio-separator workflow
+            result = self._run_complete_separation_subprocess(audio_path, output_dir)
 
-            logger.info(f"Model: {separator.model_name}")
-            logger.info(f"Output directory: {separator.output_dir}")
+            if result['success']:
+                # Collect output files
+                output_files = self._collect_output_files(output_dir)
 
-            # Perform separation
-            separator.separate()
-
-            # Collect output files
-            output_files = self._collect_output_files(output_dir)
-
-            # Create result dictionary
-            result = {
-                'success': True,
-                'model_used': self.model_name,
-                'output_dir': output_dir,
-                'input_file': audio_path,
-                'output_files': output_files,
-                'stems_found': list(output_files.keys()),
-                'gpu_acceleration': {
-                    'cuda': self.use_cuda,
-                    'coreml': self.use_coreml
+                # Create result dictionary
+                result_dict = {
+                    'success': True,
+                    'model_used': self.model_name,
+                    'output_dir': output_dir,
+                    'input_file': audio_path,
+                    'output_files': output_files,
+                    'stems_found': list(output_files.keys()),
+                    'gpu_acceleration': {
+                        'cuda': self.use_cuda,
+                        'coreml': self.use_coreml
+                    }
                 }
-            }
 
-            logger.info(f"Separation completed successfully")
-            logger.info(f"Generated {len(output_files)} stems: {list(output_files.keys())}")
+                logger.info(f"Separation completed successfully")
+                logger.info(f"Generated {len(output_files)} stems: {list(output_files.keys())}")
 
-            return result
+                return result_dict
+            else:
+                logger.error(f"Audio separation failed: {result.get('error', 'Unknown error')}")
+                return {
+                    'success': False,
+                    'error': result.get('error', 'Unknown error'),
+                    'model_used': self.model_name,
+                    'input_file': audio_path
+                }
 
         except Exception as e:
             logger.error(f"Audio separation failed: {e}")
@@ -387,6 +381,92 @@ class AudioSeparatorProcessor:
                     logger.debug(f"Cleaned up temporary directory: {temp_output_dir}")
                 except Exception as e:
                     logger.warning(f"Failed to clean up temp directory: {e}")
+
+    def _run_complete_separation_subprocess(self, audio_path: str, output_dir: str) -> Dict[str, Any]:
+        """
+        Run complete audio separation workflow using system Python via subprocess.
+        This handles both audio loading and separation to avoid cffi conflicts.
+
+        Args:
+            audio_path: Path to input audio file
+            output_dir: Directory to save separated files
+
+        Returns:
+            Dict with success status and any error messages
+        """
+        try:
+            # Create a complete script that handles everything
+            complete_script = f'''
+import sys
+import warnings
+import os
+
+# Suppress warnings
+warnings.filterwarnings('ignore', category=UserWarning)
+
+# Add system site-packages to path for audio-separator
+sys.path.insert(0, '/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages')
+
+try:
+    from audio_separator import Separator
+
+    # Initialize separator directly with the input file
+    separator = Separator(
+        audio_file_path="{audio_path}",
+        model_name="{self.model_name}",
+        output_dir="{output_dir}",
+        use_cuda={self.use_cuda},
+        use_coreml={self.use_coreml},
+        log_level=20
+    )
+
+    # Perform separation
+    separator.separate()
+
+    print("SUCCESS: Audio separation completed")
+
+except Exception as e:
+    print(f"ERROR: {{e}}", file=sys.stderr)
+    sys.exit(1)
+'''
+
+            # Write the complete script
+            script_path = os.path.join(output_dir, 'complete_separation.py')
+            with open(script_path, 'w') as f:
+                f.write(complete_script)
+
+            # Run the complete script with system Python
+            cmd = ['/usr/local/bin/python3', script_path]
+            logger.info(f"Running complete separation subprocess: {' '.join(cmd)}")
+
+            process = subprocess.run(
+                cmd,
+                cwd=output_dir,
+                capture_output=True,
+                text=True,
+                timeout=300  # 5 minute timeout
+            )
+
+            # Clean up the script
+            try:
+                os.remove(script_path)
+            except:
+                pass
+
+            if process.returncode == 0:
+                logger.info("Complete subprocess separation completed successfully")
+                return {'success': True}
+            else:
+                error_msg = process.stderr.strip() or process.stdout.strip()
+                logger.error(f"Complete subprocess separation failed: {error_msg}")
+                return {'success': False, 'error': error_msg}
+
+        except subprocess.TimeoutExpired:
+            logger.error("Audio separation timed out")
+            return {'success': False, 'error': 'Separation timed out'}
+        except Exception as e:
+            logger.error(f"Failed to run complete separation subprocess: {e}")
+            return {'success': False, 'error': str(e)}
 
     def _collect_output_files(self, output_dir: str) -> Dict[str, str]:
         """

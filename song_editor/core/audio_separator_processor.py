@@ -20,33 +20,42 @@ logger = logging.getLogger(__name__)
 AUDIO_SEPARATOR_AVAILABLE = False
 Separator = None
 
-# Try multiple import strategies
+# Try multiple import strategies - prioritize system Python for better compatibility
+import sys
+import os
+
+# First, try system Python site-packages (most reliable)
+system_site_packages = '/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages'
+if system_site_packages not in sys.path:
+    sys.path.insert(0, system_site_packages)
+
 try:
     from audio_separator import Separator
     AUDIO_SEPARATOR_AVAILABLE = True
+    logger.info("✅ Audio-separator loaded successfully from system Python")
 except ImportError:
+    # Try current environment
     try:
-        # Try importing from system Python path
-        import sys
-        import os
-        # Add system Python site-packages to path
-        system_site_packages = '/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages'
-        if system_site_packages not in sys.path:
-            sys.path.insert(0, system_site_packages)
+        # Remove system path temporarily to try local environment
+        if system_site_packages in sys.path:
+            sys.path.remove(system_site_packages)
 
         from audio_separator import Separator
         AUDIO_SEPARATOR_AVAILABLE = True
-        logger.info("Audio-separator loaded from system Python path")
+        logger.info("✅ Audio-separator loaded from virtual environment")
     except ImportError:
+        # Restore system path and try one more time
+        if system_site_packages not in sys.path:
+            sys.path.insert(0, system_site_packages)
+
         try:
-            # Try with different import path
-            import audio_separator
-            Separator = audio_separator.Separator
+            from audio_separator import Separator
             AUDIO_SEPARATOR_AVAILABLE = True
-        except (ImportError, AttributeError):
+            logger.info("✅ Audio-separator loaded from system Python (fallback)")
+        except ImportError:
             AUDIO_SEPARATOR_AVAILABLE = False
             Separator = None
-            logger.warning("Audio-separator library not available")
+            logger.warning("❌ Audio-separator library not available in any environment")
 
 
 class AudioSeparatorProcessor:

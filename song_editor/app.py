@@ -570,7 +570,7 @@ Examples:
                     whisper_model=args.whisper_model,
                     use_chordino=args.use_chordino,
                     # New separation engine parameters
-                    separation_engine=args.separation_engine,
+                    separation_engine=args.separation_engine.replace('-', '_'),
                     audio_separator_model=args.audio_separator_model,
                     use_cuda=args.use_cuda,
                     use_coreml=args.use_coreml,
@@ -636,7 +636,7 @@ Examples:
             whisper_model=args.whisper_model,
             use_chordino=args.use_chordino,
             # New separation engine parameters
-            separation_engine=args.separation_engine,
+            separation_engine=args.separation_engine.replace('-', '_'),
             audio_separator_model=args.audio_separator_model,
             use_cuda=args.use_cuda,
             use_coreml=args.use_coreml,

@@ -771,7 +771,7 @@ class MainWindow(QMainWindow):
             'chord_method': self.chord_method_combo.currentText(),
             'melody_method': self.melody_method_combo.currentText(),
             # Audio-separator options
-            'separation_engine': self.separation_method_combo.currentText(),
+            'separation_engine': self.separation_method_combo.currentText().replace('-', '_'),
             'audio_separator_model': self._extract_model_name(self.audio_separator_model_combo.currentText()),
             'use_cuda': self.use_cuda_check.isChecked(),
             'use_coreml': self.use_coreml_check.isChecked(),
@@ -997,7 +997,9 @@ class MainWindow(QMainWindow):
 
         # Load audio-separator settings
         separation_engine = self.settings.value('separation_engine', 'demucs')
-        index = self.separation_method_combo.findText(separation_engine)
+        # Convert underscore back to hyphen for UI display
+        ui_separation_engine = separation_engine.replace('_', '-')
+        index = self.separation_method_combo.findText(ui_separation_engine)
         if index >= 0:
             self.separation_method_combo.setCurrentIndex(index)
 
@@ -1041,7 +1043,7 @@ class MainWindow(QMainWindow):
         self.settings.setValue('chord_method', self.chord_method_combo.currentText())
         self.settings.setValue('melody_method', self.melody_method_combo.currentText())
         # Audio-separator settings
-        self.settings.setValue('separation_engine', self.separation_method_combo.currentText())
+        self.settings.setValue('separation_engine', self.separation_method_combo.currentText().replace('-', '_'))
         # Save clean model name (not formatted display name)
         clean_model_name = self._extract_model_name(self.audio_separator_model_combo.currentText())
         self.settings.setValue('audio_separator_model', clean_model_name)

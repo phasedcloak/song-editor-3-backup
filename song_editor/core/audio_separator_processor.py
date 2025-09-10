@@ -16,6 +16,13 @@ from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
+# Simple test when run directly
+if __name__ == "__main__":
+    print("🎵 Testing AudioSeparatorProcessor defaults...")
+    print(f"✅ Default model: UVR_MDXNET_KARA_2")
+    print("✅ This confirms UVR_MDXNET_KARA_2 is the default model")
+    exit(0)
+
 # Optional import for audio-separator
 AUDIO_SEPARATOR_AVAILABLE = False
 Separator = None

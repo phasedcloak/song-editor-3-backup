@@ -605,13 +605,37 @@ class MainWindow(QMainWindow):
 
         # Audio-separator model selection (only shown when audio-separator is selected)
         self.audio_separator_model_combo = QComboBox()
-        self.audio_separator_model_combo.addItems([
-            'UVR_MDXNET_KARA_2',      # Best for karaoke
-            'UVR_MDXNET_21_OVERLAP_9', # High quality multi-stem
-            'UVR_MDXNET_21_OVERLAP_7', # Balanced quality/speed
-            'UVR_MDXNET_21_OVERLAP_5'  # Fast processing
-        ])
-        self.audio_separator_model_combo.setCurrentText('UVR_MDXNET_KARA_2')
+
+        # Try to populate with enhanced model information
+        try:
+            from song_editor.core.audio_separator_processor import AudioSeparatorProcessor
+            if AudioSeparatorProcessor.is_available():
+                separator = AudioSeparatorProcessor()
+                model_names = separator.get_models_for_ui()
+                self.audio_separator_model_combo.addItems(model_names)
+                # Set default to first karaoke model
+                for i, name in enumerate(model_names):
+                    if 'KARA_2' in name:
+                        self.audio_separator_model_combo.setCurrentIndex(i)
+                        break
+            else:
+                # Fallback to basic list
+                self.audio_separator_model_combo.addItems([
+                    'UVR_MDXNET_KARA_2',
+                    'UVR_MDXNET_21_OVERLAP_9',
+                    'UVR_MDXNET_21_OVERLAP_7',
+                    'UVR_MDXNET_21_OVERLAP_5'
+                ])
+        except Exception as e:
+            logger.warning(f"Failed to load enhanced model list: {e}")
+            # Fallback to basic list
+            self.audio_separator_model_combo.addItems([
+                'UVR_MDXNET_KARA_2',
+                'UVR_MDXNET_21_OVERLAP_9',
+                'UVR_MDXNET_21_OVERLAP_7',
+                'UVR_MDXNET_21_OVERLAP_5'
+            ])
+
         options_layout.addWidget(QLabel("Audio-Sep Model:"), 5, 0)
         options_layout.addWidget(self.audio_separator_model_combo, 5, 1)
 
@@ -744,7 +768,7 @@ class MainWindow(QMainWindow):
             'melody_method': self.melody_method_combo.currentText(),
             # Audio-separator options
             'separation_engine': self.separation_method_combo.currentText(),
-            'audio_separator_model': self.audio_separator_model_combo.currentText(),
+            'audio_separator_model': self._extract_model_name(self.audio_separator_model_combo.currentText()),
             'use_cuda': self.use_cuda_check.isChecked(),
             'use_coreml': self.use_coreml_check.isChecked(),
             # Legacy compatibility
@@ -758,16 +782,32 @@ class MainWindow(QMainWindow):
         self.processing_thread.progress_updated.connect(self.update_progress)
         self.processing_thread.stage_completed.connect(self.stage_completed)
         self.processing_thread.processing_finished.connect(self.processing_finished)
-        self.processing_thread.error_occurred.connect(self.processing_error)
 
-        # Update UI
-        self.process_btn.setEnabled(False)
-        self.progress_bar.setVisible(True)
-        self.progress_bar.setValue(0)
-        self.status_bar.showMessage("Processing audio...")
+    def _extract_model_name(self, display_name: str) -> str:
+        """
+        Extract clean model name from formatted UI display text.
 
-        # Start processing
-        self.processing_thread.start()
+        Args:
+            display_name: Formatted display name (e.g., "UVR_MDXNET_KARA_2 (85MB) - description")
+
+        Returns:
+            Clean model name (e.g., "UVR_MDXNET_KARA_2")
+        """
+        # Extract model name from format: "Model_Name (Size) - Description"
+        if ' (' in display_name and ') - ' in display_name:
+            return display_name.split(' (')[0]
+
+        # Try to use AudioSeparatorProcessor method if available
+        try:
+            from song_editor.core.audio_separator_processor import AudioSeparatorProcessor
+            if AudioSeparatorProcessor.is_available():
+                separator = AudioSeparatorProcessor()
+                return separator.get_model_name_from_display(display_name)
+        except Exception:
+            pass
+
+        # Fallback: return as-is if parsing fails
+        return display_name
 
     def update_progress(self, message: str, value: int):
         """Update the progress bar."""
@@ -957,10 +997,27 @@ class MainWindow(QMainWindow):
         if index >= 0:
             self.separation_method_combo.setCurrentIndex(index)
 
-        audio_separator_model = self.settings.value('audio_separator_model', 'UVR_MDXNET_KARA_2')
-        index = self.audio_separator_model_combo.findText(audio_separator_model)
-        if index >= 0:
-            self.audio_separator_model_combo.setCurrentIndex(index)
+        # Load audio-separator model - handle both clean names and formatted display names
+        saved_model = self.settings.value('audio_separator_model', 'UVR_MDXNET_KARA_2')
+
+        # Find the correct index for the saved model in the formatted list
+        found_index = -1
+        for i in range(self.audio_separator_model_combo.count()):
+            display_text = self.audio_separator_model_combo.itemText(i)
+            clean_name = self._extract_model_name(display_text)
+            if clean_name == saved_model:
+                found_index = i
+                break
+
+        if found_index >= 0:
+            self.audio_separator_model_combo.setCurrentIndex(found_index)
+        else:
+            # Fallback: try to find by partial match
+            for i in range(self.audio_separator_model_combo.count()):
+                display_text = self.audio_separator_model_combo.itemText(i)
+                if saved_model in display_text:
+                    self.audio_separator_model_combo.setCurrentIndex(i)
+                    break
 
         self.use_cuda_check.setChecked(self.settings.value('use_cuda', False, type=bool))
         self.use_coreml_check.setChecked(self.settings.value('use_coreml', True, type=bool))
@@ -981,7 +1038,9 @@ class MainWindow(QMainWindow):
         self.settings.setValue('melody_method', self.melody_method_combo.currentText())
         # Audio-separator settings
         self.settings.setValue('separation_engine', self.separation_method_combo.currentText())
-        self.settings.setValue('audio_separator_model', self.audio_separator_model_combo.currentText())
+        # Save clean model name (not formatted display name)
+        clean_model_name = self._extract_model_name(self.audio_separator_model_combo.currentText())
+        self.settings.setValue('audio_separator_model', clean_model_name)
         self.settings.setValue('use_cuda', self.use_cuda_check.isChecked())
         self.settings.setValue('use_coreml', self.use_coreml_check.isChecked())
         # Legacy compatibility

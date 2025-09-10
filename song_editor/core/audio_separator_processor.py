@@ -122,9 +122,165 @@ class AudioSeparatorProcessor:
 
         # Model cache directory for downloaded models
         self.model_cache_dir = os.path.expanduser("~/.cache/audio-separator-models")
+        self.model_info_file = os.path.join(self.model_cache_dir, "model_info.json")
+
+        # Initialize cache system
+        self._initialize_model_cache()
 
         logger.info(f"AudioSeparatorProcessor initialized with model: {model_name}")
         logger.info(f"GPU acceleration - CUDA: {use_cuda}, CoreML: {use_coreml}")
+        logger.info(f"Model cache directory: {self.model_cache_dir}")
+
+    def _initialize_model_cache(self):
+        """Initialize the model cache system."""
+        try:
+            # Create cache directory if it doesn't exist
+            os.makedirs(self.model_cache_dir, exist_ok=True)
+
+            # Initialize model info tracking
+            self.model_info = {}
+            if os.path.exists(self.model_info_file):
+                try:
+                    import json
+                    with open(self.model_info_file, 'r') as f:
+                        self.model_info = json.load(f)
+                    logger.info(f"Loaded model cache info for {len(self.model_info)} models")
+                except Exception as e:
+                    logger.warning(f"Failed to load model cache info: {e}")
+                    self.model_info = {}
+
+            # Clean up old cache entries
+            self._cleanup_cache()
+
+        except Exception as e:
+            logger.error(f"Failed to initialize model cache: {e}")
+            self.model_info = {}
+
+    def _cleanup_cache(self, max_age_days: int = 30):
+        """Clean up old cached models and invalid entries."""
+        try:
+            import json
+            import time
+            current_time = time.time()
+            max_age_seconds = max_age_days * 24 * 60 * 60
+
+            # Remove entries for non-existent models
+            models_to_remove = []
+            for model_name, info in self.model_info.items():
+                model_path = info.get('path', '')
+                if not os.path.exists(model_path):
+                    models_to_remove.append(model_name)
+                    logger.info(f"Removing cache entry for missing model: {model_name}")
+
+            for model_name in models_to_remove:
+                del self.model_info[model_name]
+
+            # Remove old entries (older than max_age_days)
+            old_entries = []
+            for model_name, info in self.model_info.items():
+                last_used = info.get('last_used', 0)
+                if current_time - last_used > max_age_seconds:
+                    old_entries.append(model_name)
+                    logger.info(f"Removing old cache entry: {model_name}")
+
+            for model_name in old_entries:
+                del self.model_info[model_name]
+
+            # Save updated cache info
+            if self.model_info:
+                with open(self.model_info_file, 'w') as f:
+                    json.dump(self.model_info, f, indent=2)
+
+        except Exception as e:
+            logger.warning(f"Cache cleanup failed: {e}")
+
+    def _update_model_cache_info(self, model_name: str, model_path: str, size_mb: float = 0):
+        """Update cache information for a model."""
+        try:
+            import json
+            import time
+
+            self.model_info[model_name] = {
+                'path': model_path,
+                'size_mb': size_mb,
+                'last_used': time.time(),
+                'download_date': time.strftime('%Y-%m-%d %H:%M:%S')
+            }
+
+            # Save to file
+            with open(self.model_info_file, 'w') as f:
+                json.dump(self.model_info, f, indent=2)
+
+        except Exception as e:
+            logger.warning(f"Failed to update model cache info: {e}")
+
+    def _get_model_size(self, model_path: str) -> float:
+        """Get model file size in MB."""
+        try:
+            if os.path.exists(model_path):
+                size_bytes = os.path.getsize(model_path)
+                return size_bytes / (1024 * 1024)  # Convert to MB
+        except Exception as e:
+            logger.warning(f"Failed to get model size: {e}")
+        return 0.0
+
+    def get_cache_info(self) -> Dict[str, Any]:
+        """Get information about cached models."""
+        try:
+            total_size = 0
+            model_count = len(self.model_info)
+
+            for info in self.model_info.values():
+                total_size += info.get('size_mb', 0)
+
+            return {
+                'cache_directory': self.model_cache_dir,
+                'total_models': model_count,
+                'total_size_mb': round(total_size, 2),
+                'models': self.model_info
+            }
+        except Exception as e:
+            logger.error(f"Failed to get cache info: {e}")
+            return {'error': str(e)}
+
+    def clear_cache(self, model_name: Optional[str] = None):
+        """Clear cache for specific model or all models."""
+        try:
+            import json
+
+            if model_name:
+                # Clear specific model
+                if model_name in self.model_info:
+                    model_path = self.model_info[model_name].get('path', '')
+                    if os.path.exists(model_path):
+                        try:
+                            os.remove(model_path)
+                            logger.info(f"Removed cached model file: {model_path}")
+                        except Exception as e:
+                            logger.warning(f"Failed to remove model file: {e}")
+
+                    del self.model_info[model_name]
+                    logger.info(f"Cleared cache for model: {model_name}")
+            else:
+                # Clear all models
+                for info in self.model_info.values():
+                    model_path = info.get('path', '')
+                    if os.path.exists(model_path):
+                        try:
+                            os.remove(model_path)
+                            logger.info(f"Removed cached model file: {model_path}")
+                        except Exception as e:
+                            logger.warning(f"Failed to remove model file: {e}")
+
+                self.model_info.clear()
+                logger.info("Cleared all model cache")
+
+            # Update cache info file
+            with open(self.model_info_file, 'w') as f:
+                json.dump(self.model_info, f, indent=2)
+
+        except Exception as e:
+            logger.error(f"Failed to clear cache: {e}")
 
     def separate_audio(
         self,
@@ -261,29 +417,114 @@ class AudioSeparatorProcessor:
 
         return output_files
 
-    def get_available_models(self) -> List[str]:
+    def get_available_models(self) -> List[Dict[str, Any]]:
         """
-        Get list of available UVR models.
-
-        Note: This is a static list based on known UVR models.
-        The actual available models depend on what's been trained and released.
+        Get list of available UVR models with detailed information.
 
         Returns:
-            List of available model names
+            List of model dictionaries with name, description, size, and quality info
         """
-        # Common UVR models (subset of available models)
+        # Enhanced UVR models with detailed information
         models = [
-            'UVR_MDXNET_KARA_2',          # Best for karaoke (vocals/instrumental)
-            'UVR_MDXNET_21_OVERLAP_9',    # High quality multi-stem
-            'UVR_MDXNET_21_OVERLAP_7',    # Good balance quality/speed
-            'UVR_MDXNET_21_OVERLAP_5',    # Faster processing
-            'UVR_MDXNET_MAIN_21',         # Main vocal model
-            'UVR_MDXNET_BASS_21',         # Bass focused
-            'UVR_MDXNET_DRUMS_21',        # Drums focused
-            'UVR_MDXNET_GUITAR_21',       # Guitar focused
-            'UVR_MDXNET_PIANO_21',        # Piano focused
-            'UVR_MDXNET_STRINGS_21',      # Strings focused
-            'UVR_MDXNET_WIND_21',         # Wind instruments focused
+            {
+                'name': 'UVR_MDXNET_KARA_2',
+                'description': 'Best for karaoke - separates vocals from instrumental',
+                'estimated_size_mb': 85,
+                'quality': 'High',
+                'speed': 'Medium',
+                'recommended_use': 'Karaoke creation, vocal removal',
+                'category': 'vocals'
+            },
+            {
+                'name': 'UVR_MDXNET_21_OVERLAP_9',
+                'description': 'High-quality multi-stem separation (vocals, drums, bass, etc.)',
+                'estimated_size_mb': 120,
+                'quality': 'Very High',
+                'speed': 'Slow',
+                'recommended_use': 'Music production, remixing, multi-track separation',
+                'category': 'multi_stem'
+            },
+            {
+                'name': 'UVR_MDXNET_21_OVERLAP_7',
+                'description': 'Balanced quality and speed for general use',
+                'estimated_size_mb': 95,
+                'quality': 'High',
+                'speed': 'Medium',
+                'recommended_use': 'General music analysis, balanced workflow',
+                'category': 'multi_stem'
+            },
+            {
+                'name': 'UVR_MDXNET_21_OVERLAP_5',
+                'description': 'Fast processing with good quality',
+                'estimated_size_mb': 75,
+                'quality': 'Good',
+                'speed': 'Fast',
+                'recommended_use': 'Quick processing, real-time applications',
+                'category': 'multi_stem'
+            },
+            {
+                'name': 'UVR_MDXNET_MAIN_21',
+                'description': 'Focused on main vocals and lead instruments',
+                'estimated_size_mb': 80,
+                'quality': 'High',
+                'speed': 'Medium',
+                'recommended_use': 'Lead vocal extraction, main melody isolation',
+                'category': 'vocals'
+            },
+            {
+                'name': 'UVR_MDXNET_BASS_21',
+                'description': 'Optimized for bass guitar and low-frequency instruments',
+                'estimated_size_mb': 70,
+                'quality': 'High',
+                'speed': 'Medium',
+                'recommended_use': 'Bass guitar removal/addition, low-end analysis',
+                'category': 'bass'
+            },
+            {
+                'name': 'UVR_MDXNET_DRUMS_21',
+                'description': 'Specialized for drum and percussion separation',
+                'estimated_size_mb': 75,
+                'quality': 'High',
+                'speed': 'Medium',
+                'recommended_use': 'Drum isolation, rhythm analysis',
+                'category': 'drums'
+            },
+            {
+                'name': 'UVR_MDXNET_GUITAR_21',
+                'description': 'Focused on guitar and similar instruments',
+                'estimated_size_mb': 80,
+                'quality': 'High',
+                'speed': 'Medium',
+                'recommended_use': 'Guitar extraction, solo analysis',
+                'category': 'guitar'
+            },
+            {
+                'name': 'UVR_MDXNET_PIANO_21',
+                'description': 'Optimized for piano and keyboard separation',
+                'estimated_size_mb': 85,
+                'quality': 'High',
+                'speed': 'Medium',
+                'recommended_use': 'Piano isolation, keyboard analysis',
+                'category': 'piano'
+            },
+            {
+                'name': 'UVR_MDXNET_STRINGS_21',
+                'description': 'Focused on string instruments (violin, cello, etc.)',
+                'estimated_size_mb': 75,
+                'quality': 'High',
+                'speed': 'Medium',
+                'recommended_use': 'Orchestral analysis, string section extraction',
+                'category': 'strings'
+            },
+            {
+                'name': 'UVR_MDXNET_WIND_21',
+                'description': 'Optimized for wind instruments (flute, saxophone, etc.)',
+                'estimated_size_mb': 70,
+                'quality': 'High',
+                'speed': 'Medium',
+                'recommended_use': 'Wind instrument analysis, solo extraction',
+                'category': 'wind'
+            }
         ]
 
         return models
@@ -296,77 +537,72 @@ class AudioSeparatorProcessor:
             model_name: Name of the model
 
         Returns:
-            Dict with model information
+            Dict with model information including cache status
         """
-        model_info = {
-            'name': model_name,
-            'description': self._get_model_description(model_name),
-            'recommended_use': self._get_model_use_case(model_name),
-            'quality': self._get_model_quality(model_name),
-            'speed': self._get_model_speed(model_name)
-        }
+        # Get base model info from enhanced list
+        available_models = self.get_available_models()
+        model_data = None
 
-        return model_info
+        for model in available_models:
+            if model['name'] == model_name:
+                model_data = model
+                break
 
-    def _get_model_description(self, model_name: str) -> str:
-        """Get human-readable description for model."""
-        descriptions = {
-            'UVR_MDXNET_KARA_2': 'Optimized for karaoke - separates vocals from instrumental',
-            'UVR_MDXNET_21_OVERLAP_9': 'High-quality multi-stem separation (vocals, drums, bass, etc.)',
-            'UVR_MDXNET_21_OVERLAP_7': 'Balanced quality and speed for general use',
-            'UVR_MDXNET_21_OVERLAP_5': 'Fast processing with good quality',
-            'UVR_MDXNET_MAIN_21': 'Focused on main vocals and lead instruments',
-            'UVR_MDXNET_BASS_21': 'Optimized for bass guitar and low-frequency instruments',
-            'UVR_MDXNET_DRUMS_21': 'Specialized for drum and percussion separation',
-            'UVR_MDXNET_GUITAR_21': 'Focused on guitar and similar instruments',
-            'UVR_MDXNET_PIANO_21': 'Optimized for piano and keyboard separation',
-            'UVR_MDXNET_STRINGS_21': 'Focused on string instruments (violin, cello, etc.)',
-            'UVR_MDXNET_WIND_21': 'Optimized for wind instruments (flute, saxophone, etc.)'
-        }
-        return descriptions.get(model_name, f'UVR model: {model_name}')
-
-    def _get_model_use_case(self, model_name: str) -> str:
-        """Get recommended use case for model."""
-        use_cases = {
-            'UVR_MDXNET_KARA_2': 'Karaoke creation, vocal removal',
-            'UVR_MDXNET_21_OVERLAP_9': 'Music production, remixing, multi-track separation',
-            'UVR_MDXNET_21_OVERLAP_7': 'General music analysis, balanced workflow',
-            'UVR_MDXNET_21_OVERLAP_5': 'Quick processing, real-time applications',
-            'UVR_MDXNET_MAIN_21': 'Lead vocal extraction, main melody isolation',
-            'UVR_MDXNET_BASS_21': 'Bass guitar removal/addition, low-end analysis',
-            'UVR_MDXNET_DRUMS_21': 'Drum isolation, rhythm analysis',
-            'UVR_MDXNET_GUITAR_21': 'Guitar extraction, solo analysis',
-            'UVR_MDXNET_PIANO_21': 'Piano isolation, keyboard analysis',
-            'UVR_MDXNET_STRINGS_21': 'Orchestral analysis, string section extraction',
-            'UVR_MDXNET_WIND_21': 'Wind instrument analysis, solo extraction'
-        }
-        return use_cases.get(model_name, 'General audio separation')
-
-    def _get_model_quality(self, model_name: str) -> str:
-        """Get quality rating for model."""
-        if 'OVERLAP_9' in model_name:
-            return 'Very High'
-        elif 'OVERLAP_7' in model_name:
-            return 'High'
-        elif 'OVERLAP_5' in model_name:
-            return 'Good'
-        elif '21' in model_name:
-            return 'High'
+        if model_data:
+            # Add cache information if available
+            cache_info = self.model_info.get(model_name, {})
+            model_data.update({
+                'cached': bool(cache_info),
+                'cache_path': cache_info.get('path', ''),
+                'cache_size_mb': cache_info.get('size_mb', 0),
+                'last_used': cache_info.get('last_used', 0),
+                'download_date': cache_info.get('download_date', '')
+            })
+            return model_data
         else:
-            return 'Standard'
+            # Fallback for unknown models
+            return {
+                'name': model_name,
+                'description': f'UVR model: {model_name}',
+                'estimated_size_mb': 0,
+                'quality': 'Unknown',
+                'speed': 'Unknown',
+                'recommended_use': 'General audio separation',
+                'category': 'unknown',
+                'cached': False
+            }
 
-    def _get_model_speed(self, model_name: str) -> str:
-        """Get speed rating for model."""
-        if 'OVERLAP_9' in model_name:
-            return 'Slow'
-        elif 'OVERLAP_7' in model_name:
-            return 'Medium'
-        elif 'OVERLAP_5' in model_name:
-            return 'Fast'
-        elif '21' in model_name:
-            return 'Medium'
-        else:
-            return 'Medium'
+    def get_models_for_ui(self) -> List[str]:
+        """
+        Get model names formatted for UI dropdown display.
+
+        Returns:
+            List of formatted model names for UI display
+        """
+        models = self.get_available_models()
+        formatted_names = []
+
+        for model in models:
+            # Format: "Model Name (Size MB) - Description"
+            display_name = f"{model['name']} ({model['estimated_size_mb']}MB) - {model['description']}"
+            formatted_names.append(display_name)
+
+        return formatted_names
+
+    def get_model_name_from_display(self, display_name: str) -> str:
+        """
+        Extract model name from UI display format.
+
+        Args:
+            display_name: Formatted display name from UI
+
+        Returns:
+            Clean model name
+        """
+        # Extract model name from format: "Model_Name (Size) - Description"
+        if ' (' in display_name and ') - ' in display_name:
+            return display_name.split(' (')[0]
+        return display_name
 
     @staticmethod
     def is_available() -> bool:

@@ -409,14 +409,24 @@ sys.path.insert(0, '/Library/Frameworks/Python.framework/Versions/3.10/lib/pytho
 
 try:
     from audio_separator import Separator
+    import os
+
+    audio_path = "{audio_path}"
+    output_dir = "{output_dir}"
+    # Convert relative output_dir to absolute path
+    if not os.path.isabs(output_dir):
+        output_dir = os.path.abspath(output_dir)
+    model_name = "{self.model_name}"
+    use_cuda = {self.use_cuda}
+    use_coreml = {self.use_coreml}
 
     # Initialize separator directly with the input file
     separator = Separator(
-        audio_file_path="{audio_path}",
-        model_name="{self.model_name}",
-        output_dir="{output_dir}",
-        use_cuda={self.use_cuda},
-        use_coreml={self.use_coreml},
+        audio_file_path=audio_path,
+        model_name=model_name,
+        output_dir=output_dir,
+        use_cuda=use_cuda,
+        use_coreml=use_coreml,
         log_level=20
     )
 
@@ -427,21 +437,23 @@ try:
 
 except Exception as e:
     print(f"ERROR: {{e}}", file=sys.stderr)
+    import traceback
+    traceback.print_exc(file=sys.stderr)
     sys.exit(1)
 '''
 
-            # Write the complete script
-            script_path = os.path.join(output_dir, 'complete_separation.py')
+            # Write the complete script to a temporary location
+            script_path = os.path.join('/tmp', f'complete_separation_{os.getpid()}.py')
             with open(script_path, 'w') as f:
                 f.write(complete_script)
 
-            # Run the complete script with system Python
+            # Run the complete script with system Python from the temp directory
             cmd = ['/usr/local/bin/python3', script_path]
             logger.info(f"Running complete separation subprocess: {' '.join(cmd)}")
 
             process = subprocess.run(
                 cmd,
-                cwd=output_dir,
+                cwd='/tmp',  # Run from temp directory
                 capture_output=True,
                 text=True,
                 timeout=300  # 5 minute timeout
@@ -455,10 +467,16 @@ except Exception as e:
 
             if process.returncode == 0:
                 logger.info("Complete subprocess separation completed successfully")
+                # Log any stderr output for debugging
+                if process.stderr.strip():
+                    logger.info(f"Subprocess stderr: {process.stderr.strip()}")
                 return {'success': True}
             else:
                 error_msg = process.stderr.strip() or process.stdout.strip()
                 logger.error(f"Complete subprocess separation failed: {error_msg}")
+                # Also log stdout if stderr is empty
+                if not process.stderr.strip() and process.stdout.strip():
+                    logger.error(f"Subprocess stdout: {process.stdout.strip()}")
                 return {'success': False, 'error': error_msg}
 
         except subprocess.TimeoutExpired:

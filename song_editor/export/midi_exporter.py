@@ -7,6 +7,7 @@ chords, and melody for Song Editor 3.
 """
 
 import logging
+import math
 import mido
 from typing import Dict, Any, List, Optional
 
@@ -35,6 +36,77 @@ class MidiExporter:
         self.include_lyrics = include_lyrics
         self.include_chords = include_chords
         self.include_melody = include_melody
+
+    # -----------------------------
+    # Sanitization helpers
+    # -----------------------------
+    def _safe_float(self, value: Any, default: float = 0.0) -> float:
+        try:
+            v = float(value)
+            if math.isfinite(v):
+                return v
+            return default
+        except Exception:
+            return default
+
+    def _safe_int(self, value: Any, default: int = 0) -> int:
+        try:
+            return int(round(self._safe_float(value, float(default))))
+        except Exception:
+            return default
+
+    def _derive_tempo(self, audio_analysis: Dict[str, Any], words: List[Dict[str, Any]]) -> float:
+        # 1) Use audio_analysis tempo if valid
+        tempo = self._safe_float(audio_analysis.get('tempo', None), None)
+        if tempo is not None and tempo > 0:
+            return tempo
+        # 2) Estimate from word start intervals (rough)
+        starts = [self._safe_float(w.get('start', None), None) for w in words]
+        starts = [s for s in starts if s is not None and s >= 0]
+        starts.sort()
+        if len(starts) >= 3:
+            intervals = [b - a for a, b in zip(starts, starts[1:]) if (b - a) > 0.05]
+            if intervals:
+                intervals.sort()
+                mid = intervals[len(intervals)//2]
+                est = 60.0 / mid
+                return max(30.0, min(240.0, est))
+        # 3) Fallback
+        return 120.0
+
+    def _sanitize_words_list(self, words: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        cleaned: List[Dict[str, Any]] = []
+        for w in words or []:
+            text = str(w.get('text', '') or '')
+            start = self._safe_float(w.get('start', 0.0), 0.0)
+            end = self._safe_float(w.get('end', start), start)
+            if end < start:
+                end = start + 0.01
+            cleaned.append({'text': text, 'start': start, 'end': end, 'confidence': self._safe_float(w.get('confidence', 0.0), 0.0)})
+        return cleaned
+
+    def _sanitize_chords_list(self, chords: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        cleaned: List[Dict[str, Any]] = []
+        for c in chords or []:
+            symbol = str(c.get('symbol', '') or '')
+            start = self._safe_float(c.get('start', 0.0), 0.0)
+            end = self._safe_float(c.get('end', start + 1.0), start + 1.0)
+            if end <= start:
+                end = start + 0.25
+            cleaned.append({'symbol': symbol, 'start': start, 'end': end})
+        return cleaned
+
+    def _sanitize_notes_list(self, notes: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        cleaned: List[Dict[str, Any]] = []
+        for n in notes or []:
+            start = self._safe_float(n.get('start', 0.0), 0.0)
+            end = self._safe_float(n.get('end', start + 0.2), start + 0.2)
+            if end <= start:
+                end = start + 0.05
+            pitch = self._safe_int(n.get('pitch_midi', 60), 60)
+            velocity = self._safe_int(n.get('velocity', 80), 80)
+            cleaned.append({'start': start, 'end': end, 'pitch_midi': pitch, 'velocity': velocity})
+        return cleaned
 
     def _sanitize_text_for_midi(self, text: str) -> str:
         """Sanitize text to be compatible with MIDI latin-1 encoding."""
@@ -303,13 +375,17 @@ class MidiExporter:
             return None
 
         try:
-            # Extract data
+            # Extract & sanitize data
             audio_analysis = song_data.get('audio_analysis', {})
-            tempo_bpm = audio_analysis.get('tempo', 120.0)
+            raw_words = song_data.get('words', [])
+            raw_chords = song_data.get('chords', [])
+            raw_notes = song_data.get('notes', [])
+
+            words = self._sanitize_words_list(raw_words)
+            chords = self._sanitize_chords_list(raw_chords)
+            notes = self._sanitize_notes_list(raw_notes)
+            tempo_bpm = self._derive_tempo(audio_analysis, words)
             tempo_changes = audio_analysis.get('tempo_changes', [])
-            words = song_data.get('words', [])
-            chords = song_data.get('chords', [])
-            notes = song_data.get('notes', [])
 
             # Create PrettyMIDI object
             midi = pretty_midi.PrettyMIDI(initial_tempo=tempo_bpm)
@@ -377,13 +453,17 @@ class MidiExporter:
         try:
             logging.info(f"Exporting MIDI to: {output_path}")
 
-            # Extract data
+            # Extract & sanitize data
             audio_analysis = song_data.get('audio_analysis', {})
-            tempo_bpm = audio_analysis.get('tempo', 120.0)
+            raw_words = song_data.get('words', [])
+            raw_chords = song_data.get('chords', [])
+            raw_notes = song_data.get('notes', [])
+
+            words = self._sanitize_words_list(raw_words)
+            chords = self._sanitize_chords_list(raw_chords)
+            notes = self._sanitize_notes_list(raw_notes)
+            tempo_bpm = self._derive_tempo(audio_analysis, words)
             tempo_changes = audio_analysis.get('tempo_changes', [])
-            words = song_data.get('words', [])
-            chords = song_data.get('chords', [])
-            notes = song_data.get('notes', [])
 
             # Try PrettyMIDI first if available
             if PRETTY_MIDI_AVAILABLE:

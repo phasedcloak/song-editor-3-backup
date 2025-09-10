@@ -220,22 +220,63 @@ def process_audio_file(
 
         # Transcribe lyrics
         logging.info("🎤 Transcribing lyrics...")
-        vocals_audio = audio_data.get('vocals', audio_data['audio'])
-        lyrics = transcriber.transcribe(vocals_audio, audio_data['sample_rate'])
+        # Prefer separated vocals if present and valid; otherwise fall back to full mix
+        vocals_audio = audio_data.get('vocals')
+        if vocals_audio is None or (hasattr(vocals_audio, '__len__') and len(vocals_audio) == 0):
+            vocals_audio = audio_data.get('audio')
+
+        # Safety check for audio data
+        if vocals_audio is None or (hasattr(vocals_audio, '__len__') and len(vocals_audio) == 0):
+            logging.warning("No valid audio data available for transcription, skipping...")
+            lyrics = ""
+        else:
+            try:
+                lyrics = transcriber.transcribe(vocals_audio, audio_data['sample_rate'])
+            except Exception as e:
+                logging.warning(f"Transcription failed: {e}, skipping...")
+                lyrics = ""
 
         # Detect chords
         logging.info("🎸 Detecting chords...")
-        instrumental_audio = audio_data.get('other', audio_data['audio'])
-        chords = chord_detector.detect(instrumental_audio, audio_data['sample_rate'])
+        # Prefer accompaniment/other if present; otherwise fall back to full mix
+        instrumental_audio = audio_data.get('accompaniment') or audio_data.get('other') or audio_data.get('audio')
+
+        # Safety check for audio data
+        if instrumental_audio is None or (hasattr(instrumental_audio, '__len__') and len(instrumental_audio) == 0):
+            logging.warning("No valid audio data available for chord detection, skipping...")
+            chords = []
+        else:
+            try:
+                chords = chord_detector.detect(instrumental_audio, audio_data['sample_rate'])
+            except Exception as e:
+                logging.warning(f"Chord detection failed: {e}, skipping...")
+                chords = []
 
         # Extract melody
         logging.info("🎼 Extracting melody...")
-        # Melody extractor worker script expects a file path
-        temp_vocal_path = audio_processor._save_audio_temp(vocals_audio, audio_data['sample_rate'])
-        melody = melody_extractor.extract(temp_vocal_path)
-        # Clean up temporary file
-        if os.path.exists(temp_vocal_path):
-            os.unlink(temp_vocal_path)
+
+        # Safety check for audio data
+        if vocals_audio is None or (hasattr(vocals_audio, '__len__') and len(vocals_audio) == 0):
+            logging.warning("No valid audio data available for melody extraction, skipping...")
+            melody = []
+        else:
+            try:
+                # Melody extractor worker script expects a file path
+                temp_vocal_path = audio_processor._save_audio_temp(vocals_audio, audio_data['sample_rate'])
+                melody = melody_extractor.extract(temp_vocal_path)
+                # Clean up temporary file
+                if os.path.exists(temp_vocal_path):
+                    os.unlink(temp_vocal_path)
+            except Exception as e:
+                logging.warning(f"Melody extraction failed: {e}, skipping...")
+                melody = []
+
+        # If no words, skip JSON/MIDI export per requirements
+        has_words = isinstance(lyrics, list) and len(lyrics) > 0
+        if not has_words:
+            logging.info("No words found; skipping JSON/MIDI export and finishing processing for this file.")
+            # Optionally, still export a minimal CCLI text has already been attempted above
+            return True
 
         # Prepare song data
         song_data = {
@@ -267,20 +308,34 @@ def process_audio_file(
         base_name = Path(input_path).stem
         export_dir = output_dir or Path(input_path).parent
 
-        # Export JSON
+        # Export JSON (robust: try full → analysis-only → minimal)
         json_exporter = JSONExporter()
         json_path = export_dir / f"{base_name}.song_data.json"
-        json_exporter.export(song_data, json_path)
+        exported = json_exporter.export(song_data, json_path)
+        if not exported:
+            logging.warning("Full JSON export failed. Falling back to analysis-only export.")
+            exported = json_exporter.export_analysis_only(song_data, json_path)
+        if not exported:
+            logging.warning("Analysis-only JSON export failed. Falling back to minimal export.")
+            exported = json_exporter.export_minimal(song_data, json_path)
+        if not exported:
+            logging.error("All JSON export strategies failed.")
 
-        # Export MIDI
-        midi_exporter = MidiExporter()
-        midi_path = export_dir / f"{base_name}.karaoke.mid"
-        midi_exporter.export(song_data, midi_path)
+        # Export MIDI (best-effort)
+        try:
+            midi_exporter = MidiExporter()
+            midi_path = export_dir / f"{base_name}.karaoke.mid"
+            midi_exporter.export(song_data, midi_path)
+        except Exception as midi_err:
+            logging.warning(f"MIDI export skipped: {midi_err}")
 
-        # Export CCLI text
-        ccli_exporter = CCLIExporter()
-        ccli_path = export_dir / f"{base_name}_chord_lyrics_table.txt"
-        ccli_exporter.export(song_data, ccli_path)
+        # Export CCLI text (best-effort)
+        try:
+            ccli_exporter = CCLIExporter()
+            ccli_path = export_dir / f"{base_name}_chord_lyrics_table.txt"
+            ccli_exporter.export(song_data, ccli_path)
+        except Exception as ccli_err:
+            logging.warning(f"CCLI export skipped: {ccli_err}")
 
         logging.info(f"✅ Processing complete! Results saved to: {export_dir}")
         return True
@@ -409,9 +464,9 @@ Examples:
     # New separation engine options
     parser.add_argument(
         '--separation-engine',
-        default='demucs',
+        default='audio-separator',
         choices=['demucs', 'audio-separator'],
-        help='Source separation engine to use (default: demucs). Audio-separator provides better performance and more models.'
+        help='Source separation engine to use (default: audio-separator). Audio-separator provides better performance and more models.'
     )
 
     parser.add_argument(

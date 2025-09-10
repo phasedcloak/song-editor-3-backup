@@ -621,15 +621,15 @@ class MainWindow(QMainWindow):
                 # Fallback to basic list
                 self.audio_separator_model_combo.addItems([
                     'UVR_MDXNET_KARA_2',
-                    'UVR_MDXNET_21_OVERLAP_9',
+                    'UVR_MDXNET_21_OVERLAP_5',
                     'UVR_MDXNET_21_OVERLAP_7',
-                    'UVR_MDXNET_21_OVERLAP_5'
+                    'UVR_MDXNET_21_OVERLAP_9'
                 ])
         except Exception as e:
             logger.warning(f"Failed to load model list: {e}")
             self.audio_separator_model_combo.addItems([
                 'UVR_MDXNET_KARA_2',
-                'UVR_MDXNET_21_OVERLAP_9'
+                'UVR_MDXNET_21_OVERLAP_5'
             ])
 
         # Set fixed width for combo box to prevent UI from being too wide

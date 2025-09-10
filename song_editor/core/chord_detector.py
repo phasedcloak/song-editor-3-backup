@@ -152,72 +152,77 @@ class ChordDetector:
         return self._detect_chords_chordino_worker(audio_path)
 
     def _detect_chords_chromagram(self, audio: np.ndarray, sample_rate: int) -> List[Dict[str, Any]]:
-        """Detect chords using chromagram analysis."""
+        """Detect chords using chromagram analysis via system Python subprocess to avoid cffi issues."""
         try:
-            # Convert to mono if needed
-            if len(audio.shape) > 1:
-                audio_mono = np.mean(audio, axis=0)
-            else:
-                audio_mono = audio
+            import tempfile
+            tmpdir = tempfile.mkdtemp(prefix="chords_")
+            in_npy = os.path.join(tmpdir, "in.npy")
+            mono = audio if audio.ndim == 1 else np.mean(audio, axis=0)
+            np.save(in_npy, mono)
+            hop = max(1, int(self.window_size * sample_rate))
 
-            # Extract chromagram
-            hop_length = int(self.window_size * sample_rate)
-            chromagram = librosa.feature.chroma_cqt(
-                y=audio_mono,
-                sr=sample_rate,
-                hop_length=hop_length
-            )
+            script = f'''\
+import sys, numpy as np
+sys.path.insert(0, '/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages')
+try:
+    import librosa
+    y = np.load(r"{in_npy}")
+    chroma = librosa.feature.chroma_cqt(y=y, sr={sample_rate}, hop_length={hop})
+    times = librosa.frames_to_time(np.arange(chroma.shape[1]), sr={sample_rate}, hop_length={hop})
+    chroma = chroma / (np.max(chroma) + 1e-12)
+    for i in range(chroma.shape[1]):
+        vec = chroma[:, i]
+        t = float(times[i])
+        print("FRAME:", t, ",", ",".join(str(float(v)) for v in vec))
+except Exception as err:
+    print("ERROR:", str(err), file=sys.stderr)
+    sys.exit(1)
+'''
+            sp = subprocess.run(['/usr/local/bin/python3', '-c', script], capture_output=True, text=True, timeout=180)
+            if sp.returncode != 0:
+                logging.error(f"Error in chromagram chord detection: {sp.stderr.strip()}")
+                return []
 
-            # Define chord templates
             chord_templates = self._get_chord_templates()
+            chords: List[Dict[str, Any]] = []
 
-            # Detect chords
-            chords = []
-            frame_times = librosa.frames_to_time(
-                np.arange(chromagram.shape[1]),
-                sr=sample_rate,
-                hop_length=hop_length
-            )
+            for line in sp.stdout.splitlines():
+                if not line.startswith('FRAME:'):
+                    continue
+                try:
+                    _, payload = line.split(':', 1)
+                    time_str, vec_str = payload.split(',', 1)
+                    t = float(time_str.strip())
+                    vec = np.array([float(x) for x in vec_str.strip().split(',')], dtype=float)
+                    best = None
+                    best_corr = -1.0
+                    for symbol, tmpl in chord_templates.items():
+                        corr = np.corrcoef(vec, tmpl)[0, 1]
+                        if corr > best_corr:
+                            best_corr = corr
+                            best = symbol
+                    conf = max(0.0, min(1.0, (best_corr + 1) / 2))
+                    if conf >= self.min_confidence and best:
+                        parsed = self._parse_chord_symbol(best)
+                        chords.append({
+                            'symbol': best,
+                            'root': parsed['root'],
+                            'quality': parsed['quality'],
+                            'bass': parsed['bass'],
+                            'start': float(t),
+                            'end': float(t + self.window_size),
+                            'duration': float(self.window_size),
+                            'confidence': float(conf),
+                            'detection_method': 'chromagram'
+                        })
+                except Exception:
+                    continue
 
-            for i, frame_time in enumerate(frame_times):
-                frame_chroma = chromagram[:, i]
-
-                # Find best matching chord
-                best_chord = None
-                best_correlation = -1.0
-
-                for chord_symbol, template in chord_templates.items():
-                    correlation = np.corrcoef(frame_chroma, template)[0, 1]
-                    if correlation > best_correlation:
-                        best_correlation = correlation
-                        best_chord = chord_symbol
-
-                # Calculate confidence
-                confidence = max(0.0, min(1.0, (best_correlation + 1) / 2))
-
-                if confidence >= self.min_confidence:
-                    # Parse chord information
-                    chord_data = self._parse_chord_symbol(best_chord)
-
-                    chord = {
-                        'symbol': best_chord,
-                        'root': chord_data['root'],
-                        'quality': chord_data['quality'],
-                        'bass': chord_data['bass'],
-                        'start': frame_time,
-                        'end': frame_time + self.window_size,
-                        'duration': self.window_size,
-                        'confidence': confidence,
-                        'detection_method': 'chromagram'
-                    }
-
-                    chords.append(chord)
-
-            return chords
+            return self._merge_similar_chords(chords)
 
         except Exception as e:
             logging.error(f"Error in chromagram chord detection: {e}")
-            raise
+            return []
 
     def _get_chord_templates(self) -> Dict[str, np.ndarray]:
         """Get chord templates for chromagram analysis."""

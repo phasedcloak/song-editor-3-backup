@@ -166,6 +166,7 @@ logs/
 *.app
 *.dmg
 *.pkg
+*.zip
 
 # PyTorch checkpoints
 *.pth
@@ -175,6 +176,7 @@ logs/
 checkpoints/
 models/*.bin
 models/*.pth
+models/
 
 # Test files
 test_*.py

@@ -156,56 +156,85 @@ class AudioProcessor:
         return levels
 
     def _detect_tempo(self, audio: np.ndarray, sr: int) -> Optional[float]:
-        """Detect tempo using librosa."""
+        """Detect tempo using system Python subprocess to avoid cffi conflicts."""
         try:
+            import tempfile
+            import numpy as _np
             start = time.time()
-            tempo, _ = librosa.beat.beat_track(y=audio, sr=sr)
+            tmpdir = tempfile.mkdtemp(prefix="tempo_")
+            in_npy = os.path.join(tmpdir, "audio.npy")
+            _np.save(in_npy, audio)
+
+            script = f'''\
+import sys, numpy as np
+sys.path.insert(0, '/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages')
+try:
+    import librosa
+    y = np.load(r"{in_npy}")
+    t, _ = librosa.beat.beat_track(y=y, sr={sr})
+    print("TEMPO:", float(t))
+except Exception as err:
+    print("ERROR:", str(err), file=sys.stderr)
+    sys.exit(1)
+'''
+            sp = subprocess.run(['/usr/local/bin/python3', '-c', script], capture_output=True, text=True, timeout=60)
             self.processing_info['tempo_time'] = time.time() - start
-            return float(tempo)
+            if sp.returncode != 0:
+                logging.warning(f"Tempo subprocess failed: {sp.stderr.strip()}")
+                return None
+            for line in sp.stdout.splitlines():
+                if line.startswith('TEMPO:'):
+                    return float(line.split(':', 1)[1].strip())
+            return None
         except Exception as e:
             logging.warning(f"Tempo detection failed: {e}")
             return None
 
     def _detect_key(self, audio: np.ndarray, sr: int) -> Optional[Dict[str, Any]]:
-        """Detect musical key using librosa."""
+        """Detect musical key using system Python subprocess to avoid cffi conflicts."""
         try:
+            import tempfile
+            import numpy as _np
             start = time.time()
-            # Extract chromagram
-            chromagram = librosa.feature.chroma_cqt(y=audio, sr=sr)
+            tmpdir = tempfile.mkdtemp(prefix="key_")
+            in_npy = os.path.join(tmpdir, "audio.npy")
+            _np.save(in_npy, audio)
 
-            # Get key profile
-            key_profile = np.mean(chromagram, axis=1)
-
-            # Find dominant key
-            key_names = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
-            dominant_key_idx = np.argmax(key_profile)
-            dominant_key = key_names[dominant_key_idx]
-
-            # Determine major/minor
-            # This is a simplified approach - in practice you'd use more sophisticated methods
-            major_scale = [0, 2, 4, 5, 7, 9, 11]
-            minor_scale = [0, 2, 3, 5, 7, 8, 10]
-
-            major_score = sum(key_profile[(dominant_key_idx + note) % 12] for note in major_scale)
-            minor_score = sum(key_profile[(dominant_key_idx + note) % 12] for note in minor_scale)
-
-            mode = "major" if major_score > minor_score else "minor"
-
-            return {
-                'key': dominant_key,
-                'mode': mode,
-                'confidence': float(max(major_score, minor_score) / sum(key_profile))
-            }
-            # not reached
-
+            script = f'''\
+import sys, numpy as np
+sys.path.insert(0, '/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages')
+try:
+    import librosa
+    y = np.load(r"{in_npy}")
+    chroma = librosa.feature.chroma_cqt(y=y, sr={sr})
+    prof = np.mean(chroma, axis=1)
+    idx = int(np.argmax(prof))
+    names = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B']
+    key = names[idx]
+    maj = [0,2,4,5,7,9,11]
+    mino = [0,2,3,5,7,8,10]
+    maj_s = float(sum(prof[(idx+n)%12] for n in maj))
+    min_s = float(sum(prof[(idx+n)%12] for n in mino))
+    mode = 'major' if maj_s >= min_s else 'minor'
+    conf = float(max(maj_s, min_s) / (float(sum(prof)) + 1e-12))
+    print("KEY:", key, mode, conf)
+except Exception as err:
+    print("ERROR:", str(err), file=sys.stderr)
+    sys.exit(1)
+'''
+            sp = subprocess.run(['/usr/local/bin/python3', '-c', script], capture_output=True, text=True, timeout=60)
+            self.processing_info['key_time'] = time.time() - start
+            if sp.returncode != 0:
+                logging.warning(f"Key subprocess failed: {sp.stderr.strip()}")
+                return None
+            for line in sp.stdout.splitlines():
+                if line.startswith('KEY:'):
+                    parts = line.split()
+                    return {'key': f"{parts[1]}", 'mode': parts[2], 'confidence': float(parts[3])}
+            return None
         except Exception as e:
             logging.warning(f"Key detection failed: {e}")
             return None
-        finally:
-            try:
-                self.processing_info['key_time'] = time.time() - start
-            except Exception:
-                pass
 
     def load_audio(self, file_path: str) -> Tuple[np.ndarray, int]:
         """Load audio file."""
@@ -251,24 +280,16 @@ class AudioProcessor:
     def denoise_audio(self, audio: np.ndarray, sr: int) -> np.ndarray:
         """Denoise audio using noisereduce."""
         try:
-            # Skip denoising if audio is empty (audio-separator case)
-            if len(audio) == 0:
-                logging.info("Skipping denoising for audio-separator (empty audio)")
+            # Skip denoising if audio is empty
+            if audio is None or len(audio) == 0:
+                logging.info("Skipping denoising (no audio)")
                 return audio
 
-            # Import noisereduce lazily
-            import noisereduce as nr
-
-            logging.info("Denoising audio...")
+            logging.info("Denoising audio via subprocess...")
             start_time = time.time()
 
-            # Apply noise reduction
-            denoised = nr.reduce_noise(
-                y=audio,
-                sr=sr,
-                stationary=True,
-                prop_decrease=self.denoise_strength
-            )
+            # Apply noise reduction via subprocess
+            denoised = self._denoise_with_subprocess(audio, sr)
 
             denoise_time = time.time() - start_time
             self.processing_info['denoise_time'] = denoise_time
@@ -282,6 +303,37 @@ class AudioProcessor:
             return audio
         except Exception as e:
             logging.error(f"Denoising failed: {e}")
+            return audio
+
+    def _denoise_with_subprocess(self, audio: np.ndarray, sr: int) -> np.ndarray:
+        """Denoise audio via system Python subprocess using noisereduce."""
+        try:
+            import tempfile
+            import numpy as _np
+            tmpdir = tempfile.mkdtemp(prefix="denoise_")
+            in_npy = os.path.join(tmpdir, "in.npy")
+            out_npy = os.path.join(tmpdir, "out.npy")
+            _np.save(in_npy, audio)
+
+            script = f'''\
+import sys, numpy as np
+sys.path.insert(0, '/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages')
+try:
+    import noisereduce as nr
+    y = np.load(r"{in_npy}")
+    out = nr.reduce_noise(y=y, sr={sr}, stationary=True, prop_decrease=0.8)
+    np.save(r"{out_npy}", out)
+except Exception as err:
+    print("ERROR:", str(err), file=sys.stderr)
+    sys.exit(1)
+'''
+            sp = subprocess.run(['/usr/local/bin/python3', '-c', script], capture_output=True, text=True, timeout=120)
+            if sp.returncode != 0:
+                logging.warning(f"Subprocess denoise failed: {sp.stderr.strip()}")
+                return audio
+            return _np.load(out_npy)
+        except Exception as e:
+            logging.warning(f"Denoise subprocess error: {e}")
             return audio
 
     def normalize_audio(self, audio: np.ndarray, sr: int) -> np.ndarray:
@@ -450,8 +502,8 @@ try:
     print(f"SAMPLE_RATE: {{sr}}")
     print(f"SUCCESS: Audio loaded")
 
-except Exception as e:
-    print(f"ERROR: {{e}}", file=sys.stderr)
+except Exception as err:
+    print("ERROR:", str(err), file=sys.stderr)
     sys.exit(1)
 '''
 
@@ -807,24 +859,50 @@ except Exception as e:
             separated_sources = self.separate_sources(audio_path, audio, sr)
 
             # For audio-separator, use original audio for now (separation files created but loading has cffi issues)
-            vocals_audio = audio  # Use original audio for analysis
+            vocals_audio = audio.copy() if audio is not None else None  # Make a copy to avoid reference issues
             if self.separation_engine == 'audio_separator':
                 logging.info("Audio-separator processing completed - using original audio for analysis (separation files saved)")
 
             # 5. Assemble results
-            final_audio_data = {
-                'audio': vocals_audio,  # Use vocals for analysis instead of original
-                'sample_rate': sr,
-                'analysis': {
-                    'duration': len(vocals_audio) / sr,
+            # Safety check for audio data
+            if vocals_audio is None or len(vocals_audio) == 0:
+                logging.error("Audio data is None or empty, cannot perform analysis")
+                vocals_audio = audio if audio is not None and len(audio) > 0 else None
+
+            if vocals_audio is None or len(vocals_audio) == 0:
+                logging.error("No valid audio data available, skipping analysis")
+                final_audio_data = {
+                    'audio': audio,
                     'sample_rate': sr,
-                    'channels': 1,
-                    'audio_levels': self._calculate_audio_levels(vocals_audio, sr),
-                    'tempo': self._detect_tempo(vocals_audio, sr),
-                    'key': self._detect_key(vocals_audio, sr)
-                },
-                'processing_info': self.processing_info
-            }
+                    'analysis': {
+                        'duration': float(len(audio) / sr) if audio is not None else 0.0,
+                        'sample_rate': sr,
+                        'channels': 1,
+                        'audio_levels': [],
+                        'tempo': None,
+                        'key': None
+                    },
+                    'processing_info': self.processing_info
+                }
+            else:
+                # Use original audio for analysis; offload tempo/key safely
+                safe_audio = self.denoise_audio(audio, sr)
+                tempo_val = self._detect_tempo(safe_audio, sr)
+                key_val = self._detect_key(safe_audio, sr)
+
+                final_audio_data = {
+                    'audio': audio,
+                    'sample_rate': sr,
+                    'analysis': {
+                        'duration': len(audio) / sr,
+                        'sample_rate': sr,
+                        'channels': 1,
+                        'audio_levels': self._calculate_audio_levels(audio, sr),
+                        'tempo': tempo_val,
+                        'key': key_val
+                    },
+                    'processing_info': self.processing_info
+                }
             final_audio_data.update(separated_sources)
 
             # Calculate total processing time

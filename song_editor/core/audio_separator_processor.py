@@ -92,7 +92,7 @@ class AudioSeparatorProcessor:
         'multi_stem': 'UVR_MDXNET_21_OVERLAP_9',
 
         # Voice isolation (removes everything except vocals)
-        'voice_only': 'UVR_MDXNET_KARA_2',
+        'voice_only': 'UVR_MDXNET_21_OVERLAP_9',
 
         # High quality for music production
         'hq_music': 'UVR_MDXNET_21_OVERLAP_9',

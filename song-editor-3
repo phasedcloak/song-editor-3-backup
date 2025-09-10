@@ -2,11 +2,37 @@
 # Song Editor 3 Launcher Script
 # Suppresses pkg_resources deprecation warning and ensures clean output
 
-# Set PYTHONWARNINGS to suppress various warnings
-export PYTHONWARNINGS="ignore::UserWarning:pretty_midi.instrument,ignore::DeprecationWarning:pkg_resources,ignore::UserWarning"
+# Set PYTHONWARNINGS to suppress warnings BEFORE Python starts
+export PYTHONWARNINGS="ignore::UserWarning,ignore::DeprecationWarning"
 
-# Also suppress specific torch warnings that might appear
-export PYTHONWARNINGS="$PYTHONWARNINGS,ignore::UserWarning:torchaudio,ignore::UserWarning:torch"
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Run the application
-exec python -m song_editor "$@"
+# Create a temporary Python wrapper script with the correct path
+cat > /tmp/song_editor_wrapper.py << EOF
+import warnings
+import sys
+import os
+from pathlib import Path
+
+# Suppress warnings BEFORE any imports
+warnings.filterwarnings('ignore', message='pkg_resources is deprecated', category=DeprecationWarning)
+warnings.filterwarnings('ignore', message='.*pkg_resources.*', category=UserWarning)
+warnings.filterwarnings('ignore', message='.*pkg_resources.*', category=DeprecationWarning)
+warnings.filterwarnings('ignore', category=UserWarning, module='pretty_midi')
+
+# Add the Song Editor directory to Python path
+script_dir = Path("$SCRIPT_DIR")
+if str(script_dir) not in sys.path:
+    sys.path.insert(0, str(script_dir))
+
+# Now import and run the application
+from song_editor.app import main
+sys.exit(main())
+EOF
+
+# Run the wrapper script
+exec python /tmp/song_editor_wrapper.py "$@"
+
+# Clean up
+rm -f /tmp/song_editor_wrapper.py

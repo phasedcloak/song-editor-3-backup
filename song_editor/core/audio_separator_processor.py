@@ -583,17 +583,22 @@ class AudioSeparatorProcessor:
 
     def get_models_for_ui(self) -> List[str]:
         """
-        Get model names formatted for UI dropdown display.
+        Get model names formatted for UI dropdown display (compact format).
 
         Returns:
-            List of formatted model names for UI display
+            List of formatted model names for UI display (shortened for screen width)
         """
         models = self.get_available_models()
         formatted_names = []
 
         for model in models:
-            # Format: "Model Name (Size MB) - Description"
-            display_name = f"{model['name']} ({model['estimated_size_mb']}MB) - {model['description']}"
+            # Compact format: "Model_Name (SizeMB) - Short_Description"
+            # Truncate description to fit better
+            desc = model['description']
+            if len(desc) > 30:
+                desc = desc[:27] + "..."
+
+            display_name = f"{model['name']} ({model['estimated_size_mb']}MB) - {desc}"
             formatted_names.append(display_name)
 
         return formatted_names

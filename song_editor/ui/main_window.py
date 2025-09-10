@@ -567,53 +567,52 @@ class MainWindow(QMainWindow):
         options_layout.addWidget(QLabel("Whisper Model:"), 0, 0)
         options_layout.addWidget(self.whisper_model_combo, 0, 1)
 
-        # Whisper model size
-        options_layout.addWidget(QLabel("Model Size:"), 1, 0)
+        # Use shorter, more compact labels and layout
+        # Model size (shortened)
+        options_layout.addWidget(QLabel("Whisper Size:"), 1, 0)
         self.model_size_combo = QComboBox()
         self.model_size_combo.addItems(['large-v3-turbo', 'large-v3', 'large-v2', 'large', 'medium', 'small', 'base', 'tiny'])
         self.model_size_combo.setToolTip(
-            "Preferred size for Whisper engines. 'large-v3-turbo' requires recent Whisper/Faster-Whisper. "
-            "If unavailable, the app will fall back to large-v2 automatically."
+            "Whisper model size. Large-v3-turbo is fastest and most accurate."
         )
         options_layout.addWidget(self.model_size_combo, 1, 1)
 
-        # Chord detection method
+        # Chord detection
+        options_layout.addWidget(QLabel("Chords:"), 2, 0)
         self.chord_method_combo = QComboBox()
         self.chord_method_combo.addItems(['chordino', 'chromagram'])
-        options_layout.addWidget(QLabel("Chord Detection:"), 2, 0)
         options_layout.addWidget(self.chord_method_combo, 2, 1)
 
-        # Melody extraction method
+        # Melody extraction
+        options_layout.addWidget(QLabel("Melody:"), 3, 0)
         self.melody_method_combo = QComboBox()
         self.melody_method_combo.addItems(['basic-pitch', 'crepe'])
-        # Set default to basic-pitch
         index = self.melody_method_combo.findText('basic-pitch')
         if index >= 0:
             self.melody_method_combo.setCurrentIndex(index)
-        options_layout.addWidget(QLabel("Melody Extraction:"), 3, 0)
         options_layout.addWidget(self.melody_method_combo, 3, 1)
 
-        # Source separation method
+        # Source separation (compact)
+        options_layout.addWidget(QLabel("Separation:"), 4, 0)
         self.separation_method_combo = QComboBox()
         self.separation_method_combo.addItems(['demucs', 'audio-separator'])
-        # Set default to demucs for compatibility
         index = self.separation_method_combo.findText('demucs')
         if index >= 0:
             self.separation_method_combo.setCurrentIndex(index)
-        options_layout.addWidget(QLabel("Source Separation:"), 4, 0)
         options_layout.addWidget(self.separation_method_combo, 4, 1)
 
-        # Audio-separator model selection (only shown when audio-separator is selected)
+        # Audio-separator model selection (compact display)
+        options_layout.addWidget(QLabel("UVR Model:"), 5, 0)
         self.audio_separator_model_combo = QComboBox()
 
-        # Try to populate with enhanced model information
+        # Use compact model names for UI
         try:
             from song_editor.core.audio_separator_processor import AudioSeparatorProcessor
             if AudioSeparatorProcessor.is_available():
                 separator = AudioSeparatorProcessor()
                 model_names = separator.get_models_for_ui()
                 self.audio_separator_model_combo.addItems(model_names)
-                # Set default to first karaoke model
+                # Set default to karaoke model
                 for i, name in enumerate(model_names):
                     if 'KARA_2' in name:
                         self.audio_separator_model_combo.setCurrentIndex(i)
@@ -627,34 +626,39 @@ class MainWindow(QMainWindow):
                     'UVR_MDXNET_21_OVERLAP_5'
                 ])
         except Exception as e:
-            logger.warning(f"Failed to load enhanced model list: {e}")
-            # Fallback to basic list
+            logger.warning(f"Failed to load model list: {e}")
             self.audio_separator_model_combo.addItems([
                 'UVR_MDXNET_KARA_2',
-                'UVR_MDXNET_21_OVERLAP_9',
-                'UVR_MDXNET_21_OVERLAP_7',
-                'UVR_MDXNET_21_OVERLAP_5'
+                'UVR_MDXNET_21_OVERLAP_9'
             ])
 
-        options_layout.addWidget(QLabel("Audio-Sep Model:"), 5, 0)
+        # Set fixed width for combo box to prevent UI from being too wide
+        self.audio_separator_model_combo.setMaximumWidth(300)
         options_layout.addWidget(self.audio_separator_model_combo, 5, 1)
 
-        # GPU acceleration options
-        self.use_cuda_check = QCheckBox("Use CUDA (NVIDIA GPU)")
+        # GPU options (compact layout)
+        gpu_layout = QHBoxLayout()
+        self.use_cuda_check = QCheckBox("CUDA")
         self.use_cuda_check.setChecked(False)
-        options_layout.addWidget(self.use_cuda_check, 6, 0)
+        self.use_cuda_check.setToolTip("Enable CUDA acceleration (NVIDIA GPUs)")
+        gpu_layout.addWidget(self.use_cuda_check)
 
-        self.use_coreml_check = QCheckBox("Use CoreML (Apple Silicon)")
-        self.use_coreml_check.setChecked(True)  # Default for Mac
-        options_layout.addWidget(self.use_coreml_check, 6, 1)
+        self.use_coreml_check = QCheckBox("CoreML")
+        self.use_coreml_check.setChecked(True)
+        self.use_coreml_check.setToolTip("Enable CoreML acceleration (Apple Silicon)")
+        gpu_layout.addWidget(self.use_coreml_check)
 
-        # Legacy checkbox (hide it)
-        self.use_demucs_check = QCheckBox("Use Demucs (Source Separation)")
+        # Add GPU options to the grid
+        options_layout.addWidget(QLabel("GPU:"), 6, 0)
+        options_layout.addLayout(gpu_layout, 6, 1)
+
+        # Legacy checkbox (hidden)
+        self.use_demucs_check = QCheckBox("Use Demucs")
         self.use_demucs_check.setChecked(True)
-        self.use_demucs_check.setVisible(False)  # Hide the old checkbox
+        self.use_demucs_check.setVisible(False)
 
         # Save intermediate files
-        self.save_intermediate_check = QCheckBox("Save Intermediate Files")
+        self.save_intermediate_check = QCheckBox("Save intermediate files")
         self.save_intermediate_check.setChecked(True)
         options_layout.addWidget(self.save_intermediate_check, 7, 0, 1, 2)
 

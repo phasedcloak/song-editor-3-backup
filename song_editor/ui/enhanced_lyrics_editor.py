@@ -715,12 +715,25 @@ class EnhancedLyricsEditor(QWidget):
         self.rhyme_panel = RhymePanel()
         self.splitter.addWidget(self.rhyme_panel)
 
-        # Set initial splitter proportions (reduce center by 20% and give to rhyme panel)
-        self.splitter.setSizes([80, 400, 350])  # Increased rhyme panel from 250 to 350
-        # Set stretch factors: center gets most space, sides are fixed
-        self.splitter.setStretchFactor(0, 0)  # Left panel fixed width
-        self.splitter.setStretchFactor(1, 1)  # Center panel stretches
-        self.splitter.setStretchFactor(2, 0)  # Right panel fixed width
+        # Set initial splitter proportions: 20% left, 60% center, 20% right
+        # Set strict size constraints to enforce 20%-60%-20% layout
+        self.syllable_panel.setMinimumWidth(80)   # Smaller minimum for syllable panel
+        self.syllable_panel.setMaximumWidth(150)  # Much smaller maximum to enforce 20%
+        self.lyrics_panel.setMinimumWidth(400)    # Larger minimum for main editor (60%)
+        self.rhyme_panel.setMinimumWidth(80)      # Smaller minimum for rhyme panel  
+        self.rhyme_panel.setMaximumWidth(150)     # Much smaller maximum to enforce 20%
+        
+        # Use proportional sizing that adapts to screen width
+        total_width = 1000  # Base width for proportion calculation
+        left_width = int(total_width * 0.20)    # 20% for syllable panel
+        center_width = int(total_width * 0.60)  # 60% for lyrics editor
+        right_width = int(total_width * 0.20)   # 20% for rhyme panel
+        
+        self.splitter.setSizes([left_width, center_width, right_width])
+        # Set stretch factors: center panel gets most stretch, sides minimal
+        self.splitter.setStretchFactor(0, 0)  # Left panel fixed size (no stretch)
+        self.splitter.setStretchFactor(1, 1)  # Center panel gets all stretch
+        self.splitter.setStretchFactor(2, 0)  # Right panel fixed size (no stretch)
         # Prevent center pane from collapsing
         try:
             self.splitter.setCollapsible(0, True)
@@ -739,6 +752,30 @@ class EnhancedLyricsEditor(QWidget):
 
         # Connect text editor scrolling to syllable panel (after UI is set up)
         self.text_edit.verticalScrollBar().valueChanged.connect(self.on_text_scroll)
+
+    def resizeEvent(self, event):
+        """Handle window resize to maintain 20%-60%-20% proportions."""
+        super().resizeEvent(event)
+        if hasattr(self, 'splitter'):
+            # Get the current total width
+            total_width = self.width()
+            if total_width > 300:  # Only adjust if we have reasonable width
+                # Calculate strict 20%-60%-20% proportions with tight constraints
+                left_width = max(80, min(150, int(total_width * 0.20)))     # Strict 20% with tight max
+                right_width = max(80, min(150, int(total_width * 0.20)))    # Strict 20% with tight max
+                center_width = total_width - left_width - right_width       # Remaining for center (should be ~60%)
+                
+                # Ensure center gets at least 60% by adjusting side panels if needed
+                min_center = int(total_width * 0.58)  # At least 58% for center
+                if center_width < min_center:
+                    # Reduce side panels to give more space to center
+                    available_sides = total_width - min_center
+                    left_width = min(left_width, available_sides // 2)
+                    right_width = min(right_width, available_sides // 2)
+                    center_width = total_width - left_width - right_width
+                
+                # Set the new sizes
+                self.splitter.setSizes([left_width, center_width, right_width])
 
     def create_lyrics_panel(self):
         """Create the main lyrics editing panel"""

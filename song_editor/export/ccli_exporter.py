@@ -114,8 +114,15 @@ class CCLIExporter:
         # Duration
         duration = song_data.get('audio_analysis', {}).get('duration')
         if duration:
-            minutes = int(duration // 60)
-            seconds = int(duration % 60)
+            try:
+                duration_float = float(duration)
+                minutes = int(duration_float // 60)
+                seconds = int(duration_float % 60)
+            except (TypeError, ValueError, ZeroDivisionError) as e:
+                logging.error(f"CCLI duration calculation error: {e}")
+                logging.error(f"  duration type={type(duration)}, duration value={duration}")
+                minutes = 0
+                seconds = 0
             metadata_lines.append(f"Duration: {minutes}:{seconds:02d}")
 
         # Processing information
@@ -181,8 +188,15 @@ class CCLIExporter:
                 duration = content.get('duration', 0)
 
                 if self.include_timing:
-                    minutes = int(time // 60)
-                    seconds = time % 60
+                    try:
+                        time_float = float(time)
+                        minutes = int(time_float // 60)
+                        seconds = time_float % 60
+                    except (TypeError, ValueError, ZeroDivisionError) as e:
+                        logging.error(f"CCLI time calculation error: {e}")
+                        logging.error(f"  time type={type(time)}, time value={time}")
+                        minutes = 0
+                        seconds = 0.0
                     time_str = f"{minutes}:{seconds:05.2f}"
                     duration_str = f"{duration:.2f}s" if duration > 0 else "N/A"
                     table_lines.append(f"{time_str:<8} {chord_symbol:<15} {duration_str:<8} {'':<40}")
@@ -191,8 +205,15 @@ class CCLIExporter:
             else:  # lyrics
                 word_text = content.get('text', '')
                 if self.include_timing:
-                    minutes = int(time // 60)
-                    seconds = time % 60
+                    try:
+                        time_float = float(time)
+                        minutes = int(time_float // 60)
+                        seconds = time_float % 60
+                    except (TypeError, ValueError, ZeroDivisionError) as e:
+                        logging.error(f"CCLI time calculation error: {e}")
+                        logging.error(f"  time type={type(time)}, time value={time}")
+                        minutes = 0
+                        seconds = 0.0
                     time_str = f"{minutes}:{seconds:05.2f}"
                     table_lines.append(f"{time_str:<8} {'':<15} {'':<8} {word_text:<40}")
                 else:

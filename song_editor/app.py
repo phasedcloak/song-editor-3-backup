@@ -176,11 +176,40 @@ def process_audio_file(
     use_demucs: bool = True,
     save_intermediate: bool = False,
     demucs_model: str = 'htdemucs',
-    no_gui: bool = False
+    no_gui: bool = False,
+    force_overwrite: bool = False
 ) -> bool:
     """Process a single audio file with the full pipeline"""
+    audio_processor = None  # Initialize to None for cleanup
+    
+    # Fix space leak: Set temp directory to external drive to avoid filling main drive
+    import tempfile
+    import os
+    from pathlib import Path
+    
+    # Use the same drive as the input file for temp operations
+    input_drive = Path(input_path).anchor or Path(input_path).parents[-1]
+    temp_base_dir = Path(input_drive) / "tmp" / "song_editor_temp"
+    temp_base_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Override temp directory for this session
+    original_tmpdir = os.environ.get('TMPDIR')
+    os.environ['TMPDIR'] = str(temp_base_dir)
+    tempfile.tempdir = str(temp_base_dir)
+    
+    logging.info(f"🗂️  Using temp directory: {temp_base_dir}")
+    
     try:
         logging.info(f"🎵 Processing audio file: {input_path}")
+
+        # Check if output already exists (unless force overwrite)
+        if not force_overwrite:
+            base_name = Path(input_path).stem
+            export_dir = Path(output_dir) if output_dir else Path(input_path).parent
+            json_path = export_dir / f"{base_name}.song_data.json"
+            if json_path.exists():
+                logging.info(f"⚠️ Skipping {input_path} - output already exists")
+                return True
 
         # Initialize processors
         audio_processor = AudioProcessor(
@@ -239,7 +268,12 @@ def process_audio_file(
         # Detect chords
         logging.info("🎸 Detecting chords...")
         # Prefer accompaniment/other if present; otherwise fall back to full mix
-        instrumental_audio = audio_data.get('accompaniment') or audio_data.get('other') or audio_data.get('audio')
+        instrumental_audio = None
+        for key in ['accompaniment', 'other', 'audio']:
+            candidate = audio_data.get(key)
+            if candidate is not None and (not hasattr(candidate, '__len__') or len(candidate) > 0):
+                instrumental_audio = candidate
+                break
 
         # Safety check for audio data
         if instrumental_audio is None or (hasattr(instrumental_audio, '__len__') and len(instrumental_audio) == 0):
@@ -247,7 +281,12 @@ def process_audio_file(
             chords = []
         else:
             try:
-                chords = chord_detector.detect(instrumental_audio, audio_data['sample_rate'])
+                # Save audio to temporary file for chord detection
+                temp_chord_path = audio_processor._save_audio_temp(instrumental_audio, audio_data['sample_rate'])
+                chords = chord_detector.detect_from_path(temp_chord_path)
+                # Clean up temporary file
+                if os.path.exists(temp_chord_path):
+                    os.unlink(temp_chord_path)
             except Exception as e:
                 logging.warning(f"Chord detection failed: {e}, skipping...")
                 chords = []
@@ -306,7 +345,7 @@ def process_audio_file(
         # Export results
         logging.info("📤 Exporting results...")
         base_name = Path(input_path).stem
-        export_dir = output_dir or Path(input_path).parent
+        export_dir = Path(output_dir) if output_dir else Path(input_path).parent
 
         # Export JSON (robust: try full → analysis-only → minimal)
         json_exporter = JSONExporter()
@@ -343,14 +382,38 @@ def process_audio_file(
     except Exception as e:
         logging.error(f"❌ Error processing audio file: {e}")
         return False
+        
+    finally:
+        # Clean up audio processor resources
+        if audio_processor is not None:
+            try:
+                audio_processor.cleanup()
+            except Exception as e:
+                logging.warning(f"Error during cleanup: {e}")
+        
+        # Restore original temp directory to prevent affecting other processes
+        try:
+            if original_tmpdir:
+                os.environ['TMPDIR'] = original_tmpdir
+            else:
+                os.environ.pop('TMPDIR', None)
+            tempfile.tempdir = None  # Reset to default
+            
+            # Clean up our temp directory 
+            import shutil
+            if temp_base_dir.exists():
+                try:
+                    shutil.rmtree(temp_base_dir, ignore_errors=True)
+                    logging.info(f"🗑️  Cleaned up temp directory: {temp_base_dir}")
+                except Exception as e:
+                    logging.warning(f"Could not clean temp directory: {e}")
+        except Exception as e:
+            logging.warning(f"Error restoring temp directory: {e}")
 
 
 def main() -> int:
     """Main application entry point"""
-    # Suppress pkg_resources deprecation warning (scheduled for removal 2025-11-30)
-    import warnings
-    warnings.filterwarnings('ignore', message='pkg_resources is deprecated', category=DeprecationWarning)
-    warnings.filterwarnings('ignore', message='.*pkg_resources.*', category=UserWarning)
+    # Note: pkg_resources deprecation warning from pretty_midi has been fixed by patching the library
 
     # Parse command line arguments
     parser = argparse.ArgumentParser(
@@ -480,6 +543,12 @@ Examples:
         action='store_true',
         help='List all available separation models and exit'
     )
+    
+    parser.add_argument(
+        '--timing-table',
+        metavar='LOG_FILE',
+        help='Generate timing analysis table from log file output'
+    )
 
     parser.add_argument(
         '--use-cuda',
@@ -573,6 +642,38 @@ Examples:
     if args.list_separation_models:
         print_separation_models_info()
         return 0
+    
+    # Handle timing table generation
+    if args.timing_table:
+        try:
+            from pathlib import Path
+            
+            # Add the project root to Python path to import timing_table_builder
+            project_root = Path(__file__).resolve().parent.parent
+            sys.path.insert(0, str(project_root))
+            
+            from timing_table_builder import TimingTableBuilder
+            
+            builder = TimingTableBuilder()
+            
+            if args.timing_table == "-":
+                # Read from stdin
+                log_text = sys.stdin.read()
+                builder.parse_log_output(log_text)
+            else:
+                # Read from file
+                with open(args.timing_table, 'r') as f:
+                    log_text = f.read()
+                builder.parse_log_output(log_text)
+            
+            # Generate and print table
+            table = builder.generate_table()
+            print(table)
+            return 0
+            
+        except Exception as e:
+            print(f"Error generating timing table: {e}", file=sys.stderr)
+            return 1
 
     # Best-effort: use spawn to avoid semaphore leaks from forked workers (Demucs/torch)
     try:

@@ -169,10 +169,19 @@ class AudioProcessor:
 import sys, numpy as np
 sys.path.insert(0, '/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages')
 try:
+    # Fix scipy/librosa compatibility issue
+    import scipy.signal
+    if not hasattr(scipy.signal, 'hann'):
+        import scipy.signal.windows
+        scipy.signal.hann = scipy.signal.windows.hann
+    
     import librosa
     y = np.load(r"{in_npy}")
     t, _ = librosa.beat.beat_track(y=y, sr={sr})
     print("TEMPO:", float(t))
+except ImportError as err:
+    print("ERROR: librosa not available -", str(err), file=sys.stderr)
+    sys.exit(1)
 except Exception as err:
     print("ERROR:", str(err), file=sys.stderr)
     sys.exit(1)
@@ -204,6 +213,12 @@ except Exception as err:
 import sys, numpy as np
 sys.path.insert(0, '/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages')
 try:
+    # Fix scipy/librosa compatibility issue
+    import scipy.signal
+    if not hasattr(scipy.signal, 'hann'):
+        import scipy.signal.windows
+        scipy.signal.hann = scipy.signal.windows.hann
+    
     import librosa
     y = np.load(r"{in_npy}")
     chroma = librosa.feature.chroma_cqt(y=y, sr={sr})
@@ -218,6 +233,9 @@ try:
     mode = 'major' if maj_s >= min_s else 'minor'
     conf = float(max(maj_s, min_s) / (float(sum(prof)) + 1e-12))
     print("KEY:", key, mode, conf)
+except ImportError as err:
+    print("ERROR: librosa not available -", str(err), file=sys.stderr)
+    sys.exit(1)
 except Exception as err:
     print("ERROR:", str(err), file=sys.stderr)
     sys.exit(1)
@@ -242,27 +260,33 @@ except Exception as err:
             logging.info(f"Loading audio: {file_path}")
             start_time = time.time()
 
-            # If using audio-separator, load audio via subprocess to avoid cffi conflicts
-            if hasattr(self, 'using_audio_separator') and self.using_audio_separator:
-                logging.info("Using audio-separator - loading audio via subprocess to avoid cffi conflicts")
-                try:
-                    audio, sr = self._load_audio_with_subprocess(file_path)
-                    # Ensure we have valid audio data
-                    if len(audio) == 0:
-                        raise ValueError("Empty audio data from subprocess")
-                except Exception as e:
-                    logging.error(f"Failed to load audio via subprocess: {e}, falling back to direct load")
-                    # Fallback to direct loading (will have cffi issues but at least works)
-                    audio, sr = librosa.load(file_path, sr=self.target_sr, mono=True)
-            else:
-                # Load audio normally for other engines
+            # Always use subprocess isolation for librosa to avoid cffi conflicts
+            logging.info("Loading audio via subprocess to avoid cffi conflicts")
+            try:
+                audio, sr = self._load_audio_with_subprocess(file_path)
+                # Ensure we have valid audio data
+                if len(audio) == 0:
+                    raise ValueError("Empty audio data from subprocess")
+            except Exception as e:
+                logging.error(f"Failed to load audio via subprocess: {e}, falling back to direct load")
+                # Fallback to direct loading (will have cffi issues but at least works)
+                logging.warning("⚠️  Using direct librosa.load - may encounter cffi conflicts")
                 audio, sr = librosa.load(file_path, sr=self.target_sr, mono=True)
 
             # Store original info
+            # Ensure audio and sr are proper types before calculating duration
+            try:
+                duration = float(len(audio)) / float(sr) if audio is not None and sr > 0 else 0.0
+            except (TypeError, ValueError, ZeroDivisionError) as e:
+                logging.error(f"Duration calculation error: {e}")
+                logging.error(f"  audio type={type(audio)}, audio value preview={str(audio)[:100] if audio is not None else 'None'}")
+                logging.error(f"  sr type={type(sr)}, sr value={sr}")
+                duration = 0.0
+                
             self.audio_data = {
                 'original_path': file_path,
                 'original_sr': sr,
-                'duration': len(audio) / sr,
+                'duration': duration,
                 'channels': 1
             }
 
@@ -323,6 +347,12 @@ try:
     y = np.load(r"{in_npy}")
     out = nr.reduce_noise(y=y, sr={sr}, stationary=True, prop_decrease=0.8)
     np.save(r"{out_npy}", out)
+    print("DENOISED")
+except ImportError:
+    # noisereduce not available, return original audio
+    y = np.load(r"{in_npy}")
+    np.save(r"{out_npy}", y)
+    print("SKIPPED: noisereduce not available")
 except Exception as err:
     print("ERROR:", str(err), file=sys.stderr)
     sys.exit(1)
@@ -331,6 +361,13 @@ except Exception as err:
             if sp.returncode != 0:
                 logging.warning(f"Subprocess denoise failed: {sp.stderr.strip()}")
                 return audio
+            
+            # Check if denoising was skipped
+            if "SKIPPED" in sp.stdout:
+                logging.info("Denoising skipped - noisereduce not available in system Python")
+            elif "DENOISED" in sp.stdout:
+                logging.info("Audio denoised successfully")
+                
             return _np.load(out_npy)
         except Exception as e:
             logging.warning(f"Denoise subprocess error: {e}")
@@ -353,8 +390,43 @@ except Exception as err:
             # Create loudness meter
             meter = pyln.Meter(sr)
 
-            # Measure current loudness
-            current_lufs = meter.integrated_loudness(audio)
+            # Measure current loudness - this can take a long time for long audio files
+            logging.info(f"Measuring loudness for {len(audio)/sr:.1f}s audio file...")
+            try:
+                # Add timeout for very long audio files
+                import signal
+                
+                def timeout_handler(signum, frame):
+                    raise TimeoutError("Loudness measurement timeout")
+                
+                # Set 30 second timeout for loudness measurement
+                signal.signal(signal.SIGALRM, timeout_handler)
+                signal.alarm(30)
+                
+                current_lufs = meter.integrated_loudness(audio)
+                signal.alarm(0)  # Cancel the alarm
+                logging.info(f"Current loudness: {current_lufs:.1f} LUFS")
+                
+            except (TimeoutError, Exception) as e:
+                signal.alarm(0)  # Cancel the alarm
+                logging.warning(f"Loudness measurement failed or timed out: {e}, using fallback RMS normalization")
+                # Fall back to RMS normalization
+                rms = np.sqrt(np.mean(audio**2))
+                target_rms = 0.1
+                if rms > 0:
+                    gain_linear = target_rms / rms
+                    normalized = audio * gain_linear
+                    max_val = np.max(np.abs(normalized))
+                    if max_val > 0.95:
+                        normalized = normalized * (0.95 / max_val)
+                    
+                    normalize_time = time.time() - start_time
+                    self.processing_info['normalize_time'] = normalize_time
+                    logging.info(f"RMS normalization completed: RMS {rms:.3f} -> {target_rms:.3f}")
+                    return normalized
+                else:
+                    logging.warning("Audio RMS is zero, skipping normalization")
+                    return audio
 
             # Calculate gain needed
             gain_db = self.normalize_lufs - current_lufs
@@ -542,7 +614,12 @@ except Exception as err:
                 for line in process.stdout.strip().split('\n'):
                     if line.startswith('SAMPLE_RATE:'):
                         sr_str = line.split(':', 1)[1].strip()
-                        sr = int(sr_str) if sr_str.isdigit() else 44100
+                        try:
+                            # Try to parse as float first, then convert to int
+                            sr = int(float(sr_str))
+                        except (ValueError, TypeError):
+                            logging.warning(f"Could not parse sample rate '{sr_str}', using default 44100")
+                            sr = 44100
                         break
 
                 if sr is None:
@@ -871,11 +948,20 @@ except Exception as err:
 
             if vocals_audio is None or len(vocals_audio) == 0:
                 logging.error("No valid audio data available, skipping analysis")
+                # Safety check for duration calculation
+                try:
+                    duration = float(len(audio)) / float(sr) if audio is not None and sr > 0 else 0.0
+                except (TypeError, ValueError, ZeroDivisionError) as e:
+                    logging.error(f"Duration calculation error in error path: {e}")
+                    logging.error(f"  audio type={type(audio)}, audio value preview={str(audio)[:100] if audio is not None else 'None'}")
+                    logging.error(f"  sr type={type(sr)}, sr value={sr}")
+                    duration = 0.0
+                    
                 final_audio_data = {
                     'audio': audio,
                     'sample_rate': sr,
                     'analysis': {
-                        'duration': float(len(audio) / sr) if audio is not None else 0.0,
+                        'duration': duration,
                         'sample_rate': sr,
                         'channels': 1,
                         'audio_levels': [],
@@ -890,11 +976,20 @@ except Exception as err:
                 tempo_val = self._detect_tempo(safe_audio, sr)
                 key_val = self._detect_key(safe_audio, sr)
 
+                # Safety check for duration calculation
+                try:
+                    duration = float(len(audio)) / float(sr) if audio is not None and sr > 0 else 0.0
+                except (TypeError, ValueError, ZeroDivisionError) as e:
+                    logging.error(f"Duration calculation error in error path: {e}")
+                    logging.error(f"  audio type={type(audio)}, audio value preview={str(audio)[:100] if audio is not None else 'None'}")
+                    logging.error(f"  sr type={type(sr)}, sr value={sr}")
+                    duration = 0.0
+                    
                 final_audio_data = {
                     'audio': audio,
                     'sample_rate': sr,
                     'analysis': {
-                        'duration': len(audio) / sr,
+                        'duration': duration,
                         'sample_rate': sr,
                         'channels': 1,
                         'audio_levels': self._calculate_audio_levels(audio, sr),
@@ -941,7 +1036,7 @@ except Exception as err:
         return time.strftime("%Y%m%d_%H%M%S")
 
     def cleanup(self):
-        """Clean up resources."""
+        """Clean up resources and temporary files."""
         if self.separator:
             del self.separator
             self.separator = None
@@ -950,5 +1045,35 @@ except Exception as err:
             self.audio_data.clear()
 
         self.processing_info.clear()
+        
+        # Clean up intermediate output files
+        try:
+            intermediate_dir = Path("intermediate_outputs")
+            if intermediate_dir.exists():
+                for file in intermediate_dir.glob("*"):
+                    file.unlink()
+                logging.info("Cleaned up intermediate output files")
+        except Exception as e:
+            logging.warning(f"Could not clean up intermediate files: {e}")
+        
+        # Clean up separated audio files older than 1 hour
+        try:
+            separated_dir = Path("separated")
+            if separated_dir.exists():
+                import time
+                current_time = time.time()
+                for subdir in separated_dir.rglob("*"):
+                    if subdir.is_file():
+                        # Remove files older than 1 hour (3600 seconds)
+                        if current_time - subdir.stat().st_mtime > 3600:
+                            subdir.unlink()
+                            logging.debug(f"Cleaned up old separated file: {subdir}")
+                # Remove empty directories
+                for subdir in sorted(separated_dir.rglob("*"), key=lambda p: len(p.parts), reverse=True):
+                    if subdir.is_dir() and not any(subdir.iterdir()):
+                        subdir.rmdir()
+                        logging.debug(f"Removed empty directory: {subdir}")
+        except Exception as e:
+            logging.warning(f"Could not clean up separated files: {e}")
 
         logging.info("Audio processor cleaned up")

@@ -205,6 +205,63 @@ class Transcriber:
         }
         return prompts.get(self.content_type, "")
 
+    def _initialize_openai_whisper(self) -> None:
+        """Initialize OpenAI Whisper model."""
+        try:
+            import whisper
+            global OPENAI_WHISPER_AVAILABLE
+            OPENAI_WHISPER_AVAILABLE = True
+            candidates = self._get_model_candidates()
+            last_error = None
+            for candidate in candidates:
+                try:
+                    logging.info(f"Loading OpenAI Whisper model: {candidate}")
+                    self.whisper_model = whisper.load_model(candidate)
+                    return
+                except Exception as candidate_error:
+                    last_error = candidate_error
+                    logging.warning(f"OpenAI Whisper failed to load {candidate}: {candidate_error}")
+            if last_error is not None:
+                raise last_error
+        except Exception as e:
+            logging.warning(f"OpenAI Whisper failed to load after fallbacks: {e}")
+            raise
+
+    def _initialize_faster_whisper(self) -> None:
+        """Initialize Faster Whisper model."""
+        try:
+            from faster_whisper import WhisperModel
+            global FASTER_WHISPER_AVAILABLE
+            FASTER_WHISPER_AVAILABLE = True
+            candidates = self._get_model_candidates()
+            last_error = None
+            for candidate in candidates:
+                try:
+                    logging.info(f"Loading Faster Whisper model: {candidate}")
+                    self.whisper_model = WhisperModel(candidate, device='auto', compute_type='float32')
+                    return
+                except Exception as candidate_error:
+                    last_error = candidate_error
+                    logging.warning(f"Faster Whisper failed to load {candidate}: {candidate_error}")
+            if last_error is not None:
+                raise last_error
+        except Exception as e:
+            logging.warning(f"Faster Whisper failed to load after fallbacks: {e}")
+            raise
+
+    def _initialize_whisperx(self) -> None:
+        """Initialize WhisperX model."""
+        try:
+            import whisperx
+            global WHISPERX_AVAILABLE
+            WHISPERX_AVAILABLE = True
+            logging.info(f"Loading WhisperX model: {self.model_size}")
+            # WhisperX models are loaded on-demand, just set the size
+            self.whisper_model = self.model_size
+        except Exception as e:
+            logging.warning(f"WhisperX failed to load: {e}")
+            raise
+
     def _save_audio_temp(self, audio: np.ndarray, sample_rate: int) -> str:
         """Save audio to temporary file for Whisper processing."""
         try:
@@ -599,13 +656,23 @@ class Transcriber:
                     logging.info(f"Trying {model_name}...")
 
                     if model_name == "openai-whisper":
+                        # Re-initialize model if needed
+                        if not isinstance(self.whisper_model, str) or not hasattr(self.whisper_model, 'transcribe'):
+                            self._initialize_openai_whisper()
                         words = self._transcribe_openai_whisper(audio, sample_rate)
                     elif model_name == "faster-whisper":
+                        # Re-initialize model if needed
+                        if not hasattr(self.whisper_model, 'transcribe'):
+                            self._initialize_faster_whisper()
                         words = self._transcribe_faster_whisper(audio, sample_rate)
                     elif model_name == "whisperx":
+                        # Re-initialize model if needed
+                        if not hasattr(self.whisper_model, 'transcribe'):
+                            self._initialize_whisperx()
                         words = self._transcribe_whisperx(audio, sample_rate)
                     elif model_name == "mlx-whisper":
-                        words = self._transcribe_mlx_whisper(audio, sample_rate)
+                        # MLX-Whisper uses forked process isolation, skip direct call
+                        continue
 
                     if words is not None and len(words) > 0:
                         logging.info(f"Successfully transcribed with {model_name}: {len(words)} words")

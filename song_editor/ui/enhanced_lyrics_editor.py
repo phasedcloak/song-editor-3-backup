@@ -1017,7 +1017,7 @@ class EnhancedLyricsEditor(QWidget):
 
         text = self.text_edit.toPlainText()
         # Ignore spurious signals when text hasn't actually changed
-        if text == self._last_text_snapshot:
+        if text == getattr(self, '_last_text_snapshot', ''):
             return
         self._last_text_snapshot = text
         self.lyrics_changed.emit(text)
@@ -1060,7 +1060,7 @@ class EnhancedLyricsEditor(QWidget):
         """Analyze rhymes and apply coloring according to current mode."""
         try:
             text_now = self.text_edit.toPlainText()
-            if text_now != self._last_text_snapshot:
+            if text_now != getattr(self, '_last_text_snapshot', ''):
                 self._last_text_snapshot = text_now
             self.analyze_rhymes()
             self._reset_formatting()

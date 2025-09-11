@@ -87,8 +87,19 @@ class BatchProcessor:
             'success': False,
             'error': None,
             'processing_time': 0.0,
+            'audio_duration': 0.0,
             'output_files': []
         }
+        
+        # Get audio duration for timing analysis
+        try:
+            # Use subprocess to get audio duration to avoid cffi conflicts
+            audio_info = self._get_audio_duration_subprocess(file_path)
+            result['audio_duration'] = audio_info
+        except Exception as e:
+            logging.warning(f"Failed to get audio duration for {file_path}: {e}")
+            # Fallback: try to get duration from the processed JSON if it exists
+            result['audio_duration'] = 0.0
 
         try:
             logging.info(f"🎵 Processing: {file_path}")
@@ -96,7 +107,8 @@ class BatchProcessor:
             # Check if output already exists (unless force overwrite)
             if not self.kwargs.get('force_overwrite', False):
                 base_name = Path(file_path).stem
-                song_data_file = Path(self.output_dir or Path(file_path).parent) / f"{base_name}.song_data.json"
+                output_dir_path = Path(self.output_dir) if self.output_dir else Path(file_path).parent
+                song_data_file = output_dir_path / f"{base_name}.song_data.json"
                 if song_data_file.exists():
                     logging.info(f"⚠️ Skipping {file_path} - output already exists")
                     result['success'] = True
@@ -245,9 +257,69 @@ class BatchProcessor:
         except Exception as e:
             logging.error(f"Error saving batch results: {e}")
 
+    def _get_audio_duration_subprocess(self, file_path: str) -> float:
+        """Get audio duration using subprocess to avoid cffi conflicts."""
+        import subprocess
+        import tempfile
+        import sys
+        
+        # Create a temporary script for getting audio duration
+        script_content = f"""
+import sys
+import os
+import tempfile
+from pathlib import Path
+
+# Set temp directory to external drive
+input_drive = Path(r"{file_path}").anchor or Path(r"{file_path}").parents[-1]
+temp_dir = Path(input_drive) / "tmp" / "song_editor_temp"
+temp_dir.mkdir(parents=True, exist_ok=True)
+os.environ['TMPDIR'] = str(temp_dir)
+tempfile.tempdir = str(temp_dir)
+
+try:
+    import librosa
+    duration = librosa.get_duration(filename=r"{file_path}")
+    print(f"DURATION:{{duration}}")
+except Exception as e:
+    print(f"ERROR:{{e}}", file=sys.stderr)
+    sys.exit(1)
+"""
+        
+        try:
+            with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False) as f:
+                f.write(script_content)
+                script_path = f.name
+            
+            # Run the script with system Python
+            result = subprocess.run(
+                ['/usr/local/bin/python3', script_path],
+                capture_output=True,
+                text=True,
+                timeout=30
+            )
+            
+            # Clean up
+            Path(script_path).unlink(missing_ok=True)
+            
+            if result.returncode == 0:
+                # Parse the output
+                for line in result.stdout.strip().split('\n'):
+                    if line.startswith('DURATION:'):
+                        return float(line.split(':', 1)[1])
+                raise ValueError("No duration found in subprocess output")
+            else:
+                raise Exception(f"Subprocess failed with code {result.returncode}: {result.stderr}")
+                
+        except Exception as e:
+            logging.warning(f"Failed to get audio duration via subprocess: {e}")
+            return 0.0
+
 
 def main():
     """Main entry point for batch processing"""
+    # Note: pkg_resources deprecation warning from pretty_midi has been fixed by patching the library
+    
     parser = argparse.ArgumentParser(
         description="Song Editor 3 - Batch Processing",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -304,6 +376,33 @@ Examples:
         action='store_false',
         help='Disable Chordino chord detection'
     )
+    
+    # Separation engine options
+    parser.add_argument(
+        '--separation-engine',
+        default='demucs',
+        choices=['demucs', 'audio-separator'],
+        help='Audio separation engine to use (default: demucs)'
+    )
+    
+    parser.add_argument(
+        '--audio-separator-model',
+        default='UVR_MDXNET_KARA_2',
+        help='Audio-separator model to use (default: UVR_MDXNET_KARA_2)'
+    )
+    
+    parser.add_argument(
+        '--use-cuda',
+        action='store_true',
+        help='Enable CUDA acceleration for audio-separator (NVIDIA GPUs only)'
+    )
+    
+    parser.add_argument(
+        '--use-coreml',
+        action='store_true',
+        default=True,
+        help='Enable CoreML acceleration for audio-separator (Apple Silicon, default: True)'
+    )
 
     parser.add_argument(
         '--use-demucs',
@@ -358,7 +457,12 @@ Examples:
         use_chordino=args.use_chordino,
         use_demucs=args.use_demucs,
         save_intermediate=args.save_intermediate,
-        force_overwrite=args.force_overwrite
+        force_overwrite=args.force_overwrite,
+        # New separation engine parameters
+        separation_engine=args.separation_engine.replace('-', '_'),
+        audio_separator_model=args.audio_separator_model,
+        use_cuda=args.use_cuda,
+        use_coreml=args.use_coreml
     )
 
     # Process batch
@@ -383,6 +487,36 @@ Examples:
     # Save results if requested
     if args.results_file:
         processor.save_results(args.results_file)
+
+    # Generate timing table if we have multiple files
+    if summary['total_files'] > 1:
+        try:
+            # Add timing table generation logic
+            from pathlib import Path
+            import sys as _sys
+            
+            # Add the project root to Python path to import timing_table_builder
+            project_root = Path(__file__).resolve().parent.parent
+            _sys.path.insert(0, str(project_root))
+            
+            from timing_table_builder import TimingTableBuilder
+            
+            builder = TimingTableBuilder()
+            builder.add_batch_results(summary)
+            
+            print("\n" + "="*80)
+            timing_table = builder.generate_table()
+            print(timing_table)
+            
+            # Save timing table to file if results file was specified
+            if args.results_file:
+                timing_file = str(Path(args.results_file).with_suffix('.timing.txt'))
+                with open(timing_file, 'w') as f:
+                    f.write(timing_table)
+                print(f"\n📊 Timing analysis saved to: {timing_file}")
+                
+        except Exception as e:
+            logging.warning(f"Could not generate timing table: {e}")
 
     # Exit with appropriate code
     sys.exit(0 if summary['success'] else 1)

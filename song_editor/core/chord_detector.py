@@ -13,8 +13,8 @@ import librosa
 import soundfile as sf
 import subprocess
 import json
+from typing import Tuple, Dict, List, Any
 import sys
-from typing import Dict, Any, List
 from datetime import datetime
 # vamp is no longer imported here, it will be used in the worker process
 
@@ -449,8 +449,8 @@ except Exception as err:
                 chords = self._detect_chords_chordino(audio_path)
                 logging.info(f"Chordino worker detected {len(chords)} chords")
             else:
-                # For chromagram, we still need to load the audio into memory
-                audio, sr = librosa.load(audio_path, sr=44100, mono=True)
+                # For chromagram, we need to load the audio into memory using subprocess isolation
+                audio, sr = self._load_audio_with_subprocess(audio_path)
                 chords = self._detect_chords_chromagram(audio, sr)
                 logging.info(f"Chromagram detected {len(chords)} chords")
 
@@ -538,3 +538,85 @@ except Exception as err:
             'chromagram_n_fft': self.chromagram_n_fft,
             'chromagram_hop_length': self.chromagram_hop_length
         }
+
+    def _load_audio_with_subprocess(self, audio_path: str) -> Tuple[np.ndarray, int]:
+        """Load audio using system Python subprocess to avoid cffi conflicts."""
+        
+        try:
+            # Create a script to load audio with system Python
+            script_content = f'''
+import sys
+import warnings
+import numpy as np
+
+# Suppress warnings
+warnings.filterwarnings('ignore', category=UserWarning)
+
+# Add system site-packages to path
+sys.path.insert(0, '/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages')
+
+try:
+    import librosa
+
+    # Load audio file
+    audio, sr = librosa.load("{audio_path}", sr=44100, mono=True)
+
+    # Save as numpy array temporarily
+    np.save("/tmp/chord_audio_data.npy", audio)
+    print(f"SAMPLE_RATE: {{sr}}")
+    print(f"SUCCESS: Audio loaded")
+
+except Exception as err:
+    print("ERROR:", str(err), file=sys.stderr)
+    sys.exit(1)
+'''
+
+            # Write script to temporary file
+            with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False) as f:
+                f.write(script_content)
+                script_path = f.name
+
+            # Run the script with system Python
+            result = subprocess.run(
+                ['/usr/local/bin/python3', script_path],
+                capture_output=True,
+                text=True,
+                timeout=60
+            )
+
+            # Clean up script file
+            os.unlink(script_path)
+
+            if result.returncode == 0:
+                # Parse the output to get sample rate
+                sr = None
+                for line in result.stdout.strip().split('\n'):
+                    if line.startswith('SAMPLE_RATE:'):
+                        sr = int(float(line.split(':')[1].strip()))
+
+                # Load the audio data
+                audio = np.load("/tmp/chord_audio_data.npy")
+                
+                # Clean up temp file
+                try:
+                    os.unlink("/tmp/chord_audio_data.npy")
+                except:
+                    pass
+
+                if sr is None:
+                    raise ValueError("Could not parse sample rate from subprocess output")
+
+                logging.info(f"Loaded audio data from subprocess: {len(audio)} samples")
+                return audio, sr
+
+            else:
+                raise Exception(f"Subprocess failed: {result.stderr}")
+
+        except Exception as e:
+            logging.error(f"Failed to load audio via subprocess: {e}")
+            # Clean up any temp files
+            try:
+                os.unlink("/tmp/chord_audio_data.npy")
+            except:
+                pass
+            raise

@@ -56,173 +56,159 @@ class ProcessingThread(QThread):
         self.start_time = None
 
     def run(self):
-        """Run the audio processing pipeline."""
+        """Run the audio processing pipeline using CLI subprocess isolation."""
         self.start_time = time.time()
         try:
-            # Initialize processors
-            audio_processor = AudioProcessor(
-                use_demucs=self.config.get('use_demucs', True),
-                save_intermediate=self.config.get('save_intermediate', True),
-                # Audio-separator parameters
-                separation_engine=self.config.get('separation_engine', 'demucs'),
+            # Import the CLI processing function that already has subprocess isolation
+            from ..app import process_audio_file
+            
+            # Convert GUI config to CLI parameters
+            separation_engine = self.config.get('separation_engine', 'demucs')
+            use_demucs = self.config.get('use_demucs', True)
+            use_chordino = (self.config.get('chord_method') == 'chordino')
+            
+            # Emit progress updates
+            self.progress_updated.emit("Starting audio processing...", 10)
+            logging.info(f"GUI processing audio file using CLI function: {self.audio_file}")
+            
+            # Monitor progress by patching the logging system temporarily
+            self._setup_progress_monitoring()
+            
+            # Use the CLI processing function that has subprocess isolation
+            success = process_audio_file(
+                input_path=self.audio_file,
+                output_dir=None,  # Use same directory as input
+                whisper_model=self.config.get('whisper_model', 'mlx-whisper'),
+                use_chordino=use_chordino,
+                separation_engine=separation_engine,
                 audio_separator_model=self.config.get('audio_separator_model', 'UVR_MDXNET_KARA_2'),
                 use_cuda=self.config.get('use_cuda', False),
-                use_coreml=self.config.get('use_coreml', True)
+                use_coreml=self.config.get('use_coreml', True),
+                use_demucs=use_demucs,
+                save_intermediate=self.config.get('save_intermediate', False),
+                demucs_model='htdemucs',
+                no_gui=True,  # Important: tells CLI function we're in GUI mode
+                force_overwrite=True  # GUI should always reprocess when user clicks the button
             )
-
-            transcriber = Transcriber(
-                model=self.config.get('whisper_model', 'openai-whisper'),  # Use openai-whisper for best accuracy
-                model_size=self.config.get('model_size', 'large-v3-turbo'),
-                # Default to large-v3-turbo; falls back when unavailable
-                language=self.config.get('language', None)  # None for auto-detection
-            )
-
-            chord_detector = ChordDetector(
-                use_chordino=(self.config.get('chord_method') == 'chordino'),
-                chord_simplification=self.config.get('simplify_chords', False),
-                preserve_chord_richness=self.config.get('preserve_chord_richness', True)
-            )
-
-            # For test_short.wav, force chromagram method since chordino isn't detecting chords
-            if 'test_short.wav' in self.audio_file:
-                chord_detector.use_chordino = False
-                logging.info("Using chromagram method for test_short.wav (chordino not detecting chords)")
-
-            melody_extractor = MelodyExtractor(
-                method=self.config.get('melody_method', 'librosa_fallback'),
-                min_note_duration=self.config.get('min_note_duration', 0.1)
-            )
-
-            # Process audio
-            self.progress_updated.emit("Loading audio...", 10)
-            logging.info(f"Processing audio file: {self.audio_file}")
-            audio_data = audio_processor.process(self.audio_file)
-
-            # Calculate audio duration and estimated processing time
-            audio_duration = len(audio_data['audio']) / audio_data['sample_rate']
-            estimated_transcription_time = audio_duration * 0.3  # Rough estimate: 30% of audio duration
-
-            logging.info(f"Audio loaded: {len(audio_data['audio'])} samples at {audio_data['sample_rate']} Hz")
-            logging.info(f"Audio duration: {audio_duration:.1f} seconds")
-            logging.info(f"Estimated transcription time: {estimated_transcription_time:.1f} seconds")
-
-            if audio_duration > 300:  # 5 minutes
-                logging.warning(
-                    f"Long audio file detected ({audio_duration:.1f}s) - transcription may take several minutes"
-                )
-                self.progress_updated.emit(f"Long audio file ({audio_duration:.0f}s) - this may take a while", 25)
-
-                # For very long files, suggest using a smaller model
-                if audio_duration > 600:  # 10 minutes
-                    logging.warning(
-                        f"Very long audio file ({audio_duration:.1f}s) - "
-                        f"consider using 'tiny' model for faster processing"
-                    )
-                    self.progress_updated.emit("Very long file - using 'tiny' model for speed", 26)
-
-            self.progress_updated.emit("Transcribing lyrics... (this may take several minutes)", 30)
-            logging.info("Starting transcription...")
-
-            # Check for timeout before starting transcription
-            elapsed_so_far = time.time() - self.start_time
-            if elapsed_so_far > self.timeout_seconds:
-                raise TimeoutError(f"Processing timeout exceeded ({elapsed_so_far:.1f}s > {self.timeout_seconds}s)")
-
-            logging.info(f"Starting transcription after {elapsed_so_far:.1f}s of processing")
-
-            # Simple progress update during transcription
-            transcription_start = time.time()
-
-            # The 'vocals' track is used for transcription for better accuracy
-            vocals_audio = audio_data.get('vocals', audio_data['audio'])
-            words = transcriber.transcribe(vocals_audio, audio_data['sample_rate'])
-            transcription_elapsed = time.time() - transcription_start
-            logging.info(f"Transcription completed: {len(words)} words found in {transcription_elapsed:.2f}s")
-
-            # Update progress after transcription
-            elapsed = time.time() - self.start_time
-            logging.info(f"Total processing time so far: {elapsed:.2f} seconds")
-            self.progress_updated.emit(f"Transcription completed ({transcription_elapsed:.1f}s)", 40)
-
-            self.progress_updated.emit("Detecting chords...", 50)
-
-            # Check for timeout before chord detection
-            elapsed_so_far = time.time() - self.start_time
-            if elapsed_so_far > self.timeout_seconds:
-                raise TimeoutError(f"Processing timeout exceeded ({elapsed_so_far:.1f}s > {self.timeout_seconds}s)")
             
-            # --- START CHORD DETECTION REFACTOR ---
-            # Get the path to the instrumental track saved by AudioProcessor
-            audio_path_obj = Path(self.audio_file)
-            base_name = audio_path_obj.stem
+            if not success:
+                raise Exception("CLI processing function failed")
+                
+            # Load the generated JSON file to get the results
+            from pathlib import Path
+            audio_path = Path(self.audio_file)
+            json_path = audio_path.parent / f"{audio_path.stem}.song_data.json"
             
-            # Resolve path against the original working directory to get an absolute path
-            import os
-            original_cwd = Path(os.environ.get('SONG_EDITOR_ORIGINAL_CWD', '.'))
-            instrumental_path = original_cwd / 'separated' / 'htdemucs' / base_name / 'other.wav'
+            if json_path.exists():
+                import json
+                with open(json_path, 'r') as f:
+                    song_data = json.load(f)
+                
+                # Convert to the format expected by the GUI
+                audio_data = {
+                    'audio': None,  # GUI doesn't need raw audio data
+                    'sample_rate': song_data.get('audio_analysis', {}).get('sample_rate', 44100),
+                    'analysis': song_data.get('audio_analysis', {}),
+                    'processing_info': song_data.get('processing_info', {})
+                }
 
-            # --- START FIX: Add retry loop to wait for the file ---
-            # Give the filesystem a moment to finish writing the separated file.
-            max_wait_seconds = 5
-            wait_interval = 0.2
-            waited_time = 0
-            
-            while not instrumental_path.exists() and waited_time < max_wait_seconds:
-                time.sleep(wait_interval)
-                waited_time += wait_interval
-            # --- END FIX ---
-            
-            if instrumental_path.exists():
-                logging.info(f"Found instrumental track for chord detection: {instrumental_path}")
-                # Pass the absolute path to the detector
-                chords = chord_detector.detect_from_path(str(instrumental_path.resolve()))
+                # Extract data for GUI
+                words = song_data.get('words', [])
+                chords = song_data.get('chords', [])
+                notes = song_data.get('notes', [])
+                analysis = song_data.get('audio_analysis', {})
+                
+                # Emit progress updates
+                self.progress_updated.emit(f"Processing completed: {len(words)} words found", 80)
+                self.progress_updated.emit(f"Detected {len(chords)} chords", 90)
+                self.progress_updated.emit(f"Extracted {len(notes)} notes", 95)
+                
+                logging.info(f"CLI processing completed successfully")
+                logging.info(f"Results: {len(words)} words, {len(chords)} chords, {len(notes)} notes")
             else:
-                # This should now only happen in a true error condition.
-                logging.error(f"Instrumental track not found after waiting: {instrumental_path}. Falling back to original audio.")
-                chords = chord_detector.detect_from_path(self.audio_file)
-            # --- END CHORD DETECTION REFACTOR ---
+                raise Exception(f"JSON file not found: {json_path}")
+                
+            # Emit progress completion
+            self.progress_updated.emit("Processing completed successfully!", 100)
 
-            # Melody extraction
-            self.progress_updated.emit("Extracting melody...", 80)
-            # Revert to using the original audio file for melody extraction as it was more robust
-            notes = melody_extractor.extract(self.audio_file)
-            self.stage_completed.emit("melody", {'notes': notes})
-            logging.info(f"Total processing time so far: {(time.time() - self.start_time):.2f} seconds")
-
-            self.progress_updated.emit("Finalizing...", 90)
-
-            # Assemble song data
+            # Create the song data structure for the GUI
             self.song_data = {
                 'metadata': {
                     'source_audio': self.audio_file,
                     'processing_config': self.config,
-                    'transcription_info': transcriber.get_transcription_info(),
-                    'chord_detector_info': chord_detector.get_detector_info(),
-                    'melody_extractor_info': melody_extractor.get_extractor_info()
+                    'processing_time': time.time() - self.start_time
                 },
                 'words': words,
                 'chords': chords,
                 'notes': notes,
-                'audio_analysis': audio_data.get('analysis', {})
+                'audio_data': audio_data,
+                'audio_analysis': analysis
             }
-
+            
+            # Emit final signals
+            self.stage_completed.emit("transcription", {'words': words})
+            self.stage_completed.emit("chords", {'chords': chords})
+            self.stage_completed.emit("melody", {'notes': notes})
             self.processing_finished.emit(self.song_data)
-
-        except TimeoutError as e:
-            logging.error(f"Processing timeout: {e}")
-            self.error_occurred.emit(f"Processing timed out: {e}")
-        except subprocess.CalledProcessError as e:
-            logging.error(f"A worker process failed: {e}", exc_info=True)
-            # Format a more detailed error message from the subprocess
-            error_details = (
-                f"A worker process returned a non-zero exit code: {e.returncode}.\n\n"
-                f"Stderr:\n{e.stderr}\n\n"
-                f"Stdout:\n{e.stdout}"
-            )
-            self.error_occurred.emit(f"An error occurred in a subprocess:\n{error_details}")
+            
         except Exception as e:
-            logging.error(f"Processing error: {e}", exc_info=True)
-            self.error_occurred.emit(f"An error occurred: {e}")
+            logging.error(f"Processing error: {e}")
+            import traceback
+            traceback.print_exc()
+            self.error_occurred.emit(str(e))
+            
+        finally:
+            # Clean up progress monitoring
+            self._cleanup_progress_monitoring()
+    
+    def _setup_progress_monitoring(self):
+        """Set up progress monitoring by intercepting log messages."""
+        # Store the original log handler
+        self.original_handlers = logging.getLogger().handlers.copy()
+        
+        # Create a custom handler that emits progress signals
+        class ProgressHandler(logging.Handler):
+            def __init__(self, thread):
+                super().__init__()
+                self.thread = thread
+                self.progress_map = {
+                    'Loading audio': ("Loading audio...", 15),
+                    'Loaded audio data': ("Audio loaded successfully", 20),
+                    'Denoising audio': ("Denoising audio...", 25),
+                    'Denoising completed': ("Denoising completed", 30),
+                    'Normalizing audio': ("Normalizing audio...", 35),
+                    'normalization completed': ("Normalization completed", 40),
+                    'Source separation': ("Separating audio sources...", 45),
+                    'Audio processing completed': ("Audio processing completed", 50),
+                    'Transcribing lyrics': ("Transcribing lyrics...", 55),
+                    'Transcription completed': ("Transcription completed", 70),
+                    'Detecting chords': ("Detecting chords...", 75),
+                    'Chord detection': ("Chord detection completed", 80),
+                    'Extracting melody': ("Extracting melody...", 85),
+                    'melody extraction': ("Melody extraction completed", 90),
+                    'Exporting': ("Exporting results...", 95),
+                    'Processing complete': ("Processing completed!", 100)
+                }
+            
+            def emit(self, record):
+                message = record.getMessage()
+                for key, (status, progress) in self.progress_map.items():
+                    if key.lower() in message.lower():
+                        self.thread.progress_updated.emit(status, progress)
+                        break
+        
+        # Add our progress handler
+        progress_handler = ProgressHandler(self)
+        logging.getLogger().addHandler(progress_handler)
+        self.progress_handler = progress_handler
+    
+    def _cleanup_progress_monitoring(self):
+        """Clean up progress monitoring by removing our custom handler."""
+        try:
+            if hasattr(self, 'progress_handler'):
+                logging.getLogger().removeHandler(self.progress_handler)
+        except Exception as e:
+            logging.warning(f"Error cleaning up progress handler: {e}")
 
     def _save_temp_audio(self, audio_data: "np.ndarray", sr: int) -> str:
         """Saves a numpy array to a temporary WAV file and returns the path."""
@@ -733,59 +719,104 @@ class MainWindow(QMainWindow):
 
     def open_audio_file(self):
         """Open an audio file for processing with platform-aware dialog."""
-        # Use platform-specific file dialog options
-        if self.platform_utils.should_use_native_dialogs():
-            # Use native file dialog
+        try:
+            logging.info("Opening audio file dialog...")
+            
+            # Ensure the window is active and raised
+            self.raise_()
+            self.activateWindow()
+            
+            # Use a more robust approach that works across platforms
             file_path, _ = QFileDialog.getOpenFileName(
                 self,
                 "Open Audio File",
-                "",
-                "Audio Files (*.mp3 *.wav *.m4a *.flac *.ogg *.aac *.opus);;All Files (*)"
-            )
-        else:
-            # Use custom file dialog for mobile platforms
-            file_path, _ = QFileDialog.getOpenFileName(
-                self,
-                "Select Audio File",
-                "",
+                str(Path.home()),  # Start from home directory
                 "Audio Files (*.mp3 *.wav *.m4a *.flac *.ogg *.aac *.opus);;All Files (*)",
-                options=QFileDialog.DontUseNativeDialog
+                options=QFileDialog.ReadOnly
             )
+            
+            logging.info(f"File dialog returned: {file_path}")
 
-        if file_path:
-            self.audio_file_path = file_path
-            self.file_label.setText(Path(file_path).name)
-            self.process_btn.setEnabled(True)
-            self.status_bar.showMessage(f"Loaded: {Path(file_path).name}")
+            if file_path:
+                logging.info(f"Selected audio file: {file_path}")
+                self.audio_file_path = file_path
+                self.file_label.setText(Path(file_path).name)
+                
+                # Enable both process buttons (toolbar and panel)
+                if hasattr(self, 'process_btn'):
+                    self.process_btn.setEnabled(True)
+                if hasattr(self, 'process_button'):
+                    self.process_button.setEnabled(True)
+                
+                # Check for existing processed data and load it
+                self.load_audio_from_path(file_path)
+            else:
+                logging.info("No file selected or dialog was cancelled")
+                
+        except Exception as e:
+            logging.error(f"Error opening file dialog: {e}")
+            # Fallback: show a message to help debug
+            QMessageBox.warning(self, "File Dialog Error", f"Could not open file dialog: {e}")
 
     def process_audio(self):
         """Process the loaded audio file."""
-        if not hasattr(self, 'audio_file_path'):
-            QMessageBox.warning(self, "No File", "Please select an audio file first.")
-            return
+        try:
+            logging.info("Process audio button clicked")
+            
+            if not hasattr(self, 'audio_file_path'):
+                logging.warning("No audio file path set")
+                QMessageBox.warning(self, "No File", "Please select an audio file first.")
+                return
 
-        # Get processing configuration
-        config = {
-            'whisper_model': self.whisper_model_combo.currentText(),
-            'model_size': self.model_size_combo.currentText(),
-            'chord_method': self.chord_method_combo.currentText(),
-            'melody_method': self.melody_method_combo.currentText(),
-            # Audio-separator options
-            'separation_engine': self.separation_method_combo.currentText().replace('-', '_'),
-            'audio_separator_model': self._extract_model_name(self.audio_separator_model_combo.currentText()),
-            'use_cuda': self.use_cuda_check.isChecked(),
-            'use_coreml': self.use_coreml_check.isChecked(),
-            # Legacy compatibility
-            'use_demucs': self.separation_method_combo.currentText() == 'demucs',
-            'save_intermediate': self.save_intermediate_check.isChecked(),
-            'language': None  # None for auto-detection
-        }
+            logging.info(f"Starting audio processing for: {self.audio_file_path}")
 
-        # Start processing thread
-        self.processing_thread = ProcessingThread(self.audio_file_path, config)
-        self.processing_thread.progress_updated.connect(self.update_progress)
-        self.processing_thread.stage_completed.connect(self.stage_completed)
-        self.processing_thread.processing_finished.connect(self.processing_finished)
+            # Disable process buttons during processing
+            if hasattr(self, 'process_btn'):
+                self.process_btn.setEnabled(False)
+            if hasattr(self, 'process_button'):
+                self.process_button.setEnabled(False)
+
+            # Get processing configuration
+            config = {
+                'whisper_model': self.whisper_model_combo.currentText(),
+                'model_size': self.model_size_combo.currentText(),
+                'chord_method': self.chord_method_combo.currentText(),
+                'melody_method': self.melody_method_combo.currentText(),
+                # Audio-separator options
+                'separation_engine': self.separation_method_combo.currentText().replace('-', '_'),
+                'audio_separator_model': self._extract_model_name(self.audio_separator_model_combo.currentText()),
+                'use_cuda': self.use_cuda_check.isChecked(),
+                'use_coreml': self.use_coreml_check.isChecked(),
+                # Legacy compatibility
+                'use_demucs': self.separation_method_combo.currentText() == 'demucs',
+                'save_intermediate': self.save_intermediate_check.isChecked(),
+                'language': None  # None for auto-detection
+            }
+
+            logging.info(f"Processing configuration: {config}")
+
+            # Start processing thread
+            self.processing_thread = ProcessingThread(self.audio_file_path, config)
+            self.processing_thread.progress_updated.connect(self.update_progress)
+            self.processing_thread.stage_completed.connect(self.stage_completed)
+            self.processing_thread.processing_finished.connect(self.processing_finished)
+            
+            # Actually start the thread!
+            logging.info("Starting processing thread...")
+            self.processing_thread.start()
+            
+            # Update UI to show processing has started
+            self.status_bar.showMessage("Processing audio...")
+            
+        except Exception as e:
+            logging.error(f"Error starting audio processing: {e}")
+            QMessageBox.critical(self, "Processing Error", f"Failed to start processing: {e}")
+            
+            # Re-enable buttons on error
+            if hasattr(self, 'process_btn'):
+                self.process_btn.setEnabled(True)
+            if hasattr(self, 'process_button'):
+                self.process_button.setEnabled(True)
 
     def _extract_model_name(self, display_name: str) -> str:
         """

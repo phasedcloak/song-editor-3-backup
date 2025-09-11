@@ -69,7 +69,13 @@ class MidiExporter:
             if intervals:
                 intervals.sort()
                 mid = intervals[len(intervals)//2]
-                est = 60.0 / mid
+                try:
+                    est = 60.0 / float(mid)
+                except (TypeError, ValueError, ZeroDivisionError) as e:
+                    logging.error(f"MIDI tempo calculation error: {e}")
+                    logging.error(f"  mid type={type(mid)}, mid value={mid}")
+                    logging.error(f"  intervals={intervals[:5]}...")  # First 5 intervals for debugging
+                    est = 120.0  # Fallback
                 return max(30.0, min(240.0, est))
         # 3) Fallback
         return 120.0
@@ -155,7 +161,12 @@ class MidiExporter:
 
     def _time_to_ticks(self, time_seconds: float, tempo_bpm: float) -> int:
         """Convert time in seconds to MIDI ticks."""
-        beats_per_second = tempo_bpm / 60.0
+        try:
+            beats_per_second = float(tempo_bpm) / 60.0
+        except (TypeError, ValueError, ZeroDivisionError) as e:
+            logging.error(f"MIDI beats_per_second calculation error: {e}")
+            logging.error(f"  tempo_bpm type={type(tempo_bpm)}, tempo_bpm value={tempo_bpm}")
+            beats_per_second = 2.0  # 120 BPM fallback
         beats = time_seconds * beats_per_second
         return int(beats * self.ticks_per_beat)
 
@@ -165,7 +176,12 @@ class MidiExporter:
         track.append(mido.MetaMessage('track_name', name='Tempo & Time Signature', time=0))
 
         # Set tempo
-        tempo_us = int(60000000 / tempo_bpm)
+        try:
+            tempo_us = int(60000000 / float(tempo_bpm))
+        except (TypeError, ValueError, ZeroDivisionError) as e:
+            logging.error(f"MIDI tempo_us calculation error: {e}")
+            logging.error(f"  tempo_bpm type={type(tempo_bpm)}, tempo_bpm value={tempo_bpm}")
+            tempo_us = 500000  # 120 BPM fallback
         track.append(mido.MetaMessage('set_tempo', tempo=tempo_us, time=0))
 
         # Set time signature (default to 4/4)
@@ -199,13 +215,21 @@ class MidiExporter:
                 tempo_bpm = 120.0  # Default fallback
 
             # Convert time to ticks (assuming 120 BPM for time conversion)
-            beats_per_second = 120.0 / 60.0
+            try:
+                beats_per_second = 120.0 / 60.0
+            except (TypeError, ValueError, ZeroDivisionError):
+                beats_per_second = 2.0  # Fallback
             beats = time_seconds * beats_per_second
             current_tick = int(beats * self.ticks_per_beat)
             delta_ticks = current_tick - last_tick
 
             # Set tempo
-            tempo_us = int(60000000 / tempo_bpm)
+            try:
+                tempo_us = int(60000000 / float(tempo_bpm))
+            except (TypeError, ValueError, ZeroDivisionError) as e:
+                logging.error(f"MIDI tempo_us calculation error: {e}")
+                logging.error(f"  tempo_bpm type={type(tempo_bpm)}, tempo_bpm value={tempo_bpm}")
+                tempo_us = 500000  # 120 BPM fallback
             track.append(mido.MetaMessage('set_tempo', tempo=tempo_us, time=delta_ticks))
 
             last_tick = current_tick
@@ -401,7 +425,12 @@ class MidiExporter:
                         tempo_bpm = 120.0
 
                     # Add tempo change
-                    tempo_us = int(60000000 / tempo_bpm)
+                    try:
+                        tempo_us = int(60000000 / float(tempo_bpm))
+                    except (TypeError, ValueError, ZeroDivisionError) as e:
+                        logging.error(f"MIDI tempo_us calculation error: {e}")
+                        logging.error(f"  tempo_bpm type={type(tempo_bpm)}, tempo_bpm value={tempo_bpm}")
+                        tempo_us = 500000  # 120 BPM fallback
                     midi.tempo_changes.append(pretty_midi.TempoChange(tempo_us, time_seconds))
 
             # Add lyrics as text events

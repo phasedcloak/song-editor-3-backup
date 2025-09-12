@@ -715,18 +715,18 @@ class EnhancedLyricsEditor(QWidget):
         self.rhyme_panel = RhymePanel()
         self.splitter.addWidget(self.rhyme_panel)
 
-        # Set initial splitter proportions: 20% left, 60% center, 20% right
-        # Set strict size constraints to enforce 20%-60%-20% layout
-        self.syllable_panel.setMinimumWidth(80)   # Smaller minimum for syllable panel
-        self.syllable_panel.setMaximumWidth(150)  # Much smaller maximum to enforce 20%
-        self.lyrics_panel.setMinimumWidth(400)    # Larger minimum for main editor (60%)
-        self.rhyme_panel.setMinimumWidth(80)      # Smaller minimum for rhyme panel  
-        self.rhyme_panel.setMaximumWidth(150)     # Much smaller maximum to enforce 20%
+        # Set initial splitter proportions: 10% left, 70% center, 20% right
+        # Set strict size constraints to enforce 10%-70%-20% layout
+        self.syllable_panel.setMinimumWidth(60)   # Smaller minimum for syllable panel (10%)
+        self.syllable_panel.setMaximumWidth(100)  # Much smaller maximum to enforce 10%
+        self.lyrics_panel.setMinimumWidth(400)    # Larger minimum for main editor (70%)
+        self.rhyme_panel.setMinimumWidth(120)     # Larger minimum for rhyme panel (20%)
+        self.rhyme_panel.setMaximumWidth(200)     # Larger maximum to enforce 20%
         
         # Use proportional sizing that adapts to screen width
         total_width = 1000  # Base width for proportion calculation
-        left_width = int(total_width * 0.20)    # 20% for syllable panel
-        center_width = int(total_width * 0.60)  # 60% for lyrics editor
+        left_width = int(total_width * 0.10)    # 10% for syllable panel
+        center_width = int(total_width * 0.70)  # 70% for lyrics editor
         right_width = int(total_width * 0.20)   # 20% for rhyme panel
         
         self.splitter.setSizes([left_width, center_width, right_width])
@@ -754,24 +754,24 @@ class EnhancedLyricsEditor(QWidget):
         self.text_edit.verticalScrollBar().valueChanged.connect(self.on_text_scroll)
 
     def resizeEvent(self, event):
-        """Handle window resize to maintain 20%-60%-20% proportions."""
+        """Handle window resize to maintain 10%-70%-20% proportions."""
         super().resizeEvent(event)
         if hasattr(self, 'splitter'):
             # Get the current total width
             total_width = self.width()
             if total_width > 300:  # Only adjust if we have reasonable width
-                # Calculate strict 20%-60%-20% proportions with tight constraints
-                left_width = max(80, min(150, int(total_width * 0.20)))     # Strict 20% with tight max
-                right_width = max(80, min(150, int(total_width * 0.20)))    # Strict 20% with tight max
-                center_width = total_width - left_width - right_width       # Remaining for center (should be ~60%)
+                # Calculate strict 10%-70%-20% proportions with tight constraints
+                left_width = max(60, min(100, int(total_width * 0.10)))     # Strict 10% for syllable panel
+                right_width = max(120, min(200, int(total_width * 0.20)))   # Strict 20% for rhyme panel
+                center_width = total_width - left_width - right_width       # Remaining for center (should be ~70%)
                 
-                # Ensure center gets at least 60% by adjusting side panels if needed
-                min_center = int(total_width * 0.58)  # At least 58% for center
+                # Ensure center gets at least 70% by adjusting side panels if needed
+                min_center = int(total_width * 0.68)  # At least 68% for center
                 if center_width < min_center:
                     # Reduce side panels to give more space to center
                     available_sides = total_width - min_center
-                    left_width = min(left_width, available_sides // 2)
-                    right_width = min(right_width, available_sides // 2)
+                    left_width = min(left_width, available_sides // 3)      # Give less space to syllable panel
+                    right_width = min(right_width, available_sides * 2 // 3) # Give more space to rhyme panel
                     center_width = total_width - left_width - right_width
                 
                 # Set the new sizes

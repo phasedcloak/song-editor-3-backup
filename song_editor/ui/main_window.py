@@ -16,7 +16,7 @@ from PySide6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSplitter,
     QPushButton, QLabel, QFileDialog, QProgressBar,
     QTabWidget, QGroupBox, QGridLayout, QComboBox, QCheckBox,
-    QLineEdit, QMessageBox, QStatusBar,
+    QLineEdit, QMessageBox, QStatusBar, QDialog,
     QToolBar, QScrollArea
 )
 from PySide6.QtCore import Qt, QThread, Signal, QSettings
@@ -37,6 +37,8 @@ from ..models.metadata import Metadata
 from .lyrics_editor import LyricsEditor
 from .chord_editor import ChordEditor
 from .melody_editor import MelodyEditor
+from .processing_dialog import ProcessingOptionsDialog
+from .song_info_dialog import SongInfoDialog
 
 
 class ProcessingThread(QThread):
@@ -144,13 +146,13 @@ class ProcessingThread(QThread):
                 'audio_data': audio_data,
                 'audio_analysis': analysis
             }
-            
+
             # Emit final signals
             self.stage_completed.emit("transcription", {'words': words})
             self.stage_completed.emit("chords", {'chords': chords})
             self.stage_completed.emit("melody", {'notes': notes})
             self.processing_finished.emit(self.song_data)
-            
+
         except Exception as e:
             logging.error(f"Processing error: {e}")
             import traceback
@@ -524,8 +526,9 @@ class MainWindow(QMainWindow):
         toolbar.addWidget(export_ccli_btn)
 
     def create_left_panel(self):
-        """Create the left control panel."""
+        """Create the simplified left control panel."""
         panel = QWidget()
+        panel.setMaximumWidth(250)  # Set maximum width to prevent it from taking too much space
         layout = QVBoxLayout(panel)
 
         # File info group
@@ -543,134 +546,17 @@ class MainWindow(QMainWindow):
 
         layout.addWidget(file_group)
 
-        # Processing options group
-        options_group = QGroupBox("Processing Options")
-        options_layout = QGridLayout(options_group)
-
-        # Whisper model
-        self.whisper_model_combo = QComboBox()
-        self.whisper_model_combo.addItems(['openai-whisper', 'faster-whisper', 'whisperx', 'mlx-whisper'])
-        options_layout.addWidget(QLabel("Whisper Model:"), 0, 0)
-        options_layout.addWidget(self.whisper_model_combo, 0, 1)
-
-        # Use shorter, more compact labels and layout
-        # Model size (shortened)
-        options_layout.addWidget(QLabel("Whisper Size:"), 1, 0)
-        self.model_size_combo = QComboBox()
-        self.model_size_combo.addItems(['large-v3-turbo', 'large-v3', 'large-v2', 'large', 'medium', 'small', 'base', 'tiny'])
-        self.model_size_combo.setToolTip(
-            "Whisper model size. Large-v3-turbo is fastest and most accurate."
-        )
-        options_layout.addWidget(self.model_size_combo, 1, 1)
-
-        # Chord detection
-        options_layout.addWidget(QLabel("Chords:"), 2, 0)
-        self.chord_method_combo = QComboBox()
-        self.chord_method_combo.addItems(['chordino', 'chromagram'])
-        options_layout.addWidget(self.chord_method_combo, 2, 1)
-
-        # Melody extraction
-        options_layout.addWidget(QLabel("Melody:"), 3, 0)
-        self.melody_method_combo = QComboBox()
-        self.melody_method_combo.addItems(['basic-pitch', 'crepe'])
-        index = self.melody_method_combo.findText('basic-pitch')
-        if index >= 0:
-            self.melody_method_combo.setCurrentIndex(index)
-        options_layout.addWidget(self.melody_method_combo, 3, 1)
-
-        # Source separation (compact)
-        options_layout.addWidget(QLabel("Separation:"), 4, 0)
-        self.separation_method_combo = QComboBox()
-        self.separation_method_combo.addItems(['demucs', 'audio-separator'])
-        index = self.separation_method_combo.findText('demucs')
-        if index >= 0:
-            self.separation_method_combo.setCurrentIndex(index)
-        options_layout.addWidget(self.separation_method_combo, 4, 1)
-
-        # Audio-separator model selection (compact display)
-        options_layout.addWidget(QLabel("UVR Model:"), 5, 0)
-        self.audio_separator_model_combo = QComboBox()
-
-        # Use compact model names for UI
-        try:
-            from song_editor.core.audio_separator_processor import AudioSeparatorProcessor
-            if AudioSeparatorProcessor.is_available():
-                separator = AudioSeparatorProcessor()
-                model_names = separator.get_models_for_ui()
-                self.audio_separator_model_combo.addItems(model_names)
-                # Set default to karaoke model
-                for i, name in enumerate(model_names):
-                    if 'KARA_2' in name:
-                        self.audio_separator_model_combo.setCurrentIndex(i)
-                        break
-            else:
-                # Fallback to basic list
-                self.audio_separator_model_combo.addItems([
-                    'UVR_MDXNET_KARA_2',
-                    'UVR_MDXNET_21_OVERLAP_5',
-                    'UVR_MDXNET_21_OVERLAP_7',
-                    'UVR_MDXNET_21_OVERLAP_9'
-                ])
-        except Exception as e:
-            logger.warning(f"Failed to load model list: {e}")
-            self.audio_separator_model_combo.addItems([
-                'UVR_MDXNET_KARA_2',
-                'UVR_MDXNET_21_OVERLAP_5'
-            ])
-
-        # Set fixed width for combo box to prevent UI from being too wide
-        self.audio_separator_model_combo.setMaximumWidth(300)
-        options_layout.addWidget(self.audio_separator_model_combo, 5, 1)
-
-        # GPU options (compact layout)
-        gpu_layout = QHBoxLayout()
-        self.use_cuda_check = QCheckBox("CUDA")
-        self.use_cuda_check.setChecked(False)
-        self.use_cuda_check.setToolTip("Enable CUDA acceleration (NVIDIA GPUs)")
-        gpu_layout.addWidget(self.use_cuda_check)
-
-        self.use_coreml_check = QCheckBox("CoreML")
-        self.use_coreml_check.setChecked(True)
-        self.use_coreml_check.setToolTip("Enable CoreML acceleration (Apple Silicon)")
-        gpu_layout.addWidget(self.use_coreml_check)
-
-        # Add GPU options to the grid
-        options_layout.addWidget(QLabel("GPU:"), 6, 0)
-        options_layout.addLayout(gpu_layout, 6, 1)
-
-        # Legacy checkbox (hidden)
-        self.use_demucs_check = QCheckBox("Use Demucs")
-        self.use_demucs_check.setChecked(True)
-        self.use_demucs_check.setVisible(False)
-
-        # Save intermediate files
-        self.save_intermediate_check = QCheckBox("Save intermediate files")
-        self.save_intermediate_check.setChecked(True)
-        options_layout.addWidget(self.save_intermediate_check, 7, 0, 1, 2)
-
-        layout.addWidget(options_group)
-
-        # Song info group
-        song_group = QGroupBox("Song Information")
-        song_layout = QGridLayout(song_group)
-
-        self.title_edit = QLineEdit()
-        song_layout.addWidget(QLabel("Title:"), 0, 0)
-        song_layout.addWidget(self.title_edit, 0, 1)
-
-        self.artist_edit = QLineEdit()
-        song_layout.addWidget(QLabel("Artist:"), 1, 0)
-        song_layout.addWidget(self.artist_edit, 1, 1)
-
-        self.album_edit = QLineEdit()
-        song_layout.addWidget(QLabel("Album:"), 2, 0)
-        song_layout.addWidget(self.album_edit, 2, 1)
-
-        self.genre_edit = QLineEdit()
-        song_layout.addWidget(QLabel("Genre:"), 3, 0)
-        song_layout.addWidget(self.genre_edit, 3, 1)
-
-        layout.addWidget(song_group)
+        # Action buttons group
+        actions_group = QGroupBox("Actions")
+        actions_layout = QVBoxLayout(actions_group)
+        
+        # Song Info button
+        self.song_info_btn = QPushButton("Song Info...")
+        self.song_info_btn.setToolTip("Edit song metadata and information")
+        self.song_info_btn.clicked.connect(self.open_song_info_dialog)
+        actions_layout.addWidget(self.song_info_btn)
+        
+        layout.addWidget(actions_group)
 
         # Statistics group
         stats_group = QGroupBox("Statistics")
@@ -759,16 +645,26 @@ class MainWindow(QMainWindow):
             QMessageBox.warning(self, "File Dialog Error", f"Could not open file dialog: {e}")
 
     def process_audio(self):
-        """Process the loaded audio file."""
+        """Process the loaded audio file with processing options dialog."""
         try:
             logging.info("Process audio button clicked")
             
-            if not hasattr(self, 'audio_file_path'):
+            if not hasattr(self, 'audio_file_path') or not self.audio_file_path:
                 logging.warning("No audio file path set")
                 QMessageBox.warning(self, "No File", "Please select an audio file first.")
                 return
 
+            # Open processing options dialog
+            dialog = ProcessingOptionsDialog(self)
+            if dialog.exec() != QDialog.Accepted:
+                logging.info("Processing cancelled by user")
+                return
+            
+            # Get configuration from dialog
+            config = dialog.get_config()
+            
             logging.info(f"Starting audio processing for: {self.audio_file_path}")
+            logging.info(f"Processing configuration: {config}")
 
             # Disable process buttons during processing
             if hasattr(self, 'process_btn'):
@@ -776,30 +672,16 @@ class MainWindow(QMainWindow):
             if hasattr(self, 'process_button'):
                 self.process_button.setEnabled(False)
 
-            # Get processing configuration
-            config = {
-                'whisper_model': self.whisper_model_combo.currentText(),
-                'model_size': self.model_size_combo.currentText(),
-                'chord_method': self.chord_method_combo.currentText(),
-                'melody_method': self.melody_method_combo.currentText(),
-                # Audio-separator options
-                'separation_engine': self.separation_method_combo.currentText().replace('-', '_'),
-                'audio_separator_model': self._extract_model_name(self.audio_separator_model_combo.currentText()),
-                'use_cuda': self.use_cuda_check.isChecked(),
-                'use_coreml': self.use_coreml_check.isChecked(),
-                # Legacy compatibility
-                'use_demucs': self.separation_method_combo.currentText() == 'demucs',
-                'save_intermediate': self.save_intermediate_check.isChecked(),
-                'language': None  # None for auto-detection
-            }
-
-            logging.info(f"Processing configuration: {config}")
-
             # Start processing thread
             self.processing_thread = ProcessingThread(self.audio_file_path, config)
             self.processing_thread.progress_updated.connect(self.update_progress)
             self.processing_thread.stage_completed.connect(self.stage_completed)
             self.processing_thread.processing_finished.connect(self.processing_finished)
+            self.processing_thread.error_occurred.connect(self.processing_error)
+            
+            # Show progress bar and start processing
+            self.progress_bar.setVisible(True)
+            self.progress_bar.setValue(0)
             
             # Actually start the thread!
             logging.info("Starting processing thread...")
@@ -807,7 +689,7 @@ class MainWindow(QMainWindow):
             
             # Update UI to show processing has started
             self.status_bar.showMessage("Processing audio...")
-            
+
         except Exception as e:
             logging.error(f"Error starting audio processing: {e}")
             QMessageBox.critical(self, "Processing Error", f"Failed to start processing: {e}")
@@ -818,36 +700,38 @@ class MainWindow(QMainWindow):
             if hasattr(self, 'process_button'):
                 self.process_button.setEnabled(True)
 
-    def _extract_model_name(self, display_name: str) -> str:
-        """
-        Extract clean model name from formatted UI display text.
-
-        Args:
-            display_name: Formatted display name (e.g., "UVR_MDXNET_KARA_2 (85MB) - description")
-
-        Returns:
-            Clean model name (e.g., "UVR_MDXNET_KARA_2")
-        """
-        # Extract model name from format: "Model_Name (Size) - Description"
-        if ' (' in display_name and ') - ' in display_name:
-            return display_name.split(' (')[0]
-
-        # Try to use AudioSeparatorProcessor method if available
-        try:
-            from song_editor.core.audio_separator_processor import AudioSeparatorProcessor
-            if AudioSeparatorProcessor.is_available():
-                separator = AudioSeparatorProcessor()
-                return separator.get_model_name_from_display(display_name)
-        except Exception:
-            pass
-
-        # Fallback: return as-is if parsing fails
-        return display_name
-
     def update_progress(self, message: str, value: int):
         """Update the progress bar."""
         self.progress_bar.setValue(value)
         self.status_bar.showMessage(message)
+
+    def open_song_info_dialog(self):
+        """Open the song information dialog."""
+        try:
+            # Create and show the song info dialog
+            dialog = SongInfoDialog(self, self.song_data.to_dict() if self.song_data else None)
+            if dialog.exec() == QDialog.Accepted:
+                # Get the updated song information
+                song_info = dialog.get_song_info()
+                
+                # Update the current song data if we have it
+                if self.song_data:
+                    # Update metadata
+                    if not hasattr(self.song_data, 'metadata') or not self.song_data.metadata:
+                        self.song_data.metadata = {}
+                    
+                    for key, value in song_info.items():
+                        if value:  # Only update non-empty values
+                            self.song_data.metadata[key] = value
+                    
+                    logging.info("Song metadata updated")
+                    self.status_bar.showMessage("Song information updated")
+                else:
+                    logging.info("Song info dialog opened but no song data to update")
+                    
+        except Exception as e:
+            logging.error(f"Error opening song info dialog: {e}")
+            QMessageBox.warning(self, "Dialog Error", f"Could not open song information dialog: {e}")
 
     def stage_completed(self, stage: str, data: Dict[str, Any]):
         """Handle stage completion."""
@@ -1004,85 +888,17 @@ class MainWindow(QMainWindow):
         geometry = self.settings.value('geometry')
         if geometry:
             self.restoreGeometry(geometry)
-
-        # Load processing options
-        whisper_model = self.settings.value('whisper_model', 'openai-whisper')
-        index = self.whisper_model_combo.findText(whisper_model)
-        if index >= 0:
-            self.whisper_model_combo.setCurrentIndex(index)
-
-        model_size = self.settings.value('model_size', 'large-v3-turbo')
-        index = self.model_size_combo.findText(model_size)
-        if index >= 0:
-            self.model_size_combo.setCurrentIndex(index)
-
-        chord_method = self.settings.value('chord_method', 'chordino')
-        index = self.chord_method_combo.findText(chord_method)
-        if index >= 0:
-            self.chord_method_combo.setCurrentIndex(index)
-
-        melody_method = self.settings.value('melody_method', 'basic-pitch')
-        index = self.melody_method_combo.findText(melody_method)
-        if index >= 0:
-            self.melody_method_combo.setCurrentIndex(index)
-
-        # Load audio-separator settings
-        separation_engine = self.settings.value('separation_engine', 'demucs')
-        # Convert underscore back to hyphen for UI display
-        ui_separation_engine = separation_engine.replace('_', '-')
-        index = self.separation_method_combo.findText(ui_separation_engine)
-        if index >= 0:
-            self.separation_method_combo.setCurrentIndex(index)
-
-        # Load audio-separator model - handle both clean names and formatted display names
-        saved_model = self.settings.value('audio_separator_model', 'UVR_MDXNET_KARA_2')
-
-        # Find the correct index for the saved model in the formatted list
-        found_index = -1
-        for i in range(self.audio_separator_model_combo.count()):
-            display_text = self.audio_separator_model_combo.itemText(i)
-            clean_name = self._extract_model_name(display_text)
-            if clean_name == saved_model:
-                found_index = i
-                break
-
-        if found_index >= 0:
-            self.audio_separator_model_combo.setCurrentIndex(found_index)
-        else:
-            # Fallback: try to find by partial match
-            for i in range(self.audio_separator_model_combo.count()):
-                display_text = self.audio_separator_model_combo.itemText(i)
-                if saved_model in display_text:
-                    self.audio_separator_model_combo.setCurrentIndex(i)
-                    break
-
-        self.use_cuda_check.setChecked(self.settings.value('use_cuda', False, type=bool))
-        self.use_coreml_check.setChecked(self.settings.value('use_coreml', True, type=bool))
-
-        # Legacy compatibility
-        self.use_demucs_check.setChecked(self.settings.value('use_demucs', True, type=bool))
-        self.save_intermediate_check.setChecked(self.settings.value('save_intermediate', True, type=bool))
+        
+        # Settings for combo boxes are now handled by the dialogs themselves
+        # The dialogs load their own settings when created
 
     def save_settings(self):
         """Save application settings."""
         # Save window geometry
         self.settings.setValue('geometry', self.saveGeometry())
-
-        # Save processing options
-        self.settings.setValue('whisper_model', self.whisper_model_combo.currentText())
-        self.settings.setValue('model_size', self.model_size_combo.currentText())
-        self.settings.setValue('chord_method', self.chord_method_combo.currentText())
-        self.settings.setValue('melody_method', self.melody_method_combo.currentText())
-        # Audio-separator settings
-        self.settings.setValue('separation_engine', self.separation_method_combo.currentText().replace('-', '_'))
-        # Save clean model name (not formatted display name)
-        clean_model_name = self._extract_model_name(self.audio_separator_model_combo.currentText())
-        self.settings.setValue('audio_separator_model', clean_model_name)
-        self.settings.setValue('use_cuda', self.use_cuda_check.isChecked())
-        self.settings.setValue('use_coreml', self.use_coreml_check.isChecked())
-        # Legacy compatibility
-        self.settings.setValue('use_demucs', self.separation_method_combo.currentText() == 'demucs')
-        self.settings.setValue('save_intermediate', self.save_intermediate_check.isChecked())
+        
+        # Settings for combo boxes are now handled by the dialogs themselves
+        # The dialogs save their own settings when closed
 
     def load_audio_from_path(self, audio_path: str):
         """Load an audio file and check for existing processed data."""

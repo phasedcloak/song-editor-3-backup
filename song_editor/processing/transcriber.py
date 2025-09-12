@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from typing import List, Optional
 
@@ -7,6 +8,32 @@ try:
     from faster_whisper import WhisperModel
 except Exception:  # pragma: no cover - optional at install time
     WhisperModel = None  # type: ignore
+
+
+def strip_punctuation(text: str) -> str:
+    """
+    Strip common punctuation from transcribed text while preserving word boundaries.
+    
+    Args:
+        text: The text to clean
+        
+    Returns:
+        Cleaned text with punctuation removed
+    """
+    if not text:
+        return text
+    
+    # Common punctuation marks to remove
+    punctuation_pattern = r'[.,!?;:"\'()\[\]{}<>/\\|`~@#$%^&*+=_\-]'
+    
+    # Remove punctuation but preserve spaces
+    cleaned = re.sub(punctuation_pattern, '', text)
+    
+    # Clean up multiple spaces that might result from punctuation removal
+    cleaned = re.sub(r'\s+', ' ', cleaned)
+    
+    # Strip leading/trailing whitespace
+    return cleaned.strip()
 
 
 @dataclass
@@ -39,7 +66,7 @@ class Transcriber:
                 conf = getattr(w, "probability", None)
                 words.append(
                     Word(
-                        text=w.word.strip(),
+                        text=strip_punctuation(w.word.strip()),
                         start=float(w.start),
                         end=float(w.end),
                         confidence=None if conf is None else float(conf)

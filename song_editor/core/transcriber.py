@@ -11,6 +11,7 @@ import logging
 import tempfile
 import numpy as np
 import soundfile as sf
+import re
 from typing import Dict, Any, List, Optional
 from datetime import datetime
 
@@ -26,6 +27,32 @@ try:
 except ImportError:
     MLX_WHISPER_AVAILABLE = False
     logging.warning("MLX Whisper not available")
+
+
+def strip_punctuation(text: str) -> str:
+    """
+    Strip common punctuation from transcribed text while preserving word boundaries.
+    
+    Args:
+        text: The text to clean
+        
+    Returns:
+        Cleaned text with punctuation removed
+    """
+    if not text:
+        return text
+    
+    # Common punctuation marks to remove
+    punctuation_pattern = r'[.,!?;:"\'()\[\]{}<>/\\|`~@#$%^&*+=_\-]'
+    
+    # Remove punctuation but preserve spaces
+    cleaned = re.sub(punctuation_pattern, '', text)
+    
+    # Clean up multiple spaces that might result from punctuation removal
+    cleaned = re.sub(r'\s+', ' ', cleaned)
+    
+    # Strip leading/trailing whitespace
+    return cleaned.strip()
 
 
 class Transcriber:
@@ -327,7 +354,7 @@ class Transcriber:
                 for segment in result.get('segments', []):
                     for word_info in segment.get('words', []):
                         word = {
-                            'text': word_info['word'].strip(),
+                            'text': strip_punctuation(word_info['word'].strip()),
                             'start': word_info['start'],
                             'end': word_info['end'],
                             'confidence': word_info.get('confidence', 0.5),
@@ -375,7 +402,7 @@ class Transcriber:
                 for segment in segments:
                     for word_info in segment.words:
                         word = {
-                            'text': word_info.word.strip(),
+                            'text': strip_punctuation(word_info.word.strip()),
                             'start': word_info.start,
                             'end': word_info.end,
                             'confidence': word_info.probability,
@@ -433,7 +460,7 @@ class Transcriber:
                 for segment in result.get('segments', []):
                     for word_info in segment.get('words', []):
                         word = {
-                            'text': word_info['word'].strip(),
+                            'text': strip_punctuation(word_info['word'].strip()),
                             'start': word_info['start'],
                             'end': word_info['end'],
                             'confidence': word_info.get('confidence', 0.5),

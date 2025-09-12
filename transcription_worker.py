@@ -7,6 +7,32 @@ This script runs in a separate process to avoid library conflicts
 import sys
 import json
 import os
+import re
+
+def strip_punctuation(text: str) -> str:
+    """
+    Strip common punctuation from transcribed text while preserving word boundaries.
+    
+    Args:
+        text: The text to clean
+        
+    Returns:
+        Cleaned text with punctuation removed
+    """
+    if not text:
+        return text
+    
+    # Common punctuation marks to remove
+    punctuation_pattern = r'[.,!?;:"\'()\[\]{}<>/\\|`~@#$%^&*+=_\-]'
+    
+    # Remove punctuation but preserve spaces
+    cleaned = re.sub(punctuation_pattern, '', text)
+    
+    # Clean up multiple spaces that might result from punctuation removal
+    cleaned = re.sub(r'\s+', ' ', cleaned)
+    
+    # Strip leading/trailing whitespace
+    return cleaned.strip()
 
 def main():
     # Debug: Log that we're starting
@@ -134,6 +160,8 @@ def main():
         for segment in result.get('segments', []):
             for word_info in segment.get('words', []):
                 text = word_info['word'].strip()
+                # Strip punctuation from transcribed text
+                text = strip_punctuation(text)
                 start = float(word_info['start'])
                 end = float(word_info['end'])
                 conf = float(word_info.get('probability', 0.8))

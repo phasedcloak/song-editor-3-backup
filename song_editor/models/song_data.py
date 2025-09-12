@@ -7,6 +7,33 @@ Defines the core data structures for Song Editor 3.
 
 from typing import List, Dict, Any, Optional
 from dataclasses import dataclass, field
+import re
+
+
+def strip_punctuation(text: str) -> str:
+    """
+    Strip common punctuation from transcribed text while preserving word boundaries.
+    
+    Args:
+        text: The text to clean
+        
+    Returns:
+        Cleaned text with punctuation removed
+    """
+    if not text:
+        return text
+    
+    # Common punctuation marks to remove
+    punctuation_pattern = r'[.,!?;:"\'()\[\]{}<>/\\|`~@#$%^&*+=_\-]'
+    
+    # Remove punctuation but preserve spaces
+    cleaned = re.sub(punctuation_pattern, '', text)
+    
+    # Clean up multiple spaces that might result from punctuation removal
+    cleaned = re.sub(r'\s+', ' ', cleaned)
+    
+    # Strip leading/trailing whitespace
+    return cleaned.strip()
 
 
 @dataclass
@@ -43,8 +70,12 @@ class Word:
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'Word':
         """Create from dictionary representation."""
+        # Strip punctuation from loaded text
+        raw_text = data.get('text', '')
+        cleaned_text = strip_punctuation(raw_text)
+        
         return cls(
-            text=data.get('text', ''),
+            text=cleaned_text,
             start=data.get('start', 0.0),
             end=data.get('end', 0.0),
             confidence=data.get('confidence', 0.0),

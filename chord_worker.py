@@ -17,7 +17,78 @@ def detect_chords(audio_path, params):
     """Load audio and run chord detection."""
     try:
         logging.info(f"CHORD_WORKER: Loading audio from {audio_path}")
-        audio, sr = librosa.load(audio_path, sr=44100, mono=True)
+        
+        # Use subprocess isolation to avoid cffi conflicts
+        try:
+            import subprocess
+            import tempfile
+            import os
+            
+            # Create a subprocess script to load audio
+            script_content = f'''
+import sys
+import warnings
+import numpy as np
+import tempfile
+import os
+
+warnings.filterwarnings("ignore")
+sys.path.insert(0, '/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages')
+
+try:
+    import librosa
+    audio, sr = librosa.load(r"{audio_path}", sr=44100, mono=True)
+    
+    audio = np.array(audio, dtype=np.float32)
+    sr = int(sr)
+    
+    temp_fd, temp_path = tempfile.mkstemp(suffix='.npy')
+    os.close(temp_fd)
+    
+    np.save(temp_path, audio)
+    print("AUDIO_DATA_PATH:" + temp_path)
+    print("SAMPLE_RATE:" + str(sr))
+    print("SHAPE:" + str(audio.shape))
+    
+except Exception as e:
+    print("ERROR:" + str(e), file=sys.stderr)
+    sys.exit(1)
+'''
+            
+            result = subprocess.run(
+                ['/usr/local/bin/python3', '-c', script_content],
+                capture_output=True,
+                text=True,
+                timeout=30
+            )
+            
+            if result.returncode != 0:
+                raise Exception(f"Subprocess failed: {result.stderr}")
+            
+            audio_data_path = None
+            sample_rate = None
+            
+            for line in result.stdout.strip().split('\n'):
+                if line.startswith('AUDIO_DATA_PATH:'):
+                    audio_data_path = line.split(':', 1)[1]
+                elif line.startswith('SAMPLE_RATE:'):
+                    sample_rate = int(line.split(':', 1)[1])
+            
+            if not audio_data_path or sample_rate is None:
+                raise Exception("Failed to parse subprocess output")
+            
+            audio = np.load(audio_data_path)
+            sr = sample_rate
+            
+            # Clean up temp file
+            try:
+                os.unlink(audio_data_path)
+            except:
+                pass
+                
+        except Exception as e:
+            logging.warning(f"Subprocess audio loading failed: {e}, falling back to direct load")
+            audio, sr = librosa.load(audio_path, sr=44100, mono=True)
         
         logging.info("CHORD_WORKER: Running Chordino VAMP plugin...")
         

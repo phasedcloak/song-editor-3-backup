@@ -1,171 +1,147 @@
 Title: test_short
 Key:  major
-Key Confidence: 75.6%
+Key Confidence: 72.9%
+Tempo: 114.8 BPM
 Duration: 1:00
-Transcription: mlx-whisper
+Transcription: faster-whisper
 
 CHORD AND LYRICS TIME ALIGNMENT TABLE
 ======================================================================
 
 Chord           Lyrics                                  
 -------------------------------------------------------
-G7                                                      
-                We                                      
+G                                                       
                 see                                     
-Em                                                      
-A#7                                                     
+                your                                    
                 love                                    
-D                                                       
-G#dim                                                   
-G                                                       
-C7                                                      
-                clear                                   
-Cdim                                                    
                 as                                      
-A#7                                                     
-                day!                                    
-Am                                                      
-G7                                                      
+                clear                                   
 C                                                       
-                Making                                  
+                as                                      
+                day                                     
 Gm                                                      
-C#dim                                                   
-                us                                      
 G                                                       
+                us                                      
 D                                                       
+Gm                                                      
+                and                                     
+G                                                       
 Gm                                                      
                 giving                                  
-F#m                                                     
+D                                                       
                 us                                      
-A#7                                                     
-D                                                       
                 a                                       
-F#m                                                     
                 place                                   
-A                                                       
                 to                                      
-D                                                       
                 stay!                                   
-A                                                       
-G7                                                      
-                You                                     
+Gm                                                      
 C                                                       
-C7                                                      
                 give                                    
 G                                                       
                 such                                    
-C7                                                      
-A#7                                                     
                 love                                    
-G                                                       
-A7                                                      
-A                                                       
-                to                                      
 D                                                       
-G7                                                      
+                to                                      
                 us!                                     
-B7                                                      
 G                                                       
 D                                                       
 C7                                                      
 C                                                       
-                Making                                  
-G                                                       
-C7                                                      
-                us                                      
-Bm                                                      
-D                                                       
-                us                                      
-                to                                      
-                the                                     
-F#dim                                                   
-                capacity                                
-Dm                                                      
-C7                                                      
-                to                                      
-Em                                                      
-G                                                       
-                love!                                   
-C                                                       
-D                                                       
-G                                                       
-                Thank                                   
-D                                                       
-A#7                                                     
-                You,                                    
-D                                                       
-Dm                                                      
-                O                                       
-                God!                                    
+                give                                    
 Gm                                                      
-C                                                       
+                such                                    
 G                                                       
-D                                                       
-Gm                                                      
-G                                                       
-                God,                                    
-Gm                                                      
 G7                                                      
+G                                                       
+                with                                    
+D                                                       
+                the                                     
+                capacity                                
+G                                                       
+                to                                      
+                love                                    
+C                                                       
+D                                                       
+G                                                       
+D                                                       
+                you                                     
+                oh                                      
+                God                                     
+Edim                                                    
+C                                                       
+G                                                       
+D                                                       
+                God                                     
+Gm                                                      
+G                                                       
+Gm                                                      
                 we                                      
+D                                                       
                 know                                    
 G                                                       
                 that                                    
-Am                                                      
-F#                                                      
-                we've                                   
 C                                                       
-A7                                                      
-A                                                       
+                we've                                   
+D                                                       
                 not                                     
                 always                                  
-D                                                       
-G7                                                      
                 loved                                   
-D                                                       
-G                                                       
-                You!                                    
-Bm                                                      
-G                                                       
-D                                                       
+                you                                     
 G                                                       
 Gm                                                      
-Bdim                                                    
+G                                                       
 Gm                                                      
-Am                                                      
-                a                                       
-F#7                                                     
+G                                                       
+                you've                                  
+D                                                       
+                made                                    
 C                                                       
-                with                                    
-G7                                                      
+Cm                                                      
+C7                                                      
 
 CHORDPRO FORMAT
 ==================================================
 
-[G7]We [G7]see [Em]love [C7]clear [Cdim]as [A#7]day [C]Making [C#dim]us
-[Gm]giving [F#m]us [D]a [F#m]place [A]to [D]stay [G7]You [C7]give [G]such
-[A#7]love [A]to [G7]us [C]Making [C7]us [D]us [D]to [D]the [F#dim]capacity
-[C7]to [G]love [G]Thank [A#7]You [Dm]O [Dm]God [G]God [G7]we [G7]know [G]that
-[F#]we've [A]not [A]always [G7]loved [D]You [Am]a [C]with
+[G]see [G]your [G]love [G]as [G]clear [C]as [C]day [G]us [Gm]and [Gm]giving
+[D]us [D]a [D]place [D]to [D]stay [C]give [G]such [G]love [D]to [D]us [C]give
+[Gm]such [G]with [D]the [D]capacity [G]to [G]love [D]you [D]oh [D]God [D]God
+[Gm]we [D]know [G]that [C]we've [D]not [D]always [D]loved [D]you [G]you've
+[D]made
 
 CHORD CHART
 ==================================================
 
 Section 1:
-  G7 | Em | A#7 | D | G#dim | G | C7 | Cdim | Am | C | Gm | C#dim
+  G
 
 Section 2:
-  F#m | A#7 | D | A | G7 | C | C7 | G | A7 | B7 | Bm | F#dim | Dm | Em | Gm
+  C
 
 Section 3:
-  D
+  Gm | G | D
 
 Section 4:
-  Gm | G | G7 | Am | F# | C | A7 | A | D | Bm | Bdim | F#7
+  Gm | C | G
+
+Section 5:
+  D | G | C7 | C | Gm | G7
+
+Section 6:
+  G | C | D | Edim
+
+Section 7:
+  D
+
+Section 8:
+  Gm | G | D | C
+
+Section 9:
+  G | Gm | D | C | Cm | C7
 
 
 LYRICS ONLY
 ==================================================
 
-We see love clear as day Making us giving us a place to stay You give such love
-to us Making us us to the capacity to love Thank You O God God we know that
-we've not always loved You a with
+see your love as clear as day us and giving us a place to stay give such love to
+us give such with the capacity to love you oh God God we know that we've not
+always loved you you've made

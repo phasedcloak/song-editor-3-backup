@@ -292,8 +292,9 @@ class AudioPlaybackThread(QThread):
         try:
             from ..core.audio_player import AudioPlayer
             self.player = AudioPlayer()
-            self.player.load_audio(self.audio_path)
-            self.player.play_segment(self.start_time, self.duration)
+            self.player.load(self.audio_path)  # Fixed method name
+            end_time = self.start_time + self.duration  # Convert duration to end_time
+            self.player.play_segment(self.start_time, end_time)
 
             # Wait for playback to finish
             import time
@@ -301,6 +302,8 @@ class AudioPlaybackThread(QThread):
 
         except Exception as e:
             print(f"Audio playback error: {e}")
+            import logging
+            logging.error(f"Audio playback error: {e}")
         finally:
             if self.player:
                 self.player.stop()
@@ -900,6 +903,7 @@ class EnhancedLyricsEditor(QWidget):
         self.text_edit = QTextEdit()
         self.text_edit.setPlaceholderText("Enter lyrics here...")
         self.text_edit.textChanged.connect(self.on_text_changed)
+        self.text_edit.mousePressEvent = self.on_single_click
         self.text_edit.mouseDoubleClickEvent = self.on_double_click
         # Ensure visible and readable text (explicit palette)
         try:
@@ -1421,6 +1425,18 @@ class EnhancedLyricsEditor(QWidget):
         """Handle color mode toggle"""
         self.color_mode = "rhyme" if checked else "confidence"
         self.apply_coloring()
+
+    def on_single_click(self, event):
+        """Handle single-click to show rhyme suggestions"""
+        cursor = self.text_edit.cursorForPosition(event.pos())
+        cursor.select(QTextCursor.WordUnderCursor)
+        word = cursor.selectedText()
+
+        # Update rhyme panel with suggestions
+        self.update_rhyme_panel(word)
+
+        # Call parent's single-click handler
+        super().mousePressEvent(event)
 
     def on_double_click(self, event):
         """Handle double-click to play audio"""

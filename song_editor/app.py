@@ -235,7 +235,11 @@ def process_audio_file(
             except ImportError:
                 from song_editor.core.chord_detector import ChordDetector
             chord_detector = ChordDetector(
-                use_chordino=False  # Disable chordino to avoid bus errors
+                use_chordino=use_chordino,  # Use the chord method selected by user
+                chord_simplification=True,  # Simplify chords for better readability
+                preserve_chord_richness=False,  # Focus on basic chords
+                min_confidence=0.4,  # Higher confidence threshold
+                window_size=1.0  # Longer analysis window for stability
             )
         except Exception as e:
             logging.warning(f"Chord detection not available: {e}")

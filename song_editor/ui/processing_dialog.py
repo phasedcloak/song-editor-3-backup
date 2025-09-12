@@ -61,7 +61,7 @@ class ProcessingOptionsDialog(QDialog):
         analysis_layout.addWidget(QLabel("Chord Detection:"), 0, 0)
         self.chord_method_combo = QComboBox()
         self.chord_method_combo.addItems(['chordino', 'chromagram'])
-        self.chord_method_combo.setCurrentText('chromagram')
+        self.chord_method_combo.setCurrentText('chordino')
         analysis_layout.addWidget(self.chord_method_combo, 0, 1)
         
         # Melody extraction
@@ -189,7 +189,7 @@ class ProcessingOptionsDialog(QDialog):
             self.settings.value('model_size', 'large-v3-turbo')
         )
         self.chord_method_combo.setCurrentText(
-            self.settings.value('chord_method', 'chromagram')
+            self.settings.value('chord_method', 'chordino')
         )
         self.melody_method_combo.setCurrentText(
             self.settings.value('melody_method', 'basic-pitch')

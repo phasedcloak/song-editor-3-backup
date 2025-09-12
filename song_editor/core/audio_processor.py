@@ -485,26 +485,40 @@ except Exception as err:
                         'guitar': 'guitar'
                     }
 
-                    # For audio-separator, skip loading individual stems to avoid cffi conflicts
-                    # We'll load the vocals stem later in the main processing pipeline
-                    logging.info("Audio-separator completed - stems available in output directory")
+                    # For audio-separator, load the separated files using subprocess isolation
+                    logging.info("Audio-separator completed - loading separated stems...")
 
-                    # Create placeholder entries for required stems
+                    # Load separated audio files using subprocess to avoid cffi conflicts
                     for stem_name in result['stems_found']:
                         expected_name = stem_mapping.get(stem_name, stem_name)
-                        # Don't load audio here to avoid cffi issues - will load vocals later
-                        separated[expected_name] = None  # Placeholder
+                        stem_file_path = result['output_files'].get(stem_name)
+                        
+                        if stem_file_path and os.path.exists(stem_file_path):
+                            try:
+                                # Load audio using subprocess isolation
+                                audio_data, sr = self._load_audio_with_subprocess(stem_file_path)
+                                separated[expected_name] = audio_data
+                                logging.info(f"Loaded {expected_name} stem: {stem_file_path}")
+                            except Exception as e:
+                                logging.warning(f"Failed to load {expected_name} stem: {e}")
+                                separated[expected_name] = None
+                        else:
+                            logging.warning(f"Stem file not found: {stem_name} -> {stem_file_path}")
+                            separated[expected_name] = None
 
                     # Ensure we have vocals and accompaniment (required by other modules)
-                    if 'vocals' not in separated:
-                        if 'instrumental' in separated:
+                    if 'vocals' not in separated or separated['vocals'] is None:
+                        if 'instrumental' in separated and separated['instrumental'] is not None:
                             # Calculate vocals as difference from instrumental
                             separated['vocals'] = audio - separated['instrumental']
                         else:
                             separated['vocals'] = audio
 
-                    if 'accompaniment' not in separated:
-                        if 'vocals' in separated:
+                    if 'accompaniment' not in separated or separated['accompaniment'] is None:
+                        if 'instrumental' in separated and separated['instrumental'] is not None:
+                            # Use the instrumental track as accompaniment
+                            separated['accompaniment'] = separated['instrumental']
+                        elif 'vocals' in separated and separated['vocals'] is not None:
                             separated['accompaniment'] = audio - separated['vocals']
                         else:
                             separated['accompaniment'] = audio

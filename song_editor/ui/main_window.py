@@ -7,6 +7,7 @@ Main application window for Song Editor 3.
 
 import json
 import logging
+import os
 import subprocess
 import sys
 import time
@@ -20,7 +21,7 @@ from PySide6.QtWidgets import (
     QToolBar, QScrollArea
 )
 from PySide6.QtCore import Qt, QThread, Signal, QSettings
-from PySide6.QtGui import QAction
+from PySide6.QtGui import QAction, QIcon
 
 from ..platform_utils import PlatformUtils, PlatformAwareWidget
 from .platform_styles import PlatformStyles
@@ -255,6 +256,9 @@ class MainWindow(QMainWindow):
         """Setup platform-specific behavior for the main window."""
         # Set window title and size
         self.setWindowTitle("Song Editor 3")
+        
+        # Set application icon
+        self.set_application_icon()
 
         # Get platform-specific window size
         width, height = self.platform_utils.get_recommended_window_size()
@@ -273,6 +277,41 @@ class MainWindow(QMainWindow):
 
         # Note: High DPI and touch attributes should be set on QApplication, not QWidget
         # These are handled in the main application setup
+
+    def set_application_icon(self):
+        """Set the application icon based on platform."""
+        try:
+            # Get the project root directory
+            project_root = Path(__file__).parent.parent.parent
+            icon_path = None
+            
+            # Try different icon formats based on platform
+            if sys.platform == "darwin":  # macOS
+                icon_path = project_root / "icon.icns"
+            elif sys.platform == "win32":  # Windows
+                icon_path = project_root / "icon.ico"
+            else:  # Linux and others
+                icon_path = project_root / "icon.png"
+            
+            # Check if icon file exists
+            if icon_path and icon_path.exists():
+                icon = QIcon(str(icon_path))
+                self.setWindowIcon(icon)
+                logging.info(f"Application icon set: {icon_path}")
+            else:
+                # Fallback: try any available icon format
+                for ext in [".png", ".ico", ".icns"]:
+                    fallback_path = project_root / f"icon{ext}"
+                    if fallback_path.exists():
+                        icon = QIcon(str(fallback_path))
+                        self.setWindowIcon(icon)
+                        logging.info(f"Application icon set (fallback): {fallback_path}")
+                        break
+                else:
+                    logging.warning("No application icon found. Place icon.png, icon.ico, or icon.icns in project root.")
+                    
+        except Exception as e:
+            logging.warning(f"Could not set application icon: {e}")
 
     def init_ui(self):
         """Initialize the user interface with platform-aware design."""
@@ -430,7 +469,10 @@ class MainWindow(QMainWindow):
     def create_lyrics_editor(self):
         """Create lyrics editor widget."""
         from .enhanced_lyrics_editor import EnhancedLyricsEditor
-        return EnhancedLyricsEditor()
+        editor = EnhancedLyricsEditor()
+        # Connect audio playback signal
+        editor.play_audio_requested.connect(self.on_play_audio_requested)
+        return editor
 
     def create_chord_editor(self):
         """Create chord editor widget."""
@@ -1041,6 +1083,41 @@ class MainWindow(QMainWindow):
                 "Display Error",
                 f"Could not display loaded data:\n{str(e)}"
             )
+
+    def on_play_audio_requested(self, start_time: float, duration: float):
+        """Handle audio playback request from lyrics editor."""
+        try:
+            # Get the current audio file path
+            audio_path = None
+            if hasattr(self, 'audio_file_path') and self.audio_file_path:
+                audio_path = self.audio_file_path
+            elif hasattr(self, 'lyrics_editor') and hasattr(self.lyrics_editor, 'audio_path'):
+                audio_path = self.lyrics_editor.audio_path
+            
+            if not audio_path or not os.path.exists(audio_path):
+                logging.warning(f"No valid audio file found for playback: {audio_path}")
+                return
+            
+            # Stop any existing playback
+            if hasattr(self, 'playback_thread') and self.playback_thread and self.playback_thread.isRunning():
+                self.playback_thread.terminate()
+                self.playback_thread.wait()
+            
+            # Start new playback
+            from .enhanced_lyrics_editor import AudioPlaybackThread
+            self.playback_thread = AudioPlaybackThread(audio_path, start_time, duration)
+            self.playback_thread.playback_finished.connect(self.on_playback_finished)
+            self.playback_thread.start()
+            
+            logging.info(f"Playing audio segment: {start_time:.2f}s - {start_time + duration:.2f}s")
+            
+        except Exception as e:
+            logging.error(f"Error starting audio playback: {e}")
+            QMessageBox.warning(self, "Playback Error", f"Could not start audio playback: {e}")
+
+    def on_playback_finished(self):
+        """Handle audio playback finished."""
+        logging.info("Audio playback finished")
 
     def closeEvent(self, event):
         """Handle window close event."""

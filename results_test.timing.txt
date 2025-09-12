@@ -1,0 +1,79 @@
+🎵 Song Editor 3 Processing Analysis
+================================================================================
+📊 Batch Processing Summary
+--------------------------------------------------------------------------------
+📁 Total Files: 31
+✅ Successful: 2
+❌ Failed: 29
+⏱️  Total Audio Duration: 4822.9s (80.4 min)
+🔧 Total Processing Time: 44.5s (0.7 min)
+⚡ Batch Processing Ratio: 0.0x real-time
+💨 Average per file: 1.4s processing time
+
+📋 Per-File Breakdown:
+File Name                      Audio (s)  Process (s)  Ratio    Status  
+--------------------------------------------------------------------------------
+20250826_190940_New Recor...   193.7      0.0          N/A      ✅ OK    
+20250828_162858_New Recor...   47.3       0.0          N/A      ✅ OK    
+20250828_163208_New Recor...   80.9       1.5          0.0x     ❌ FAIL  
+20250828_183002_New Recor...   195.9      1.5          0.0x     ❌ FAIL  
+20250829_141120_New Recor...   56.7       1.5          0.0x     ❌ FAIL  
+20250829_141250_New Recor...   56.1       1.5          0.0x     ❌ FAIL  
+20250829_142451_New Recor...   163.9      1.5          0.0x     ❌ FAIL  
+20250829_142832_New Recor...   110.2      1.5          0.0x     ❌ FAIL  
+20250829_144010_New Recor...   314.3      1.5          0.0x     ❌ FAIL  
+20250829_155951_New Recor...   57.5       1.5          0.0x     ❌ FAIL  
+20250829_174602_New Recor...   64.6       1.5          0.0x     ❌ FAIL  
+20250901_190621_New Recor...   145.8      1.5          0.0x     ❌ FAIL  
+20250901_191823_New Recor...   105.8      1.6          0.0x     ❌ FAIL  
+20250902_013744_New Recor...   57.4       1.5          0.0x     ❌ FAIL  
+20250902_014152_New Recor...   201.4      1.5          0.0x     ❌ FAIL  
+20250907_180231_New Recor...   102.0      1.5          0.0x     ❌ FAIL  
+20250908_161549_New Recor...   249.3      1.5          0.0x     ❌ FAIL  
+20250908_181927_New Recor...   29.5       1.5          0.1x     ❌ FAIL  
+20250908_210236_New Recor...   13.1       1.5          0.1x     ❌ FAIL  
+20250909_143115_New Recor...   0.6        1.5          2.5x     ❌ FAIL  
+20250909_143150_New Recor...   512.6      1.5          0.0x     ❌ FAIL  
+20250909_145746_New Recor...   175.2      1.6          0.0x     ❌ FAIL  
+20250909_161305_New Recor...   169.5      1.5          0.0x     ❌ FAIL  
+20250909_162401_New Recor...   105.2      1.7          0.0x     ❌ FAIL  
+20250909_174202_New Recor...   91.1       1.5          0.0x     ❌ FAIL  
+20250909_174515_New Recor...   75.4       1.5          0.0x     ❌ FAIL  
+20250910_130414_New Recor...   353.6      1.5          0.0x     ❌ FAIL  
+20250910_162940_25-09-10 ...   496.8      1.5          0.0x     ❌ FAIL  
+20250910_165645_25-09-10 ...   243.5      1.6          0.0x     ❌ FAIL  
+20250910_181536_New Recor...   41.3       1.5          0.0x     ❌ FAIL  
+20250910_213630_25-09-10 ...   312.7      1.5          0.0x     ❌ FAIL  
+--------------------------------------------------------------------------------
+TOTAL                          4822.9     44.5         0.0x             
+
+❌ Failed Files:
+  • 20250828_163208_New Recording 508.m4a: Unknown error
+  • 20250828_183002_New Recording 509.m4a: Unknown error
+  • 20250829_141120_New Recording 510.m4a: Unknown error
+  • 20250829_141250_New Recording 511.m4a: Unknown error
+  • 20250829_142451_New Recording 512.m4a: Unknown error
+  • 20250829_142832_New Recording 513.m4a: Unknown error
+  • 20250829_144010_New Recording 514.m4a: Unknown error
+  • 20250829_155951_New Recording 515.m4a: Unknown error
+  • 20250829_174602_New Recording 516.m4a: Unknown error
+  • 20250901_190621_New Recording 517.m4a: Unknown error
+  • 20250901_191823_New Recording 518.m4a: Unknown error
+  • 20250902_013744_New Recording 519.m4a: Unknown error
+  • 20250902_014152_New Recording 520.m4a: Unknown error
+  • 20250907_180231_New Recording 521.m4a: Unknown error
+  • 20250908_161549_New Recording 522.m4a: Unknown error
+  • 20250908_181927_New Recording 523.m4a: Unknown error
+  • 20250908_210236_New Recording 524.m4a: Unknown error
+  • 20250909_143115_New Recording 517.m4a: Unknown error
+  • 20250909_143150_New Recording 525.m4a: Unknown error
+  • 20250909_145746_New Recording 526.m4a: Unknown error
+  • 20250909_161305_New Recording 527.m4a: Unknown error
+  • 20250909_162401_New Recording 528.m4a: Unknown error
+  • 20250909_174202_New Recording 529.m4a: Unknown error
+  • 20250909_174515_New Recording 530.m4a: Unknown error
+  • 20250910_130414_New Recording 531 g.m4a: Unknown error
+  • 20250910_162940_25-09-10 dont know.m4a: Unknown error
+  • 20250910_165645_25-09-10 crown you lord of all.m4a: Unknown error
+  • 20250910_181536_New Recording 531.m4a: Unknown error
+  • 20250910_213630_25-09-10 im drawn to you g.m4a: Unknown error

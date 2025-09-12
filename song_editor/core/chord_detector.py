@@ -49,6 +49,23 @@ class ChordDetector:
         self.chromagram_tuning_error = 0.0
         self.chromagram_n_fft = 4096
         self.chromagram_hop_length = 1024
+        
+        # Chord mapping for standardization
+        self.chord_mapping = {
+            'C': 'C', 'Cm': 'Cm', 'C7': 'C7', 'Cm7': 'Cm7', 'Cmaj7': 'Cmaj7',
+            'D': 'D', 'Dm': 'Dm', 'D7': 'D7', 'Dm7': 'Dm7', 'Dmaj7': 'Dmaj7',
+            'E': 'E', 'Em': 'Em', 'E7': 'E7', 'Em7': 'Em7', 'Emaj7': 'Emaj7',
+            'F': 'F', 'Fm': 'Fm', 'F7': 'F7', 'Fm7': 'Fm7', 'Fmaj7': 'Fmaj7',
+            'G': 'G', 'Gm': 'Gm', 'G7': 'G7', 'Gm7': 'Gm7', 'Gmaj7': 'Gmaj7',
+            'A': 'A', 'Am': 'Am', 'A7': 'A7', 'Am7': 'Am7', 'Amaj7': 'Amaj7',
+            'B': 'B', 'Bm': 'Bm', 'B7': 'B7', 'Bm7': 'Bm7', 'Bmaj7': 'Bmaj7',
+            # Add more chord variations as needed
+            'C#': 'C#', 'C#m': 'C#m', 'C#7': 'C#7', 'C#m7': 'C#m7',
+            'D#': 'D#', 'D#m': 'D#m', 'D#7': 'D#7', 'D#m7': 'D#m7',
+            'F#': 'F#', 'F#m': 'F#m', 'F#7': 'F#7', 'F#m7': 'F#m7',
+            'G#': 'G#', 'G#m': 'G#m', 'G#7': 'G#7', 'G#m7': 'G#m7',
+            'A#': 'A#', 'A#m': 'A#m', 'A#7': 'A#7', 'A#m7': 'A#m7',
+        }
 
     def _detect_chords_chordino_worker(self, audio_path: str) -> List[Dict[str, Any]]:
         """Detect chords by calling the external chord_worker.py script."""
@@ -96,8 +113,8 @@ class ChordDetector:
             raw_chords = json.loads(process.stdout)
 
             # 5. Post-process the results
-            # Get audio duration for post-processing
-            audio_duration = librosa.get_duration(path=audio_path)
+            # Get audio duration for post-processing using subprocess isolation
+            audio_duration = self._get_audio_duration_with_subprocess(audio_path)
             processed_chords = self._post_process_chordino_results(raw_chords, audio_duration)
             return processed_chords
 
@@ -105,13 +122,13 @@ class ChordDetector:
             logging.error(f"Chord worker process failed with exit code {e.returncode}")
             logging.error(f"Stderr: {e.stderr}")
             logging.error(f"Falling back to chromagram chord detection.")
-            # Fallback requires loading audio, which is inefficient but necessary here
-            audio, sr = librosa.load(audio_path, sr=44100, mono=True)
+            # Fallback requires loading audio using subprocess isolation
+            audio, sr = self._load_audio_with_subprocess(audio_path)
             return self._detect_chords_chromagram(audio, sr)
         except Exception as e:
             logging.error(f"An error occurred during chordino worker processing: {e}", exc_info=True)
             logging.error("Falling back to chromagram chord detection.")
-            audio, sr = librosa.load(audio_path, sr=44100, mono=True)
+            audio, sr = self._load_audio_with_subprocess(audio_path)
             return self._detect_chords_chromagram(audio, sr)
         finally:
             # 6. Clean up temporary params file
@@ -396,6 +413,135 @@ except Exception as err:
             merged_chords.append(current_chord)
 
         return merged_chords
+
+    def _get_audio_duration_with_subprocess(self, audio_path: str) -> float:
+        """Get audio duration using subprocess isolation to avoid cffi conflicts."""
+        try:
+            import subprocess
+            import tempfile
+            import os
+            
+            script_content = f'''
+import sys
+import warnings
+import tempfile
+import os
+
+warnings.filterwarnings("ignore")
+sys.path.insert(0, '/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages')
+
+try:
+    import librosa
+    duration = librosa.get_duration(filename=r"{audio_path}")
+    print("DURATION:" + str(duration))
+    
+except Exception as e:
+    print("ERROR:" + str(e), file=sys.stderr)
+    sys.exit(1)
+'''
+            
+            result = subprocess.run(
+                ['/usr/local/bin/python3', '-c', script_content],
+                capture_output=True,
+                text=True,
+                timeout=30
+            )
+            
+            if result.returncode != 0:
+                raise Exception(f"Subprocess failed: {result.stderr}")
+            
+            for line in result.stdout.strip().split('\n'):
+                if line.startswith('DURATION:'):
+                    return float(line.split(':', 1)[1])
+            
+            raise Exception("Failed to parse duration from subprocess output")
+            
+        except Exception as e:
+            logging.warning(f"Subprocess duration loading failed: {e}, using fallback")
+            # Fallback: estimate duration from file size (very rough)
+            try:
+                import os
+                file_size = os.path.getsize(audio_path)
+                # Rough estimate: assume 16-bit, 44.1kHz, mono
+                estimated_duration = file_size / (44100 * 2)
+                return estimated_duration
+            except:
+                return 180.0  # Default 3 minutes
+
+    def _load_audio_with_subprocess(self, audio_path: str) -> Tuple[np.ndarray, int]:
+        """Load audio using subprocess isolation to avoid cffi conflicts."""
+        try:
+            import subprocess
+            import tempfile
+            import os
+            
+            script_content = f'''
+import sys
+import warnings
+import numpy as np
+import tempfile
+import os
+
+warnings.filterwarnings("ignore")
+sys.path.insert(0, '/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages')
+
+try:
+    import librosa
+    audio, sr = librosa.load(r"{audio_path}", sr=44100, mono=True)
+    
+    audio = np.array(audio, dtype=np.float32)
+    sr = int(sr)
+    
+    temp_fd, temp_path = tempfile.mkstemp(suffix='.npy')
+    os.close(temp_fd)
+    
+    np.save(temp_path, audio)
+    print("AUDIO_DATA_PATH:" + temp_path)
+    print("SAMPLE_RATE:" + str(sr))
+    print("SHAPE:" + str(audio.shape))
+    
+except Exception as e:
+    print("ERROR:" + str(e), file=sys.stderr)
+    sys.exit(1)
+'''
+            
+            result = subprocess.run(
+                ['/usr/local/bin/python3', '-c', script_content],
+                capture_output=True,
+                text=True,
+                timeout=30
+            )
+            
+            if result.returncode != 0:
+                raise Exception(f"Subprocess failed: {result.stderr}")
+            
+            audio_data_path = None
+            sample_rate = None
+            
+            for line in result.stdout.strip().split('\n'):
+                if line.startswith('AUDIO_DATA_PATH:'):
+                    audio_data_path = line.split(':', 1)[1]
+                elif line.startswith('SAMPLE_RATE:'):
+                    sample_rate = int(line.split(':', 1)[1])
+            
+            if not audio_data_path or sample_rate is None:
+                raise Exception("Failed to parse subprocess output")
+            
+            audio = np.load(audio_data_path)
+            
+            # Clean up temp file
+            try:
+                os.unlink(audio_data_path)
+            except:
+                pass
+                
+            return audio, sample_rate
+            
+        except Exception as e:
+            logging.warning(f"Subprocess audio loading failed: {e}, falling back to direct load")
+            # This fallback will likely fail due to cffi conflicts, but we try anyway
+            import librosa
+            return librosa.load(audio_path, sr=44100, mono=True)
 
     def detect(self, audio: np.ndarray, sample_rate: int) -> List[Dict[str, Any]]:
         """Detect chords in audio using the selected method."""

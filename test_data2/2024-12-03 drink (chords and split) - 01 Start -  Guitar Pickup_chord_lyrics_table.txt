@@ -1,0 +1,133 @@
+Title: 2024-12-03 drink (chords and split) - 01 Start -  Guitar Pickup
+Key:  major
+Key Confidence: 72.6%
+Tempo: 122.3 BPM
+Duration: 8:09
+Transcription: openai-whisper
+
+CHORD AND LYRICS TIME ALIGNMENT TABLE
+======================================================================
+
+Chord           Lyrics                                  
+-------------------------------------------------------
+D#/G                                                    
+A#sus4/F                                                
+                リリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリ
+                you                                     
+D#5/A#                                                  
+A#sus4/F                                                
+D#5                                                     
+                you                                     
+Cm(no5)/D#                                              
+                you                                     
+D#5/A#                                                  
+                you                                     
+G#sus2                                                  
+                you                                     
+                you                                     
+                you                                     
+D#5/A#                                                  
+                you                                     
+A#sus4/F                                                
+                you                                     
+D#5                                                     
+                you                                     
+A#sus4/F                                                
+                you                                     
+A#sus4/F                                                
+A#sus4/F                                                
+D#5                                                     
+A#sus4/F                                                
+A#sus4/F                                                
+A#sus4/F                                                
+D#5/A#                                                  
+                you                                     
+D#5/A#                                                  
+A#sus4/F                                                
+A#sus4/F                                                
+                you                                     
+G#sus2                                                  
+C#5/G#                                                  
+                you                                     
+
+CHORDPRO FORMAT
+==================================================
+
+リリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリ
+you you you you you you you you you you you you you you
+
+CHORD CHART
+==================================================
+
+Section 1:
+  D#/G
+
+Section 2:
+  A#sus4/F
+
+Section 3:
+  D#5/A#
+
+Section 4:
+  A#sus4/F
+
+Section 5:
+  D#5
+
+Section 6:
+  Cm(no5)/D#
+
+Section 7:
+  D#5/A#
+
+Section 8:
+  G#sus2
+
+Section 9:
+  D#5/A#
+
+Section 10:
+  A#sus4/F
+
+Section 11:
+  D#5
+
+Section 12:
+  A#sus4/F
+
+Section 13:
+  A#sus4/F
+
+Section 14:
+  A#sus4/F
+
+Section 15:
+  D#5 | A#sus4/F
+
+Section 16:
+  A#sus4/F
+
+Section 17:
+  A#sus4/F
+
+Section 18:
+  D#5/A#
+
+Section 19:
+  D#5/A# | A#sus4/F
+
+Section 20:
+  A#sus4/F
+
+Section 21:
+  G#sus2
+
+Section 22:
+  C#5/G#
+
+
+LYRICS ONLY
+==================================================
+
+リリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリ
+you you you you you you you you you you you you you you

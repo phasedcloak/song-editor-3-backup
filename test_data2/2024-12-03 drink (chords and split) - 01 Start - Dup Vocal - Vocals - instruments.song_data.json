@@ -1,0 +1,206 @@
+{
+  "metadata": {
+    "version": "3.0.0",
+    "created_at": "20250912_192859",
+    "source_audio": "test_data2/2024-12-03 drink (chords and split) - 01 Start - Dup Vocal - Vocals - instruments.wav",
+    "processing_tool": "Song Editor 3",
+    "transcription": {
+      "engine": "openai-whisper",
+      "alternatives_count": 5
+    },
+    "audio_processing": {
+      "use_demucs": true,
+      "use_chordino": true,
+      "denoise": true,
+      "normalize": true
+    },
+    "exported_at": "2025-09-12T19:28:59.280586",
+    "export_format": "json",
+    "export_version": "3.0.0",
+    "export_file": "/Volumes/SDMusicProd/CascadeProjects/Song_Editor_3/test_data2/2024-12-03 drink (chords and split) - 01 Start - Dup Vocal - Vocals - instruments.song_data.json",
+    "exporter_info": {
+      "include_processing_info": true,
+      "include_audio_analysis": true,
+      "include_alternatives": true,
+      "pretty_print": true,
+      "validate_schema": true
+    }
+  },
+  "words": [
+    {
+      "text": "you",
+      "start": 1.64,
+      "end": 1.96,
+      "confidence": 0.99951171875
+    },
+    {
+      "text": "you",
+      "start": 31.52,
+      "end": 32.3,
+      "confidence": 0.99951171875
+    },
+    {
+      "text": "you",
+      "start": 60.5,
+      "end": 60.52,
+      "confidence": 0.99951171875
+    },
+    {
+      "text": "you",
+      "start": 90.66,
+      "end": 91.82,
+      "confidence": 0.99951171875
+    },
+    {
+      "text": "you",
+      "start": 120.88,
+      "end": 121.12,
+      "confidence": 0.99951171875
+    },
+    {
+      "text": "you",
+      "start": 150.84,
+      "end": 150.86,
+      "confidence": 0.99951171875
+    },
+    {
+      "text": "you",
+      "start": 181.5,
+      "end": 181.7,
+      "confidence": 0.99951171875
+    },
+    {
+      "text": "you",
+      "start": 213.04,
+      "end": 213.4,
+      "confidence": 0.99951171875
+    },
+    {
+      "text": "you",
+      "start": 240.82,
+      "end": 241.16,
+      "confidence": 0.99951171875
+    },
+    {
+      "text": "you",
+      "start": 271.5,
+      "end": 271.62,
+      "confidence": 0.99951171875
+    },
+    {
+      "text": "you",
+      "start": 300.8,
+      "end": 301.14,
+      "confidence": 0.99951171875
+    },
+    {
+      "text": "you",
+      "start": 330.86,
+      "end": 331.58,
+      "confidence": 0.99951171875
+    },
+    {
+      "text": "you",
+      "start": 362.7,
+      "end": 363.2,
+      "confidence": 0.99951171875
+    },
+    {
+      "text": "you",
+      "start": 390.72,
+      "end": 390.74,
+      "confidence": 0.99951171875
+    },
+    {
+      "text": "you",
+      "start": 421.36,
+      "end": 421.4,
+      "confidence": 0.99951171875
+    },
+    {
+      "text": "you",
+      "start": 451.86,
+      "end": 451.88,
+      "confidence": 0.99951171875
+    },
+    {
+      "text": "you",
+      "start": 485.40000000000003,
+      "end": 486.8,
+      "confidence": 0.9990234375
+    }
+  ],
+  "chords": [],
+  "notes": [
+    {
+      "pitch_midi": 48,
+      "start": 22.784580498866212,
+      "end": 22.900680272108843,
+      "pitch_name": "C3",
+      "duration": 0.11609977324263099,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 48,
+      "start": 319.8606802721088,
+      "end": 319.97678004535146,
+      "pitch_name": "C3",
+      "duration": 0.1160997732426381,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 48,
+      "start": 323.72680272108846,
+      "end": 323.8545124716553,
+      "pitch_name": "C3",
+      "duration": 0.12770975056685074,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 58,
+      "start": 359.78739229024944,
+      "end": 359.9499319727891,
+      "pitch_name": "A#3",
+      "duration": 0.16253968253965922,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 58,
+      "start": 414.24979591836734,
+      "end": 414.4065306122449,
+      "pitch_name": "A#3",
+      "duration": 0.15673469387758132,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    }
+  ],
+  "segments": [],
+  "audio_analysis": {
+    "duration": 489.6,
+    "sample_rate": 44100,
+    "channels": 1,
+    "audio_levels": {
+      "rms": 0.006117016542702913,
+      "rms_db": -44.26920675811913,
+      "peak": 0.949999988079071,
+      "peak_db": -0.44552800230229195,
+      "dynamic_range_db": 43.82367875581684,
+      "crest_factor": 155.30446352673263
+    },
+    "tempo": 83.35433467741936,
+    "key": {
+      "key": "F",
+      "mode": "major",
+      "confidence": 0.6032187378351996
+    }
+  }
+}

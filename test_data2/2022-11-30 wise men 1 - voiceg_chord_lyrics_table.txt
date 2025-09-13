@@ -1,8 +1,8 @@
-Title: 2024-12-03 drink (chords and split) - 01 Start - Dup Vocal - Vocals - vocals
-Key:  major
-Key Confidence: 60.4%
-Tempo: 79.5 BPM
-Duration: 8:09
+Title: 2022-11-30 wise men 1 - voiceg
+Key:  minor
+Key Confidence: 60.0%
+Tempo: 107.7 BPM
+Duration: 8:04
 Transcription: openai-whisper
 
 CHORD AND LYRICS TIME ALIGNMENT TABLE
@@ -10,23 +10,15 @@ CHORD AND LYRICS TIME ALIGNMENT TABLE
 
 Chord           Lyrics                                  
 -------------------------------------------------------
-                ūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūū
-Cm(no5)                                                 
-                be                                      
-                made                                    
-                new                                     
-                Drink                                   
-                drink                                   
-Cno5                                                    
-                it                                      
+                飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢
+                It                                      
                 was                                     
                 made                                    
                 for                                     
                 you                                     
                 Drink                                   
                 drink                                   
-Cm(no5)                                                 
-                come                                    
+                Come                                    
                 and                                     
                 be                                      
                 satisfied                               
@@ -35,41 +27,6 @@ Cm(no5)
                 ever                                    
                 be                                      
                 denied                                  
-B5/F#                                                   
-F#5/C#                                                  
-                very                                    
-                very                                    
-                very                                    
-                very                                    
-                very                                    
-                very                                    
-D#5                                                     
-                There                                   
-                is                                      
-                a                                       
-                river                                   
-C#m(no5)                                                
-                is                                      
-                a                                       
-                fountain                                
-                There                                   
-                is                                      
-D#m(no5)                                                
-                a                                       
-                place                                   
-Cno5                                                    
-                we                                      
-                can                                     
-                find                                    
-C#m(no5)                                                
-                Full                                    
-                forgiveness                             
-                power                                   
-                to                                      
-                change                                  
-                our                                     
-                lives                                   
-                Oh                                      
                 its                                     
                 in                                      
                 Christ                                  
@@ -80,12 +37,12 @@ C#m(no5)
                 one                                     
                 who                                     
                 made                                    
+                the                                     
                 perfect                                 
-Csus4                                                   
                 sacrifice                               
+                On                                      
                 that                                    
                 tree                                    
-                There                                   
                 he                                      
                 died                                    
                 for                                     
@@ -95,7 +52,7 @@ Csus4
                 Come                                    
                 and                                     
                 drink                                   
-                The                                     
+                the                                     
                 water                                   
                 he                                      
                 prepared                                
@@ -104,151 +61,139 @@ Csus4
                 To                                      
                 be                                      
                 clean                                   
+                To                                      
                 be                                      
                 free                                    
                 To                                      
                 know                                    
                 the                                     
                 one                                     
-                Died                                    
-                on                                      
-                cross                                   
-                for                                     
-                me                                      
-                Come                                    
-                and                                     
                 be                                      
-                made                                    
-                clean                                   
-                and                                     
-                be                                      
-                made                                    
-                clean                                   
                 For                                     
                 the                                     
                 Lamb                                    
                 of                                      
                 God                                     
+                is                                      
                 risen                                   
                 from                                    
                 the                                     
                 dead                                    
                 All                                     
                 power                                   
-D#(b5)/A                                                
+                is                                      
+                his                                     
                 In                                      
                 life                                    
-                Eternal                                 
+                eternal                                 
                 life                                    
-A5                                                      
+                is                                      
                 in                                      
+                His                                     
                 hands                                   
                 Come                                    
                 and                                     
                 drink                                   
-                From                                    
+                from                                    
                 the                                     
-                one                                     
-                Who                                     
+                One                                     
+                who                                     
                 is                                      
                 the                                     
                 great                                   
                 I                                       
-                am                                      
+                Am                                      
                 Come                                    
                 and                                     
                 drink                                   
-                him                                     
+                from                                    
+                Him                                     
                 The                                     
                 life                                    
-                Come                                    
+                come                                    
                 and                                     
                 enter                                   
-                In                                      
-                With                                    
+                in                                      
+                with                                    
                 joy                                     
                 Come                                    
                 and                                     
                 love                                    
-                The                                     
-                one                                     
-                Who                                     
+                the                                     
+                who                                     
                 loves                                   
                 you                                     
+                so                                      
                 much                                    
                 He                                      
                 would                                   
                 come                                    
-                And                                     
+                and                                     
                 die                                     
                 Thats                                   
-Dm(no5)                                                 
                 how                                     
                 much                                    
-                Oh                                      
+                oh                                      
                 how                                     
                 loves                                   
                 you                                     
-                Oh                                      
+                oh                                      
                 how                                     
-                he                                      
+                He                                      
                 loves                                   
                 you                                     
                 Do                                      
                 not                                     
                 delay                                   
-                For                                     
-                he                                      
+                for                                     
+                He                                      
                 loves                                   
                 you                                     
                 Come                                    
                 as                                      
                 you                                     
                 are                                     
+                come                                    
                 as                                      
                 you                                     
                 are                                     
-C#m(no5)                                                
                 For                                     
                 the                                     
                 reason                                  
                 one                                     
+                is                                      
                 power                                   
+                all                                     
                 power                                   
                 Hes                                     
                 the                                     
-                one                                     
-Dm(no5)                                                 
+                who                                     
                 is                                      
                 the                                     
-                The                                     
-                son                                     
-                The                                     
+                Son                                     
+                the                                     
                 perfect                                 
-                son                                     
+                Son                                     
                 Come                                    
                 and                                     
                 rest                                    
+                in                                      
                 the                                     
+                Son                                     
                 The                                     
                 eternal                                 
-                son                                     
-Dm(no5)                                                 
+                Son                                     
                 He                                      
                 tasted                                  
-                Oh                                      
-                he                                      
+                oh                                      
                 tasted                                  
-                Oh                                      
-                he                                      
+                oh                                      
+                He                                      
                 tasted                                  
-Dno5                                                    
                 death                                   
-                For                                     
+                for                                     
                 everyone                                
-D#5                                                     
                 Oh                                      
-                he                                      
                 died                                    
                 for                                     
                 me                                      
@@ -257,16 +202,14 @@ D#5
                 for                                     
                 me                                      
                 Now                                     
-                he                                      
+                He                                      
                 invites                                 
                 me                                      
-                one                                     
+                The                                     
                 who                                     
                 loves                                   
                 me                                      
-                one                                     
                 Paid                                    
-F#m(no5)/A                                              
                 it                                      
                 all                                     
                 for                                     
@@ -274,37 +217,39 @@ F#m(no5)/A
                 On                                      
                 the                                     
                 cross                                   
+                my                                      
                 penalty                                 
                 I                                       
                 come                                    
                 to                                      
+                I                                       
                 come                                    
                 to                                      
-                him                                     
+                Him                                     
+                With                                    
                 open                                    
                 arms                                    
                 Knowing                                 
                 that                                    
-                he                                      
+                He                                      
                 loves                                   
                 me                                      
                 How                                     
-                he                                      
                 loves                                   
                 me                                      
                 How                                     
-                he                                      
+                He                                      
                 loves                                   
                 me                                      
-Bmadd4/D                                                
+                He                                      
                 loves                                   
                 me                                      
                 in                                      
                 this                                    
                 way                                     
                 I                                       
-F#m(no5)/A                                              
                 know                                    
+                with                                    
                 that                                    
                 kind                                    
                 of                                      
@@ -321,15 +266,46 @@ F#m(no5)/A
                 here                                    
                 to                                      
                 stay                                    
-Em(no5)                                                 
-                here                                    
-                to                                      
-D#m(no5)                                                
-                stay                                    
-                come                                    
+                I                                       
+                see                                     
+                it                                      
+                and                                     
+                Im                                      
+                coming                                  
+                No                                      
+                matter                                  
+                what                                    
+                the                                     
+                obstacles                               
+                in                                      
+                my                                      
+                way                                     
+                No                                      
+                matter                                  
+                what                                    
+                my                                      
+                past                                    
+                is                                      
+                Im                                      
+                coming                                  
+                God                                     
+                To                                      
+                rest                                    
+                and                                     
+                drink                                   
+                of                                      
+                your                                    
+                waters                                  
+                that                                    
+                you                                     
+                give                                    
+                That                                    
+                I                                       
+                would                                   
                 live                                    
                 with                                    
                 you                                     
+                for                                     
                 eternity                                
                 I                                       
                 will                                    
@@ -337,139 +313,95 @@ D#m(no5)
                 I                                       
                 will                                    
                 rest                                    
-                will                                    
+                In                                      
                 you                                     
+                Well                                    
+                rest                                    
                 in                                      
                 you                                     
                 Well                                    
                 rest                                    
                 in                                      
                 you                                     
-                continued                               
-                be                                      
-                continued                               
-                be                                      
-                continued                               
-                be                                      
-                continued                               
+                rest                                    
+                in                                      
+                rest                                    
+                in                                      
+                Well                                    
+                rest                                    
+                in                                      
                 you                                     
+                Well                                    
+                rest                                    
+                you                                     
+                in                                      
+                you                                     
+                rest                                    
+                you                                     
+                Well                                    
+                in                                      
+                you                                     
+                rest                                    
+                in                                      
+                you                                     
+                rest                                    
+                rest                                    
+                you                                     
+                Well                                    
+                rest                                    
+                in                                      
+                you                                     
+                Well                                    
+                in                                      
+                you                                     
+                Well                                    
 
 CHORDPRO FORMAT
 ==================================================
 
-[Cm(no5)]ūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūū
-be made new Drink drink [Cno5]it [Cno5]was made for you Drink drink
-[Cm(no5)]come [Cm(no5)]and be satisfied You wont ever be denied very very very
-very very very There is a [C#m(no5)]river is a fountain There [D#m(no5)]is
-[D#m(no5)]a [D#m(no5)]place [Cno5]we can [C#m(no5)]find Full forgiveness power
-to change our lives Oh its in Christ Its in Christ The one who made
-[Csus4]perfect [Csus4]sacrifice that tree There he died for you and me Come and
-drink The water he prepared for us To be clean be free To know the one Died on
-cross for me Come and be made clean and be made clean For the Lamb of God risen
-from the dead All power In life Eternal [A5]life in hands Come and drink From
-the one Who is the great I am Come and drink him The life Come and enter In With
-joy Come and love The one Who loves you much He would come And die
-[Dm(no5)]Thats how much Oh how loves you Oh how he loves you Do not delay For he
-loves you Come as you are as you are [C#m(no5)]For [C#m(no5)]the
-[C#m(no5)]reason one power power Hes the [Dm(no5)]one [Dm(no5)]is the The son
-The perfect son Come and rest the The eternal son He tasted Oh he tasted Oh he
-[Dno5]tasted [Dno5]death [Dno5]For everyone Oh he died for me Tasted death for
-me Now he invites me one who loves me one [F#m(no5)/A]Paid [F#m(no5)/A]it
-[F#m(no5)/A]all [F#m(no5)/A]for me On the cross penalty I come to come to him
-open arms Knowing that he loves me How he loves me How he loves me
-[Bmadd4/D]loves [Bmadd4/D]me in this way [F#m(no5)/A]I [F#m(no5)/A]know that
-kind of love Hes not going anywhere Hes here to stay Hes here to stay here
-[D#m(no5)]to [D#m(no5)]stay come live with you eternity I will rest I will rest
-will you in you Well rest in you continued be continued be continued be
-continued you
-
-CHORD CHART
-==================================================
-
-Section 1:
-  Cm(no5)
-
-Section 2:
-  Cno5
-
-Section 3:
-  Cm(no5)
-
-Section 4:
-  B5/F# | F#5/C#
-
-Section 5:
-  D#5
-
-Section 6:
-  C#m(no5)
-
-Section 7:
-  D#m(no5) | Cno5 | C#m(no5)
-
-Section 8:
-  Csus4
-
-Section 9:
-  D#(b5)/A
-
-Section 10:
-  A5
-
-Section 11:
-  Dm(no5)
-
-Section 12:
-  C#m(no5)
-
-Section 13:
-  Dm(no5)
-
-Section 14:
-  Dm(no5)
-
-Section 15:
-  Dno5
-
-Section 16:
-  D#5
-
-Section 17:
-  F#m(no5)/A
-
-Section 18:
-  Bmadd4/D
-
-Section 19:
-  F#m(no5)/A
-
-Section 20:
-  Em(no5)
-
-Section 21:
-  D#m(no5)
-
+飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢
+It was made for you Drink drink Come and be satisfied You wont ever be denied
+its in Christ Its in Christ The one who made the perfect sacrifice On that tree
+he died for you and me Come and drink the water he prepared for us To be clean
+To be free To know the one be For the Lamb of God is risen from the dead All
+power is his In life eternal life is in His hands Come and drink from the One
+who is the great I Am Come and drink from Him The life come and enter in with
+joy Come and love the who loves you so much He would come and die Thats how much
+oh how loves you oh how He loves you Do not delay for He loves you Come as you
+are come as you are For the reason one is power all power Hes the who is the Son
+the perfect Son Come and rest in the Son The eternal Son He tasted oh tasted oh
+He tasted death for everyone Oh died for me Tasted death for me Now He invites
+me The who loves me Paid it all for me On the cross my penalty I come to I come
+to Him With open arms Knowing that He loves me How loves me How He loves me He
+loves me in this way I know with that kind of love Hes not going anywhere Hes
+here to stay Hes here to stay I see it and Im coming No matter what the
+obstacles in my way No matter what my past is Im coming God To rest and drink of
+your waters that you give That I would live with you for eternity I will rest I
+will rest In you Well rest in you Well rest in you rest in rest in Well rest in
+you Well rest you in you rest you Well in you rest in you rest rest you Well
+rest in you Well in you Well
 
 LYRICS ONLY
 ==================================================
 
-ūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūūū
-be made new Drink drink it was made for you Drink drink come and be satisfied
-You wont ever be denied very very very very very very There is a river is a
-fountain There is a place we can find Full forgiveness power to change our lives
-Oh its in Christ Its in Christ The one who made perfect sacrifice that tree
-There he died for you and me Come and drink The water he prepared for us To be
-clean be free To know the one Died on cross for me Come and be made clean and be
-made clean For the Lamb of God risen from the dead All power In life Eternal
-life in hands Come and drink From the one Who is the great I am Come and drink
-him The life Come and enter In With joy Come and love The one Who loves you much
-He would come And die Thats how much Oh how loves you Oh how he loves you Do not
-delay For he loves you Come as you are as you are For the reason one power power
-Hes the one is the The son The perfect son Come and rest the The eternal son He
-tasted Oh he tasted Oh he tasted death For everyone Oh he died for me Tasted
-death for me Now he invites me one who loves me one Paid it all for me On the
-cross penalty I come to come to him open arms Knowing that he loves me How he
-loves me How he loves me loves me in this way I know that kind of love Hes not
-going anywhere Hes here to stay Hes here to stay here to stay come live with you
-eternity I will rest I will rest will you in you Well rest in you continued be
-continued be continued be continued you
+飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢飢
+It was made for you Drink drink Come and be satisfied You wont ever be denied
+its in Christ Its in Christ The one who made the perfect sacrifice On that tree
+he died for you and me Come and drink the water he prepared for us To be clean
+To be free To know the one be For the Lamb of God is risen from the dead All
+power is his In life eternal life is in His hands Come and drink from the One
+who is the great I Am Come and drink from Him The life come and enter in with
+joy Come and love the who loves you so much He would come and die Thats how much
+oh how loves you oh how He loves you Do not delay for He loves you Come as you
+are come as you are For the reason one is power all power Hes the who is the Son
+the perfect Son Come and rest in the Son The eternal Son He tasted oh tasted oh
+He tasted death for everyone Oh died for me Tasted death for me Now He invites
+me The who loves me Paid it all for me On the cross my penalty I come to I come
+to Him With open arms Knowing that He loves me How loves me How He loves me He
+loves me in this way I know with that kind of love Hes not going anywhere Hes
+here to stay Hes here to stay I see it and Im coming No matter what the
+obstacles in my way No matter what my past is Im coming God To rest and drink of
+your waters that you give That I would live with you for eternity I will rest I
+will rest In you Well rest in you Well rest in you rest in rest in Well rest in
+you Well rest you in you rest you Well in you rest in you rest rest you Well
+rest in you Well in you Well

@@ -1,0 +1,6309 @@
+{
+  "metadata": {
+    "version": "3.0.0",
+    "created_at": "20250912_192358",
+    "source_audio": "test_data2/2024-12-03 drink (chords and split) - 01 Start -  Guitar Pickup.wav",
+    "processing_tool": "Song Editor 3",
+    "transcription": {
+      "engine": "openai-whisper",
+      "alternatives_count": 5
+    },
+    "audio_processing": {
+      "use_demucs": true,
+      "use_chordino": true,
+      "denoise": true,
+      "normalize": true
+    },
+    "exported_at": "2025-09-12T19:23:58.916330",
+    "export_format": "json",
+    "export_version": "3.0.0",
+    "export_file": "/Volumes/SDMusicProd/CascadeProjects/Song_Editor_3/test_data2/2024-12-03 drink (chords and split) - 01 Start -  Guitar Pickup.song_data.json",
+    "exporter_info": {
+      "include_processing_info": true,
+      "include_audio_analysis": true,
+      "include_alternatives": true,
+      "pretty_print": true,
+      "validate_schema": true
+    }
+  },
+  "words": [
+    {
+      "text": "リリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリリ",
+      "start": 20.84,
+      "end": 22.24,
+      "confidence": 0.89990234375
+    },
+    {
+      "text": "you",
+      "start": 23.42,
+      "end": 24.8,
+      "confidence": 0.9990234375
+    },
+    {
+      "text": "you",
+      "start": 58.7,
+      "end": 58.78,
+      "confidence": 0.9990234375
+    },
+    {
+      "text": "you",
+      "start": 86.86,
+      "end": 87.32,
+      "confidence": 0.99853515625
+    },
+    {
+      "text": "you",
+      "start": 115.5,
+      "end": 116.9,
+      "confidence": 0.9990234375
+    },
+    {
+      "text": "you",
+      "start": 145.5,
+      "end": 145.6,
+      "confidence": 0.9990234375
+    },
+    {
+      "text": "you",
+      "start": 177.22,
+      "end": 178.42,
+      "confidence": 0.9990234375
+    },
+    {
+      "text": "you",
+      "start": 204.24,
+      "end": 204.44,
+      "confidence": 0.9990234375
+    },
+    {
+      "text": "you",
+      "start": 234.88,
+      "end": 236.18,
+      "confidence": 0.99755859375
+    },
+    {
+      "text": "you",
+      "start": 265.48,
+      "end": 266.62,
+      "confidence": 0.9990234375
+    },
+    {
+      "text": "you",
+      "start": 296.66,
+      "end": 296.78,
+      "confidence": 0.9990234375
+    },
+    {
+      "text": "you",
+      "start": 330.54,
+      "end": 330.7,
+      "confidence": 0.9990234375
+    },
+    {
+      "text": "you",
+      "start": 384.74,
+      "end": 384.98,
+      "confidence": 0.9990234375
+    },
+    {
+      "text": "you",
+      "start": 418.58,
+      "end": 418.78,
+      "confidence": 0.99853515625
+    },
+    {
+      "text": "you",
+      "start": 442.48,
+      "end": 443.3,
+      "confidence": 0.9990234375
+    }
+  ],
+  "chords": [
+    {
+      "symbol": "D#/G",
+      "root": "D#",
+      "quality": "maj",
+      "start": 0.0,
+      "end": 1.0,
+      "bass": "G",
+      "duration": 1.0,
+      "confidence": 0.6000000000000001,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "A#sus4/F",
+      "root": "A#",
+      "quality": "sus4",
+      "start": 5.0,
+      "end": 6.0,
+      "bass": "F",
+      "duration": 1.0,
+      "confidence": 0.6000000000000001,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "D#5/A#",
+      "root": "D#",
+      "quality": "5",
+      "start": 36.0,
+      "end": 37.0,
+      "bass": "A#",
+      "duration": 1.0,
+      "confidence": 0.5,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "A#sus4/F",
+      "root": "A#",
+      "quality": "sus4",
+      "start": 42.0,
+      "end": 43.0,
+      "bass": "F",
+      "duration": 1.0,
+      "confidence": 0.6000000000000001,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "D#5",
+      "root": "D#",
+      "quality": "5",
+      "start": 48.0,
+      "end": 49.0,
+      "bass": null,
+      "duration": 1.0,
+      "confidence": 0.5,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "Cm(no5)/D#",
+      "root": "C",
+      "quality": "m(no5)",
+      "start": 85.0,
+      "end": 86.0,
+      "bass": "D#",
+      "duration": 1.0,
+      "confidence": 0.5,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "D#5/A#",
+      "root": "D#",
+      "quality": "5",
+      "start": 112.0,
+      "end": 113.0,
+      "bass": "A#",
+      "duration": 1.0,
+      "confidence": 0.5,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "G#sus2",
+      "root": "G#",
+      "quality": "sus2",
+      "start": 121.0,
+      "end": 122.0,
+      "bass": null,
+      "duration": 1.0,
+      "confidence": 0.6000000000000001,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "D#5/A#",
+      "root": "D#",
+      "quality": "5",
+      "start": 223.0,
+      "end": 224.0,
+      "bass": "A#",
+      "duration": 1.0,
+      "confidence": 0.5,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "A#sus4/F",
+      "root": "A#",
+      "quality": "sus4",
+      "start": 245.0,
+      "end": 246.0,
+      "bass": "F",
+      "duration": 1.0,
+      "confidence": 0.6000000000000001,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "D#5",
+      "root": "D#",
+      "quality": "5",
+      "start": 279.0,
+      "end": 280.0,
+      "bass": null,
+      "duration": 1.0,
+      "confidence": 0.5,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "A#sus4/F",
+      "root": "A#",
+      "quality": "sus4",
+      "start": 318.0,
+      "end": 319.0,
+      "bass": "F",
+      "duration": 1.0,
+      "confidence": 0.6000000000000001,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "A#sus4/F",
+      "root": "A#",
+      "quality": "sus4",
+      "start": 336.0,
+      "end": 337.0,
+      "bass": "F",
+      "duration": 1.0,
+      "confidence": 0.6000000000000001,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "A#sus4/F",
+      "root": "A#",
+      "quality": "sus4",
+      "start": 340.0,
+      "end": 341.0,
+      "bass": "F",
+      "duration": 1.0,
+      "confidence": 0.6000000000000001,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "D#5",
+      "root": "D#",
+      "quality": "5",
+      "start": 348.0,
+      "end": 349.0,
+      "bass": null,
+      "duration": 1.0,
+      "confidence": 0.5,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "A#sus4/F",
+      "root": "A#",
+      "quality": "sus4",
+      "start": 350.0,
+      "end": 351.0,
+      "bass": "F",
+      "duration": 1.0,
+      "confidence": 0.6000000000000001,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "A#sus4/F",
+      "root": "A#",
+      "quality": "sus4",
+      "start": 364.0,
+      "end": 365.0,
+      "bass": "F",
+      "duration": 1.0,
+      "confidence": 0.6000000000000001,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "A#sus4/F",
+      "root": "A#",
+      "quality": "sus4",
+      "start": 369.0,
+      "end": 371.0,
+      "bass": "F",
+      "duration": 2.0,
+      "confidence": 0.6000000000000001,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "D#5/A#",
+      "root": "D#",
+      "quality": "5",
+      "start": 382.0,
+      "end": 383.0,
+      "bass": "A#",
+      "duration": 1.0,
+      "confidence": 0.5,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "D#5/A#",
+      "root": "D#",
+      "quality": "5",
+      "start": 397.0,
+      "end": 398.0,
+      "bass": "A#",
+      "duration": 1.0,
+      "confidence": 0.5,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "A#sus4/F",
+      "root": "A#",
+      "quality": "sus4",
+      "start": 398.0,
+      "end": 399.0,
+      "bass": "F",
+      "duration": 1.0,
+      "confidence": 0.6000000000000001,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "A#sus4/F",
+      "root": "A#",
+      "quality": "sus4",
+      "start": 411.0,
+      "end": 413.0,
+      "bass": "F",
+      "duration": 2.0,
+      "confidence": 0.6000000000000001,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "G#sus2",
+      "root": "G#",
+      "quality": "sus2",
+      "start": 428.0,
+      "end": 429.0,
+      "bass": null,
+      "duration": 1.0,
+      "confidence": 0.6000000000000001,
+      "detection_method": "basic_pitch_pychord"
+    },
+    {
+      "symbol": "C#5/G#",
+      "root": "C#",
+      "quality": "5",
+      "start": 437.0,
+      "end": 438.0,
+      "bass": "G#",
+      "duration": 1.0,
+      "confidence": 0.5,
+      "detection_method": "basic_pitch_pychord"
+    }
+  ],
+  "notes": [
+    {
+      "pitch_midi": 39,
+      "start": 0.10666666666666667,
+      "end": 0.704,
+      "pitch_name": "D#2",
+      "duration": 0.5973333333333333,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 0.7146666666666667,
+      "end": 0.9653333333333334,
+      "pitch_name": "D#2",
+      "duration": 0.2506666666666667,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 1.1573333333333333,
+      "end": 1.392,
+      "pitch_name": "D#2",
+      "duration": 0.23466666666666658,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 1.3973333333333333,
+      "end": 1.52,
+      "pitch_name": "D#2",
+      "duration": 0.1226666666666667,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 2.0853333333333333,
+      "end": 2.1866666666666665,
+      "pitch_name": "G#2",
+      "duration": 0.10133333333333328,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 3.7973333333333334,
+      "end": 4.293333333333333,
+      "pitch_name": "A#2",
+      "duration": 0.49599999999999955,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 4.309333333333333,
+      "end": 4.714666666666667,
+      "pitch_name": "A#2",
+      "duration": 0.405333333333334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 58,
+      "start": 6.954666666666666,
+      "end": 7.082666666666666,
+      "pitch_name": "A#3",
+      "duration": 0.1280000000000001,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 7.152,
+      "end": 7.296,
+      "pitch_name": "G#2",
+      "duration": 0.14400000000000013,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 7.312,
+      "end": 7.418666666666667,
+      "pitch_name": "G#2",
+      "duration": 0.10666666666666647,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 8.842666666666666,
+      "end": 9.173333333333334,
+      "pitch_name": "D#2",
+      "duration": 0.33066666666666755,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 9.205333333333334,
+      "end": 9.386666666666667,
+      "pitch_name": "D#2",
+      "duration": 0.1813333333333329,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 9.456,
+      "end": 9.712,
+      "pitch_name": "D#2",
+      "duration": 0.2560000000000002,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 10.746666666666666,
+      "end": 11.130666666666666,
+      "pitch_name": "A#2",
+      "duration": 0.38400000000000034,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 11.573333333333334,
+      "end": 11.829333333333333,
+      "pitch_name": "A#2",
+      "duration": 0.25599999999999845,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 12.218666666666667,
+      "end": 12.421333333333333,
+      "pitch_name": "G#2",
+      "duration": 0.20266666666666566,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 12.448,
+      "end": 12.624,
+      "pitch_name": "G#2",
+      "duration": 0.17600000000000016,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 12.837333333333333,
+      "end": 12.949333333333334,
+      "pitch_name": "G#2",
+      "duration": 0.1120000000000001,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 13.488,
+      "end": 13.6,
+      "pitch_name": "G#2",
+      "duration": 0.1120000000000001,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 14.037333333333333,
+      "end": 14.154666666666667,
+      "pitch_name": "D#2",
+      "duration": 0.11733333333333462,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 14.16,
+      "end": 14.32,
+      "pitch_name": "D#2",
+      "duration": 0.16000000000000014,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 14.997333333333334,
+      "end": 15.12,
+      "pitch_name": "D#2",
+      "duration": 0.12266666666666559,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 15.717333333333332,
+      "end": 15.930666666666667,
+      "pitch_name": "D#2",
+      "duration": 0.2133333333333347,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 16.170666666666666,
+      "end": 16.341333333333335,
+      "pitch_name": "D#2",
+      "duration": 0.1706666666666692,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 16.437333333333335,
+      "end": 16.78933333333333,
+      "pitch_name": "D#2",
+      "duration": 0.35199999999999676,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 19.488,
+      "end": 19.605333333333334,
+      "pitch_name": "D#2",
+      "duration": 0.11733333333333462,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 19.696,
+      "end": 19.824,
+      "pitch_name": "D#2",
+      "duration": 0.1280000000000001,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 20.213333333333335,
+      "end": 20.341333333333335,
+      "pitch_name": "A#2",
+      "duration": 0.1280000000000001,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 21.029333333333334,
+      "end": 21.365333333333332,
+      "pitch_name": "A#2",
+      "duration": 0.3359999999999985,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 21.397333333333332,
+      "end": 21.504,
+      "pitch_name": "A#2",
+      "duration": 0.10666666666666913,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 21.717333333333332,
+      "end": 21.829333333333334,
+      "pitch_name": "A#2",
+      "duration": 0.11200000000000188,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 22.981333333333332,
+      "end": 23.162666666666667,
+      "pitch_name": "D#3",
+      "duration": 0.18133333333333468,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 23.648,
+      "end": 23.749333333333333,
+      "pitch_name": "D#3",
+      "duration": 0.10133333333333283,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 26.256,
+      "end": 26.378666666666668,
+      "pitch_name": "A#2",
+      "duration": 0.12266666666666737,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 26.458666666666666,
+      "end": 26.602666666666668,
+      "pitch_name": "A#2",
+      "duration": 0.1440000000000019,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 27.504,
+      "end": 27.658666666666665,
+      "pitch_name": "A#2",
+      "duration": 0.15466666666666384,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 27.845333333333333,
+      "end": 28.416,
+      "pitch_name": "A#2",
+      "duration": 0.5706666666666678,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 28.496,
+      "end": 29.018666666666668,
+      "pitch_name": "A#2",
+      "duration": 0.5226666666666695,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 32.906666666666666,
+      "end": 33.392,
+      "pitch_name": "D#2",
+      "duration": 0.4853333333333367,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 33.48266666666667,
+      "end": 33.67466666666667,
+      "pitch_name": "D#2",
+      "duration": 0.19200000000000017,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 33.744,
+      "end": 33.973333333333336,
+      "pitch_name": "D#2",
+      "duration": 0.2293333333333365,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 34.95466666666667,
+      "end": 35.264,
+      "pitch_name": "A#2",
+      "duration": 0.3093333333333348,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 36.512,
+      "end": 36.66133333333333,
+      "pitch_name": "D#2",
+      "duration": 0.1493333333333311,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 36.757333333333335,
+      "end": 36.90133333333333,
+      "pitch_name": "D#3",
+      "duration": 0.14399999999999835,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 45,
+      "start": 38.048,
+      "end": 38.21333333333333,
+      "pitch_name": "A2",
+      "duration": 0.16533333333332934,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 38.256,
+      "end": 38.384,
+      "pitch_name": "G#2",
+      "duration": 0.1280000000000001,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 38.992,
+      "end": 39.184,
+      "pitch_name": "G#2",
+      "duration": 0.19200000000000017,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 39.30133333333333,
+      "end": 39.434666666666665,
+      "pitch_name": "G#2",
+      "duration": 0.13333333333333286,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 40.602666666666664,
+      "end": 40.72,
+      "pitch_name": "D#2",
+      "duration": 0.11733333333333462,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 40.912,
+      "end": 41.04,
+      "pitch_name": "D#3",
+      "duration": 0.1280000000000001,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 41.72266666666667,
+      "end": 41.882666666666665,
+      "pitch_name": "A#2",
+      "duration": 0.1599999999999966,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 41.94133333333333,
+      "end": 42.12266666666667,
+      "pitch_name": "A#2",
+      "duration": 0.18133333333333468,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 42.144,
+      "end": 42.309333333333335,
+      "pitch_name": "A#2",
+      "duration": 0.16533333333333644,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 42.34133333333333,
+      "end": 42.464,
+      "pitch_name": "A#2",
+      "duration": 0.12266666666666737,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 42.576,
+      "end": 42.730666666666664,
+      "pitch_name": "A#2",
+      "duration": 0.15466666666666384,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 42.78933333333333,
+      "end": 42.896,
+      "pitch_name": "A#2",
+      "duration": 0.10666666666666913,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 42.970666666666666,
+      "end": 43.077333333333335,
+      "pitch_name": "A#2",
+      "duration": 0.10666666666666913,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 43.13066666666667,
+      "end": 43.248,
+      "pitch_name": "G#2",
+      "duration": 0.11733333333332752,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 43.296,
+      "end": 43.754666666666665,
+      "pitch_name": "G#2",
+      "duration": 0.4586666666666659,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 43.861333333333334,
+      "end": 44.0,
+      "pitch_name": "G#2",
+      "duration": 0.1386666666666656,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 47.077333333333335,
+      "end": 47.22666666666667,
+      "pitch_name": "D#3",
+      "duration": 0.1493333333333311,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 48.624,
+      "end": 48.757333333333335,
+      "pitch_name": "D#2",
+      "duration": 0.13333333333333286,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 48.80533333333333,
+      "end": 48.970666666666666,
+      "pitch_name": "D#2",
+      "duration": 0.16533333333333644,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 52.090666666666664,
+      "end": 52.224,
+      "pitch_name": "D#2",
+      "duration": 0.13333333333333286,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 52.538666666666664,
+      "end": 52.64533333333333,
+      "pitch_name": "D#2",
+      "duration": 0.10666666666666913,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 52.82666666666667,
+      "end": 52.928,
+      "pitch_name": "D#2",
+      "duration": 0.10133333333332928,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 53.92,
+      "end": 54.202666666666666,
+      "pitch_name": "A#2",
+      "duration": 0.28266666666666396,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 47,
+      "start": 54.202666666666666,
+      "end": 54.368,
+      "pitch_name": "B2",
+      "duration": 0.16533333333333644,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 54.4,
+      "end": 54.57066666666667,
+      "pitch_name": "A#2",
+      "duration": 0.1706666666666692,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 54.576,
+      "end": 54.72,
+      "pitch_name": "A#2",
+      "duration": 0.14399999999999835,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 55.333333333333336,
+      "end": 55.434666666666665,
+      "pitch_name": "D#2",
+      "duration": 0.10133333333332928,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 56.496,
+      "end": 56.72,
+      "pitch_name": "G#2",
+      "duration": 0.22399999999999665,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 56.965333333333334,
+      "end": 57.221333333333334,
+      "pitch_name": "G#2",
+      "duration": 0.2560000000000002,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 57.44,
+      "end": 57.541333333333334,
+      "pitch_name": "G#2",
+      "duration": 0.10133333333333638,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 56,
+      "start": 58.037333333333336,
+      "end": 58.22933333333334,
+      "pitch_name": "G#3",
+      "duration": 0.19200000000000017,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 58.27733333333333,
+      "end": 58.394666666666666,
+      "pitch_name": "G#2",
+      "duration": 0.11733333333333462,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 58.8,
+      "end": 59.242666666666665,
+      "pitch_name": "D#2",
+      "duration": 0.44266666666666765,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 59.31733333333333,
+      "end": 59.504,
+      "pitch_name": "D#2",
+      "duration": 0.18666666666666742,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 59.53066666666667,
+      "end": 59.76533333333333,
+      "pitch_name": "D#2",
+      "duration": 0.23466666666666214,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 60.272,
+      "end": 60.40533333333333,
+      "pitch_name": "A#2",
+      "duration": 0.13333333333333286,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 60.45333333333333,
+      "end": 61.114666666666665,
+      "pitch_name": "A#2",
+      "duration": 0.6613333333333316,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 61.12,
+      "end": 61.349333333333334,
+      "pitch_name": "A#2",
+      "duration": 0.2293333333333365,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 62.32,
+      "end": 62.528,
+      "pitch_name": "D#3",
+      "duration": 0.2079999999999984,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 63.888,
+      "end": 64.128,
+      "pitch_name": "G#2",
+      "duration": 0.240000000000002,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 64.17066666666666,
+      "end": 64.28266666666667,
+      "pitch_name": "G#2",
+      "duration": 0.11200000000000898,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 67.552,
+      "end": 67.72266666666667,
+      "pitch_name": "A#2",
+      "duration": 0.17066666666666208,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 67.99466666666666,
+      "end": 68.21333333333334,
+      "pitch_name": "A#2",
+      "duration": 0.2186666666666781,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 68.21866666666666,
+      "end": 68.34133333333334,
+      "pitch_name": "A#2",
+      "duration": 0.12266666666667447,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 68.48533333333333,
+      "end": 68.59733333333334,
+      "pitch_name": "D#2",
+      "duration": 0.11200000000000898,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 69.03466666666667,
+      "end": 69.34933333333333,
+      "pitch_name": "D#2",
+      "duration": 0.31466666666666754,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 72.592,
+      "end": 72.77866666666667,
+      "pitch_name": "D#2",
+      "duration": 0.18666666666666742,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 72.96533333333333,
+      "end": 73.104,
+      "pitch_name": "D#3",
+      "duration": 0.1386666666666656,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 73.248,
+      "end": 73.36,
+      "pitch_name": "D#2",
+      "duration": 0.11199999999999477,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 73.376,
+      "end": 73.71733333333333,
+      "pitch_name": "D#2",
+      "duration": 0.34133333333332416,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 74.032,
+      "end": 74.192,
+      "pitch_name": "G#2",
+      "duration": 0.1599999999999966,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 56,
+      "start": 74.66666666666667,
+      "end": 74.77333333333333,
+      "pitch_name": "G#3",
+      "duration": 0.10666666666665492,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 75.99466666666666,
+      "end": 76.19733333333333,
+      "pitch_name": "D#2",
+      "duration": 0.20266666666667277,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 76.208,
+      "end": 76.30933333333333,
+      "pitch_name": "D#2",
+      "duration": 0.10133333333332928,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 76.39466666666667,
+      "end": 76.56533333333333,
+      "pitch_name": "D#2",
+      "duration": 0.17066666666666208,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 76.59733333333334,
+      "end": 76.77333333333333,
+      "pitch_name": "D#2",
+      "duration": 0.17599999999998772,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 77.424,
+      "end": 77.60533333333333,
+      "pitch_name": "A#2",
+      "duration": 0.18133333333332757,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 77.68533333333333,
+      "end": 77.79733333333333,
+      "pitch_name": "A#2",
+      "duration": 0.11199999999999477,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 77.98933333333333,
+      "end": 78.26666666666667,
+      "pitch_name": "A#2",
+      "duration": 0.2773333333333312,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 78.4,
+      "end": 78.59733333333334,
+      "pitch_name": "A#2",
+      "duration": 0.19733333333333292,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 78.60266666666666,
+      "end": 79.04,
+      "pitch_name": "A#2",
+      "duration": 0.437333333333342,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 47,
+      "start": 79.11466666666666,
+      "end": 79.25866666666667,
+      "pitch_name": "B2",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 47,
+      "start": 79.504,
+      "end": 79.664,
+      "pitch_name": "B2",
+      "duration": 0.1599999999999966,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 79.70666666666666,
+      "end": 79.952,
+      "pitch_name": "A#2",
+      "duration": 0.24533333333333474,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 47,
+      "start": 79.952,
+      "end": 80.432,
+      "pitch_name": "B2",
+      "duration": 0.480000000000004,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 80.43733333333333,
+      "end": 80.544,
+      "pitch_name": "G#2",
+      "duration": 0.10666666666666913,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 81.17866666666667,
+      "end": 81.472,
+      "pitch_name": "G#2",
+      "duration": 0.29333333333332234,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 82.81066666666666,
+      "end": 83.52,
+      "pitch_name": "D#2",
+      "duration": 0.7093333333333334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 83.70133333333334,
+      "end": 84.58133333333333,
+      "pitch_name": "D#2",
+      "duration": 0.8799999999999955,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 84.58666666666667,
+      "end": 84.71466666666667,
+      "pitch_name": "D#2",
+      "duration": 0.1280000000000001,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 85.67466666666667,
+      "end": 85.984,
+      "pitch_name": "D#2",
+      "duration": 0.3093333333333277,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 37,
+      "start": 86.18133333333333,
+      "end": 86.336,
+      "pitch_name": "C#2",
+      "duration": 0.15466666666667095,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 86.71466666666667,
+      "end": 87.19466666666666,
+      "pitch_name": "D#2",
+      "duration": 0.47999999999998977,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 87.33333333333333,
+      "end": 87.44,
+      "pitch_name": "D#2",
+      "duration": 0.10666666666666913,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 87.952,
+      "end": 88.05866666666667,
+      "pitch_name": "D#3",
+      "duration": 0.10666666666666913,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 88.15466666666667,
+      "end": 88.26133333333334,
+      "pitch_name": "D#2",
+      "duration": 0.10666666666666913,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 88.81066666666666,
+      "end": 89.04,
+      "pitch_name": "D#2",
+      "duration": 0.2293333333333436,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 89.14133333333334,
+      "end": 89.65333333333334,
+      "pitch_name": "D#2",
+      "duration": 0.5120000000000005,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 89.81866666666667,
+      "end": 90.016,
+      "pitch_name": "D#2",
+      "duration": 0.19733333333333292,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 90.08,
+      "end": 90.49066666666667,
+      "pitch_name": "D#2",
+      "duration": 0.4106666666666712,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 91.16266666666667,
+      "end": 91.33333333333333,
+      "pitch_name": "D#2",
+      "duration": 0.17066666666666208,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 91.6,
+      "end": 91.82933333333334,
+      "pitch_name": "D#3",
+      "duration": 0.2293333333333436,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 92.464,
+      "end": 92.58133333333333,
+      "pitch_name": "D#2",
+      "duration": 0.11733333333333462,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 95.104,
+      "end": 95.20533333333333,
+      "pitch_name": "G#2",
+      "duration": 0.10133333333332928,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 96.64,
+      "end": 96.75733333333334,
+      "pitch_name": "D#3",
+      "duration": 0.11733333333333462,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 99.12533333333333,
+      "end": 99.488,
+      "pitch_name": "D#2",
+      "duration": 0.36266666666666936,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 99.504,
+      "end": 99.65866666666666,
+      "pitch_name": "D#2",
+      "duration": 0.15466666666665674,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 99.66933333333333,
+      "end": 100.016,
+      "pitch_name": "D#2",
+      "duration": 0.3466666666666782,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 100.69333333333333,
+      "end": 101.088,
+      "pitch_name": "A#2",
+      "duration": 0.39466666666666583,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 47,
+      "start": 102.06933333333333,
+      "end": 102.22933333333333,
+      "pitch_name": "B2",
+      "duration": 0.1599999999999966,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 103.39733333333334,
+      "end": 103.49866666666667,
+      "pitch_name": "D#2",
+      "duration": 0.10133333333332928,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 103.79733333333333,
+      "end": 104.16533333333334,
+      "pitch_name": "D#2",
+      "duration": 0.3680000000000092,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 104.368,
+      "end": 104.56533333333333,
+      "pitch_name": "D#2",
+      "duration": 0.19733333333333292,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 104.71466666666667,
+      "end": 105.17333333333333,
+      "pitch_name": "D#2",
+      "duration": 0.4586666666666588,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 105.296,
+      "end": 105.408,
+      "pitch_name": "D#2",
+      "duration": 0.11199999999999477,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 105.552,
+      "end": 105.89866666666667,
+      "pitch_name": "D#2",
+      "duration": 0.346666666666664,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 106.224,
+      "end": 106.33066666666667,
+      "pitch_name": "A#2",
+      "duration": 0.10666666666666913,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 106.496,
+      "end": 106.59733333333334,
+      "pitch_name": "A#2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 106.70933333333333,
+      "end": 106.816,
+      "pitch_name": "A#2",
+      "duration": 0.10666666666666913,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 106.90666666666667,
+      "end": 107.06666666666666,
+      "pitch_name": "A#2",
+      "duration": 0.1599999999999966,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 107.26933333333334,
+      "end": 107.37066666666666,
+      "pitch_name": "D#2",
+      "duration": 0.10133333333332928,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 107.856,
+      "end": 108.03733333333334,
+      "pitch_name": "A#2",
+      "duration": 0.18133333333334178,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 108.30933333333333,
+      "end": 108.41066666666667,
+      "pitch_name": "A#2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 109.376,
+      "end": 109.50933333333333,
+      "pitch_name": "A#2",
+      "duration": 0.13333333333332575,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 109.65333333333334,
+      "end": 109.936,
+      "pitch_name": "A#2",
+      "duration": 0.28266666666667106,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 110.464,
+      "end": 110.59733333333334,
+      "pitch_name": "D#2",
+      "duration": 0.13333333333333997,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 111.06133333333334,
+      "end": 111.17333333333333,
+      "pitch_name": "D#2",
+      "duration": 0.11199999999999477,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 112.00533333333334,
+      "end": 112.144,
+      "pitch_name": "D#3",
+      "duration": 0.1386666666666656,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 112.32,
+      "end": 112.464,
+      "pitch_name": "D#2",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 113.184,
+      "end": 113.392,
+      "pitch_name": "D#2",
+      "duration": 0.2079999999999984,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 113.41333333333333,
+      "end": 113.536,
+      "pitch_name": "D#3",
+      "duration": 0.12266666666667447,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 56,
+      "start": 116.656,
+      "end": 116.8,
+      "pitch_name": "G#3",
+      "duration": 0.14399999999999125,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 117.89333333333333,
+      "end": 118.46933333333334,
+      "pitch_name": "D#2",
+      "duration": 0.5760000000000076,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 118.48,
+      "end": 118.67733333333334,
+      "pitch_name": "D#2",
+      "duration": 0.19733333333333292,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 118.832,
+      "end": 119.06133333333334,
+      "pitch_name": "D#2",
+      "duration": 0.2293333333333436,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 119.50933333333333,
+      "end": 119.62666666666667,
+      "pitch_name": "D#3",
+      "duration": 0.11733333333333462,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 119.76533333333333,
+      "end": 120.10666666666667,
+      "pitch_name": "D#2",
+      "duration": 0.3413333333333384,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 120.34666666666666,
+      "end": 120.56,
+      "pitch_name": "D#2",
+      "duration": 0.21333333333333826,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 120.832,
+      "end": 121.04,
+      "pitch_name": "G#2",
+      "duration": 0.20800000000001262,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 121.67466666666667,
+      "end": 122.06933333333333,
+      "pitch_name": "A#2",
+      "duration": 0.39466666666666583,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 122.68266666666666,
+      "end": 122.82666666666667,
+      "pitch_name": "A#2",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 122.83733333333333,
+      "end": 123.05066666666667,
+      "pitch_name": "A#2",
+      "duration": 0.21333333333333826,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 124.37333333333333,
+      "end": 124.69866666666667,
+      "pitch_name": "A#2",
+      "duration": 0.32533333333333303,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 124.77866666666667,
+      "end": 125.088,
+      "pitch_name": "D#2",
+      "duration": 0.3093333333333277,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 128.144,
+      "end": 128.26666666666668,
+      "pitch_name": "D#2",
+      "duration": 0.12266666666667447,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 131.65866666666668,
+      "end": 131.792,
+      "pitch_name": "G#2",
+      "duration": 0.13333333333332575,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 133.328,
+      "end": 133.45066666666668,
+      "pitch_name": "D#2",
+      "duration": 0.12266666666667447,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 133.46666666666667,
+      "end": 133.85066666666665,
+      "pitch_name": "D#2",
+      "duration": 0.38399999999998613,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 133.872,
+      "end": 134.09066666666666,
+      "pitch_name": "D#2",
+      "duration": 0.2186666666666497,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 134.144,
+      "end": 134.288,
+      "pitch_name": "D#2",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 134.61333333333334,
+      "end": 134.74666666666667,
+      "pitch_name": "D#2",
+      "duration": 0.13333333333332575,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 134.864,
+      "end": 135.00266666666667,
+      "pitch_name": "D#2",
+      "duration": 0.1386666666666656,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 135.008,
+      "end": 135.25866666666667,
+      "pitch_name": "D#2",
+      "duration": 0.2506666666666604,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 136.34666666666666,
+      "end": 136.67733333333334,
+      "pitch_name": "A#2",
+      "duration": 0.3306666666666729,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 136.768,
+      "end": 136.87466666666666,
+      "pitch_name": "A#2",
+      "duration": 0.10666666666665492,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 136.97066666666666,
+      "end": 137.184,
+      "pitch_name": "A#2",
+      "duration": 0.21333333333333826,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 137.18933333333334,
+      "end": 137.328,
+      "pitch_name": "A#2",
+      "duration": 0.1386666666666656,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 137.408,
+      "end": 137.58933333333334,
+      "pitch_name": "A#2",
+      "duration": 0.181333333333356,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 138.37866666666667,
+      "end": 138.49066666666667,
+      "pitch_name": "A#2",
+      "duration": 0.11199999999999477,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 138.98666666666668,
+      "end": 139.136,
+      "pitch_name": "A#2",
+      "duration": 0.1493333333333169,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 139.21066666666667,
+      "end": 139.40266666666668,
+      "pitch_name": "A#2",
+      "duration": 0.19200000000000728,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 139.696,
+      "end": 139.84533333333334,
+      "pitch_name": "D#2",
+      "duration": 0.1493333333333453,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 140.384,
+      "end": 140.53333333333333,
+      "pitch_name": "D#3",
+      "duration": 0.1493333333333453,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 147.25866666666667,
+      "end": 147.632,
+      "pitch_name": "D#2",
+      "duration": 0.37333333333333485,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 147.68,
+      "end": 147.83466666666666,
+      "pitch_name": "D#3",
+      "duration": 0.15466666666665674,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 148.29333333333332,
+      "end": 148.77866666666668,
+      "pitch_name": "D#2",
+      "duration": 0.48533333333335804,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 148.784,
+      "end": 148.98666666666668,
+      "pitch_name": "D#2",
+      "duration": 0.20266666666668698,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 149.10933333333332,
+      "end": 149.52533333333332,
+      "pitch_name": "D#2",
+      "duration": 0.4159999999999968,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 149.68533333333335,
+      "end": 150.10133333333334,
+      "pitch_name": "D#2",
+      "duration": 0.4159999999999968,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 45,
+      "start": 152.61333333333334,
+      "end": 152.80533333333332,
+      "pitch_name": "A2",
+      "duration": 0.19199999999997885,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 153.36,
+      "end": 153.46133333333333,
+      "pitch_name": "G#2",
+      "duration": 0.10133333333331507,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 153.52533333333332,
+      "end": 153.632,
+      "pitch_name": "G#2",
+      "duration": 0.10666666666668334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 155.33866666666665,
+      "end": 155.728,
+      "pitch_name": "D#2",
+      "duration": 0.3893333333333544,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 155.77066666666667,
+      "end": 155.97866666666667,
+      "pitch_name": "D#2",
+      "duration": 0.2079999999999984,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 155.984,
+      "end": 156.66133333333335,
+      "pitch_name": "D#2",
+      "duration": 0.6773333333333369,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 156.78933333333333,
+      "end": 157.09333333333333,
+      "pitch_name": "D#2",
+      "duration": 0.30400000000000205,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 157.20533333333333,
+      "end": 157.34933333333333,
+      "pitch_name": "D#2",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 158.45333333333335,
+      "end": 158.63466666666667,
+      "pitch_name": "A#2",
+      "duration": 0.18133333333332757,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 159.38133333333334,
+      "end": 159.48266666666666,
+      "pitch_name": "A#2",
+      "duration": 0.10133333333331507,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 159.552,
+      "end": 159.71733333333333,
+      "pitch_name": "A#2",
+      "duration": 0.16533333333333644,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 160.464,
+      "end": 160.59733333333332,
+      "pitch_name": "A#2",
+      "duration": 0.13333333333332575,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 162.38933333333333,
+      "end": 162.64,
+      "pitch_name": "D#3",
+      "duration": 0.2506666666666604,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 164.736,
+      "end": 164.85333333333332,
+      "pitch_name": "D#2",
+      "duration": 0.11733333333333462,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 168.87466666666666,
+      "end": 168.99733333333333,
+      "pitch_name": "D#2",
+      "duration": 0.12266666666667447,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 169.10933333333332,
+      "end": 169.24266666666668,
+      "pitch_name": "D#2",
+      "duration": 0.13333333333335418,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 169.248,
+      "end": 169.41333333333333,
+      "pitch_name": "D#2",
+      "duration": 0.16533333333333644,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 169.72266666666667,
+      "end": 169.94666666666666,
+      "pitch_name": "D#2",
+      "duration": 0.22399999999998954,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 169.97333333333333,
+      "end": 170.576,
+      "pitch_name": "D#2",
+      "duration": 0.6026666666666642,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 170.58133333333333,
+      "end": 170.69866666666667,
+      "pitch_name": "D#2",
+      "duration": 0.11733333333333462,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 170.704,
+      "end": 170.848,
+      "pitch_name": "D#2",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 171.10933333333332,
+      "end": 171.21066666666667,
+      "pitch_name": "D#2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 171.41866666666667,
+      "end": 171.552,
+      "pitch_name": "A#2",
+      "duration": 0.13333333333332575,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 171.89866666666666,
+      "end": 172.01066666666668,
+      "pitch_name": "D#2",
+      "duration": 0.11200000000002319,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 45,
+      "start": 172.29333333333332,
+      "end": 172.416,
+      "pitch_name": "A2",
+      "duration": 0.12266666666667447,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 172.48533333333333,
+      "end": 172.592,
+      "pitch_name": "A#2",
+      "duration": 0.10666666666668334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 172.82666666666665,
+      "end": 172.976,
+      "pitch_name": "A#2",
+      "duration": 0.1493333333333453,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 173.024,
+      "end": 173.17333333333335,
+      "pitch_name": "A#2",
+      "duration": 0.1493333333333453,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 173.2,
+      "end": 173.41333333333333,
+      "pitch_name": "A#2",
+      "duration": 0.21333333333333826,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 173.94133333333335,
+      "end": 174.096,
+      "pitch_name": "A#2",
+      "duration": 0.15466666666665674,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 174.784,
+      "end": 174.90666666666667,
+      "pitch_name": "A#2",
+      "duration": 0.12266666666667447,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 176.30933333333334,
+      "end": 176.688,
+      "pitch_name": "G#2",
+      "duration": 0.3786666666666463,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 178.12266666666667,
+      "end": 178.432,
+      "pitch_name": "D#2",
+      "duration": 0.3093333333333135,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 178.51733333333334,
+      "end": 178.66666666666666,
+      "pitch_name": "D#3",
+      "duration": 0.1493333333333169,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 178.736,
+      "end": 179.01333333333332,
+      "pitch_name": "D#2",
+      "duration": 0.2773333333333312,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 179.808,
+      "end": 179.94133333333335,
+      "pitch_name": "A#2",
+      "duration": 0.13333333333335418,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 180.18666666666667,
+      "end": 180.29866666666666,
+      "pitch_name": "D#2",
+      "duration": 0.11199999999999477,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 180.48,
+      "end": 180.592,
+      "pitch_name": "A#2",
+      "duration": 0.11200000000002319,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 180.85866666666666,
+      "end": 180.99733333333333,
+      "pitch_name": "A#2",
+      "duration": 0.1386666666666656,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 181.08266666666665,
+      "end": 181.20533333333333,
+      "pitch_name": "A#2",
+      "duration": 0.12266666666667447,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 181.42933333333335,
+      "end": 181.56266666666667,
+      "pitch_name": "D#2",
+      "duration": 0.13333333333332575,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 181.616,
+      "end": 181.71733333333333,
+      "pitch_name": "D#2",
+      "duration": 0.10133333333331507,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 182.42133333333334,
+      "end": 182.56533333333334,
+      "pitch_name": "D#3",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 183.568,
+      "end": 183.74933333333334,
+      "pitch_name": "G#2",
+      "duration": 0.18133333333332757,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 186.42666666666668,
+      "end": 186.528,
+      "pitch_name": "D#2",
+      "duration": 0.10133333333331507,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 186.77333333333334,
+      "end": 187.08266666666665,
+      "pitch_name": "A#2",
+      "duration": 0.3093333333333135,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 187.09866666666667,
+      "end": 187.248,
+      "pitch_name": "A#2",
+      "duration": 0.1493333333333169,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 187.25333333333333,
+      "end": 187.52,
+      "pitch_name": "A#2",
+      "duration": 0.26666666666667993,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 187.52533333333332,
+      "end": 187.69066666666666,
+      "pitch_name": "A#2",
+      "duration": 0.16533333333333644,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 188.4,
+      "end": 188.57066666666665,
+      "pitch_name": "A#2",
+      "duration": 0.17066666666664787,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 189.71733333333333,
+      "end": 189.89333333333335,
+      "pitch_name": "A#2",
+      "duration": 0.17600000000001614,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 189.91466666666668,
+      "end": 190.112,
+      "pitch_name": "A#2",
+      "duration": 0.1973333333333187,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 45,
+      "start": 190.20266666666666,
+      "end": 190.304,
+      "pitch_name": "A2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 190.63466666666667,
+      "end": 190.8,
+      "pitch_name": "G#2",
+      "duration": 0.16533333333333644,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 191.07733333333334,
+      "end": 191.17866666666666,
+      "pitch_name": "D#2",
+      "duration": 0.10133333333331507,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 192.752,
+      "end": 192.86933333333334,
+      "pitch_name": "D#2",
+      "duration": 0.11733333333333462,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 192.992,
+      "end": 193.09866666666667,
+      "pitch_name": "D#2",
+      "duration": 0.10666666666668334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 193.93066666666667,
+      "end": 194.13333333333333,
+      "pitch_name": "A#2",
+      "duration": 0.20266666666665856,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 195.70666666666668,
+      "end": 195.92533333333333,
+      "pitch_name": "D#2",
+      "duration": 0.2186666666666497,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 196.00533333333334,
+      "end": 196.10666666666665,
+      "pitch_name": "D#2",
+      "duration": 0.10133333333331507,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 196.128,
+      "end": 196.29333333333332,
+      "pitch_name": "D#2",
+      "duration": 0.16533333333333644,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 196.62933333333334,
+      "end": 196.85866666666666,
+      "pitch_name": "D#3",
+      "duration": 0.2293333333333294,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 197.18933333333334,
+      "end": 197.30666666666667,
+      "pitch_name": "D#2",
+      "duration": 0.11733333333333462,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 199.504,
+      "end": 199.632,
+      "pitch_name": "D#2",
+      "duration": 0.12800000000001432,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 199.99466666666666,
+      "end": 200.34133333333332,
+      "pitch_name": "D#3",
+      "duration": 0.346666666666664,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 200.34133333333332,
+      "end": 200.45333333333335,
+      "pitch_name": "D#2",
+      "duration": 0.11200000000002319,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 200.69333333333333,
+      "end": 200.85333333333332,
+      "pitch_name": "A#2",
+      "duration": 0.1599999999999966,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 201.09866666666667,
+      "end": 201.25866666666667,
+      "pitch_name": "A#2",
+      "duration": 0.1599999999999966,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 201.29066666666668,
+      "end": 201.424,
+      "pitch_name": "A#2",
+      "duration": 0.13333333333332575,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 201.54666666666665,
+      "end": 201.69066666666666,
+      "pitch_name": "A#2",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 201.70666666666668,
+      "end": 201.89866666666666,
+      "pitch_name": "A#2",
+      "duration": 0.19199999999997885,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 202.144,
+      "end": 202.304,
+      "pitch_name": "A#2",
+      "duration": 0.1599999999999966,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 45,
+      "start": 202.88,
+      "end": 203.02933333333334,
+      "pitch_name": "A2",
+      "duration": 0.1493333333333453,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 45,
+      "start": 203.33866666666665,
+      "end": 203.504,
+      "pitch_name": "A2",
+      "duration": 0.16533333333333644,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 206.78933333333333,
+      "end": 206.912,
+      "pitch_name": "D#2",
+      "duration": 0.12266666666667447,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 207.18933333333334,
+      "end": 207.376,
+      "pitch_name": "D#2",
+      "duration": 0.18666666666666742,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 207.61066666666667,
+      "end": 207.86666666666667,
+      "pitch_name": "D#2",
+      "duration": 0.2560000000000002,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 208.00533333333334,
+      "end": 208.28266666666667,
+      "pitch_name": "D#2",
+      "duration": 0.2773333333333312,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 208.336,
+      "end": 208.45333333333335,
+      "pitch_name": "D#2",
+      "duration": 0.11733333333333462,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 208.58666666666667,
+      "end": 208.76266666666666,
+      "pitch_name": "D#2",
+      "duration": 0.17599999999998772,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 208.85333333333332,
+      "end": 209.04533333333333,
+      "pitch_name": "D#2",
+      "duration": 0.19200000000000728,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 209.14133333333334,
+      "end": 209.248,
+      "pitch_name": "D#2",
+      "duration": 0.10666666666665492,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 209.68,
+      "end": 209.86133333333333,
+      "pitch_name": "A#2",
+      "duration": 0.18133333333332757,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 210.88533333333334,
+      "end": 211.01333333333332,
+      "pitch_name": "A#2",
+      "duration": 0.1279999999999859,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 47,
+      "start": 211.12533333333334,
+      "end": 211.25333333333333,
+      "pitch_name": "B2",
+      "duration": 0.1279999999999859,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 212.09066666666666,
+      "end": 212.26666666666668,
+      "pitch_name": "D#2",
+      "duration": 0.17600000000001614,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 212.52266666666668,
+      "end": 212.62933333333334,
+      "pitch_name": "A#2",
+      "duration": 0.10666666666665492,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 47,
+      "start": 212.73066666666668,
+      "end": 212.84266666666667,
+      "pitch_name": "B2",
+      "duration": 0.11199999999999477,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 213.42933333333335,
+      "end": 213.58933333333334,
+      "pitch_name": "D#2",
+      "duration": 0.1599999999999966,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 213.616,
+      "end": 213.74933333333334,
+      "pitch_name": "D#2",
+      "duration": 0.13333333333332575,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 216.82133333333334,
+      "end": 216.944,
+      "pitch_name": "D#2",
+      "duration": 0.12266666666664605,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 217.71733333333333,
+      "end": 218.02666666666667,
+      "pitch_name": "G#2",
+      "duration": 0.3093333333333419,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 218.25066666666666,
+      "end": 218.50133333333332,
+      "pitch_name": "G#2",
+      "duration": 0.2506666666666604,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 218.68266666666668,
+      "end": 218.85866666666666,
+      "pitch_name": "G#2",
+      "duration": 0.17599999999998772,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 219.472,
+      "end": 219.93066666666667,
+      "pitch_name": "D#2",
+      "duration": 0.4586666666666588,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 220.464,
+      "end": 220.59733333333332,
+      "pitch_name": "D#2",
+      "duration": 0.13333333333332575,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 220.96533333333332,
+      "end": 221.232,
+      "pitch_name": "A#2",
+      "duration": 0.26666666666667993,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 221.52,
+      "end": 221.776,
+      "pitch_name": "A#2",
+      "duration": 0.2560000000000002,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 221.952,
+      "end": 222.27733333333333,
+      "pitch_name": "A#2",
+      "duration": 0.32533333333333303,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 222.34666666666666,
+      "end": 222.448,
+      "pitch_name": "A#2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 40,
+      "start": 222.62933333333334,
+      "end": 222.73066666666668,
+      "pitch_name": "E2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 223.184,
+      "end": 223.38133333333334,
+      "pitch_name": "D#2",
+      "duration": 0.19733333333334713,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 56,
+      "start": 224.448,
+      "end": 224.58666666666667,
+      "pitch_name": "G#3",
+      "duration": 0.1386666666666656,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 45,
+      "start": 225.01333333333332,
+      "end": 225.12533333333334,
+      "pitch_name": "A2",
+      "duration": 0.11200000000002319,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 225.84,
+      "end": 226.04266666666666,
+      "pitch_name": "G#2",
+      "duration": 0.20266666666665856,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 226.81066666666666,
+      "end": 227.04533333333333,
+      "pitch_name": "D#2",
+      "duration": 0.23466666666666924,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 227.056,
+      "end": 227.216,
+      "pitch_name": "D#2",
+      "duration": 0.1599999999999966,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 227.38133333333334,
+      "end": 227.61066666666667,
+      "pitch_name": "D#3",
+      "duration": 0.2293333333333294,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 227.76533333333333,
+      "end": 227.87733333333333,
+      "pitch_name": "D#2",
+      "duration": 0.11199999999999477,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 45,
+      "start": 228.112,
+      "end": 228.21866666666668,
+      "pitch_name": "A2",
+      "duration": 0.10666666666668334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 228.31466666666665,
+      "end": 228.45866666666666,
+      "pitch_name": "A#2",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 228.464,
+      "end": 228.57066666666665,
+      "pitch_name": "A#2",
+      "duration": 0.10666666666665492,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 228.73066666666668,
+      "end": 228.84266666666667,
+      "pitch_name": "A#2",
+      "duration": 0.11199999999999477,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 228.848,
+      "end": 229.072,
+      "pitch_name": "A#2",
+      "duration": 0.22399999999998954,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 229.07733333333334,
+      "end": 229.26933333333332,
+      "pitch_name": "A#2",
+      "duration": 0.19199999999997885,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 229.79733333333334,
+      "end": 229.94666666666666,
+      "pitch_name": "A#2",
+      "duration": 0.1493333333333169,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 229.952,
+      "end": 230.08,
+      "pitch_name": "A#2",
+      "duration": 0.12800000000001432,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 235.568,
+      "end": 235.76,
+      "pitch_name": "D#2",
+      "duration": 0.19199999999997885,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 236.01066666666668,
+      "end": 236.16533333333334,
+      "pitch_name": "D#2",
+      "duration": 0.15466666666665674,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 236.416,
+      "end": 236.53866666666667,
+      "pitch_name": "D#2",
+      "duration": 0.12266666666667447,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 45,
+      "start": 237.65866666666668,
+      "end": 237.776,
+      "pitch_name": "A2",
+      "duration": 0.11733333333333462,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 237.97866666666667,
+      "end": 238.08,
+      "pitch_name": "D#3",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 240.98666666666668,
+      "end": 241.136,
+      "pitch_name": "D#2",
+      "duration": 0.1493333333333169,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 241.264,
+      "end": 241.74933333333334,
+      "pitch_name": "D#2",
+      "duration": 0.4853333333333296,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 241.808,
+      "end": 242.08,
+      "pitch_name": "D#2",
+      "duration": 0.2720000000000198,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 242.10133333333334,
+      "end": 242.59733333333332,
+      "pitch_name": "D#2",
+      "duration": 0.4959999999999809,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 242.73066666666668,
+      "end": 242.91733333333335,
+      "pitch_name": "D#2",
+      "duration": 0.18666666666666742,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 243.20533333333333,
+      "end": 243.34933333333333,
+      "pitch_name": "D#2",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 243.376,
+      "end": 243.57333333333332,
+      "pitch_name": "D#2",
+      "duration": 0.1973333333333187,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 57,
+      "start": 243.66933333333333,
+      "end": 243.824,
+      "pitch_name": "A3",
+      "duration": 0.15466666666668516,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 243.872,
+      "end": 244.05866666666665,
+      "pitch_name": "D#2",
+      "duration": 0.186666666666639,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 244.064,
+      "end": 244.16533333333334,
+      "pitch_name": "D#2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 244.77866666666668,
+      "end": 244.976,
+      "pitch_name": "A#2",
+      "duration": 0.1973333333333187,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 244.98133333333334,
+      "end": 245.21066666666667,
+      "pitch_name": "A#2",
+      "duration": 0.2293333333333294,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 245.22133333333332,
+      "end": 245.40266666666668,
+      "pitch_name": "A#2",
+      "duration": 0.181333333333356,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 245.408,
+      "end": 245.62666666666667,
+      "pitch_name": "A#2",
+      "duration": 0.2186666666666781,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 246.33066666666667,
+      "end": 246.432,
+      "pitch_name": "A#2",
+      "duration": 0.10133333333331507,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 36,
+      "start": 248.61333333333334,
+      "end": 248.72,
+      "pitch_name": "C2",
+      "duration": 0.10666666666665492,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 249.392,
+      "end": 249.49866666666668,
+      "pitch_name": "G#2",
+      "duration": 0.10666666666668334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 250.592,
+      "end": 250.736,
+      "pitch_name": "D#2",
+      "duration": 0.14399999999997704,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 251.824,
+      "end": 251.968,
+      "pitch_name": "D#2",
+      "duration": 0.14399999999997704,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 252.01066666666668,
+      "end": 252.16533333333334,
+      "pitch_name": "D#2",
+      "duration": 0.15466666666665674,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 252.21333333333334,
+      "end": 252.31466666666665,
+      "pitch_name": "D#2",
+      "duration": 0.10133333333331507,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 252.44266666666667,
+      "end": 252.592,
+      "pitch_name": "D#2",
+      "duration": 0.1493333333333453,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 252.63466666666667,
+      "end": 252.78933333333333,
+      "pitch_name": "D#2",
+      "duration": 0.15466666666665674,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 252.896,
+      "end": 252.99733333333333,
+      "pitch_name": "D#2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 253.94666666666666,
+      "end": 254.15466666666666,
+      "pitch_name": "A#2",
+      "duration": 0.2079999999999984,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 254.16,
+      "end": 254.27733333333333,
+      "pitch_name": "A#2",
+      "duration": 0.11733333333333462,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 254.31466666666665,
+      "end": 254.51733333333334,
+      "pitch_name": "A#2",
+      "duration": 0.20266666666668698,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 254.77866666666668,
+      "end": 254.89066666666668,
+      "pitch_name": "A#2",
+      "duration": 0.11199999999999477,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 254.912,
+      "end": 255.12,
+      "pitch_name": "A#2",
+      "duration": 0.2079999999999984,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 255.29066666666668,
+      "end": 255.47733333333332,
+      "pitch_name": "A#2",
+      "duration": 0.186666666666639,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 255.808,
+      "end": 255.95733333333334,
+      "pitch_name": "A#2",
+      "duration": 0.1493333333333453,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 47,
+      "start": 256.00533333333334,
+      "end": 256.176,
+      "pitch_name": "B2",
+      "duration": 0.17066666666664787,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 256.928,
+      "end": 257.088,
+      "pitch_name": "D#2",
+      "duration": 0.160000000000025,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 264.53333333333336,
+      "end": 264.9866666666667,
+      "pitch_name": "D#2",
+      "duration": 0.45333333333331893,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 265.41866666666664,
+      "end": 265.70666666666665,
+      "pitch_name": "D#2",
+      "duration": 0.2880000000000109,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 266.304,
+      "end": 266.69866666666667,
+      "pitch_name": "D#2",
+      "duration": 0.39466666666669425,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 266.704,
+      "end": 266.832,
+      "pitch_name": "D#2",
+      "duration": 0.1279999999999859,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 267.0133333333333,
+      "end": 267.11466666666666,
+      "pitch_name": "D#2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 267.216,
+      "end": 267.3226666666667,
+      "pitch_name": "D#2",
+      "duration": 0.10666666666668334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 267.8186666666667,
+      "end": 267.9626666666667,
+      "pitch_name": "A#2",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 268.1333333333333,
+      "end": 268.496,
+      "pitch_name": "A#2",
+      "duration": 0.36266666666665515,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 268.51733333333334,
+      "end": 268.70933333333335,
+      "pitch_name": "A#2",
+      "duration": 0.19200000000000728,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 269.1306666666667,
+      "end": 269.72266666666667,
+      "pitch_name": "A#2",
+      "duration": 0.5919999999999845,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 270.06933333333336,
+      "end": 270.32,
+      "pitch_name": "A#2",
+      "duration": 0.25066666666663195,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 272.064,
+      "end": 272.2026666666667,
+      "pitch_name": "D#3",
+      "duration": 0.1386666666666656,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 274.42133333333334,
+      "end": 274.528,
+      "pitch_name": "D#2",
+      "duration": 0.10666666666668334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 274.53333333333336,
+      "end": 274.6666666666667,
+      "pitch_name": "D#2",
+      "duration": 0.13333333333332575,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 275.29066666666665,
+      "end": 275.4026666666667,
+      "pitch_name": "G#2",
+      "duration": 0.11200000000002319,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 278.944,
+      "end": 279.0613333333333,
+      "pitch_name": "A#2",
+      "duration": 0.1173333333333062,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 279.4293333333333,
+      "end": 279.6,
+      "pitch_name": "D#3",
+      "duration": 0.1706666666667047,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 279.8453333333333,
+      "end": 279.95733333333334,
+      "pitch_name": "D#2",
+      "duration": 0.11200000000002319,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 281.216,
+      "end": 281.392,
+      "pitch_name": "D#2",
+      "duration": 0.17599999999998772,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 281.50933333333336,
+      "end": 281.6533333333333,
+      "pitch_name": "D#2",
+      "duration": 0.1439999999999486,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 282.17066666666665,
+      "end": 282.2986666666667,
+      "pitch_name": "A#2",
+      "duration": 0.12800000000004275,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 282.56,
+      "end": 283.07733333333334,
+      "pitch_name": "A#2",
+      "duration": 0.5173333333333403,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 283.21066666666667,
+      "end": 283.51466666666664,
+      "pitch_name": "A#2",
+      "duration": 0.3039999999999736,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 286.8213333333333,
+      "end": 286.97066666666666,
+      "pitch_name": "G#2",
+      "duration": 0.1493333333333453,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 288.07466666666664,
+      "end": 288.2506666666667,
+      "pitch_name": "D#2",
+      "duration": 0.17600000000004457,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 288.53866666666664,
+      "end": 288.928,
+      "pitch_name": "D#2",
+      "duration": 0.3893333333333544,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 289.1786666666667,
+      "end": 289.33866666666665,
+      "pitch_name": "D#2",
+      "duration": 0.15999999999996817,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 289.51466666666664,
+      "end": 289.776,
+      "pitch_name": "D#2",
+      "duration": 0.2613333333333685,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 290.0373333333333,
+      "end": 290.256,
+      "pitch_name": "D#2",
+      "duration": 0.2186666666666497,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 290.32,
+      "end": 290.592,
+      "pitch_name": "D#2",
+      "duration": 0.27199999999999136,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 47,
+      "start": 291.456,
+      "end": 291.648,
+      "pitch_name": "B2",
+      "duration": 0.19200000000000728,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 291.6533333333333,
+      "end": 292.256,
+      "pitch_name": "A#2",
+      "duration": 0.6026666666666642,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 292.34133333333335,
+      "end": 292.64,
+      "pitch_name": "A#2",
+      "duration": 0.2986666666666338,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 47,
+      "start": 292.64,
+      "end": 292.74133333333333,
+      "pitch_name": "B2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 292.78933333333333,
+      "end": 292.976,
+      "pitch_name": "A#2",
+      "duration": 0.18666666666666742,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 293.696,
+      "end": 293.8666666666667,
+      "pitch_name": "A#2",
+      "duration": 0.17066666666664787,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 293.92,
+      "end": 294.13866666666667,
+      "pitch_name": "A#2",
+      "duration": 0.2186666666666497,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 294.144,
+      "end": 294.272,
+      "pitch_name": "A#2",
+      "duration": 0.1279999999999859,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 294.784,
+      "end": 294.92266666666666,
+      "pitch_name": "G#2",
+      "duration": 0.1386666666666656,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 45,
+      "start": 294.92266666666666,
+      "end": 295.04,
+      "pitch_name": "A2",
+      "duration": 0.11733333333336304,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 298.05333333333334,
+      "end": 298.1546666666667,
+      "pitch_name": "G#2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 298.672,
+      "end": 298.816,
+      "pitch_name": "D#2",
+      "duration": 0.1439999999999486,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 299.0826666666667,
+      "end": 299.24266666666665,
+      "pitch_name": "D#3",
+      "duration": 0.15999999999996817,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 299.3813333333333,
+      "end": 299.55733333333336,
+      "pitch_name": "D#3",
+      "duration": 0.17600000000004457,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 299.62666666666667,
+      "end": 299.77066666666667,
+      "pitch_name": "D#3",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 299.776,
+      "end": 299.94666666666666,
+      "pitch_name": "D#3",
+      "duration": 0.17066666666664787,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 300.21866666666665,
+      "end": 300.32,
+      "pitch_name": "D#3",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 300.51733333333334,
+      "end": 300.70933333333335,
+      "pitch_name": "D#3",
+      "duration": 0.19200000000000728,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 300.7146666666667,
+      "end": 301.51466666666664,
+      "pitch_name": "D#3",
+      "duration": 0.7999999999999545,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 301.5253333333333,
+      "end": 301.728,
+      "pitch_name": "D#3",
+      "duration": 0.20266666666668698,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 302.61333333333334,
+      "end": 302.96,
+      "pitch_name": "A#2",
+      "duration": 0.3466666666666356,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 304.24533333333335,
+      "end": 304.37333333333333,
+      "pitch_name": "D#2",
+      "duration": 0.1279999999999859,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 304.4533333333333,
+      "end": 304.608,
+      "pitch_name": "D#2",
+      "duration": 0.15466666666668516,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 306.69866666666667,
+      "end": 306.8,
+      "pitch_name": "G#2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 307.71733333333333,
+      "end": 307.95733333333334,
+      "pitch_name": "G#2",
+      "duration": 0.2400000000000091,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 308.72,
+      "end": 308.992,
+      "pitch_name": "D#2",
+      "duration": 0.27199999999999136,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 309.2373333333333,
+      "end": 309.46133333333336,
+      "pitch_name": "D#2",
+      "duration": 0.22400000000004638,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 309.52,
+      "end": 309.90933333333334,
+      "pitch_name": "D#2",
+      "duration": 0.3893333333333544,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 310.51733333333334,
+      "end": 310.69866666666667,
+      "pitch_name": "A#2",
+      "duration": 0.18133333333332757,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 310.70933333333335,
+      "end": 310.9653333333333,
+      "pitch_name": "A#2",
+      "duration": 0.2559999999999718,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 47,
+      "start": 310.9653333333333,
+      "end": 311.072,
+      "pitch_name": "B2",
+      "duration": 0.10666666666668334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 311.39733333333334,
+      "end": 311.50933333333336,
+      "pitch_name": "A#2",
+      "duration": 0.11200000000002319,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 311.856,
+      "end": 312.0106666666667,
+      "pitch_name": "D#2",
+      "duration": 0.15466666666668516,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 315.8666666666667,
+      "end": 316.448,
+      "pitch_name": "D#2",
+      "duration": 0.5813333333333048,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 316.704,
+      "end": 316.92266666666666,
+      "pitch_name": "D#2",
+      "duration": 0.2186666666666497,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 317.07733333333334,
+      "end": 317.24266666666665,
+      "pitch_name": "D#2",
+      "duration": 0.16533333333330802,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 317.9626666666667,
+      "end": 318.16,
+      "pitch_name": "A#2",
+      "duration": 0.19733333333334713,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 318.24,
+      "end": 318.624,
+      "pitch_name": "A#2",
+      "duration": 0.38400000000001455,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 318.912,
+      "end": 319.14666666666665,
+      "pitch_name": "A#2",
+      "duration": 0.23466666666666924,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 321.09866666666665,
+      "end": 321.232,
+      "pitch_name": "G#2",
+      "duration": 0.1333333333333826,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 321.488,
+      "end": 321.6906666666667,
+      "pitch_name": "G#2",
+      "duration": 0.20266666666668698,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 321.97866666666664,
+      "end": 322.1066666666667,
+      "pitch_name": "G#2",
+      "duration": 0.12800000000004275,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 323.008,
+      "end": 323.2853333333333,
+      "pitch_name": "G#2",
+      "duration": 0.2773333333333312,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 324.9066666666667,
+      "end": 325.06666666666666,
+      "pitch_name": "D#2",
+      "duration": 0.15999999999996817,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 325.1573333333333,
+      "end": 325.2853333333333,
+      "pitch_name": "D#2",
+      "duration": 0.1279999999999859,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 325.312,
+      "end": 325.472,
+      "pitch_name": "D#2",
+      "duration": 0.15999999999996817,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 325.744,
+      "end": 325.92533333333336,
+      "pitch_name": "D#2",
+      "duration": 0.18133333333332757,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 325.99466666666666,
+      "end": 326.64,
+      "pitch_name": "D#2",
+      "duration": 0.6453333333333262,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 326.73066666666665,
+      "end": 326.85333333333335,
+      "pitch_name": "D#2",
+      "duration": 0.1226666666667029,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 326.928,
+      "end": 327.77066666666667,
+      "pitch_name": "D#2",
+      "duration": 0.8426666666666733,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 332.34133333333335,
+      "end": 332.75733333333335,
+      "pitch_name": "D#2",
+      "duration": 0.4159999999999968,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 332.78933333333333,
+      "end": 333.09866666666665,
+      "pitch_name": "D#2",
+      "duration": 0.3093333333333135,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 333.808,
+      "end": 333.952,
+      "pitch_name": "D#2",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 334.1333333333333,
+      "end": 334.24,
+      "pitch_name": "D#2",
+      "duration": 0.10666666666668334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 334.72,
+      "end": 334.88533333333334,
+      "pitch_name": "D#2",
+      "duration": 0.16533333333330802,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 334.90133333333335,
+      "end": 335.04,
+      "pitch_name": "D#2",
+      "duration": 0.1386666666666656,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 335.056,
+      "end": 335.1786666666667,
+      "pitch_name": "D#2",
+      "duration": 0.1226666666667029,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 336.016,
+      "end": 336.368,
+      "pitch_name": "A#2",
+      "duration": 0.35199999999997544,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 336.9386666666667,
+      "end": 337.20533333333333,
+      "pitch_name": "A#2",
+      "duration": 0.2666666666666515,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 337.5253333333333,
+      "end": 337.696,
+      "pitch_name": "A#2",
+      "duration": 0.1706666666667047,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 337.7386666666667,
+      "end": 337.8666666666667,
+      "pitch_name": "A#2",
+      "duration": 0.1279999999999859,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 337.872,
+      "end": 338.064,
+      "pitch_name": "A#2",
+      "duration": 0.19200000000000728,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 338.656,
+      "end": 338.8906666666667,
+      "pitch_name": "A#2",
+      "duration": 0.23466666666666924,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 339.65866666666665,
+      "end": 339.77066666666667,
+      "pitch_name": "D#3",
+      "duration": 0.11200000000002319,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 341.3333333333333,
+      "end": 341.55733333333336,
+      "pitch_name": "D#3",
+      "duration": 0.22400000000004638,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 343.53066666666666,
+      "end": 343.68533333333335,
+      "pitch_name": "D#3",
+      "duration": 0.15466666666668516,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 344.784,
+      "end": 345.06666666666666,
+      "pitch_name": "G#2",
+      "duration": 0.28266666666667106,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 345.088,
+      "end": 345.20533333333333,
+      "pitch_name": "G#2",
+      "duration": 0.1173333333333062,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 346.928,
+      "end": 347.12,
+      "pitch_name": "D#2",
+      "duration": 0.19200000000000728,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 348.02666666666664,
+      "end": 348.22933333333333,
+      "pitch_name": "D#2",
+      "duration": 0.20266666666668698,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 348.23466666666667,
+      "end": 348.464,
+      "pitch_name": "D#2",
+      "duration": 0.2293333333333294,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 348.53333333333336,
+      "end": 348.66133333333335,
+      "pitch_name": "D#2",
+      "duration": 0.1279999999999859,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 348.976,
+      "end": 349.09866666666665,
+      "pitch_name": "D#2",
+      "duration": 0.12266666666664605,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 349.36533333333335,
+      "end": 349.5253333333333,
+      "pitch_name": "D#2",
+      "duration": 0.15999999999996817,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 349.70666666666665,
+      "end": 349.808,
+      "pitch_name": "A#2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 349.95733333333334,
+      "end": 350.16,
+      "pitch_name": "A#2",
+      "duration": 0.20266666666668698,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 350.2026666666667,
+      "end": 350.37333333333333,
+      "pitch_name": "A#2",
+      "duration": 0.17066666666664787,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 350.6453333333333,
+      "end": 351.0133333333333,
+      "pitch_name": "A#2",
+      "duration": 0.367999999999995,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 351.07733333333334,
+      "end": 351.392,
+      "pitch_name": "A#2",
+      "duration": 0.3146666666666533,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 351.51466666666664,
+      "end": 352.032,
+      "pitch_name": "A#2",
+      "duration": 0.5173333333333403,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 352.112,
+      "end": 352.34133333333335,
+      "pitch_name": "A#2",
+      "duration": 0.2293333333333294,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 352.352,
+      "end": 352.56533333333334,
+      "pitch_name": "A#2",
+      "duration": 0.21333333333336668,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 352.73066666666665,
+      "end": 352.8426666666667,
+      "pitch_name": "A#2",
+      "duration": 0.11200000000002319,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 352.9386666666667,
+      "end": 353.12,
+      "pitch_name": "A#2",
+      "duration": 0.18133333333332757,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 353.8186666666667,
+      "end": 353.97866666666664,
+      "pitch_name": "D#3",
+      "duration": 0.15999999999996817,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 353.99466666666666,
+      "end": 354.44266666666664,
+      "pitch_name": "D#3",
+      "duration": 0.4479999999999791,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 356.2986666666667,
+      "end": 356.46933333333334,
+      "pitch_name": "D#2",
+      "duration": 0.17066666666664787,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 356.512,
+      "end": 356.624,
+      "pitch_name": "D#2",
+      "duration": 0.11200000000002319,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 356.9653333333333,
+      "end": 357.2,
+      "pitch_name": "G#2",
+      "duration": 0.23466666666666924,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 358.256,
+      "end": 358.368,
+      "pitch_name": "D#2",
+      "duration": 0.11200000000002319,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 360.8,
+      "end": 361.2853333333333,
+      "pitch_name": "D#2",
+      "duration": 0.4853333333333012,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 361.696,
+      "end": 361.904,
+      "pitch_name": "D#2",
+      "duration": 0.20799999999997,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 362.256,
+      "end": 362.46933333333334,
+      "pitch_name": "D#2",
+      "duration": 0.21333333333336668,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 363.1413333333333,
+      "end": 363.25866666666667,
+      "pitch_name": "D#2",
+      "duration": 0.11733333333336304,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 363.4026666666667,
+      "end": 363.504,
+      "pitch_name": "D#2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 364.50666666666666,
+      "end": 364.896,
+      "pitch_name": "A#2",
+      "duration": 0.3893333333333544,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 364.92266666666666,
+      "end": 365.12533333333334,
+      "pitch_name": "A#2",
+      "duration": 0.20266666666668698,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 365.3066666666667,
+      "end": 365.43466666666666,
+      "pitch_name": "A#2",
+      "duration": 0.1279999999999859,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 365.44,
+      "end": 365.61066666666665,
+      "pitch_name": "A#2",
+      "duration": 0.17066666666664787,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 365.6533333333333,
+      "end": 365.76,
+      "pitch_name": "A#2",
+      "duration": 0.10666666666668334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 47,
+      "start": 366.07466666666664,
+      "end": 366.21866666666665,
+      "pitch_name": "B2",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 366.3466666666667,
+      "end": 366.496,
+      "pitch_name": "A#2",
+      "duration": 0.14933333333328846,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 368.96,
+      "end": 369.104,
+      "pitch_name": "D#2",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 370.88,
+      "end": 370.9866666666667,
+      "pitch_name": "D#2",
+      "duration": 0.10666666666668334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 56,
+      "start": 371.312,
+      "end": 371.44,
+      "pitch_name": "G#3",
+      "duration": 0.1279999999999859,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 372.496,
+      "end": 372.5973333333333,
+      "pitch_name": "G#2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 375.216,
+      "end": 375.536,
+      "pitch_name": "D#2",
+      "duration": 0.3199999999999932,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 375.89866666666666,
+      "end": 376.224,
+      "pitch_name": "D#2",
+      "duration": 0.32533333333333303,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 376.22933333333333,
+      "end": 376.34133333333335,
+      "pitch_name": "D#2",
+      "duration": 0.11200000000002319,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 376.48533333333336,
+      "end": 376.66133333333335,
+      "pitch_name": "D#2",
+      "duration": 0.17599999999998772,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 376.6933333333333,
+      "end": 376.832,
+      "pitch_name": "D#2",
+      "duration": 0.1386666666666656,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 376.94933333333336,
+      "end": 377.31733333333335,
+      "pitch_name": "D#2",
+      "duration": 0.367999999999995,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 377.536,
+      "end": 377.70666666666665,
+      "pitch_name": "D#2",
+      "duration": 0.17066666666664787,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 377.792,
+      "end": 377.9413333333333,
+      "pitch_name": "D#2",
+      "duration": 0.1493333333333453,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 378.41066666666666,
+      "end": 378.5973333333333,
+      "pitch_name": "A#2",
+      "duration": 0.18666666666666742,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 378.8,
+      "end": 379.504,
+      "pitch_name": "A#2",
+      "duration": 0.7040000000000077,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 379.6,
+      "end": 379.89866666666666,
+      "pitch_name": "A#2",
+      "duration": 0.2986666666666338,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 380.74133333333333,
+      "end": 381.04,
+      "pitch_name": "A#2",
+      "duration": 0.2986666666666906,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 381.5466666666667,
+      "end": 381.6533333333333,
+      "pitch_name": "A#2",
+      "duration": 0.1066666666666265,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 382.53866666666664,
+      "end": 382.768,
+      "pitch_name": "D#3",
+      "duration": 0.2293333333333294,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 385.26933333333335,
+      "end": 385.3813333333333,
+      "pitch_name": "G#2",
+      "duration": 0.11199999999996635,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 389.3813333333333,
+      "end": 389.86133333333333,
+      "pitch_name": "D#2",
+      "duration": 0.4800000000000182,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 389.94666666666666,
+      "end": 390.22933333333333,
+      "pitch_name": "D#2",
+      "duration": 0.28266666666667106,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 390.32533333333333,
+      "end": 390.46933333333334,
+      "pitch_name": "D#2",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 390.46933333333334,
+      "end": 390.61333333333334,
+      "pitch_name": "D#3",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 390.87466666666666,
+      "end": 391.07733333333334,
+      "pitch_name": "D#2",
+      "duration": 0.20266666666668698,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 391.09866666666665,
+      "end": 391.21066666666667,
+      "pitch_name": "D#2",
+      "duration": 0.11200000000002319,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 391.2266666666667,
+      "end": 391.49333333333334,
+      "pitch_name": "D#2",
+      "duration": 0.2666666666666515,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 391.51466666666664,
+      "end": 391.7386666666667,
+      "pitch_name": "D#2",
+      "duration": 0.22400000000004638,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 391.81333333333333,
+      "end": 391.97866666666664,
+      "pitch_name": "D#2",
+      "duration": 0.16533333333330802,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 47,
+      "start": 392.544,
+      "end": 392.6453333333333,
+      "pitch_name": "B2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 392.97066666666666,
+      "end": 393.1093333333333,
+      "pitch_name": "A#2",
+      "duration": 0.1386666666666656,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 393.11466666666666,
+      "end": 393.25333333333333,
+      "pitch_name": "A#2",
+      "duration": 0.1386666666666656,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 394.02666666666664,
+      "end": 394.1333333333333,
+      "pitch_name": "A#2",
+      "duration": 0.10666666666668334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 394.144,
+      "end": 394.24533333333335,
+      "pitch_name": "A#2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 395.16266666666667,
+      "end": 395.296,
+      "pitch_name": "A#2",
+      "duration": 0.13333333333332575,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 395.392,
+      "end": 395.5253333333333,
+      "pitch_name": "A#2",
+      "duration": 0.13333333333332575,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 395.8346666666667,
+      "end": 395.936,
+      "pitch_name": "A#2",
+      "duration": 0.10133333333328665,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 396.4053333333333,
+      "end": 396.528,
+      "pitch_name": "D#2",
+      "duration": 0.1226666666667029,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 396.704,
+      "end": 396.848,
+      "pitch_name": "D#2",
+      "duration": 0.14400000000000546,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 400.2133333333333,
+      "end": 400.3306666666667,
+      "pitch_name": "G#2",
+      "duration": 0.11733333333336304,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 401.28,
+      "end": 401.392,
+      "pitch_name": "G#2",
+      "duration": 0.11200000000002319,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 403.632,
+      "end": 403.8346666666667,
+      "pitch_name": "D#2",
+      "duration": 0.20266666666668698,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 403.888,
+      "end": 404.0106666666667,
+      "pitch_name": "D#2",
+      "duration": 0.1226666666667029,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 404.32,
+      "end": 404.45866666666666,
+      "pitch_name": "D#2",
+      "duration": 0.1386666666666656,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 404.53333333333336,
+      "end": 404.8,
+      "pitch_name": "D#2",
+      "duration": 0.2666666666666515,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 404.83733333333333,
+      "end": 405.3333333333333,
+      "pitch_name": "D#2",
+      "duration": 0.4959999999999809,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 405.33866666666665,
+      "end": 405.456,
+      "pitch_name": "D#2",
+      "duration": 0.11733333333336304,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 405.4986666666667,
+      "end": 405.696,
+      "pitch_name": "D#2",
+      "duration": 0.19733333333334713,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 405.7493333333333,
+      "end": 406.144,
+      "pitch_name": "D#2",
+      "duration": 0.39466666666669425,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 406.14933333333335,
+      "end": 406.34133333333335,
+      "pitch_name": "D#2",
+      "duration": 0.19200000000000728,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 406.3573333333333,
+      "end": 406.5973333333333,
+      "pitch_name": "D#2",
+      "duration": 0.2400000000000091,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 406.63466666666665,
+      "end": 406.816,
+      "pitch_name": "D#2",
+      "duration": 0.18133333333332757,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 407.53066666666666,
+      "end": 407.6906666666667,
+      "pitch_name": "A#2",
+      "duration": 0.160000000000025,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 407.72266666666667,
+      "end": 407.9146666666667,
+      "pitch_name": "A#2",
+      "duration": 0.19200000000000728,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 408.0373333333333,
+      "end": 408.1546666666667,
+      "pitch_name": "A#2",
+      "duration": 0.11733333333336304,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 408.70933333333335,
+      "end": 408.8426666666667,
+      "pitch_name": "A#2",
+      "duration": 0.13333333333332575,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 409.09866666666665,
+      "end": 409.20533333333333,
+      "pitch_name": "A#2",
+      "duration": 0.10666666666668334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 410.56,
+      "end": 410.6773333333333,
+      "pitch_name": "A#2",
+      "duration": 0.1173333333333062,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 411.568,
+      "end": 411.6693333333333,
+      "pitch_name": "D#3",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 411.71733333333333,
+      "end": 411.8186666666667,
+      "pitch_name": "D#3",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 411.8666666666667,
+      "end": 411.968,
+      "pitch_name": "D#3",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 415.904,
+      "end": 416.0106666666667,
+      "pitch_name": "G#2",
+      "duration": 0.10666666666668334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 417.7493333333333,
+      "end": 417.86133333333333,
+      "pitch_name": "G#2",
+      "duration": 0.11200000000002319,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 418.1333333333333,
+      "end": 418.23466666666667,
+      "pitch_name": "G#2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 40,
+      "start": 418.37333333333333,
+      "end": 418.4746666666667,
+      "pitch_name": "E2",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 418.69866666666667,
+      "end": 418.848,
+      "pitch_name": "D#2",
+      "duration": 0.1493333333333453,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 418.8586666666667,
+      "end": 418.992,
+      "pitch_name": "D#2",
+      "duration": 0.13333333333332575,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 419.072,
+      "end": 419.19466666666665,
+      "pitch_name": "D#2",
+      "duration": 0.12266666666664605,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 419.2373333333333,
+      "end": 419.36533333333335,
+      "pitch_name": "D#2",
+      "duration": 0.12800000000004275,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 419.48266666666666,
+      "end": 419.8453333333333,
+      "pitch_name": "D#2",
+      "duration": 0.36266666666665515,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 419.92533333333336,
+      "end": 420.21866666666665,
+      "pitch_name": "D#2",
+      "duration": 0.2933333333332939,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 420.36266666666666,
+      "end": 420.6773333333333,
+      "pitch_name": "D#2",
+      "duration": 0.3146666666666533,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 420.9866666666667,
+      "end": 421.20533333333333,
+      "pitch_name": "D#2",
+      "duration": 0.2186666666666497,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 421.8346666666667,
+      "end": 421.94666666666666,
+      "pitch_name": "A#2",
+      "duration": 0.11199999999996635,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 422.26666666666665,
+      "end": 422.4746666666667,
+      "pitch_name": "A#2",
+      "duration": 0.20800000000002683,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 422.5013333333333,
+      "end": 422.6186666666667,
+      "pitch_name": "A#2",
+      "duration": 0.11733333333336304,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 47,
+      "start": 423.52,
+      "end": 423.632,
+      "pitch_name": "B2",
+      "duration": 0.11200000000002319,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 423.71733333333333,
+      "end": 423.84,
+      "pitch_name": "A#2",
+      "duration": 0.12266666666664605,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 424.27733333333333,
+      "end": 424.384,
+      "pitch_name": "A#2",
+      "duration": 0.10666666666668334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 424.42133333333334,
+      "end": 424.55466666666666,
+      "pitch_name": "A#2",
+      "duration": 0.13333333333332575,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 424.6293333333333,
+      "end": 424.74666666666667,
+      "pitch_name": "A#2",
+      "duration": 0.11733333333336304,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 424.9066666666667,
+      "end": 425.04533333333336,
+      "pitch_name": "A#2",
+      "duration": 0.1386666666666656,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 425.6053333333333,
+      "end": 425.712,
+      "pitch_name": "D#2",
+      "duration": 0.10666666666668334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 426.04266666666666,
+      "end": 426.27733333333333,
+      "pitch_name": "D#3",
+      "duration": 0.23466666666666924,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 426.2986666666667,
+      "end": 426.4266666666667,
+      "pitch_name": "D#3",
+      "duration": 0.1279999999999859,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 426.9066666666667,
+      "end": 427.12,
+      "pitch_name": "D#3",
+      "duration": 0.21333333333330984,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 428.528,
+      "end": 428.64,
+      "pitch_name": "D#2",
+      "duration": 0.11199999999996635,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 431.2,
+      "end": 431.38666666666666,
+      "pitch_name": "D#2",
+      "duration": 0.18666666666666742,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 431.392,
+      "end": 431.9413333333333,
+      "pitch_name": "D#2",
+      "duration": 0.5493333333333226,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 433.33866666666665,
+      "end": 433.46133333333336,
+      "pitch_name": "A#2",
+      "duration": 0.1226666666667029,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 46,
+      "start": 433.58933333333334,
+      "end": 434.09066666666666,
+      "pitch_name": "A#2",
+      "duration": 0.5013333333333208,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 37,
+      "start": 435.68533333333335,
+      "end": 435.8346666666667,
+      "pitch_name": "C#2",
+      "duration": 0.1493333333333453,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 37,
+      "start": 435.93066666666664,
+      "end": 436.352,
+      "pitch_name": "C#2",
+      "duration": 0.42133333333333667,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 38,
+      "start": 436.93333333333334,
+      "end": 437.0933333333333,
+      "pitch_name": "D2",
+      "duration": 0.15999999999996817,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 37,
+      "start": 437.104,
+      "end": 437.264,
+      "pitch_name": "C#2",
+      "duration": 0.160000000000025,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 438.2613333333333,
+      "end": 438.3946666666667,
+      "pitch_name": "G#2",
+      "duration": 0.1333333333333826,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 44,
+      "start": 438.41066666666666,
+      "end": 438.69866666666667,
+      "pitch_name": "G#2",
+      "duration": 0.2880000000000109,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 439.6693333333333,
+      "end": 439.808,
+      "pitch_name": "D#3",
+      "duration": 0.1386666666666656,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 442.976,
+      "end": 443.152,
+      "pitch_name": "D#2",
+      "duration": 0.17599999999998772,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 443.248,
+      "end": 443.39733333333334,
+      "pitch_name": "D#2",
+      "duration": 0.1493333333333453,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 443.4026666666667,
+      "end": 443.58933333333334,
+      "pitch_name": "D#2",
+      "duration": 0.18666666666666742,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 443.744,
+      "end": 443.92533333333336,
+      "pitch_name": "D#3",
+      "duration": 0.18133333333332757,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 443.9626666666667,
+      "end": 444.16,
+      "pitch_name": "D#3",
+      "duration": 0.19733333333334713,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 444.18666666666667,
+      "end": 444.29333333333335,
+      "pitch_name": "D#3",
+      "duration": 0.10666666666668334,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 444.41066666666666,
+      "end": 444.60266666666666,
+      "pitch_name": "D#3",
+      "duration": 0.19200000000000728,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 444.608,
+      "end": 444.70933333333335,
+      "pitch_name": "D#3",
+      "duration": 0.10133333333334349,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 444.9066666666667,
+      "end": 445.04,
+      "pitch_name": "D#3",
+      "duration": 0.13333333333332575,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 445.19466666666665,
+      "end": 445.38666666666666,
+      "pitch_name": "D#3",
+      "duration": 0.19200000000000728,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 445.392,
+      "end": 445.62666666666667,
+      "pitch_name": "D#3",
+      "duration": 0.23466666666666924,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 51,
+      "start": 445.632,
+      "end": 445.80266666666665,
+      "pitch_name": "D#3",
+      "duration": 0.17066666666664787,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    },
+    {
+      "pitch_midi": 39,
+      "start": 447.088,
+      "end": 447.248,
+      "pitch_name": "D#2",
+      "duration": 0.15999999999996817,
+      "velocity": 88,
+      "confidence": 0.7,
+      "detection_method": "librosa_yin"
+    }
+  ],
+  "segments": [],
+  "audio_analysis": {
+    "duration": 489.6,
+    "sample_rate": 48000,
+    "channels": 1,
+    "audio_levels": {
+      "rms": 0.052589189261198044,
+      "rms_db": -25.582070471797742,
+      "peak": 0.9500000476837158,
+      "peak_db": -0.44552745733454807,
+      "dynamic_range_db": 25.136543014463193,
+      "crest_factor": 18.064550133276168
+    },
+    "tempo": 122.28260869565217,
+    "key": {
+      "key": "A",
+      "mode": "major",
+      "confidence": 0.7260745716751431
+    }
+  }
+}

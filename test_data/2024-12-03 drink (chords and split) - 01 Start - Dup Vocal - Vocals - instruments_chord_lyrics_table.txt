@@ -1,1413 +1,491 @@
 Title: 2024-12-03 drink (chords and split) - 01 Start - Dup Vocal - Vocals - instruments
 Key:  major
-Key Confidence: 60.6%
-Tempo: 123.0 BPM
+Key Confidence: 60.3%
+Tempo: 83.4 BPM
 Duration: 8:09
-Transcription: mlx-whisper
+Transcription: openai-whisper
 
 CHORD AND LYRICS TIME ALIGNMENT TABLE
 ======================================================================
 
 Chord           Lyrics                                  
 -------------------------------------------------------
-C#m                                                     
-A#dim                                                   
-C#7                                                     
-Fm                                                      
-C#7                                                     
-Bdim                                                    
-A#m                                                     
-C#                                                      
-Edim                                                    
-F7                                                      
-F#                                                      
-A                                                       
-Dm                                                      
-C#7                                                     
-Dm                                                      
-C#7                                                     
-Dm                                                      
-C#dim                                                   
-F#7                                                     
-C#7                                                     
-Bdim                                                    
-C#m                                                     
-C#                                                      
-F7                                                      
-Ddim                                                    
-G#7                                                     
-B7                                                      
-D#aug                                                   
-C#                                                      
-A7                                                      
-F                                                       
-F7                                                      
-D7                                                      
-D#dim                                                   
-C#7                                                     
-Cm                                                      
-F#7                                                     
-Fm                                                      
-D#7                                                     
-Edim                                                    
-Gm                                                      
-Gdim                                                    
-Ddim                                                    
-F7                                                      
-Bdim                                                    
-C#dim                                                   
-D#7                                                     
-C#7                                                     
-C#dim                                                   
-G7                                                      
-F                                                       
-Bdim                                                    
-Gm                                                      
-F#7                                                     
-Gdim                                                    
-G                                                       
-A7                                                      
-Fm                                                      
-F7                                                      
-C7                                                      
-D7                                                      
-F#m                                                     
-E7                                                      
-Edim                                                    
-G7                                                      
-A#                                                      
-                immersed                                
-E7                                                      
-F7                                                      
-A7                                                      
-Adim                                                    
-D                                                       
-F#dim                                                   
-Dm                                                      
-                immersed                                
-                immersed                                
-Ddim                                                    
-C7                                                      
-D7                                                      
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-F7                                                      
-A#m                                                     
-D7                                                      
-G                                                       
-D7                                                      
-Dm                                                      
-F                                                       
-Fm                                                      
-Am                                                      
-F                                                       
-Fdim                                                    
-C7                                                      
-A#                                                      
-C#dim                                                   
-Cdim                                                    
-C#dim                                                   
-A#dim                                                   
-C#aug                                                   
-F7                                                      
-Gdim                                                    
-Edim                                                    
-C#7                                                     
-A#m                                                     
-Bdim                                                    
-F7                                                      
-D7                                                      
-A#                                                      
-Ddim                                                    
-F7                                                      
-C#dim                                                   
-Adim                                                    
-C#7                                                     
-A#dim                                                   
-Cdim                                                    
-F7                                                      
-C#                                                      
-A#7                                                     
-F#7                                                     
-Dm                                                      
-A#                                                      
-Cm                                                      
-Fm                                                      
-C#dim                                                   
-C#                                                      
-Ddim                                                    
-A#m                                                     
-C#aug                                                   
-F7                                                      
-Dm                                                      
-G#7                                                     
-D                                                       
-F                                                       
-F#7                                                     
-F7                                                      
-F#7                                                     
-Fm                                                      
-Ddim                                                    
-F#7                                                     
-A#dim                                                   
-C#7                                                     
-C#dim                                                   
-D7                                                      
-Edim                                                    
-D7                                                      
-C#aug                                                   
-C#dim                                                   
-Cdim                                                    
-F7                                                      
-D#dim                                                   
-C#m                                                     
-A#m                                                     
-D7                                                      
-C#7                                                     
-Fdim                                                    
-A#m                                                     
-Edim                                                    
-F#7                                                     
-C#aug                                                   
-G#dim                                                   
-F                                                       
-F7                                                      
-Bdim                                                    
-C#7                                                     
-Cdim                                                    
-Gm                                                      
-Dm                                                      
-D7                                                      
-C#7                                                     
-F7                                                      
-F#                                                      
-F#dim                                                   
-D7                                                      
-C#7                                                     
-A#                                                      
-Fm                                                      
-D7                                                      
-G7                                                      
-F#dim                                                   
-D#7                                                     
-Fm                                                      
-C7                                                      
-Caug                                                    
-F#                                                      
-C#7                                                     
-D#7                                                     
-Cm                                                      
-F7                                                      
-Dm                                                      
-Cdim                                                    
-A                                                       
-D7                                                      
-F7                                                      
-F#7                                                     
-Ddim                                                    
-D7                                                      
-A#dim                                                   
-C#dim                                                   
-G                                                       
-Bdim                                                    
-F7                                                      
-A                                                       
-Em                                                      
-Bdim                                                    
-D7                                                      
-Gdim                                                    
-Bdim                                                    
-F7                                                      
-Fm                                                      
-F7                                                      
-Fm                                                      
-F7                                                      
-C7                                                      
-Bdim                                                    
-C#dim                                                   
-F7                                                      
-F#m                                                     
-Ddim                                                    
-F7                                                      
-C                                                       
-D#7                                                     
-F#7                                                     
-A                                                       
-Bdim                                                    
-C#                                                      
-Fdim                                                    
-C#m                                                     
-C#7                                                     
-C                                                       
-Bm                                                      
-Cdim                                                    
-D#dim                                                   
-Bdim                                                    
-G7                                                      
-Cdim                                                    
-E7                                                      
-G                                                       
-Gdim                                                    
-                immersed                                
-C#dim                                                   
-Bdim                                                    
-F                                                       
-                immersed                                
-C#7                                                     
-D7                                                      
-Dm                                                      
-                immersed                                
-                immersed                                
-D7                                                      
-                immersed                                
-                immersed                                
-C#dim                                                   
-F#m                                                     
-F7                                                      
-Cdim                                                    
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-Bm                                                      
-Dm                                                      
-A                                                       
-C#dim                                                   
-F#m                                                     
-C                                                       
-F7                                                      
-Ddim                                                    
-F#                                                      
-F#7                                                     
-D#m                                                     
-Daug                                                    
-F#7                                                     
-Dm                                                      
-Gdim                                                    
-F#                                                      
-C#7                                                     
-D7                                                      
-C                                                       
-D7                                                      
-C#7                                                     
-F                                                       
-F7                                                      
-Fm                                                      
-Daug                                                    
-D7                                                      
-C#7                                                     
-D7                                                      
-D#7                                                     
-Ddim                                                    
-C#7                                                     
-                immersed                                
-D7                                                      
-                immersed                                
-D#7                                                     
-A                                                       
-F7                                                      
-G7                                                      
-D7                                                      
-                immersed                                
-G                                                       
-F7                                                      
-                immersed                                
-B                                                       
-                immersed                                
-F7                                                      
-Fm                                                      
-F7                                                      
-Fm                                                      
-D7                                                      
-                immersed                                
-                immersed                                
-                immersed                                
-Dm                                                      
-Cdim                                                    
-B                                                       
-E7                                                      
-                immersed                                
-D7                                                      
-                immersed                                
-                immersed                                
-C#m                                                     
-                immersed                                
-                immersed                                
-                immersed                                
-F7                                                      
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-                immersed                                
-E7                                                      
-A#                                                      
-A                                                       
-E7                                                      
-Ddim                                                    
-C#7                                                     
-D#7                                                     
-D7                                                      
-G#dim                                                   
-C#7                                                     
-F7                                                      
-D#dim                                                   
-D                                                       
-Cdim                                                    
-C#7                                                     
-Ddim                                                    
-D#7                                                     
-A                                                       
-D#m                                                     
-F#7                                                     
-F7                                                      
-C#7                                                     
-G#7                                                     
-                come                                    
-                on,                                     
-Bdim                                                    
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-F7                                                      
-Fm                                                      
-                come                                    
-D7                                                      
-                on,                                     
-F#m                                                     
-F7                                                      
-A#dim                                                   
-D7                                                      
-                come                                    
-                on,                                     
-Edim                                                    
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-D                                                       
-Cdim                                                    
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-F#7                                                     
-Fm                                                      
-Cdim                                                    
-D7                                                      
-                come                                    
-                on,                                     
-Am                                                      
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-Dm                                                      
-G                                                       
-                come                                    
-D7                                                      
-F                                                       
-                on,                                     
-                come                                    
-Adim                                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-                come                                    
-                on,                                     
-Dm                                                      
-                come                                    
-A                                                       
-                on,                                     
-F7                                                      
-A7                                                      
-G#dim                                                   
-F                                                       
-G#7                                                     
-G7                                                      
-D7                                                      
-                come                                    
-C#dim                                                   
-F7                                                      
-D#7                                                     
-Ddim                                                    
-Dm                                                      
-A#dim                                                   
-Bm                                                      
-Ddim                                                    
-F7                                                      
-G7                                                      
-G#dim                                                   
-Ddim                                                    
-Bdim                                                    
-F#7                                                     
-E7                                                      
-F7                                                      
-Dm                                                      
-Adim                                                    
-D#7                                                     
-Cdim                                                    
-                on,                                     
-C#m                                                     
-D#7                                                     
-G                                                       
-Ddim                                                    
-C#aug                                                   
-G7                                                      
-Cdim                                                    
-C                                                       
-D7                                                      
-D#7                                                     
-C#7                                                     
-Dm                                                      
-C#7                                                     
-Daug                                                    
-Dm                                                      
-Daug                                                    
-D#7                                                     
-F#m                                                     
-F7                                                      
-Gm                                                      
-F7                                                      
-Fm                                                      
-Bdim                                                    
-Cdim                                                    
-D                                                       
-F#m                                                     
-F7                                                      
-Ddim                                                    
-F7                                                      
-A#m                                                     
-Gm                                                      
-                come                                    
-                on,                                     
-Fm                                                      
-Daug                                                    
-                come                                    
-Ddim                                                    
-Caug                                                    
-Ddim                                                    
-C#7                                                     
-                I'm                                     
-F                                                       
-A#dim                                                   
-E                                                       
-G7                                                      
-                a                                       
-                woman,                                  
-F7                                                      
-                I'm                                     
-                not                                     
-A                                                       
-C#dim                                                   
-Em                                                      
-C#dim                                                   
-C#m                                                     
-Gdim                                                    
-F7                                                      
-Dm                                                      
-C#7                                                     
-                a                                       
-D7                                                      
-Dm                                                      
-F7                                                      
-                woman,                                  
-                I'm                                     
-D7                                                      
-                not                                     
-                a                                       
-                woman,                                  
-Bdim                                                    
-D7                                                      
-F7                                                      
-                I'm                                     
-Fm                                                      
-F#                                                      
-                not                                     
-Daug                                                    
-Cdim                                                    
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-F7                                                      
-D7                                                      
-F                                                       
-Dm                                                      
-D7                                                      
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-C#dim                                                   
-                a                                       
-E                                                       
-                woman,                                  
-F#                                                      
-D7                                                      
-D#7                                                     
-F7                                                      
-F                                                       
-G                                                       
-                I'm                                     
-                not                                     
-F7                                                      
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-C#m                                                     
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-F#m                                                     
-F#7                                                     
-F                                                       
-G#                                                      
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-Fm                                                      
-C#dim                                                   
-D7                                                      
-                not                                     
-Caug                                                    
-                a                                       
-                woman,                                  
-E7                                                      
-F7                                                      
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I'm                                     
-                not                                     
-                a                                       
-                woman,                                  
-                I                                       
-Em                                                      
-D7                                                      
-Cm                                                      
-C                                                       
-C#7                                                     
-C                                                       
-F7                                                      
-C                                                       
-F7                                                      
-Ddim                                                    
-D#7                                                     
-C#dim                                                   
-D7                                                      
-C#m                                                     
-F7                                                      
-C#7                                                     
-A#7                                                     
-Cdim                                                    
-Bm                                                      
-C#7                                                     
-Bdim                                                    
-C#dim                                                   
-Cdim                                                    
-F#m                                                     
-F7                                                      
-Gdim                                                    
-D#7                                                     
-D7                                                      
-G                                                       
-F7                                                      
-G7                                                      
-D7                                                      
-F7                                                      
-D7                                                      
-E7                                                      
-F7                                                      
-Em                                                      
-F7                                                      
-C#aug                                                   
-D7                                                      
-C#dim                                                   
-D#dim                                                   
-F#7                                                     
-F7                                                      
-                I'm                                     
-                a                                       
-                woman,                                  
-A#dim                                                   
-G7                                                      
-C#m                                                     
-F7                                                      
-C7                                                      
-D7                                                      
-Gm                                                      
-F7                                                      
-D#dim                                                   
-D7                                                      
-Dm                                                      
-Ddim                                                    
-F7                                                      
-F                                                       
-C#dim                                                   
-Cdim                                                    
-D7                                                      
-                to                                      
-D                                                       
-Am                                                      
-D7                                                      
-G                                                       
-Bdim                                                    
-F7                                                      
-F                                                       
-Dm                                                      
-D#7                                                     
-                need                                    
-F7                                                      
-F#m                                                     
-                to                                      
-Caug                                                    
-C#dim                                                   
-Dm                                                      
-C#7                                                     
-G                                                       
-D#7                                                     
-                you                                     
-F#7                                                     
-A#dim                                                   
-F7                                                      
-Ddim                                                    
-F7                                                      
-                need                                    
-Dm                                                      
-A#m                                                     
-C#dim                                                   
-                to                                      
-                understand                              
-D7                                                      
-G                                                       
-F                                                       
-Em                                                      
-G                                                       
-                I'm                                     
-                waiting                                 
-D7                                                      
+Gno5/B                                                  
+                and                                     
+                be                                      
+                made                                    
+F#5/C#                                                  
+                new                                     
+                Drink                                   
+                drink                                   
+                was                                     
+                made                                    
                 for                                     
                 you                                     
-C#dim                                                   
-A                                                       
-D#7                                                     
-Dm                                                      
-F7                                                      
-A                                                       
-D#7                                                     
-C#dim                                                   
-Ddim                                                    
-A#m                                                     
-Fdim                                                    
-E7                                                      
-G#                                                      
-Cdim                                                    
-C#aug                                                   
-Cdim                                                    
-D7                                                      
-A#m                                                     
-Fdim                                                    
-G#m                                                     
-F7                                                      
-G                                                       
-Bdim                                                    
-C#                                                      
-F7                                                      
-Fm                                                      
-C#                                                      
-C#dim                                                   
+                Drink                                   
+                drink                                   
+                Come                                    
+                and                                     
+                be                                      
+                satisfied                               
+                You                                     
+                wont                                    
+                ever                                    
+                be                                      
+                denied                                  
+A#5/F                                                   
+A#/D                                                    
+A#5/F                                                   
+C#no5                                                   
+C#no5                                                   
+Ano5/C#                                                 
+F5/C                                                    
+B5/F#                                                   
+C#no5                                                   
+D#no5                                                   
+                drink                                   
+                Full                                    
+                forgiveness                             
+                power                                   
                 to                                      
-A                                                       
-C#dim                                                   
-Cdim                                                    
-C#aug                                                   
-F7                                                      
-D#dim                                                   
-F7                                                      
-F#m                                                     
-C                                                       
-D#m                                                     
-F7                                                      
-Fm                                                      
-                wind                                    
-Gm                                                      
-G7                                                      
-                wind                                    
-                That                                    
-                wind                                    
-Dm                                                      
-F7                                                      
-Fdim                                                    
-Cdim                                                    
-F#7                                                     
-C#m                                                     
-F7                                                      
-Fm                                                      
-C#7                                                     
-D                                                       
-F                                                       
-G7                                                      
-Caug                                                    
-Fm                                                      
-F7                                                      
-C#7                                                     
-A#dim                                                   
-                love                                    
-                you                                     
-C#dim                                                   
-F                                                       
-A7                                                      
-Am                                                      
-F                                                       
-Fm                                                      
-F#dim                                                   
-B                                                       
-C#7                                                     
-F7                                                      
-F                                                       
-A                                                       
-A7                                                      
-A#dim                                                   
-                love                                    
-F7                                                      
-E7                                                      
-                you,                                    
-A#7                                                     
-                I                                       
-C#                                                      
-Bdim                                                    
-A#7                                                     
-                love                                    
-F#dim                                                   
-Ddim                                                    
-Gm                                                      
-F#                                                      
-                you                                     
-                love                                    
-                you,                                    
-                I                                       
-D                                                       
-Fdim                                                    
-                love                                    
-                you                                     
-Fm                                                      
-                I                                       
-                love                                    
-F#m                                                     
-                you,                                    
-A7                                                      
-Fm                                                      
-                I                                       
-D                                                       
-Caug                                                    
-A#7                                                     
-F                                                       
-                love                                    
-                you                                     
-                I                                       
-F#7                                                     
-                love                                    
-C#dim                                                   
-                you,                                    
-                I                                       
-                love                                    
-                you                                     
-                I                                       
-F                                                       
-                love                                    
-                you                                     
-C#dim                                                   
-Fm                                                      
-F                                                       
-F7                                                      
-C#7                                                     
-B7                                                      
-                you,                                    
-A7                                                      
-F7                                                      
-G7                                                      
-                love                                    
-A#7                                                     
-                you                                     
-Ddim                                                    
-Caug                                                    
-F                                                       
-F7                                                      
-                love                                    
-F#7                                                     
-D#7                                                     
-Ddim                                                    
-                you,                                    
-F#                                                      
-D7                                                      
-C#7                                                     
-F7                                                      
-Cdim                                                    
-Edim                                                    
-E7                                                      
-G                                                       
-C#dim                                                   
-                I                                       
-Cdim                                                    
-D7                                                      
-G7                                                      
-B                                                       
-G#dim                                                   
-D7                                                      
-D#7                                                     
-Bdim                                                    
-F7                                                      
-A#                                                      
-G7                                                      
-F                                                       
-Fdim                                                    
-D7                                                      
-A                                                       
-Adim                                                    
-A                                                       
-                love                                    
-                you                                     
-F#7                                                     
-A7                                                      
-F                                                       
-Fdim                                                    
-C#7                                                     
-F                                                       
-                not                                     
-A7                                                      
-Dm                                                      
-F7                                                      
-A#7                                                     
-                anywhere                                
-Am                                                      
-Bm                                                      
-E                                                       
-Fm                                                      
-F7                                                      
-G#dim                                                   
-                you                                     
-D7                                                      
-                today                                   
-B                                                       
-Fm                                                      
-F                                                       
-A7                                                      
-F7                                                      
-D7                                                      
-                you                                     
-F7                                                      
-                to                                      
-C#7                                                     
-                stay                                    
-Fm                                                      
-F7                                                      
-F                                                       
-F7                                                      
-F                                                       
-F7                                                      
-B7                                                      
-                me                                      
-Bdim                                                    
-D7                                                      
-D#7                                                     
-G7                                                      
-D#7                                                     
-G                                                       
-                let                                     
-Gdim                                                    
-                me                                      
-D7                                                      
-G#7                                                     
-C#7                                                     
-E                                                       
-E7                                                      
-A#dim                                                   
-Am                                                      
-A#dim                                                   
-Cdim                                                    
-A#dim                                                   
-Gdim                                                    
-Ddim                                                    
-F#                                                      
-F7                                                      
-F#                                                      
-D7                                                      
-                of                                      
-Cdim                                                    
+                change                                  
+                our                                     
+                lives                                   
+C#no5                                                   
+                Its                                     
+                in                                      
+                Christ                                  
+                Yet                                     
+D#m(no5)                                                
+                in                                      
+                Christ                                  
+                one                                     
+F#5/C#                                                  
+                who                                     
                 the                                     
-Adim                                                    
-                best                                    
-C#7                                                     
-                days                                    
-Bm                                                      
-F7                                                      
-                I'll                                    
-F#                                                      
-                come                                    
-D7                                                      
-Cdim                                                    
-Dm                                                      
+                perfect                                 
+                sacrifice                               
+C#no5                                                   
+                that                                    
+                tree                                    
+                he                                      
+                died                                    
+                for                                     
+                you                                     
+Dno5                                                    
+                and                                     
+                me                                      
+                and                                     
+                drink                                   
+F#5/C#                                                  
+                The                                     
+                water                                   
+                he                                      
+                prepared                                
+                for                                     
+Dm(no5)                                                 
+                us                                      
+                To                                      
+C#no5                                                   
+                be                                      
+                clean                                   
+                be                                      
+                free                                    
+Dm(no5)                                                 
+C#no5                                                   
+                free                                    
+                world                                   
+C#no5                                                   
+                the                                     
+                cross                                   
+                and                                     
+                be                                      
+                Come                                    
+                and                                     
+                be                                      
+                reclaimed                               
+                For                                     
+                the                                     
+                Lamb                                    
+                of                                      
                 God                                     
-F7                                                      
-Fm                                                      
-D7                                                      
-Ddim                                                    
-C7                                                      
-F7                                                      
-Bdim                                                    
-E7                                                      
-Daug                                                    
-F#7                                                     
-D7                                                      
-G                                                       
-Ddim                                                    
-C7                                                      
-Cdim                                                    
-D#aug                                                   
-G#                                                      
-                your                                    
-C#7                                                     
-D7                                                      
-Dm                                                      
-F7                                                      
-F#7                                                     
-Bdim                                                    
-C7                                                      
-B                                                       
-Bm                                                      
-F7                                                      
-Cdim                                                    
-D#7                                                     
-Cdim                                                    
-F7                                                      
-D7                                                      
-A7                                                      
+                is                                      
+                from                                    
+                the                                     
+                dead                                    
+Dsus4/A                                                 
+                away                                    
+                before                                  
+                see                                     
+Ano5/C#                                                 
+Ano5/C#                                                 
+                eternal                                 
+                life                                    
+                is                                      
+                His                                     
+F#5/C#                                                  
+                hands                                   
+                come                                    
+                and                                     
+                drink                                   
+                from                                    
+                the                                     
+                water                                   
+                Come                                    
+                and                                     
+                drink                                   
+                from                                    
+                him                                     
+                life                                    
+                coming                                  
+Dno5                                                    
+                into                                    
+C#m(no5)                                                
+                joy                                     
+                Come                                    
+                and                                     
+                love                                    
+                the                                     
+                one                                     
+                loves                                   
+                you                                     
+                so                                      
+                much                                    
+C#no5                                                   
+Dm(no5)                                                 
+                Thats                                   
+                how                                     
+                I                                       
+                love                                    
+                loves                                   
+F#5/C#                                                  
+                you                                     
+                how                                     
+                He                                      
+                loves                                   
+                you                                     
+                Do                                      
+                not                                     
+                delay                                   
+                He                                      
+                loves                                   
+                you                                     
+                Come                                    
+                come                                    
+                and                                     
+                love                                    
+                For                                     
+                the                                     
+                reason                                  
+                why                                     
+                oh                                      
+                power                                   
+                Hes                                     
+                the                                     
+                one                                     
+                who                                     
+                is                                      
+                the                                     
+Dm(no5)                                                 
+                Son                                     
+Dm(no5)                                                 
+                perfect                                 
+                Son                                     
+                eternal                                 
+Ano5/C#                                                 
+Dm(no5)                                                 
+Dm(no5)/F                                               
+                taste                                   
+                it                                      
+F#5/C#                                                  
+                taste                                   
+                it                                      
+                You                                     
+                taste                                   
+C#no5                                                   
+                it                                      
+                everyone                                
+                you                                     
+                bite                                    
+                bite                                    
+                bite                                    
+                bite                                    
+                bite                                    
+                bite                                    
+                bite                                    
+                bite                                    
+                you                                     
+                you                                     
+                bite                                    
+Fno5/A                                                  
+                the                                     
+                one                                     
+                who                                     
+                loves                                   
+                me                                      
+                all                                     
+                for                                     
+                me                                      
+                On                                      
+                the                                     
+                cross                                   
+                penalty                                 
+                I                                       
+                come                                    
+                to                                      
+                Him                                     
+                I                                       
+                come                                    
+                to                                      
+                Him                                     
+                With                                    
+                open                                    
+                arms                                    
+                that                                    
+                loves                                   
+                me                                      
+Fno5/A                                                  
+                He                                      
+                loves                                   
+                me                                      
+                How                                     
+                He                                      
+                loves                                   
+                me                                      
+                Loves                                   
+                me                                      
+                in                                      
+                this                                    
+                way                                     
+                I                                       
+                know                                    
+                the                                     
+                kind                                    
+                of                                      
+                love                                    
+                Hes                                     
+                not                                     
+                going                                   
+A5                                                      
+                anywhere                                
+                Hes                                     
+                here                                    
+                to                                      
+                stay                                    
+                Hes                                     
+Fno5/A                                                  
+                here                                    
+                to                                      
+                stay                                    
+                I                                       
+                see                                     
+                Im                                      
+                coming                                  
+                No                                      
+                matter                                  
+                what                                    
+                the                                     
+                obstacles                               
+                my                                      
+F#5/C#                                                  
+                way                                     
+                No                                      
+F#5/C#                                                  
+                matter                                  
+                what                                    
+                my                                      
+                best                                    
+                is                                      
+                Im                                      
+                coming                                  
+                up                                      
+                rest                                    
+                Dont                                    
+                drink                                   
+F#5/C#                                                  
+                give                                    
+C#no5                                                   
+                I                                       
+                will                                    
+                live                                    
+                you                                     
+                For                                     
                 eternity                                
-Ddim                                                    
-D7                                                      
-F7                                                      
-Daug                                                    
-B                                                       
-F7                                                      
-Ddim                                                    
-G7                                                      
-F7                                                      
-Fdim                                                    
-C#dim                                                   
-G7                                                      
-F7                                                      
-D7                                                      
-G                                                       
-C#7                                                     
-Dm                                                      
-C#7                                                     
-D#7                                                     
-F#7                                                     
-Cdim                                                    
-Ddim                                                    
-G#m                                                     
-Dm                                                      
-F7                                                      
-A#dim                                                   
-                Lord                                    
-D7                                                      
-Cm                                                      
-Adim                                                    
-D7                                                      
-A#                                                      
-F7                                                      
-Ddim                                                    
-D7                                                      
-F                                                       
-F#7                                                     
-C                                                       
+F#5/C#                                                  
+                I                                       
+                will                                    
+                rest                                    
+                will                                    
+                rest                                    
+                will                                    
+                you                                     
+                I                                       
+                will                                    
+                rest                                    
+                you                                     
+                in                                      
+                you                                     
+                will                                    
+                Then                                    
+                Then                                    
 
 CHORDPRO FORMAT
 ==================================================
 
-[G7]immersed [Dm]immersed [Dm]immersed [D7]immersed [D7]immersed [D7]immersed
-[D7]immersed [D7]immersed [D7]immersed [D7]immersed [D7]immersed [D7]immersed
-[D7]immersed [D7]immersed [D7]immersed [D7]immersed [D7]immersed [D7]immersed
-[D7]immersed [D7]immersed [D7]immersed [D7]immersed [D7]immersed [D7]immersed
-[D7]immersed [D7]immersed [D7]immersed [Gdim]immersed [F]immersed [Dm]immersed
-[Dm]immersed [Dm]immersed [Dm]immersed [Cdim]immersed [Cdim]immersed
-[Cdim]immersed [Cdim]immersed [Cdim]immersed [Cdim]immersed [Cdim]immersed
-[Cdim]immersed [Cdim]immersed [Cdim]immersed [Cdim]immersed [Cdim]immersed
-[Cdim]immersed [Cdim]immersed [Cdim]immersed [Cdim]immersed [Cdim]immersed
-[Cdim]immersed [Cdim]immersed [Cdim]immersed [C#7]immersed [D7]immersed
-[D7]immersed [F7]immersed [B]immersed [D7]immersed [D7]immersed [D7]immersed
-[E7]immersed [D7]immersed [D7]immersed [C#m]immersed [C#m]immersed [C#m]immersed
-[F7]immersed [F7]immersed [F7]immersed [F7]immersed [F7]immersed [F7]immersed
-[F7]immersed [F7]immersed [F7]immersed [G#7]come [G#7]on [Bdim]come [Bdim]on
-[Bdim]come [Bdim]on [Fm]come [Fm]on [D7]come [D7]on [Edim]come [Edim]on
-[Edim]come [Edim]on [Cdim]come [Cdim]on [Cdim]come [Cdim]on [D7]come [D7]on
-[Am]come [Am]on [Am]come [Am]on [Am]come [Am]on [G]come [F]on [F]come [Adim]on
-[Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on
-[Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on
-[Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on
-[Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on
-[Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on
-[Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on
-[Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on
-[Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on
-[Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on
-[Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on
-[Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on
-[Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on
-[Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on
-[Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on [Adim]come [Adim]on
-[Adim]come [Adim]on [Dm]come [Dm]on [D7]come [Cdim]on [Gm]come [Gm]on [Daug]come
-[C#7]I'm [E]a [G7]woman [F7]I'm [F7]not [C#7]a [F7]woman [F7]I'm [D7]not [D7]a
-[D7]woman [F7]I'm [F#]not [Cdim]a [Cdim]woman [Cdim]I'm [Cdim]not [D7]a
-[D7]woman [D7]I'm [D7]not [C#dim]a [C#dim]woman [G]I'm [G]not [F7]a [F7]woman
-[F7]I'm [F7]not [F7]a [F7]woman [C#m]I'm [C#m]not [C#m]a [C#m]woman [G#]I'm
-[G#]not [G#]a [G#]woman [G#]I'm [D7]not [Caug]a [Caug]woman [F7]I'm [F7]not
-[F7]a [F7]woman [F7]I'm [F7]not [F7]a [F7]woman [F7]I'm [F7]not [F7]a [F7]woman
-[F7]I'm [F7]not [F7]a [F7]woman [F7]I'm [F7]not [F7]a [F7]woman [F7]I'm [F7]not
-[F7]a [F7]woman [F7]I'm [F7]not [F7]a [F7]woman [F7]I'm [F7]not [F7]a [F7]woman
-[F7]I'm [F7]not [F7]a [F7]woman [F7]I'm [F7]not [F7]a [F7]woman [F7]I'm [F7]not
-[F7]a [F7]woman [F7]I'm [F7]not [F7]a [F7]woman [F7]I'm [F7]not [F7]a [F7]woman
-[F7]I'm [F7]not [F7]a [F7]woman [F7]I'm [F7]not [F7]a [F7]woman [F7]I'm [F7]not
-[F7]a [F7]woman [F7]I'm [F7]not [F7]a [F7]woman [F7]I'm [F7]not [F7]a [F7]woman
-[F7]I'm [F7]not [F7]a [F7]woman [F7]I'm [F7]not [F7]a [F7]woman [F7]I'm [F7]not
-[F7]a [F7]woman [F7]I'm [F7]not [F7]a [F7]woman [F7]I'm [F7]not [F7]a [F7]woman
-[F7]I'm [F7]not [F7]a [F7]woman [F7]I'm [F7]not [F7]a [F7]woman [F7]I [F7]I'm
-[F7]a [F7]woman [D7]to [D#7]need [F7]to [D#7]you [F7]need [C#dim]to
-[C#dim]understand [G]I'm [G]waiting [D7]for [D7]you [C#dim]to [Fm]wind [G7]wind
-[G7]That [G7]wind [A#dim]love [A#dim]you [A#dim]love [F7]you [A#7]I [A#7]love
-[F#]you [F#]love [F#]you [F#]I [Fdim]love [Fdim]you [Fm]I [Fm]love [F#m]you
-[Fm]I [F]love [F]you [F]I [F#7]love [C#dim]you [C#dim]I [C#dim]love [C#dim]you
-[C#dim]I [F]love [F]you [B7]you [G7]love [A#7]you [F7]love [Ddim]you [C#dim]I
-[A]love [A]you [F]not [A#7]anywhere [G#dim]you [D7]today [D7]you [F7]to
-[C#7]stay [B7]me [G]let [Gdim]me [D7]of [Cdim]the [Adim]best [C#7]days [F7]I'll
-[F#]come [Dm]God [G#]your [A7]eternity [A#dim]Lord
+and be [F#5/C#]made [F#5/C#]new Drink drink was made for you Drink drink Come
+and be satisfied You wont ever be denied drink Full forgiveness power to change
+our lives [C#no5]Its in Christ [D#m(no5)]Yet [D#m(no5)]in [D#m(no5)]Christ
+[F#5/C#]one [F#5/C#]who the perfect sacrifice that tree he died for [Dno5]you
+[Dno5]and me and drink [F#5/C#]The [F#5/C#]water [F#5/C#]he prepared
+[Dm(no5)]for [Dm(no5)]us [Dm(no5)]To [C#no5]be clean be free free world the
+cross and be Come and be reclaimed For the Lamb of God is from the dead
+[Dsus4/A]away [Dsus4/A]before [Ano5/C#]see eternal life is [F#5/C#]His
+[F#5/C#]hands [F#5/C#]come and drink from the water Come and drink from him life
+[Dno5]coming [Dno5]into [C#m(no5)]joy Come and love the one loves you so much
+Thats how I love [F#5/C#]loves [F#5/C#]you how He loves you Do not delay He
+loves you Come come and love For the reason why oh power Hes the one who is the
+[Dm(no5)]Son perfect Son [Ano5/C#]eternal taste it [F#5/C#]taste [F#5/C#]it You
+[C#no5]taste it everyone you bite bite bite bite bite bite bite bite you you
+[Fno5/A]bite the one who loves me all for me On the cross penalty I come to Him
+I come to Him With open arms that loves [Fno5/A]me He loves me How He loves me
+Loves me in this way I know the kind of love Hes not [A5]going [A5]anywhere Hes
+here to stay [Fno5/A]Hes here to stay I see Im coming No matter what the
+obstacles [F#5/C#]my [F#5/C#]way [F#5/C#]No [F#5/C#]matter [F#5/C#]what my best
+is Im coming up rest Dont drink [C#no5]give [C#no5]I will live you For eternity
+I will rest will rest will you I will rest you in you will Then Then
 
 CHORD CHART
 ==================================================
 
 Section 1:
-  C#m | A#dim | C#7 | Fm | Bdim | A#m | C# | Edim | F7 | F# | A | Dm | C#dim | F#7
+  Gno5/B
 
 Section 2:
-  Ddim | G#7 | B7 | D#aug | C# | A7 | F | F7 | D7 | D#dim | C#7 | Cm | F#7 | Fm | D#7 | Edim | Gm | Gdim | Bdim | C#dim | G7 | G | C7 | F#m | E7 | A# | Adim | D | F#dim | Dm | A#m
+  F#5/C#
 
 Section 3:
-  Fm | Am | F | Fdim | C7 | A# | C#dim | Cdim | A#dim | C#aug | F7 | Gdim | Edim | C#7 | A#m | Bdim | D7 | Ddim | Adim | C# | A#7 | F#7 | Dm | Cm | G#7 | D | D#dim | C#m | G#dim | Gm | F# | F#dim | G7 | D#7 | Caug | A | G | Em
+  A#5/F | A#/D
 
 Section 4:
-  Fm | F7 | C7 | Bdim | C#dim | F#m | Ddim | C | D#7 | F#7 | A | C# | Fdim | C#m | C#7 | Bm | Cdim | D#dim | G7 | E7 | G | Gdim | F | D7 | Dm | F# | D#m | Daug | B
+  C#no5
 
 Section 5:
-  E7 | A# | A | Ddim | C#7 | D#7 | D7 | G#dim | F7
+  C#no5 | Ano5/C# | F5/C
 
 Section 6:
-  D#dim | D | Cdim | C#7 | Ddim | D#7 | A | D#m | F#7 | F7 | G#7 | Bdim | Fm | D7 | F#m | A#dim | Edim | Am | Dm | G | F | Adim
+  B5/F# | C#no5
 
 Section 7:
-  A7 | G#dim | F | G#7 | G7 | D7 | C#dim | F7 | D#7 | Ddim | Dm | A#dim | Bm | Bdim | F#7 | E7 | Adim | Cdim | C#m | G | C#aug | C | C#7 | Daug | F#m | Gm | Fm | D | A#m | Caug | E | A | Em | Gdim | F# | G# | Cm | A#7
+  D#no5
 
 Section 8:
-  D7 | E7 | F7 | Em | C#aug | C#dim | D#dim | F#7 | A#dim | G7 | C#m | C7 | Gm | Dm | Ddim | F | Cdim | D | Am | G | Bdim | D#7 | F#m | Caug | C#7 | A#m | A
+  C#no5
 
 Section 9:
-  A | D#7 | C#dim | Ddim | A#m | Fdim | E7 | G# | Cdim | C#aug | D7 | G#m | F7 | G | Bdim | C#
+  D#m(no5)
 
 Section 10:
-  Fm | C# | C#dim | A | Cdim | C#aug | F7 | D#dim | F#m | C | D#m | Gm | G7 | Dm | Fdim | F#7 | C#m | C#7 | D | F | Caug | A#dim | A7 | Am | F#dim | B | E7 | A#7 | Bdim | Ddim | F# | B7
+  F#5/C#
 
 Section 11:
-  F#7 | D#7 | Ddim | F# | D7 | C#7 | F7 | Cdim | Edim | E7 | G | C#dim | G7 | B | G#dim | Bdim | A# | F | Fdim | A | Adim | A7 | Dm | A#7 | Am | Bm | E | Fm | B7 | Gdim | G#7 | A#dim | C7 | Daug | D#aug | G#
+  C#no5
 
 Section 12:
-  Ddim | G7 | F7 | Fdim | C#dim | D7 | G | C#7 | Dm | D#7 | F#7 | Cdim | G#m | A#dim | Cm | Adim | A#
+  Dno5
 
 Section 13:
-  Ddim | D7 | F | F#7 | C
+  F#5/C#
+
+Section 14:
+  Dm(no5) | C#no5
+
+Section 15:
+  Dm(no5) | C#no5
+
+Section 16:
+  C#no5
+
+Section 17:
+  Dsus4/A
+
+Section 18:
+  Ano5/C#
+
+Section 19:
+  Ano5/C#
+
+Section 20:
+  F#5/C#
+
+Section 21:
+  Dno5
+
+Section 22:
+  C#m(no5)
+
+Section 23:
+  C#no5 | Dm(no5)
+
+Section 24:
+  F#5/C#
+
+Section 25:
+  Dm(no5)
+
+Section 26:
+  Dm(no5)
+
+Section 27:
+  Ano5/C# | Dm(no5) | Dm(no5)/F
+
+Section 28:
+  F#5/C#
+
+Section 29:
+  C#no5
+
+Section 30:
+  Fno5/A
+
+Section 31:
+  Fno5/A
+
+Section 32:
+  A5
+
+Section 33:
+  Fno5/A
+
+Section 34:
+  F#5/C#
+
+Section 35:
+  F#5/C#
+
+Section 36:
+  C#no5
+
+Section 37:
+  F#5/C#
 
 
 LYRICS ONLY
 ==================================================
 
-immersed immersed immersed immersed immersed immersed immersed immersed immersed
-immersed immersed immersed immersed immersed immersed immersed immersed immersed
-immersed immersed immersed immersed immersed immersed immersed immersed immersed
-immersed immersed immersed immersed immersed immersed immersed immersed immersed
-immersed immersed immersed immersed immersed immersed immersed immersed immersed
-immersed immersed immersed immersed immersed immersed immersed immersed immersed
-immersed immersed immersed immersed immersed immersed immersed immersed immersed
-immersed immersed immersed immersed immersed immersed immersed immersed immersed
-immersed immersed immersed immersed come on come on come on come on come on come
-on come on come on come on come on come on come on come on come on come on come
-on come on come on come on come on come on come on come on come on come on come
-on come on come on come on come on come on come on come on come on come on come
-on come on come on come on come on come on come on come on come on come on come
-on come on come on come on come on come on come on come on come on come on come
-on come on come on come on come on come on come on come on come on come on come
-on come on come on come on come on come on come on come on come on come on come
-I'm a woman I'm not a woman I'm not a woman I'm not a woman I'm not a woman I'm
-not a woman I'm not a woman I'm not a woman I'm not a woman I'm not a woman I'm
-not a woman I'm not a woman I'm not a woman I'm not a woman I'm not a woman I'm
-not a woman I'm not a woman I'm not a woman I'm not a woman I'm not a woman I'm
-not a woman I'm not a woman I'm not a woman I'm not a woman I'm not a woman I'm
-not a woman I'm not a woman I'm not a woman I'm not a woman I'm not a woman I'm
-not a woman I'm not a woman I'm not a woman I'm not a woman I'm not a woman I'm
-not a woman I I'm a woman to need to you need to understand I'm waiting for you
-to wind wind That wind love you love you I love you love you I love you I love
-you I love you I love you I love you I love you you love you love you I love you
-not anywhere you today you to stay me let me of the best days I'll come God your
-eternity Lord
+and be made new Drink drink was made for you Drink drink Come and be satisfied
+You wont ever be denied drink Full forgiveness power to change our lives Its in
+Christ Yet in Christ one who the perfect sacrifice that tree he died for you and
+me and drink The water he prepared for us To be clean be free free world the
+cross and be Come and be reclaimed For the Lamb of God is from the dead away
+before see eternal life is His hands come and drink from the water Come and
+drink from him life coming into joy Come and love the one loves you so much
+Thats how I love loves you how He loves you Do not delay He loves you Come come
+and love For the reason why oh power Hes the one who is the Son perfect Son
+eternal taste it taste it You taste it everyone you bite bite bite bite bite
+bite bite bite you you bite the one who loves me all for me On the cross penalty
+I come to Him I come to Him With open arms that loves me He loves me How He
+loves me Loves me in this way I know the kind of love Hes not going anywhere Hes
+here to stay Hes here to stay I see Im coming No matter what the obstacles my
+way No matter what my best is Im coming up rest Dont drink give I will live you
+For eternity I will rest will rest will you I will rest you in you will Then
+Then

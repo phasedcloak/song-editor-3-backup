@@ -60,8 +60,8 @@ class ProcessingOptionsDialog(QDialog):
         # Chord detection
         analysis_layout.addWidget(QLabel("Chord Detection:"), 0, 0)
         self.chord_method_combo = QComboBox()
-        self.chord_method_combo.addItems(['chordino', 'chromagram'])
-        self.chord_method_combo.setCurrentText('chordino')
+        self.chord_method_combo.addItems(['chordino', 'chromagram', 'basic-pitch-pychord'])
+        self.chord_method_combo.setCurrentText('basic-pitch-pychord')
         analysis_layout.addWidget(self.chord_method_combo, 0, 1)
         
         # Melody extraction

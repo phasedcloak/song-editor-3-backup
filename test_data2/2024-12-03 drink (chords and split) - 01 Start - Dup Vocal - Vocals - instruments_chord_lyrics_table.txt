@@ -1,0 +1,39 @@
+Title: 2024-12-03 drink (chords and split) - 01 Start - Dup Vocal - Vocals - instruments
+Key:  major
+Key Confidence: 60.3%
+Tempo: 83.4 BPM
+Duration: 8:09
+Transcription: openai-whisper
+
+CHORD AND LYRICS TIME ALIGNMENT TABLE
+======================================================================
+
+Chord           Lyrics                                  
+-------------------------------------------------------
+                you                                     
+                you                                     
+                you                                     
+                you                                     
+                you                                     
+                you                                     
+                you                                     
+                you                                     
+                you                                     
+                you                                     
+                you                                     
+                you                                     
+                you                                     
+                you                                     
+                you                                     
+                you                                     
+                you                                     
+
+CHORDPRO FORMAT
+==================================================
+
+you you you you you you you you you you you you you you you you you
+
+LYRICS ONLY
+==================================================
+
+you you you you you you you you you you you you you you you you you

@@ -168,6 +168,210 @@ class ChordDetector:
         """
         return self._detect_chords_chordino_worker(audio_path)
 
+    def _detect_chords_basic_pitch_pychord(self, audio: np.ndarray, sample_rate: int) -> List[Dict[str, Any]]:
+        """Detect chords using Basic Pitch + PyChord method with subprocess isolation."""
+        try:
+            import tempfile
+            import os
+            
+            # Save audio to temporary file for Basic Pitch
+            with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as temp_file:
+                import soundfile as sf
+                sf.write(temp_file.name, audio, sample_rate)
+                temp_audio_path = temp_file.name
+            
+            try:
+                # Run Basic Pitch + PyChord in a subprocess to avoid cffi conflicts
+                chords = self._run_basic_pitch_pychord_subprocess(temp_audio_path, self.window_size)
+                return chords
+                
+            finally:
+                # Clean up temporary file
+                try:
+                    os.unlink(temp_audio_path)
+                except:
+                    pass
+                    
+        except Exception as e:
+            logging.error(f"Error in basic-pitch-pychord chord detection: {e}")
+            return []
+
+    def _run_basic_pitch_pychord_subprocess(self, audio_path: str, window_size: float) -> List[Dict[str, Any]]:
+        """Run Basic Pitch + PyChord chord detection in a subprocess to avoid cffi conflicts."""
+        try:
+            import tempfile
+            import subprocess
+            import json
+            
+            # Create the subprocess script
+            script_content = f'''
+import sys
+import warnings
+import numpy as np
+import tempfile
+import os
+import json
+
+# Suppress warnings
+warnings.filterwarnings('ignore', category=UserWarning)
+
+# Add system site-packages to path
+sys.path.insert(0, '/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages')
+
+try:
+    from basic_pitch.inference import predict
+    from pychord import find_chords_from_notes
+    
+    # Step 1: Run Basic Pitch to get note events
+    model_output, midi_data, note_events = predict("{audio_path}")
+    
+    # Step 2: Group note events into segments
+    segment_length = {window_size}
+    if not note_events or len(note_events) == 0:
+        print("RESULT: []")
+        sys.exit(0)
+    
+    # Convert note_events to the expected format if needed
+    if isinstance(note_events, list) and len(note_events) > 0:
+        # Check if note_events is already in the correct format
+        if isinstance(note_events[0], dict) and "end" in note_events[0]:
+            # Already in correct format
+            pass
+        else:
+            # Convert from basic-pitch format to expected format
+            converted_events = []
+            for event in note_events:
+                if isinstance(event, tuple) and len(event) >= 4:
+                    # Basic Pitch returns tuples: (start_time, end_time, pitch, velocity, chroma_vector)
+                    start_time, end_time, pitch, velocity = event[0], event[1], event[2], event[3]
+                    converted_events.append({{
+                        'start': float(start_time),
+                        'end': float(end_time),
+                        'pitch': int(pitch),
+                        'velocity': float(velocity)
+                    }})
+                elif hasattr(event, 'start') and hasattr(event, 'end') and hasattr(event, 'pitch'):
+                    # Fallback for object format
+                    converted_events.append({{
+                        'start': float(event.start),
+                        'end': float(event.end),
+                        'pitch': int(event.pitch),
+                        'velocity': float(getattr(event, 'velocity', 80))
+                    }})
+            note_events = converted_events
+    
+    if not note_events:
+        print("RESULT: []")
+        sys.exit(0)
+    
+    max_time = max(event["end"] for event in note_events)
+    num_segments = int(np.ceil(max_time / segment_length))
+    
+    chords = []
+    note_map = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+    
+    for i in range(num_segments):
+        t_start = i * segment_length
+        t_end = (i + 1) * segment_length
+        
+        # Get notes in this segment
+        notes_this_segment = [
+            event for event in note_events 
+            if event["start"] < t_end and event["end"] > t_start
+        ]
+        
+        if not notes_this_segment:
+            continue
+        
+        # Convert MIDI pitches to note names
+        midi_pitches = list({{event["pitch"] for event in notes_this_segment}})
+        note_names = [note_map[n % 12] for n in midi_pitches]
+        
+        # Use pychord to find chords
+        if note_names:
+            try:
+                detected_chords = find_chords_from_notes(note_names)
+                if detected_chords:
+                    # Take the first (most likely) chord
+                    chord_symbol = str(detected_chords[0])
+                    
+                    # Calculate confidence based on number of notes and chord complexity
+                    confidence = min(0.9, 0.3 + (len(note_names) * 0.1))
+                    
+                    chord = {{
+                        'symbol': chord_symbol,
+                        'start': t_start,
+                        'end': t_end,
+                        'duration': t_end - t_start,
+                        'confidence': confidence,
+                        'detection_method': 'basic_pitch_pychord'
+                    }}
+                    
+                    chords.append(chord)
+            except Exception as e:
+                print(f"Warning: PyChord error for segment {{i}}: {{e}}", file=sys.stderr)
+                continue
+    
+    # Output results
+    print("RESULT: " + json.dumps(chords))
+    
+except ImportError as e:
+    print(f"ERROR: Required packages not available: {{e}}", file=sys.stderr)
+    sys.exit(1)
+except Exception as e:
+    print(f"ERROR: {{e}}", file=sys.stderr)
+    sys.exit(1)
+'''
+            
+            # Write script to temporary file
+            with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False) as script_file:
+                script_file.write(script_content)
+                script_path = script_file.name
+            
+            try:
+                # Run the subprocess using system Python to avoid cffi conflicts
+                result = subprocess.run(
+                    ['/Library/Frameworks/Python.framework/Versions/3.10/bin/python3', script_path],
+                    capture_output=True,
+                    text=True,
+                    timeout=300  # 5 minute timeout
+                )
+                
+                if result.returncode != 0:
+                    logging.error(f"Basic-pitch-pychord subprocess failed: {result.stderr}")
+                    return []
+                
+                # Parse the result
+                output_lines = result.stdout.strip().split('\n')
+                result_line = None
+                for line in output_lines:
+                    if line.startswith('RESULT: '):
+                        result_line = line[8:]  # Remove 'RESULT: ' prefix
+                        break
+                
+                if result_line is None:
+                    logging.error("No result found in subprocess output")
+                    return []
+                
+                chords = json.loads(result_line)
+                
+                # Apply chord simplification and merging in the main process
+                if self.chord_simplification:
+                    chords = self._simplify_chords(chords)
+                
+                chords = self._merge_similar_chords(chords)
+                
+                return chords
+                
+            finally:
+                # Clean up script file
+                if os.path.exists(script_path):
+                    os.unlink(script_path)
+                    
+        except Exception as e:
+            logging.error(f"Error running basic-pitch-pychord subprocess: {e}")
+            return []
+
     def _detect_chords_chromagram(self, audio: np.ndarray, sample_rate: int) -> List[Dict[str, Any]]:
         """Detect chords using chromagram analysis via system Python subprocess to avoid cffi issues."""
         try:
@@ -543,7 +747,7 @@ except Exception as e:
             import librosa
             return librosa.load(audio_path, sr=44100, mono=True)
 
-    def detect(self, audio: np.ndarray, sample_rate: int) -> List[Dict[str, Any]]:
+    def detect(self, audio: np.ndarray, sample_rate: int, method: str = None) -> List[Dict[str, Any]]:
         """Detect chords in audio using the selected method."""
         start_time = datetime.now()
 
@@ -559,7 +763,11 @@ except Exception as e:
             # logging.info(f"[DIAGNOSTIC] Audio stats: min={np.min(audio):.4f}, max={np.max(audio):.4f}, mean={np.mean(audio):.4f}")
             # logging.info(f"[DIAGNOSTIC] Sample rate: {sample_rate}")
             
-            if self.use_chordino:
+            # Determine which method to use
+            if method == 'basic-pitch-pychord':
+                chords = self._detect_chords_basic_pitch_pychord(audio, sample_rate)
+                logging.info(f"Basic Pitch + PyChord detected {len(chords)} chords")
+            elif self.use_chordino:
                 # The public detect method now expects a file path for chordino
                 raise NotImplementedError("Chordino detection requires a file path passed to detect_from_path.")
             else:
@@ -585,13 +793,18 @@ except Exception as e:
             logging.error(f"Error in chord detection: {e}")
             raise
 
-    def detect_from_path(self, audio_path: str) -> List[Dict[str, Any]]:
+    def detect_from_path(self, audio_path: str, method: str = None) -> List[Dict[str, Any]]:
         """
         Detect chords from an audio file path. This is the new primary method.
         """
         start_time = datetime.now()
         try:
-            if self.use_chordino:
+            if method == 'basic-pitch-pychord':
+                # For basic-pitch-pychord, we need to load the audio into memory
+                audio, sr = self._load_audio_with_subprocess(audio_path)
+                chords = self._detect_chords_basic_pitch_pychord(audio, sr)
+                logging.info(f"Basic Pitch + PyChord detected {len(chords)} chords")
+            elif self.use_chordino:
                 chords = self._detect_chords_chordino(audio_path)
                 logging.info(f"Chordino worker detected {len(chords)} chords")
             else:

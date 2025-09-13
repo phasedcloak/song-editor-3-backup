@@ -413,7 +413,9 @@ try:
 
     audio_path = "{audio_path}"
     output_dir = "{output_dir}"
-    # Convert relative output_dir to absolute path
+    # Convert relative paths to absolute paths
+    if not os.path.isabs(audio_path):
+        audio_path = os.path.abspath(audio_path)
     if not os.path.isabs(output_dir):
         output_dir = os.path.abspath(output_dir)
     model_name = "{self.model_name}"
@@ -447,13 +449,13 @@ except Exception as e:
             with open(script_path, 'w') as f:
                 f.write(complete_script)
 
-            # Run the complete script with system Python from the temp directory
+            # Run the complete script with system Python from the project directory
             cmd = ['/usr/local/bin/python3', script_path]
             logger.info(f"Running complete separation subprocess: {' '.join(cmd)}")
 
             process = subprocess.run(
                 cmd,
-                cwd='/tmp',  # Run from temp directory
+                cwd=os.getcwd(),  # Run from current working directory
                 capture_output=True,
                 text=True,
                 timeout=300  # 5 minute timeout

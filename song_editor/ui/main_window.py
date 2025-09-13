@@ -62,37 +62,65 @@ class ProcessingThread(QThread):
         """Run the audio processing pipeline using CLI subprocess isolation."""
         self.start_time = time.time()
         try:
-            # Import the CLI processing function that already has subprocess isolation
-            from ..app import process_audio_file
-            
             # Convert GUI config to CLI parameters
             separation_engine = self.config.get('separation_engine', 'demucs')
             use_demucs = self.config.get('use_demucs', True)
             use_chordino = (self.config.get('chord_method') == 'chordino')
+            chord_method = self.config.get('chord_method', 'chordino')
             
             # Emit progress updates
             self.progress_updated.emit("Starting audio processing...", 10)
-            logging.info(f"GUI processing audio file using CLI function: {self.audio_file}")
+            logging.info(f"GUI processing audio file using subprocess isolation: {self.audio_file}")
             
             # Monitor progress by patching the logging system temporarily
             self._setup_progress_monitoring()
             
-            # Use the CLI processing function that has subprocess isolation
-            success = process_audio_file(
-                input_path=self.audio_file,
-                output_dir=None,  # Use same directory as input
-                whisper_model=self.config.get('whisper_model', 'mlx-whisper'),
-                use_chordino=use_chordino,
-                separation_engine=separation_engine,
-                audio_separator_model=self.config.get('audio_separator_model', 'UVR_MDXNET_KARA_2'),
-                use_cuda=self.config.get('use_cuda', False),
-                use_coreml=self.config.get('use_coreml', True),
-                use_demucs=use_demucs,
-                save_intermediate=self.config.get('save_intermediate', False),
-                demucs_model='htdemucs',
-                no_gui=True,  # Important: tells CLI function we're in GUI mode
-                force_overwrite=True  # GUI should always reprocess when user clicks the button
-            )
+            # Use subprocess isolation for GUI processing to avoid cffi conflicts
+            import subprocess
+            import sys
+            
+            # Build command line arguments
+            cmd = [
+                sys.executable, '-m', 'song_editor.app',
+                '--no-gui',
+                '--chord-method', chord_method,
+                '--whisper-model', self.config.get('whisper_model', 'mlx-whisper'),
+                '--separation-engine', separation_engine,
+                '--audio-separator-model', self.config.get('audio_separator_model', 'UVR_MDXNET_KARA_2'),
+            ]
+            
+            if use_demucs:
+                cmd.append('--use-demucs')
+            else:
+                cmd.append('--no-demucs')
+                
+            if self.config.get('use_cuda', False):
+                cmd.append('--use-cuda')
+                
+            if self.config.get('use_coreml', True):
+                cmd.append('--use-coreml')
+                
+            if self.config.get('save_intermediate', False):
+                cmd.append('--save-intermediate')
+                
+            if self.config.get('language'):
+                cmd.extend(['--language', self.config.get('language')])
+            
+            # Add input file
+            cmd.append(self.audio_file)
+            
+            # Run in subprocess
+            logging.info(f"Running GUI processing in subprocess: {' '.join(cmd)}")
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=1800)  # 30 min timeout
+            
+            success = result.returncode == 0
+            
+            if not success:
+                logging.error(f"GUI subprocess failed with return code {result.returncode}")
+                logging.error(f"STDERR: {result.stderr}")
+                logging.error(f"STDOUT: {result.stdout}")
+            else:
+                logging.info("GUI subprocess completed successfully")
             
             if not success:
                 raise Exception("CLI processing function failed")
@@ -710,7 +738,7 @@ class MainWindow(QMainWindow):
 
             # Disable process buttons during processing
             if hasattr(self, 'process_btn'):
-                self.process_btn.setEnabled(False)
+                    self.process_btn.setEnabled(False)
             if hasattr(self, 'process_button'):
                 self.process_button.setEnabled(False)
 
@@ -720,11 +748,11 @@ class MainWindow(QMainWindow):
             self.processing_thread.stage_completed.connect(self.stage_completed)
             self.processing_thread.processing_finished.connect(self.processing_finished)
             self.processing_thread.error_occurred.connect(self.processing_error)
-            
+
             # Show progress bar and start processing
             self.progress_bar.setVisible(True)
             self.progress_bar.setValue(0)
-            
+
             # Actually start the thread!
             logging.info("Starting processing thread...")
             self.processing_thread.start()
@@ -930,7 +958,7 @@ class MainWindow(QMainWindow):
         geometry = self.settings.value('geometry')
         if geometry:
             self.restoreGeometry(geometry)
-        
+
         # Settings for combo boxes are now handled by the dialogs themselves
         # The dialogs load their own settings when created
 
@@ -938,7 +966,7 @@ class MainWindow(QMainWindow):
         """Save application settings."""
         # Save window geometry
         self.settings.setValue('geometry', self.saveGeometry())
-        
+
         # Settings for combo boxes are now handled by the dialogs themselves
         # The dialogs save their own settings when closed
 

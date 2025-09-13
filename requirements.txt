@@ -19,6 +19,7 @@ mlx-whisper==0.4.2
 # Chord Detection
 chord-extractor>=0.1.3
 vamp==1.1.0
+pychord>=0.1.0
 
 # Melody Extraction
 basic-pitch==0.4.0

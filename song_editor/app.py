@@ -169,6 +169,7 @@ def process_audio_file(
     output_dir: Optional[str] = None,
     whisper_model: str = "openai-whisper",
     use_chordino: bool = True,
+    chord_method: str = 'chordino',
     separation_engine: str = 'demucs',
     audio_separator_model: str = 'UVR_MDXNET_KARA_2',
     use_cuda: bool = False,
@@ -285,9 +286,12 @@ def process_audio_file(
             chords = []
         else:
             try:
+                # Get chord method from config (use parameter if provided, otherwise config)
+                chord_method = chord_method if chord_method else config.get('chord_method', 'chordino')
+                
                 # Save audio to temporary file for chord detection
                 temp_chord_path = audio_processor._save_audio_temp(instrumental_audio, audio_data['sample_rate'])
-                chords = chord_detector.detect_from_path(temp_chord_path)
+                chords = chord_detector.detect_from_path(temp_chord_path, method=chord_method)
                 # Clean up temporary file
                 if os.path.exists(temp_chord_path):
                     os.unlink(temp_chord_path)
@@ -488,6 +492,13 @@ Examples:
         dest='use_chordino',
         action='store_false',
         help='Disable Chordino chord detection'
+    )
+
+    parser.add_argument(
+        '--chord-method',
+        default='chordino',
+        choices=['chordino', 'chromagram', 'basic-pitch-pychord'],
+        help='Chord detection method to use (default: chordino)'
     )
 
     parser.add_argument(
@@ -729,6 +740,7 @@ Examples:
                     output_dir=args.output_dir,
                     whisper_model=args.whisper_model,
                     use_chordino=args.use_chordino,
+                    chord_method=args.chord_method,
                     # New separation engine parameters
                     separation_engine=args.separation_engine.replace('-', '_'),
                     audio_separator_model=args.audio_separator_model,
@@ -795,6 +807,7 @@ Examples:
             output_dir=args.output_dir,
             whisper_model=args.whisper_model,
             use_chordino=args.use_chordino,
+            chord_method=args.chord_method,
             # New separation engine parameters
             separation_engine=args.separation_engine.replace('-', '_'),
             audio_separator_model=args.audio_separator_model,
